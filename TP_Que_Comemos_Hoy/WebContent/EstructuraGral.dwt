@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>&iquest;Que Comemos Hoy?</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<style type="text/css">
+<!--
+body {
+	background-color: #90C58F;
+}
+-->
+</style></head>
+
+<body>
+<div align="center">
+  <table width="642" height="574" border="1">
+    <tr>
+      <th height="196" colspan="2" bgcolor="#228B22" scope="col"><img src="logogral.jpg" width="416" height="192" /></th>
+    </tr>
+    <tr>
+      <td width="244" height="34"><a href="index.jsp"><img src="home.jpg" width="64" height="48" /></a></td>
+      <td width="382">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="309" colspan="2"><!-- TemplateBeginEditable name="EditRegion1" -->EditRegion1<!-- TemplateEndEditable --></td>
+    </tr>
+    <tr>
+      <td colspan="2" bgcolor="#228B22">&nbsp;</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
