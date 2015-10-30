@@ -28,19 +28,34 @@ body {
 String nombreUsuario = (String)request.getParameter("nombre");
 String fechaNac = (String)request.getParameter("fechaNacimiento");
 String altura = (String)request.getParameter("altura");
-String sexo = (String)request.getParameter("sexo");
+String sexo = ((String)request.getParameter("sexo"));
+
+char sex;
+
+sex = sexo.charAt(0);
+
 String complexion = (String)request.getParameter("complexion");
 
 
 Usuario nuevoUsuario = new Usuario();
 
 
+
 nuevoUsuario.setNombreUsuario(nombreUsuario);
+nuevoUsuario.setFecha_nacimiento(fechaNac);
+
+Float alturaUsuario = Float.parseFloat(altura);
+nuevoUsuario.setAltura(alturaUsuario);
+nuevoUsuario.setSexo(sex);
 
 
-out.print("Bienvenido "+nombreUsuario+"!! ");
+
+out.print("Bienvenido "+nuevoUsuario.getNombreUsuario()+"!! ");
 out.print("<br/>");
-
+out.print("Su información Personal: <br/>");
+out.print("Fecha de Nacimiento "+nuevoUsuario.getFecha_nacimiento()+"<br/>");
+out.print("Altura: "+nuevoUsuario.getAltura()+"<br/>");
+out.print("Altura: "+nuevoUsuario.getSexo()+"<br/>");
 
 %>
 <form action="inicio.jsp" method="post">

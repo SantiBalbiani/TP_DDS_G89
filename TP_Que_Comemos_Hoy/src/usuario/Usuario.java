@@ -11,7 +11,7 @@ import usuario.Usuario;
 public class Usuario {
 	private String nombreUsuario;
 	private char sexo;
-	private int fecha_nacimiento;
+	private String fecha_nacimiento;
 	private String complexion;
 	private float  altura;
 	private String preferencias_alimenticias;
@@ -42,7 +42,7 @@ public class Usuario {
 	//++++++++++++++++++ FIN OPERACIONES DE GRUPOS DE USUARIO++++++++++++++++++++++++++++++++++++++++++++//
 	
 	
-	public Usuario altaUsuario(char sexo, int fnac, String complexion,float altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
+	public Usuario altaUsuario(char sexo, String fnac, String complexion,float altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
 		
 		this.sexo=sexo;
 		this.fecha_nacimiento= fnac; //formato mmddaaa
@@ -98,10 +98,10 @@ public class Usuario {
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	public int getFecha_nacimiento() {
+	public String getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
-	public void setFecha_nacimiento(int fecha_nacimiento) {
+	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 	public String getComplexion() {
