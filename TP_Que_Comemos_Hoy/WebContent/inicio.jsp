@@ -28,6 +28,29 @@ body {
 }
 -->
 </style>
+
+
+<style>
+#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
+
+
 </head>
 
 <body>
@@ -51,7 +74,30 @@ body {
 					<button type="button" class="btn btn-primary btn-lg">Crear Receta</button>
 					
 					<button type="button" class="btn btn-default btn-lg">Crear Grupo</button>
-						
+					
+					
+					
+					
+					
+					
+					
+					
+<p>Mover los ingredientes requeridos :</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="carrot.png" draggable="true" ondragstart="drag(event)" width="80" height="120">
+<img id="drag2" src="lettuce.png" draggable="true" ondragstart="drag(event)" width="140" height="80">
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 						
 					<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 					<script
