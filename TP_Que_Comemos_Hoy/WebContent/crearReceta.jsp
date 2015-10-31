@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>&iquest;Creá tu propia receta!</title>
+<title>&iquest;Creï¿½ tu propia receta!</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -32,7 +32,7 @@ body {
 
 <style>
 #div1 {
-	width:530px;
+	width:600px;
 	height:220px;
 	padding:10px;
 	border:10px solid #FFFFFF;
@@ -89,26 +89,26 @@ function drop(ev) {
 </div>
 <p>&nbsp;</p>
 <p align="center">Ingredientes</p>
-<p><br>
+<p align="center"><br>
       <img id="drag1" src="carrot.png" draggable="true" ondragstart="drag(event)" width="80" height="120">
       <img src="lettuce.png" name="drag2" width="130" height="97" id="drag2" draggable="true" ondragstart="drag(event)">
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script
+      <img id="drag3" src="tomato.png" draggable="true" ondragstart="drag(event)" width="90" height="120">
+     <img id="drag4" src="meat.png" draggable="true" ondragstart="drag(event)" width="100" height="118">      </p>
+<p align="center">Condimentos</p>
+<p align="center"><img id="drag5" src="mustard.png" draggable="true" ondragstart="drag(event)" width="81" height="173"> <img id="drag6" src="ketchup.png" draggable="true" ondragstart="drag(event)" width="81" height="173"><img id="drag7" src="salt.png" draggable="true" ondragstart="drag(event)" width="90" height="120"></p>
+<p align="center">&nbsp;  </p>
+				<p>
+				  <button type="button" class="btn btn-default btn-lg">Crear Receta</button>
+				  </p>
+				<p align="center">
+				  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+				  <script
 						src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="js/bootstrap.min.js"></script>
-</p>
-			  </body>
+				  <!-- Include all compiled plugins (below), or include individual files as needed -->
+				  <script src="js/bootstrap.min.js"></script>
+                </p>
+				</body>
 
 </html>
