@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>&iquest;Tablero de Operaciones</title>
+<title>&iquest;Cre· tu propia receta!</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -79,21 +79,25 @@ function drop(ev) {
 
 					
 					
-					<a href="crearReceta.jsp" class="btn btn-primary btn-lg">Crear Receta</a>
+					
+					
+					
+<p>Mover los ingredientes requeridos :</p>
 
-
-					
-					
-					<button type="button" class="btn btn-default btn-lg">Crear Grupo</button>
-					
-					
-					
-					
-					
-					
-					
-					
-
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <div align="center" class="Estilo1">Arrastre hasta aqu√≠ los ingredientes </div>
+</div>
+<p>&nbsp;</p>
+<p align="center">Ingredientes</p>
+<p><br>
+      <img id="drag1" src="carrot.png" draggable="true" ondragstart="drag(event)" width="80" height="120">
+      <img src="lettuce.png" name="drag2" width="130" height="97" id="drag2" draggable="true" ondragstart="drag(event)">
+  
+  
+  
+  
+  
+  
   
   
   
