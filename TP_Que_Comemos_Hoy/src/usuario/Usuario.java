@@ -1,5 +1,7 @@
 package usuario;
 
+
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,6 +46,7 @@ public class Usuario {
 	
 	public Usuario altaUsuario(char sexo, String fnac, String complexion,float altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
 		
+		this = new Usuario();
 		this.sexo=sexo;
 		this.fecha_nacimiento= fnac; //formato mmddaaa
 		this.complexion= complexion;
@@ -116,6 +119,34 @@ public class Usuario {
 	public void setAltura(float altura) {
 		this.altura = altura;
 	}
+	public String getPrefAlim() { //Preferencias Alimenticias
+		return preferencias_alimenticias;
+	}
+	public void setPrefAlim(String prefAlim) {//Preferencias Alimenticias
+		this.preferencias_alimenticias = prefAlim;
+	}
+	
+	public String getCondPreexistentes() { 
+		return condicionesPreexistentes;
+	}
+	public void setCondPreexistentes(String condPreexsistente) {
+		this.condicionesPreexistentes =  condPreexsistente;
+	}	
+	public String getDieta() { 
+		return condicionesPreexistentes;
+	}
+	public void setDieta(String unaDieta) {
+		this.dieta= unaDieta;
+	}	
+	public String getRutina() { 
+		return rutina;
+	}
+	public void setRutina(String unaRutina) {
+		this.dieta= unaRutina;
+	}	
+	
+
+	
 	
 	//++++++++++++++++++ FIN GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 }
