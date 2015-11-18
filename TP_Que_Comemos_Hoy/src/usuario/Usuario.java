@@ -8,7 +8,12 @@ import java.util.Set;
 import receta.Condimento;
 import receta.Ingrediente;
 import receta.Receta;
-import usuario.Usuario;
+//import usuario.Usuario;
+
+ 
+
+
+
 
 public class Usuario {
 	private String nombreUsuario;
@@ -20,6 +25,10 @@ public class Usuario {
 	private String dieta;
 	private String condicionesPreexistentes;
 	private String rutina;
+	
+	
+	
+	
 	
 	//++++++++++++++++++ INICIO OPERACIONES DE GRUPOS DE USUARIO++++++++++++++++++++++++++++++++++++++++++++//
 	public Set<Usuario> crearGrupo(){
@@ -44,20 +53,63 @@ public class Usuario {
 	//++++++++++++++++++ FIN OPERACIONES DE GRUPOS DE USUARIO++++++++++++++++++++++++++++++++++++++++++++//
 	
 	
-	public Usuario altaUsuario(char sexo, String fnac, String complexion,float altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
+	
+	
+	public Usuario altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,float altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
 		
-		this = new Usuario();
-		this.sexo=sexo;
-		this.fecha_nacimiento= fnac; //formato mmddaaa
-		this.complexion= complexion;
-		this.altura = altura;
-		this.preferencias_alimenticias = preferencias_alimenticias;
-		this.condicionesPreexistentes= condPreexistentes;
-		this.dieta= dieta;
-		this.rutina = rutina;
+		Usuario unUsuario = new Usuario();
+		unUsuario.setNombreUsuario(nombreUsuario);
+		unUsuario.setSexo(sexo);
+		unUsuario.setFecha_nacimiento(fnac); //formato mmddaaa
+		unUsuario.setComplexion(complexion);
+		unUsuario.setAltura(altura);
+		unUsuario.setPrefAlim(preferencias_alimenticias);
+		unUsuario.setCondPreexistentes(condPreexistentes);
+		unUsuario.setDieta(dieta);
+		unUsuario.setRutina(rutina);
 		
-		return this;
+		return unUsuario;
 	}
+	
+	
+	
+	public boolean calificar(Receta unaReceta, short unaCalificacion ) 
+	{
+			if ((unaCalificacion > 5) | (unaCalificacion < 1))		//Compruebo 1 <= unaCalificacion <= 5
+			{
+				//System.out.println("La calificacion debe ser entre 1 y 5 estrellas\n");
+				return false;
+			}
+			if (unaReceta instanceof Receta)			//Compruebo si es una Receta
+			{
+				if (unaReceta.calificar(unaCalificacion))
+				{
+					//La calificacion fue exitosa
+					//System.out.println("La calificacion fue exitosa\n");
+					return true;
+				}
+			}											//Hubo un problema
+			//System.out.println("Hubo un error calificando la receta\n");
+			return false;
+	}
+	
+	
+	public void obtenerPesoIdeal(char sexo, float altura)
+	{
+		//TODO:     Hacer una consulta a la base de datos segun sexo y altura me muestre:
+		//  IX. Peso-Ideal-Hombres: altura, medida-tórax, medida-cintura, medida-cadera peso,
+		//  peso-min, peso-max
+		//  X. Peso-Ideal-Mujeres: altura, medida-tórax, medida-cintura, medida-cadera peso,
+		//  peso-min, peso-max
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public Receta crear_receta(Ingrediente unIngrediente, int calificacion, int calorias, Condimento unCondimento, String unNombre ){
@@ -133,7 +185,7 @@ public class Usuario {
 		this.condicionesPreexistentes =  condPreexsistente;
 	}	
 	public String getDieta() { 
-		return condicionesPreexistentes;
+		return dieta;
 	}
 	public void setDieta(String unaDieta) {
 		this.dieta= unaDieta;
@@ -142,10 +194,34 @@ public class Usuario {
 		return rutina;
 	}
 	public void setRutina(String unaRutina) {
-		this.dieta= unaRutina;
+		this.rutina= unaRutina;
 	}	
 	
 
+	
+	
+	///////////////////SE REPITE!
+	
+	
+	public String getPreferencias_alimenticias() {
+		return preferencias_alimenticias;
+	}
+
+	public void setPreferencias_alimenticias(String preferencias_alimenticias) {
+		this.preferencias_alimenticias = preferencias_alimenticias;
+	}
+
+	public String getCondicionesPreexistentes() {
+		return condicionesPreexistentes;
+	}
+
+	public void setCondicionesPreexistentes(String condicionesPreexistentes) {
+		this.condicionesPreexistentes = condicionesPreexistentes;
+	
+	
+	}
+	
+	
 	
 	
 	//++++++++++++++++++ FIN GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
