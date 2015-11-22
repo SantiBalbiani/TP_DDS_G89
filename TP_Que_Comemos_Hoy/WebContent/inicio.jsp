@@ -4,13 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>&iquest;Tablero de Operaciones</title>
-<!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+	<title>&iquest;Tablero de Operaciones</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,45 +19,40 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	
-	
-<style type="text/css">
-<!--
-body {
-	background-color: #90C58F;
-}
--->
-</style>
+	<style type="text/css">
+	body {
+		background-color: #90C58F;
+	}
+	</style>
 
+	<style>
+	#div1 {
+		width:530px;
+		height:220px;
+		padding:10px;
+		border:10px solid #FFFFFF;
+		background-image: url(cocinaFeliz.png);
+	}
+	.Estilo1 {
+		font-family: 'Glyphicons Halflings';
+		font-weight: bold;
+	}
+	</style>
+	<script>
+	function allowDrop(ev) {
+    	ev.preventDefault();
+	}
 
-<style>
-#div1 {
-	width:530px;
-	height:220px;
-	padding:10px;
-	border:10px solid #FFFFFF;
-	background-image: url(cocinaFeliz.png);
-}
-.Estilo1 {
-	font-family: 'Glyphicons Halflings';
-	font-weight: bold;
-}
-</style>
-<script>
-function allowDrop(ev) {
-    ev.preventDefault();
-}
+	function drag(ev) {
+    	ev.dataTransfer.setData("text", ev.target.id);
+	}
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}
-</script>
+	function drop(ev) {
+    	ev.preventDefault();
+    	var data = ev.dataTransfer.getData("text");
+    	ev.target.appendChild(document.getElementById(data));
+	}
+	</script>
 </head>
 
 <body>
