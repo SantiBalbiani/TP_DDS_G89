@@ -6,54 +6,86 @@
 	<title>¿Qué Comemos Hoy?</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/signin.css">
 	<link rel="stylesheet" href="css/estilos.css">
 	
 	<script type="text/javascript">
 	function posicionarCursor(){
-		document.getElementById("nombre").focus();
+		document.getElementById("usuario").focus();
 	}
 	</script>
 	
 </head>
 <body onload="posicionarCursor();">
-
     <div class="container">
-      <form class="form-signin" action="register" method="POST">
-        <h2 class="form-signin-heading">Registrarse</h2>
-        
-        <label for="inputText" class="sr-only">Nombre</label><h4>Nombre</h4>
-        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required>
-        
-        <label for="inputPassword" class="sr-only">Contraseña</label><h4>Contraseña</h4>
-        <input type="password" name="contrasenia1" id="contrasenia1" class="form-control" placeholder="Contraseña" required>
-        
-        <label for="inputPassword" class="sr-only">Contraseña</label><h4>Confirme Contraseña</h4>
-        <input type="password" name="contrasenia2" id="contrasenia2" class="form-control" placeholder="Contraseña" required>
-        
-        <label for="inputDate" class="sr-only">Fecha de Nacimiento</label><h4>Fecha de Nacimiento</h4>
-        <input type="date" name="fechaNacimiento" id="fecha" class="form-control" placeholder="dd/mm/aaaa" required>
-        
-        <label class="sr-only">Altura</label><h4>Altura</h4>
-        <input type="text" name="altura" id="inputAltura" class="form-control" placeholder="Altura" required>
-        
-        <h4>Complexión</h4>
-        <label class="checkbox-inline">
-        <input type="checkbox" name="complexion" id="complexionP" value="puquenia">Pequeña
-        </label>
-        <label class="checkbox-inline">
-        <input type="checkbox" name="complexion" id="complexionM" value="mediana">Mediana
-        </label>
-        <label class="checkbox-inline">
-        <input type="checkbox" name="complexion" id="complexionG" value="grande">Grande
-        </label>
-        <br>
-        <br>
-        
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme</button>
-        
-      </form>
-    </div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<form class="form-horizontal" action="register" method="POST">
+				  <fieldset>
+				    <legend>Ingrese sus Datos</legend>
+				    <div class="form-group">
+				      <label for="inputUsuario" class="col-lg-3 control-label">Usuario</label>
+				      <div class="col-lg-9">
+				        <input type="text" class="form-control" name ="inputUsuario" id="inputUsuario" placeholder="Usuario" required>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
+				      <div class="col-lg-9">
+				        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña" required>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="textArea" class="col-lg-3 control-label">Fecha de Nacimiento</label>
+				      <div class="col-lg-9">
+				        <input class="form-control" name="fechaNacimiento" type="date" id="fecha" placeholder="dd/mm/aaaa" required>
+				      </div>
+				    </div>
+					<div class="form-group">
+				      <label for="inputAltura" class="col-lg-3 control-label">Altura</label>
+				      <div class="col-lg-9">
+				        <input type="text" class="form-control" id="inputAltura" name="inputAltura" placeholder="Altura(cm)" required>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label class="col-lg-3 control-label">Sexo</label>
+				      <div class="col-lg-9">
+				        <div class="radio">
+				          <label>
+				            <input type="radio" name="optionMasc" id="optionMasc" value="optionMasc" checked="">
+				            Masculino
+				          </label>
+				        </div>
+				        <div class="radio">
+				          <label>
+				            <input type="radio" name="optionFem" id="optionFem" value="optionFem">
+				            Femenino
+				          </label>
+				        </div>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="select" class="col-lg-3 control-label">Complexion</label>
+				      <div class="col-lg-9">
+				        <select class="form-control" id="select">
+				          <option value="">Pequeña</option>
+				          <option value="">Mediana</option>
+				          <option value="">Grande</option>
+				        </select>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <div class="col-lg-9 col-lg-offset-3">
+				        <button type="reset" class="btn btn-default">Cancelar</button>
+				        <button type="submit" class="btn btn-primary">Aceptar</button>
+				      </div>
+				    </div>
+				  </fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+    
+      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>

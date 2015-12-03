@@ -11,7 +11,7 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-kd">
@@ -47,7 +47,7 @@
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Buscar"> 
           </div>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </form>     
