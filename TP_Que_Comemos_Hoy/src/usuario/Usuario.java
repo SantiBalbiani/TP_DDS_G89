@@ -12,14 +12,20 @@ import receta.Receta;
 
  
 
-
-
-
 public class Usuario {
+	private int idUsuario;
 	private String nombreUsuario;
 	private char sexo;
 	private String fecha_nacimiento;
 	private String complexion;
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
 	private float  altura;
 	private String preferencias_alimenticias;
 	private String dieta;
