@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="TP_Que_Comemos_Hoy">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="TP_Que_Comemos_Hoy"/>
         <property name="java-output-path" value="/TP_Que_Comemos_Hoy/build/classes"/>
     </wb-module>

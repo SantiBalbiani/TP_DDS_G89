@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import usuario.DataInsertion;
+
+import usuario.Usuario;
+
 /**
  * Servlet implementation class Registro
  */
@@ -38,14 +42,29 @@ public class Registro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		String usuario = request.getParameter("usuario");
-		String contrasenia1 = request.getParameter("contrasenia1");
-		String contrasenia2 = request.getParameter("contrasenia2");
+		String usuario = request.getParameter("nombre");
+		String contrasenia1 = request.getParameter("pass");
+		//String contrasenia2 = request.getParameter("contrasenia2");
 		String fechaNac = request.getParameter("fechaNacimiento");
-		String altura = request.getParameter("altura");
+		//String alturaTexto = request.getParameter("altura");
+		//String sexoTexto = request.getParameter("sexo");
 		String complexion = request.getParameter("complexion");
+		//char sexo;
+		//Double altura = Double.parseDouble(alturaTexto);
 		
-		//TODO Aca se tiene que hacer la subida de datos a la base de datos
+		//sexo = (char)sexoTexto.charAt(0);
+		
+		
+		
+		Usuario nuevoUsuario = new Usuario();
+		nuevoUsuario.altaUsuario(usuario, 'M', fechaNac, complexion, 0.00, " ", " ", " ", " ");
+		
+		
+		
+		nuevoUsuario.guardarUsuario(nuevoUsuario);
+		
+		
+		
 		
 		response.sendRedirect("welcome.jsp");
 	}

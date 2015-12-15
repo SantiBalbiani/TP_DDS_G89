@@ -1,3 +1,5 @@
+
+<%@page import="usuario.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="usuario.Usuario"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -48,7 +50,7 @@ Float alturaUsuario = Float.parseFloat(altura);
 nuevoUsuario.setAltura(alturaUsuario);
 nuevoUsuario.setSexo(sex);
 
-
+nuevoUsuario.guardarUsuario(nuevoUsuario);
 
 out.print("Bienvenido "+nuevoUsuario.getNombreUsuario()+"!! ");
 out.print("<br/>");

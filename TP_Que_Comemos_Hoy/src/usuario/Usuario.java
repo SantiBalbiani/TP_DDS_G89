@@ -5,6 +5,11 @@ package usuario;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 import receta.Condimento;
 import receta.Ingrediente;
 import receta.Receta;
@@ -15,18 +20,28 @@ import receta.Receta;
 public class Usuario {
 	private int idUsuario;
 	private String nombreUsuario;
+	private String password;
 	private char sexo;
 	private String fecha_nacimiento;
 	private String complexion;
+
 	public int getIdUsuario() {
 		return idUsuario;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
-	private float  altura;
+	private double  altura;
 	private String preferencias_alimenticias;
 	private String dieta;
 	private String condicionesPreexistentes;
@@ -61,7 +76,7 @@ public class Usuario {
 	
 	
 	
-	public Usuario altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,float altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
+	public Usuario altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
 		
 		Usuario unUsuario = new Usuario();
 		unUsuario.setNombreUsuario(nombreUsuario);
@@ -111,7 +126,26 @@ public class Usuario {
 	
 	
 	
-	
+	public void guardarUsuario(Usuario unUsuario){
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml");
+		SessionFactory SF = con.buildSessionFactory();
+		Session session = SF.openSession();
+		Usuario nuevoUsuario = new Usuario();
+		nuevoUsuario.setIdUsuario(12);
+		nuevoUsuario.setNombreUsuario(unUsuario.getNombreUsuario());
+		nuevoUsuario.setAltura(unUsuario.getAltura());
+		nuevoUsuario.setComplexion(unUsuario.getComplexion());
+		nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
+		nuevoUsuario.setSexo(unUsuario.getSexo());
+		Transaction TR = session.beginTransaction();
+		session.save(nuevoUsuario);
+		System.out.println("Object Saved Succesfully");
+		TR.commit();
+		session.close();
+		SF.close();
+		
+	}
 	
 	
 	
@@ -171,10 +205,10 @@ public class Usuario {
 	public void setComplexion(String complexion) {
 		this.complexion = complexion;
 	}
-	public float getAltura() {
+	public double getAltura() {
 		return altura;
 	}
-	public void setAltura(float altura) {
+	public void setAltura(double altura) {
 		this.altura = altura;
 	}
 	public String getPrefAlim() { //Preferencias Alimenticias
