@@ -38,50 +38,6 @@ public class TestUsuario {
 	    }
 	*/
 
-	@Test
-	
-
-	
-	public void testAltaDeUsuario(){
-		
-		
-		 usuario.Usuario usuario = new usuario.Usuario();
-	
-		 usuario.setNombreUsuario("Benja");
-		 usuario.setSexo('M');
-		 usuario.setFecha_nacimiento("23/10/1986");
-		 usuario.setComplexion("unaComprexion");
-		 usuario.setAltura(1.67f);
-		 usuario.setCondPreexistentes("unaCondPreexsistente");
-		 usuario.setDieta("unaDieta");
-		 usuario.setPrefAlim("unaPrefAlim");
-		 usuario.setRutina("unaRutina");
-		 
-		 usuario.Usuario resultado =  altaUsuario("Benja", 'M', "23/10/1986", "unaComprexion",1.67f,"unaPrefAlim", "unaCondPreexsistente","unaDieta", "unaRutina");
-		 ///altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,float altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina )
-	
-		 assertEquals(usuario.getNombreUsuario(), resultado.getNombreUsuario());
-		 assertEquals(usuario.getSexo(), resultado.getSexo());
-		 assertEquals(usuario.getFecha_nacimiento(), resultado.getFecha_nacimiento());
-		 assertEquals(usuario.getComplexion(), resultado.getComplexion());
-		 //assertEquals(usuario.getAltura(), resultado.getAltura());
-		 assertEquals(usuario.getCondPreexistentes(), resultado.getCondPreexistentes());
-		 assertEquals(usuario.getDieta(), resultado.getDieta());
-		 assertEquals(usuario.getPrefAlim(), resultado.getPrefAlim());
-		 assertEquals(usuario.getRutina(), resultado.getRutina());
-		 
-		 usuario = null;
-		 resultado = null;
-	
-	}
-	
-	//TODO RESOLVER PROBLEMA ALTA USUARIO 
-	private Usuario altaUsuario(String string, char c, String string2,
-			String string3, float f, String string4, String string5,
-			String string6, String string7) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Test
@@ -141,6 +97,23 @@ public class TestUsuario {
 		 
 	}
 	
+	/* 		---- Junit Test Case ----
+	 * 		Codigo de condicion de Test: CarP.01
+	 * 
+	 * 		Testeado por: Santiago Balbiani
+	 * 
+	 * 	 Descripción:
+	 *   El metodo setea atributos dentro del mismo objeto que contiene dentro de dicho metodo
+	 *   Luego se llama a guardar usuario que persiste el objeto Usuario.
+	 */
+	@Test
+	public void testAltaDeUsuario()
+	{
+		Usuario nuevoUsuario = new Usuario();
+		nuevoUsuario.altaUsuario("Santiago", 'M', "20150313", "mediana", 1.70, " ", " ", " ", " ", "1234");
+		nuevoUsuario.guardarUsuario(nuevoUsuario);
+	}
+	
 	
 	
 	//E.G.S.
@@ -191,5 +164,5 @@ public class TestUsuario {
 			recetario = null;								//Elimino la instancia usuario	
 		}
 		
-	
+
 }

@@ -23,7 +23,7 @@ body {
       <th height="196" bgcolor="#228B22" scope="col"><img src="logogral.jpg" width="416" height="192" /></th>
     </tr>
     <tr>
-      <td height="309"><!-- TemplateBeginEditable name="EditRegion1" --><form action="register" method="post">
+      <td height="309"><!-- TemplateBeginEditable name="EditRegion1" --><form action="register.jsp" method="post">
 			Nombre:           
                 <input type="text" name="nombre" />
            <br/>Fecha Nacimiento: 

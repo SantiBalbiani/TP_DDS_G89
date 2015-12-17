@@ -16,7 +16,7 @@ import usuario.Usuario;
 /**
  * Servlet implementation class Registro
  */
-@WebServlet("/register")
+@WebServlet(name="RegistrarServlet", urlPatterns="/register")
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,6 +31,7 @@ public class Registro extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -39,6 +40,7 @@ public class Registro extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+   
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
@@ -55,9 +57,8 @@ public class Registro extends HttpServlet {
 		//sexo = (char)sexoTexto.charAt(0);
 		
 		
-		
 		Usuario nuevoUsuario = new Usuario();
-		nuevoUsuario.altaUsuario(usuario, 'M', fechaNac, complexion, 0.00, " ", " ", " ", " ");
+		nuevoUsuario.altaUsuario(usuario, 'M', fechaNac, complexion, 0.00, " ", " ", " ", " ",contrasenia1);
 		
 		
 		

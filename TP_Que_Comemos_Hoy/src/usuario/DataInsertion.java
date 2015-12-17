@@ -17,7 +17,12 @@ public class DataInsertion {
 		Session session = SF.openSession();
 		Usuario nuevoUsuario = new Usuario();
 		nuevoUsuario.setIdUsuario(12);
-		nuevoUsuario.setNombreUsuario("prueba");
+		nuevoUsuario.setNombreUsuario("Santi");
+		nuevoUsuario.setAltura(1.5);
+		nuevoUsuario.setComplexion("mediana");
+		nuevoUsuario.setFecha_nacimiento("2015");
+		nuevoUsuario.setSexo('M');
+		nuevoUsuario.setPassword("1234");
 		Transaction TR = session.beginTransaction();
 		session.save(nuevoUsuario);
 		System.out.println("Object Saved Succesfully");

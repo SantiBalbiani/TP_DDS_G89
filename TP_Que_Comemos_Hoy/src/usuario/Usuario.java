@@ -76,20 +76,22 @@ public class Usuario {
 	
 	
 	
-	public Usuario altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina ) {
+	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina, String password ) {
 		
-		Usuario unUsuario = new Usuario();
-		unUsuario.setNombreUsuario(nombreUsuario);
-		unUsuario.setSexo(sexo);
-		unUsuario.setFecha_nacimiento(fnac); //formato mmddaaa
-		unUsuario.setComplexion(complexion);
-		unUsuario.setAltura(altura);
-		unUsuario.setPrefAlim(preferencias_alimenticias);
-		unUsuario.setCondPreexistentes(condPreexistentes);
-		unUsuario.setDieta(dieta);
-		unUsuario.setRutina(rutina);
 		
-		return unUsuario;
+		this.setIdUsuario(13);
+		this.setNombreUsuario(nombreUsuario);
+		this.setPassword(password);
+		this.setSexo(sexo);
+		this.setFecha_nacimiento(fnac); //formato mmddaaa
+		this.setComplexion(complexion);
+		this.setAltura(altura);
+		this.setPrefAlim(preferencias_alimenticias);
+		this.setCondPreexistentes(condPreexistentes);
+		this.setDieta(dieta);
+		this.setRutina(rutina);
+		
+		
 	}
 	
 	
@@ -132,14 +134,16 @@ public class Usuario {
 		SessionFactory SF = con.buildSessionFactory();
 		Session session = SF.openSession();
 		Usuario nuevoUsuario = new Usuario();
-		nuevoUsuario.setIdUsuario(12);
-		nuevoUsuario.setNombreUsuario(unUsuario.getNombreUsuario());
+		String nombre = unUsuario.getNombreUsuario();
+		nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
+		nuevoUsuario.setNombreUsuario(nombre);
 		nuevoUsuario.setAltura(unUsuario.getAltura());
 		nuevoUsuario.setComplexion(unUsuario.getComplexion());
 		nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
 		nuevoUsuario.setSexo(unUsuario.getSexo());
+		nuevoUsuario.setPassword(unUsuario.getPassword());
 		Transaction TR = session.beginTransaction();
-		session.save(nuevoUsuario);
+		session.save(unUsuario);
 		System.out.println("Object Saved Succesfully");
 		TR.commit();
 		session.close();

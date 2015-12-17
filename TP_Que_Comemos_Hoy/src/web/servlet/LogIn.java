@@ -1,3 +1,4 @@
+
 package web.servlet;
 
 import java.io.IOException;
@@ -15,13 +16,17 @@ import usuario.Usuario;
 /**
  * Servlet implementation class LogIn
  */
+
+
 @WebServlet(name="ServletLogIn", urlPatterns="/login")
 public class LogIn extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
+
+
     public LogIn() {
         super();
         // TODO Auto-generated constructor stub
@@ -30,6 +35,8 @@ public class LogIn extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -39,6 +46,9 @@ public class LogIn extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(true);
@@ -55,3 +65,4 @@ public class LogIn extends HttpServlet {
 	}
 
 }
+ 
