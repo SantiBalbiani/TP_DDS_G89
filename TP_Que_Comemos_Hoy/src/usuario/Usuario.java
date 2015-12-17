@@ -144,7 +144,7 @@ public class Usuario {
 		nuevoUsuario.setPassword(unUsuario.getPassword());
 		Transaction TR = session.beginTransaction();
 		session.save(unUsuario);
-		System.out.println("Object Saved Succesfully");
+		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
 		TR.commit();
 		session.close();
 		SF.close();
