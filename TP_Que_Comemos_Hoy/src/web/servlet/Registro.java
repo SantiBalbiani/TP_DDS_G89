@@ -45,6 +45,7 @@ public class Registro extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		String usuario = request.getParameter("nombre");
+		//TODO:  Bajar MD5 y llamarlo en el cliente
 		String contrasenia1 = request.getParameter("pass");
 		//String contrasenia2 = request.getParameter("contrasenia2");
 		String fechaNac = request.getParameter("fechaNacimiento");

@@ -133,6 +133,7 @@ public class Usuario {
 		con.configure("hibernate.cfg.xml");
 		SessionFactory SF = con.buildSessionFactory();
 		Session session = SF.openSession();
+		
 		Usuario nuevoUsuario = new Usuario();
 		String nombre = unUsuario.getNombreUsuario();
 		nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
@@ -142,6 +143,7 @@ public class Usuario {
 		nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
 		nuevoUsuario.setSexo(unUsuario.getSexo());
 		nuevoUsuario.setPassword(unUsuario.getPassword());
+		
 		Transaction TR = session.beginTransaction();
 		session.save(unUsuario);
 		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
