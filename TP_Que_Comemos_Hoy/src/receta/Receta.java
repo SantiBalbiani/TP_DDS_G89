@@ -323,16 +323,10 @@ public void agregarlistaProcedimiento(String unaProcedimiento) {
 		this.getListaProcedimiento().remove(unProcedimiento);
 	}	
 	
-	//++++++++++++++++++ FIN METODOS QUITAR DE RECETA ++++++++++++++//
-	//++++++++++++++++++ FIN METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
-	
-		
-		
+//++++++++++++++++++ FIN METODOS QUITAR DE RECETA ++++++++++++++//
+//++++++++++++++++++ FIN METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
 
-		//++++++++++++++++++ INICIO LISTAS BAGS SETS ETC++++++++++++++++++++++++++++++++++++++++++++//
-
-
-
+//++++++++++++++++++ INICIO LISTAS BAGS SETS ETC++++++++++++++++++++++++++++++++++++++++++++//
 
 	List<String> listaPreparacion = new ArrayList<String>();
 	
@@ -349,6 +343,30 @@ public void agregarlistaProcedimiento(String unaProcedimiento) {
 	
 	//++++++++++++++++++ MISC ++++++++++++++++++++++++++++++++++++++++++++//
 
+	
+	
+	
+	public  void setTotalCalorias(){
+		
+		this.setCalorias(this.getCaloriasIngredientePrincipal()); //falta sumar calorias del grupo de ingredientes
+	}
+	
+	public int getCaloriasIngredientePrincipal(){
+		
+		return this.getIngredientePrincipal().getCalorias();
+	}
+	
+public int getCaloriasdeTodosLosIngrediente(){
+		
+// hacer un foreach getCalorias de cada ingrediente y acumular. retornar el acumulado final		
+	return 0;
+}
+	
+	
+	
+	
+	
+	
 
 
 	/// control string
