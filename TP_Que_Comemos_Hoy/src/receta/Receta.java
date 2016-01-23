@@ -1,102 +1,11 @@
 package receta;
 
-/*
-
-import java.util.Scanner;
-
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
-public class Receta {
-
-	
-	public String nombreReceta;
-	private String preparacion;
-	private Ingrediente ingredientePrincipal;
-	
-	
-	public void agregarIngredientePrincipal(Ingrediente unIngrediente){
-		
-		
-	}
-
-	public String nombreReceta(String unNombre) {
-		this.nombreReceta= unNombre;
-		return this.nombreReceta;
-	}
-
-	public void agregarIngrediente(Ingrediente unIngrediente) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void agregarIngredienteCalorias(int calorias) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void agregarCondimento(Condimento unCondimento) {
-		// TODO Auto-generated method stub
-		
-	}
-
-//TODO CORREGIR ESTO!!!
-	
-	public String agregarPreparacion() {   
-		this.preparacion= new Scanner(System.in).next();
-		return this.preparacion;
-	}
-
-	public void temporadaReceta() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void borrarIngrediente(Ingrediente unIngrediente) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void calificarReceta(int calificacion) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void borrarCondimento(Condimento unCondimento) {
-		// TODO Auto-generated method stub
-	}
-
-	public String getNombreReceta() {
-		// TODO Auto-generated method stub
-		return this.nombreReceta;
-	}
-
-	public String getDificultad() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getTemporada() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int getCalificacion() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-}
-*/
+import java.util.ArrayList;
 
 
-
-import java.util.HashSet;
-import java.util.Set;
-
-import usuario.Usuario;
-
-//import java.util.Scanner;
 
 public class Receta {
 
@@ -104,18 +13,21 @@ public class Receta {
 	private String nombreReceta;
 	private String preparacion;
 	private Ingrediente ingredientePrincipal;
-	private short calificacion;		//Atributo para poder hacer pruebas
+	private short calificacion;		
 	private int calorias;
 	private Set<Ingrediente> listaIngredientes;
 	private Set<Condimento> listaCondimentos;
 	private Set<String> listaCategorias;
+	private ArrayList<String> listaProcedimiento;
 	private String dificultadReceta;
-	private String temporadaPlato;
+	private List<String> temporadaPlato;
 	private short sectorPiramideAlimenticia;
-	//private Evento temporada_plato;
+
 	
 	
-	public Receta crear_receta(Ingrediente unIngrediente, short calificacion, int calorias, Condimento unCondimento, String unNombre, String unaPreparacion, String unaCategoria,String unaDificultad, String unaTemporada, short unSectorPiramide ){
+	//++++++++++++++++++ INICIO METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
+	
+	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias,  String unNombre, String unaPreparacion, String unaCategoria,String unaDificultad, String unaTemporada, short unSectorPiramide ){
 		//llama a metodo new para crear Receta 
 		//invoca los setters de la clase Receta para el alta de
 		//ingredientes, condimentos y otros atributos...
@@ -123,27 +35,18 @@ public class Receta {
 		
 		Receta nuevaReceta = new Receta();
 
-		//nuevaReceta.nombreReceta(unNombre); //entrada x teclado
 		nuevaReceta.setNombreReceta(unNombre);
-		nuevaReceta.agregarIngredientePrincipal(unIngrediente);
+		nuevaReceta.agregarIngredientePrincipal(unIngredientePrincipal);
 
 		nuevaReceta.setListaIngredientes(nuevaReceta.crearListaIngrediente());
-		nuevaReceta.setListaCondimentos(nuevaReceta.crearListaCondimento());
+		nuevaReceta.setListaCondimentos(nuevaReceta.crearListaCondimentos());
 		
-		//TODO: debe haber un loop de 1 a n ingredientes y/o condimentos 
-		nuevaReceta.agregarIngrediente(unIngrediente);
-		nuevaReceta.agregarCondimento(unCondimento);
-		
-		
-		
-		//nuevaReceta.agregarPreparacion();//entrada x teclado
+		nuevaReceta.agregarPreparacion(unaPreparacion);
 		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
 		nuevaReceta.agregarCategoria(unaCategoria);
-		
-		nuevaReceta.setPreparacion(unaPreparacion);
-		//nuevaReceta.temporadaReceta();
+
 		nuevaReceta.calificar(calificacion);
-		nuevaReceta.setCalorias((int) calorias);
+		nuevaReceta.agregarCalorias((int) calorias);
 		
 		
 		nuevaReceta.setDificultadReceta(unaDificultad);
@@ -155,263 +58,309 @@ public class Receta {
 		
 			
 	}
-	
-	//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
-		public Set<Ingrediente> crearListaIngrediente()
-		{
-			Set<Ingrediente> listaIngrediente ; 
-			listaIngrediente = new HashSet<Ingrediente>();
-			return listaIngrediente;
-		}
-		
-		public boolean agregarIngrediente(Ingrediente unIngrediente)
-		{
-		    //se agrega el ingrediente
-			Set<Ingrediente> unaListaIngrediente;
-			unaListaIngrediente = this.getListaIngredientes();
-			unaListaIngrediente = unIngrediente.agregar(unaListaIngrediente);
-			this.setListaIngredientes(unaListaIngrediente);
-			return true;
-		}
-		
-		public boolean eliminarIngrediente(Ingrediente unIngrediente)
-		{
-			//el ingrediente se vaa 
-			Set<Ingrediente> unaListaIngrediente;
-			unaListaIngrediente = this.getListaIngredientes();
-			unaListaIngrediente = unIngrediente.eliminar(unaListaIngrediente);
-			this.setListaIngredientes(unaListaIngrediente);
-			return true;
-		}
-		//++++++++++++++++++ FIN OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
-	
-	
-		//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR Condimento++++++++++++++++++++++++++++++++++++++++++++//
-		public Set<Condimento> crearListaCondimento()
-		{
-			Set<Condimento> listaCondimento ; 
-			listaCondimento = new HashSet<Condimento>();
-			return listaCondimento;
-		}
-		
-		public boolean agregarCondimento(Condimento unCondimento)
-		{
-		    //se agrega el Condimento
-			Set<Condimento> unaListaCondimento;
-			unaListaCondimento = this.getListaCondimentos();
-			unaListaCondimento = unCondimento.agregar(unaListaCondimento);
-			this.setListaCondimentos(unaListaCondimento);
-			return true;
-		}
-		
-		public boolean eliminarCondimento(Condimento unCondimento)
-		{
-			//el Condimento se vaa 
-			Set<Condimento> unaListaCondimento;
-			unaListaCondimento = this.getListaCondimentos();
-			unaListaCondimento = unCondimento.eliminar(unaListaCondimento);
-			this.setListaCondimentos(unaListaCondimento);
-			return true;
-		}
-		//++++++++++++++++++ FIN OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
-		
-		//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR CATEGORIAS++++++++++++++++++++++++++++++++++++++++++++//
-		public Set<String> crearListaCategorias()
-		{
-			Set<String> listaCategoria; 
-			listaCategoria = new HashSet<String>();
-			return listaCategoria;
-		}
-		
-		public boolean agregarCategoria(String unaCategoria)
-		{
-		    //se agrega la categoria
-			Set<String> unaListaCategoria;
-			unaListaCategoria = this.getListaCategorias();
-			unaListaCategoria.add(unaCategoria);
-			this.setListaCategorias(unaListaCategoria);
-			return true;
-		}
-		
-		public boolean eliminarCategoria(String unaCategoria)
-		{
-			//la categoria se vaa 
-			Set<String> unaListaCategoria;
-			unaListaCategoria = this.getListaCategorias();
-			unaListaCategoria.add(unaCategoria);
-			this.setListaCategorias(unaListaCategoria);
-			return true;
-		}
-		//++++++++++++++++++ FIN OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
+
+	public void eliminar_receta(){
 		
 		
-	public void agregarIngredientePrincipal(Ingrediente unIngrediente){
-		this.setIngredientePrincipal(unIngrediente);
+		
+
+		this.nombreReceta= null;
+		this.ingredientePrincipal = null;
+
+		this.getListaIngredientes().clear();
+		this.getListaCondimentos().clear();
+		
+		this.getListaProcedimiento().clear();
+		this.listaCategoria= null;
+
+		this.calificacion= 0;
+		this.calorias = 0; 
+		
+		this.dificultadReceta=null;
+		this.getTemporadaPlato().clear();
+		this.sectorPiramideAlimenticia =0 ;  // Discutir piramide
+			
 	}
-
-
+	
+	
+	//++++++++++++++++++ GETTERS ++++++++++++++//
+	
 	public short getCalificacion() {
-		return calificacion;
+		return this.calificacion;
 	}
 
-
-	public void setCalificacion(short calificacion) {
-		this.calificacion = calificacion;
-	}
-	
-	public String nombreReceta(String unNombre) {
-		this.nombreReceta= unNombre;
+	public String getNombreReceta() {
 		return this.nombreReceta;
 	}
-
-/*
-	public void agregarIngredienteCalorias(int calorias) {
-		// TODO Auto-generated method stub
-		
-	}
-*/
-/*
-	public String agregarPreparacion() {
-		this.preparacion= new Scanner(System.in).next();
-		return this.preparacion;
-	}
-	*/
-/*
-	public void temporadaReceta() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public void calificarReceta(int calificacion) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public String getDificultad() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getTemporada() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-*/
-	/* Metodo para calificar una receta, invocando al setter */
-	/* Los datos vienen validados desde el usuario */
 	
-	public boolean calificar(short unaCalificacion) 
-	{
-			this.setCalificacion(unaCalificacion);
-			return true;		//Salio Todo bien
-	}
-
-
 	public Ingrediente getIngredientePrincipal() {
-		return ingredientePrincipal;
-	}
-
-
-	public void setIngredientePrincipal(Ingrediente ingredientePrincipal) {
-		this.ingredientePrincipal = ingredientePrincipal;
+		return this.ingredientePrincipal;
 	}
 
 
 	public int getCalorias() {
-		return calorias;
-	}
-
-
-	public void setCalorias(int calorias) {
-		this.calorias = calorias;
+		return this.calorias;
 	}
 
 
 	public String getPreparacion() {
-		return preparacion;
+		return this.preparacion;
 	}
 
-
-	public void setPreparacion(String preparacion) {
-		this.preparacion = preparacion;
-	}
-
-	public Set<Ingrediente> getListaIngredientes() {
-		return listaIngredientes;
-	}
-
-	public void setListaIngredientes(Set<Ingrediente> listaIngredientes) {
-		this.listaIngredientes = listaIngredientes;
-	}
-
-	public Set<Condimento> getListaCondimentos() {
-		return listaCondimentos;
-	}
-
-	public void setListaCondimentos(Set<Condimento> listaCondimentos) {
-		this.listaCondimentos = listaCondimentos;
-	}
-
-	public void setNombreReceta(String nombreReceta) {
-		this.nombreReceta = nombreReceta;
-	}
 	
-	public String getNombreReceta() {
-		return this.nombreReceta;
-	}
-
-	public Set<String> getListaCategorias() {
-		return listaCategorias;
-	}
-
-	public void setListaCategorias(Set<String> listaCategorias) {
-		this.listaCategorias = listaCategorias;
-	}
-
 	public String getDificultadReceta() {
-		return dificultadReceta;
+		return this.dificultadReceta;
 	}
 
-	public void setDificultadReceta(String dificultadReceta) {
-		this.dificultadReceta = dificultadReceta;
-	}
 
-	public String getTemporadaPlato() {
+	public List<String> getTemporadaPlato() {
 		return temporadaPlato;
-	}
-
-	public void setTemporadaPlato(String temporadaPlato) {
-		this.temporadaPlato = temporadaPlato;
 	}
 
 	public short getSectorPiramideAlimenticia() {
 		return sectorPiramideAlimenticia;
 	}
 
+	public Set<Condimento> getListaCondimentos() {
+		return listaCondimentos;
+	}
+
+
+	public Set<Ingrediente> getListaIngredientes() {
+		return listaIngredientes;
+	}
+
+
+	public Set<String> getListaCategorias() {
+		return listaCategorias;
+	}
+	
+public  ArrayList<String> getListaProcedimiento() {
+		
+		return listaProcedimiento;
+	}
+
+	//++++++++++++++++++ SETTERS ++++++++++++++//
+
+	//CALIFICACION
+	
+	public void setCalificacion(short calificacion) {
+		this.calificacion = calificacion;
+	}
+	
+	public short calificar(short unaCalificacion)   
+	{
+			if ((unaCalificacion >=1) || (unaCalificacion <=5)) {
+			this.setCalificacion(unaCalificacion);
+			}
+			return this.getCalificacion();
+	}
+
+	//NOMBRE
+	public String setNombreReceta(String unNombre) {
+		this.nombreReceta= unNombre;
+		return this.nombreReceta;
+	}
+	
+
+	public String ponerNombreReceta(String nombreReceta) {
+		
+		if (noEsStringVacio(nombreReceta)) {  
+			this.setNombreReceta(nombreReceta); 
+		}
+		return this.getNombreReceta();
+	}
+	
+	//INGREDIENTE PRINCIPAL
+	public void setIngredientePrincipal(Ingrediente ingredientePrincipal) {
+		this.ingredientePrincipal = ingredientePrincipal;
+	}
+	
+	public void agregarIngredientePrincipal(Ingrediente unIngrediente){ 
+		this.setIngredientePrincipal(unIngrediente);
+	}
+	
+	//CALORIAS
+	public void setCalorias(int calorias) {
+		this.calorias = calorias;
+	}
+	
+	public int agregarCalorias(int calorias) {
+		
+		if (calorias >=0) {
+			this.setCalorias(calorias);
+		};
+		return this.getCalorias();
+	}
+	
+	//PREPARACION
+	public String agregarPreparacion(String unaPreparacion) {
+		
+		if (noEsStringVacio(unaPreparacion)) {  
+			this.setPreparacion(unaPreparacion); 
+		}
+		return this.getPreparacion();
+	}
+		
+	
+	public void setPreparacion(String preparacion) {
+		this.preparacion = preparacion;
+	}
+	
+	//DIFICULTAD
+	public void setDificultadReceta(String dificultadReceta) {
+		this.dificultadReceta = dificultadReceta;
+	}
+	
+	//TEMPORADA
+	public void setTemporadaPlato(String  temporadaPlato) {
+		this.getTemporadaPlato().add(temporadaPlato);
+	}
+	
+	//PIRAMIDE
 	public void setSectorPiramideAlimenticia(short sectorPiramideAlimenticia) {
 		this.sectorPiramideAlimenticia = sectorPiramideAlimenticia;
 	}
-
-	public void agregarPreparacion() {
-		// TODO Auto-generated method stub
+	
+	//CONDIMENTOS
+	public void setListaCondimentos(Set<Condimento> listaCondimentos) {
+		this.listaCondimentos = listaCondimentos;
+	}
+	
+	public Set<Condimento> crearListaCondimentos()
+	{
+		Set<Condimento> listaCondimentos ; 
+		listaCondimentos = new HashSet<Condimento>();
+		return listaCondimentos;
+	}
+	
+	public void agregarCondimento(Condimento unCondimento) {
 		
+		this.getListaCondimentos().add(unCondimento);
+	}
+	
+	
+	//INGREDIENTES
+	public Set<Ingrediente> crearListaIngrediente()
+	{
+		Set<Ingrediente> listaIngrediente ; 
+		listaIngrediente = new HashSet<Ingrediente>();
+		return listaIngrediente;
+	}
+	
+	public void setListaIngredientes(Set<Ingrediente> listaIngredientes) {
+		this.listaIngredientes = listaIngredientes;
+	}
+	
+	public void agregarIngrediente(Ingrediente unIngrediente) {
+		
+		this.getListaIngredientes().add(unIngrediente);
+	}
+	
+	//CATEGORIA
+
+	public Set<String> crearListaCategorias()
+	{
+		Set<String> listaCategoria; 
+		listaCategoria = new HashSet<String>();
+		return listaCategoria;
 	}
 
-	public void temporadaReceta() {
-		// TODO Auto-generated method stub
+	public void setListaCategorias(Set<String> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
+	
+public void agregarCategoria(String unaCategoria) {
 		
+		this.getListaCategorias().add(unaCategoria);
 	}
 
-	public void agregarIngredienteCalorias(int calorias2) {
-		// TODO Auto-generated method stub
-		
-	}
+//PROCEDIMIENTO
+public Set<String> crearListaProcedimiento()
+{
+	Set<String> listaProcedimiento; 
+	listaProcedimiento = new HashSet<String>();
+	return listaProcedimiento;
+}
 
-	public void calificarReceta(int calificacion2) {
-		// TODO Auto-generated method stub
+public void setListalistaProcedimiento(ArrayList<String> unaListaProcedimiento) {
+	this.listaProcedimiento= unaListaProcedimiento;
+}
+
+public void agregarlistaProcedimiento(String unaProcedimiento) {
+	
+	this.getListaProcedimiento().add(unaProcedimiento);
+}
+	//++++++++++++++++++ INICIO METODOS QUITAR DE RECETA ++++++++++++++//
+	
+	public void quitarTemporada(String unaTemporada){
 		
+		this.getTemporadaPlato().remove(unaTemporada);
 	}
+	
+	public void quitarIngredientePrincipal(){
+		
+		this.ingredientePrincipal = null;
+	}
+	
+	public void quitarCondimento(Condimento unCondimento){
+		
+		this.getListaCondimentos().remove(unCondimento);
+	}
+	
+	public void quitarIngrediente(Ingrediente unIngrediente){
+		
+		this.getListaIngredientes().remove(unIngrediente);
+	}
+	
+	public void quitarCategoria(String unaCategoria){
+		
+		this.getListaCategorias().remove(unaCategoria);
+	}
+	
+	public void quitarProcedimiento(String unProcedimiento){
+		
+		this.getListaProcedimiento().remove(unProcedimiento);
+	}	
+	
+	//++++++++++++++++++ FIN METODOS QUITAR DE RECETA ++++++++++++++//
+	//++++++++++++++++++ FIN METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
+	
+		
+		
+
+		//++++++++++++++++++ INICIO LISTAS BAGS SETS ETC++++++++++++++++++++++++++++++++++++++++++++//
+
+
+
+
+	List<String> listaPreparacion = new ArrayList<String>();
+	
+	List<String> listaCategoria = new ArrayList<String>(){{add("Desayuno"); add("Almuerzo"); add("Merienda");add("Cena");add("Colacion");}};
+	
+	List<String> listaDificultad = new ArrayList<String>(){{add("Facil"); add("Media"); add("Dificil");add("Muy Dificil");}};
+	
+	List<String> listaTemporadaPlato = new ArrayList<String>(){{add("Verano"); add("Otono"); add("Invierno");add("Primavera");add("Pascuas");add("Navidad");}};
+	
+	//Esto va en la clase usuario
+	//List<String> listaCondicionesPreexistentes = new ArrayList<String>(){{add("Diabetes"); add("Hipertension"); add("Celiasis");}};
+	
+	
+	
+	//++++++++++++++++++ MISC ++++++++++++++++++++++++++++++++++++++++++++//
+
+
+
+	/// control string
+	
+	@SuppressWarnings("null")
+	public boolean noEsStringVacio(String unString){
+		
+			
+		return ((unString != null) || (unString.length()!=0));
+	}
+	
+	
+
 }
 
