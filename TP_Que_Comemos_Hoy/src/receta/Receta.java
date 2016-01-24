@@ -24,6 +24,40 @@ public class Receta {
 	private short sectorPiramideAlimenticia;
 
 	
+	//Buscar_Receta
+	Recetario buscarReceta (String nombreReceta, String usuario, String ingredientePrincipal, String temporada, int dificultad, int calorias, String sectorPiramide, int calificacion)
+	{
+		if (nombreReceta !=null && !nombreReceta.isEmpty())
+		{
+			//TODO: consulta BD por jerarquia1 (nombre_receta)
+			//return Recetario
+		}
+		if (usuario !=null && !usuario.isEmpty())
+		{
+			//TODO: consulta BD por jerarquia2 (usuario/grupo)
+			//return Recetario
+		}
+		if ((ingredientePrincipal !=null && !ingredientePrincipal.isEmpty()) || (temporada !=null && !temporada.isEmpty()) || (dificultad!=-1) || (calorias !=-1) || (calificacion !=-1) || (sectorPiramide !=null && !sectorPiramide.isEmpty()))
+		//revisa que alguno de los campos restantes no este vacio
+		{
+			//TODO: consulta BD por jerarquia3 (lo demas)
+			//return Recetario
+		}
+		//para que compile le pongo un return recetario generico..
+		//   {
+		Receta pruebaReceta = new Receta ();			//Instancio una nueva receta
+		pruebaReceta.setNombreReceta("tiranosaurioREX_GRRRR");
+		receta.Recetario recetario = new receta.Recetario ();
+		recetario.crearRecetario() ;
+		recetario.agregarReceta(pruebaReceta);
+		return recetario;
+		//    }
+		
+		//TODO: si llego hasta aca devuelve error...
+	}
+	
+	
+	
 	
 	//++++++++++++++++++ INICIO METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
 	
