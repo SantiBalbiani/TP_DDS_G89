@@ -16,7 +16,7 @@ import usuario.Usuario;
 /**
  * Servlet implementation class Registro
  */
-@WebServlet(name="RegistrarServlet", urlPatterns="/register")
+@WebServlet(value="/register", name="register", urlPatterns="/register")
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ public class Registro extends HttpServlet {
 	 */
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
 		HttpSession session = request.getSession(true);
 		String usuario = request.getParameter("nombre");
 		//TODO:  Bajar MD5 y llamarlo en el cliente

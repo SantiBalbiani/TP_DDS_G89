@@ -7,7 +7,7 @@
 <class name="usuario.Usuario" table="usuarios">
 
 <id name="idUsuario" column="id">
-<generator class="assigned" />
+<generator class="increment" />
 </id>
 
 <property name="nombreUsuario" column="nombre"/>

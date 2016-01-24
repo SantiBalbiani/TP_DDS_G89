@@ -5,10 +5,14 @@ package usuario;
 import java.util.HashSet;
 import java.util.Set;
 
+
+import javax.persistence.*;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
 
 import receta.Condimento;
 import receta.Ingrediente;
@@ -16,8 +20,11 @@ import receta.Receta;
 //import usuario.Usuario;
 
  
-
+@Entity
+@Table(name="usuarios")
 public class Usuario {
+	
+
 	private int idUsuario;
 	private String nombreUsuario;
 	private String password;
@@ -25,6 +32,10 @@ public class Usuario {
 	private String fecha_nacimiento;
 	private String complexion;
 
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="idUsuario")
 	public int getIdUsuario() {
 		return idUsuario;
 	}
@@ -79,7 +90,7 @@ public class Usuario {
 	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina, String password ) {
 		
 		
-		this.setIdUsuario(13);
+		//this.setIdUsuario(13);
 		this.setNombreUsuario(nombreUsuario);
 		this.setPassword(password);
 		this.setSexo(sexo);
@@ -136,7 +147,7 @@ public class Usuario {
 		
 		Usuario nuevoUsuario = new Usuario();
 		String nombre = unUsuario.getNombreUsuario();
-		nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
+		//nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
 		nuevoUsuario.setNombreUsuario(nombre);
 		nuevoUsuario.setAltura(unUsuario.getAltura());
 		nuevoUsuario.setComplexion(unUsuario.getComplexion());

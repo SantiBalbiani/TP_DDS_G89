@@ -97,10 +97,26 @@ import java.util.Set;
 import usuario.Usuario;
 
 //import java.util.Scanner;
+import javax.persistence.*;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+
+import receta.Condimento;
+import receta.Ingrediente;
+import receta.Receta;
+
+
+
+@Entity
+@Table(name="RECETA")
 public class Receta {
 
-	
+
+	private int idReceta;
 	private String nombreReceta;
 	private String preparacion;
 	private Ingrediente ingredientePrincipal;
@@ -113,6 +129,17 @@ public class Receta {
 	private String temporadaPlato;
 	private short sectorPiramideAlimenticia;
 	//private Evento temporada_plato;
+	
+	public Receta(){
+		
+	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="idReceta")
+	public int getidReceta(){
+		return this.idReceta;
+	}
 	
 	
 	public Receta crear_receta(Ingrediente unIngrediente, short calificacion, int calorias, Condimento unCondimento, String unNombre, String unaPreparacion, String unaCategoria,String unaDificultad, String unaTemporada, short unSectorPiramide ){
@@ -151,12 +178,36 @@ public class Receta {
 		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
 		
 		
+
+			Configuration con = new Configuration();
+			con.configure("hibernate.cfg.xml");
+			SessionFactory SF = con.buildSessionFactory();
+			Session session = SF.openSession();
+			
+
+			
+			Transaction TR = session.beginTransaction();
+			session.save(nuevaReceta);
+			System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
+			TR.commit();
+			session.close();
+			SF.close();
+			
+
+		
+		
 		return nuevaReceta;
 		
 			
 	}
 	
-	//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
+	private void guardarReceta(Receta nuevaReceta) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+		//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
 		public Set<Ingrediente> crearListaIngrediente()
 		{
 			Set<Ingrediente> listaIngrediente ; 
@@ -249,7 +300,7 @@ public class Receta {
 		this.setIngredientePrincipal(unIngrediente);
 	}
 
-
+	@Column(name = "CALIFICACION", length = 50)
 	public short getCalificacion() {
 		return calificacion;
 	}
@@ -308,7 +359,7 @@ public class Receta {
 			return true;		//Salio Todo bien
 	}
 
-
+	//@Column(name = "INGREDIENTEPRINCIPAL", length = 50)
 	public Ingrediente getIngredientePrincipal() {
 		return ingredientePrincipal;
 	}
@@ -318,7 +369,7 @@ public class Receta {
 		this.ingredientePrincipal = ingredientePrincipal;
 	}
 
-
+	@Column(name = "CALORIAS", length = 50)
 	public int getCalorias() {
 		return calorias;
 	}
@@ -328,7 +379,7 @@ public class Receta {
 		this.calorias = calorias;
 	}
 
-
+	@Column(name = "PREPARACION", length = 50)
 	public String getPreparacion() {
 		return preparacion;
 	}
@@ -337,7 +388,7 @@ public class Receta {
 	public void setPreparacion(String preparacion) {
 		this.preparacion = preparacion;
 	}
-
+	
 	public Set<Ingrediente> getListaIngredientes() {
 		return listaIngredientes;
 	}
@@ -357,7 +408,7 @@ public class Receta {
 	public void setNombreReceta(String nombreReceta) {
 		this.nombreReceta = nombreReceta;
 	}
-	
+	@Column(name = "NOMBRERECETA", unique = true, nullable = false)
 	public String getNombreReceta() {
 		return this.nombreReceta;
 	}
@@ -369,15 +420,17 @@ public class Receta {
 	public void setListaCategorias(Set<String> listaCategorias) {
 		this.listaCategorias = listaCategorias;
 	}
-
+	@Column(name = "DIFICULTADRECETA", length = 50)
 	public String getDificultadReceta() {
 		return dificultadReceta;
 	}
 
+	@Column(name = "DIFICULTADRECETA", length = 50)
 	public void setDificultadReceta(String dificultadReceta) {
 		this.dificultadReceta = dificultadReceta;
 	}
 
+	@Column(name = "TEMPORADAPLATO", length = 50)
 	public String getTemporadaPlato() {
 		return temporadaPlato;
 	}
@@ -385,7 +438,7 @@ public class Receta {
 	public void setTemporadaPlato(String temporadaPlato) {
 		this.temporadaPlato = temporadaPlato;
 	}
-
+	@Column(name = "SECTORPIRAMIDEALIMENTICIA", length = 50)
 	public short getSectorPiramideAlimenticia() {
 		return sectorPiramideAlimenticia;
 	}

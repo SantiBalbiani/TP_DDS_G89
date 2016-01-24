@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ene-2016 10:54:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="receta.Ingrediente" table="INGREDIENTE">
+        <id name="nombre" type="java.lang.String">
+            <column name="NOMBRE" />
+            <generator class="assigned" />
+        </id>
+        <property name="porcion" type="short">
+            <column name="PORCION" />
+        </property>
+        <property name="calorias" type="short">
+            <column name="CALORIAS" />
+        </property>
+    </class>
+</hibernate-mapping>
