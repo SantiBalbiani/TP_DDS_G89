@@ -20,6 +20,19 @@ import org.hibernate.cfg.Configuration;
 @Table(name="INGREDIENTE")
 public class Ingrediente {
 	
+	int idIngrediente;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="IDINGREDIENTE")
+	public int getIdIngrediente() {
+		return idIngrediente;
+	}
+
+
+	public void setIdIngrediente(int idIngrediente) {
+		this.idIngrediente = idIngrediente;
+	}
 	public String nombre;
 	public int porcion;
 	public int calorias;
@@ -51,20 +64,28 @@ public class Ingrediente {
 	}
 	
 	public void guardarIngrediente(Ingrediente unIngrediente){
+		
+		Ingrediente nuevoIngrediente = new Ingrediente();
+		
+		nuevoIngrediente.setCalorias(unIngrediente.getCalorias());
+		nuevoIngrediente.setNombre(unIngrediente.getNombre());
+		nuevoIngrediente.setPorcion(unIngrediente.getPorcion());
+		
+		
 		Configuration con = new Configuration();
 		con.configure("hibernate.cfg.xml");
 		SessionFactory SF = con.buildSessionFactory();
 		Session session = SF.openSession();
 		
 		Transaction TR = session.beginTransaction();
-		session.save(unIngrediente);
+		session.save(nuevoIngrediente);
 		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
 		TR.commit();
 		session.close();
 		SF.close();
 	}
 	//++++++++++++++++++ FIN OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
-	@Id
+	
 	@Column(name="NOMBRE")
 	public String getNombre() {
 		return nombre;

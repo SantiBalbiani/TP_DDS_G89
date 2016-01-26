@@ -12,6 +12,19 @@ import org.hibernate.cfg.Configuration;
 @Entity
 @Table(name="CONDIMENTO")
 public class Condimento {
+	
+	private int idCondimento;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="IDCONDIMENTO")
+	public int getIdCondimento() {
+		return idCondimento;
+	}
+
+
+	public void setIdCondimento(int idCondimento) {
+		this.idCondimento = idCondimento;
+	}
 	public String nombre;
 	public String tipo;
 	
@@ -42,6 +55,12 @@ public class Condimento {
 		
 		public void guardarCondimento(Condimento unCondimento){
 			
+			Condimento nuevoCondimento = new Condimento();
+			
+			nuevoCondimento.setNombre(unCondimento.getNombre());
+			nuevoCondimento.setTipo(unCondimento.getTipo());
+			
+			
 			Configuration con = new Configuration();
 			con.configure("hibernate.cfg.xml");
 			SessionFactory SF = con.buildSessionFactory();
@@ -60,7 +79,7 @@ public class Condimento {
 		
 		//++++++++++++++++++ FIN OPERACIONES DE AGREGAR CONDIMENTO++++++++++++++++++++++++++++++++++++++++++++//
 		
-	@Id
+	
 	@Column(name="NOMBRE")
 	public String getNombre() {
 		return nombre;

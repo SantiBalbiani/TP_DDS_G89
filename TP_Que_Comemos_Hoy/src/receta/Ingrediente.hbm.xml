@@ -4,14 +4,20 @@
 <!-- Generated 23-ene-2016 10:54:08 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="receta.Ingrediente" table="INGREDIENTE">
-        <id name="nombre" type="java.lang.String">
-            <column name="NOMBRE" />
-            <generator class="assigned" />
+    
+        <id name="idIngrediente" type="int">
+            <column name="IDINGREDIENTE" />
+            <generator class="increment" />
         </id>
-        <property name="porcion" type="short">
+        <property name="nombre" type="java.lang.String">
+        
+        	<column name="NOMBRE"></column>
+        </property>
+        
+        <property name="porcion" type="int">
             <column name="PORCION" />
         </property>
-        <property name="calorias" type="short">
+        <property name="calorias" type="int">
             <column name="CALORIAS" />
         </property>
     </class>

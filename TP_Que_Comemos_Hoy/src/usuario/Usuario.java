@@ -16,7 +16,7 @@ import org.hibernate.cfg.Configuration;
 
 import receta.Condimento;
 import receta.Ingrediente;
-import receta.Receta2;
+import receta.Receta;
 //import usuario.Usuario;
 
  
@@ -107,16 +107,16 @@ public class Usuario {
 	
 	
 	
-	public boolean calificar(Receta2 unaReceta, short unaCalificacion ) 
+	public boolean calificar(Receta unaReceta, short unaCalificacion ) 
 	{
 			if ((unaCalificacion > 5) | (unaCalificacion < 1))		//Compruebo 1 <= unaCalificacion <= 5
 			{
 				//System.out.println("La calificacion debe ser entre 1 y 5 estrellas\n");
 				return false;
 			}
-			if (unaReceta instanceof Receta2)			//Compruebo si es una Receta
+			if (unaReceta instanceof Receta)			//Compruebo si es una Receta
 			{
-				if (unaReceta.calificar(unaCalificacion))
+				if (unaReceta.calificar(unaCalificacion)>0)
 				{
 					//La calificacion fue exitosa
 					//System.out.println("La calificacion fue exitosa\n");
@@ -169,26 +169,26 @@ public class Usuario {
 	
 	
 	
-	public Receta2 crear_receta(Ingrediente unIngrediente, int calificacion, int calorias, Condimento unCondimento, String unNombre ){
+	public Receta crear_receta(Ingrediente unIngrediente, short calificacion, int calorias, Condimento unCondimento, String unNombre, String unaPreparacion, String temporadaPlato ){
 		//llama a metodo new para crear Receta 
 		//invoca los setters de la clase Receta para el alta de
 		//ingredientes, condimentos y otros atributos...
 		//devuelve la receta creada
 		
-		Receta2 nuevaReceta = new Receta2();
+		Receta nuevaReceta = new Receta();
 
-		nuevaReceta.nombreReceta(unNombre); //entrada x teclado
+		nuevaReceta.setNombreReceta(unNombre); //entrada x teclado
 		nuevaReceta.agregarIngredientePrincipal(unIngrediente);
 		
 		//TODO: debe haber un loop de 1 a n ingredientes y/o condimentos 
 		nuevaReceta.agregarIngrediente(unIngrediente);
-		nuevaReceta.agregarIngredienteCalorias(calorias);
+		nuevaReceta.agregarCalorias(calorias);
 		
 		
 		nuevaReceta.agregarCondimento(unCondimento);
-		nuevaReceta.agregarPreparacion();//entrada x teclado
-		nuevaReceta.temporadaReceta();
-		nuevaReceta.calificarReceta(calificacion);
+		nuevaReceta.agregarPreparacion(unaPreparacion);
+		nuevaReceta.setTemporadaPlato(temporadaPlato);
+		nuevaReceta.calificar(calificacion);
 		return nuevaReceta;
 		
 		

@@ -3,13 +3,31 @@ package receta;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.util.ArrayList;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 
+import receta.Condimento;
+import receta.Ingrediente;
+
+
+@Entity
+@Table(name="RECETA")
 public class Receta {
 
-	
+	private int idReceta;
 	private String nombreReceta;
 	private String preparacion;
 	private Ingrediente ingredientePrincipal;
@@ -22,7 +40,22 @@ public class Receta {
 	private String dificultadReceta;
 	private List<String> temporadaPlato;
 	private short sectorPiramideAlimenticia;
+	
+	//Atributos relacionados a la BD
+	private String creadoPor;
+	private Set<Receta> listaRecetas;
+	
 
+	public Receta(){
+		
+	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="idReceta")
+	public int getidReceta(){
+		return this.idReceta;
+	}
 	
 	//Buscar_Receta
 	Recetario buscarReceta (String nombreReceta, String usuario, String ingredientePrincipal, String temporada, int dificultad, int calorias, String sectorPiramide, int calificacion)
@@ -87,6 +120,19 @@ public class Receta {
 		nuevaReceta.setTemporadaPlato(unaTemporada);
 		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
 		
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml");
+		SessionFactory SF = con.buildSessionFactory();
+		Session session = SF.openSession();
+		
+
+		
+		Transaction TR = session.beginTransaction();
+		session.save(nuevaReceta);
+		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
+		TR.commit();
+		session.close();
+		SF.close();
 		
 		return nuevaReceta;
 		

@@ -23,12 +23,16 @@
         <property name="calorias" type="int">
             <column name="CALORIAS" />
         </property>
+        
+        
         <set name="listaIngredientes" table="INGREDIENTE" inverse="false" lazy="true">
             <key>
-                <column name="IDRECETA" />
+                <column name="IDINGREDIENTE" />
             </key>
             <one-to-many class="receta.Ingrediente" />
         </set>
+        
+        
         <set name="listaCondimentos" table="CONDIMENTO" inverse="false" lazy="true">
             <key>
                 <column name="IDRECETA" />
