@@ -4,14 +4,14 @@ import receta.Receta;
 import usuario.Usuario;
 import receta.Condimento;
 import receta.Ingrediente;
+import receta.Recetario;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-
+import java.util.Iterator;
 
 
 
@@ -69,6 +69,91 @@ public class TestReceta {
 		recetario = null;								//Elimino la instancia usuario	
 	}
 	*/
+	
+	@Test
+	public void testBuscarReceta()
+	{
+		int a=0;	//flag para saber si encontro el valor buscado
+		receta.Recetario recetario = new receta.Recetario ();
+
+		
+		
+		// consulta BD por jerarquia1 (nombre_receta)
+		
+		recetario = recetario.buscarReceta ("nombre_receta", null, null, null, -2, -2, null, -2);
+		Iterator<Receta> iterator = (recetario.getListaRecetas()).iterator(); 
+		
+		while (iterator.hasNext())
+		{
+			if (  ((iterator.next()).getNombreReceta()).equals("receta_buscada_por_nombre_receta")  )
+				a=1;
+		}
+		
+		if (a==1) 
+		{
+			assertTrue(true);
+		} 
+		else 
+		{
+			assertTrue(false);
+		}
+		//recetario = null;								//Elimino la instancia usuario	
+		
+		
+		// consulta BD por jerarquia2 (usuario)
+		
+		a=0;
+		recetario = null;
+		recetario = new receta.Recetario ();
+		recetario = recetario.buscarReceta (null, "unUsuario", null, null, -2, -2, null, -2);
+		iterator = (recetario.getListaRecetas()).iterator(); 
+
+		while (iterator.hasNext())
+		{
+			if (  ((iterator.next()).getNombreReceta()).equals("receta_buscada_por_usuario_grupo")  )
+				a=1;
+		}
+		
+		if (a==1) 
+		{
+			assertTrue(true);
+		} 
+		else 
+		{
+			assertTrue(false);
+		}
+		//recetario = null;								//Elimino la instancia usuario	
+
+		
+		// consulta BD por jerarquia3 (lo demas)
+		
+		a=0;
+		recetario = null;
+		recetario = new receta.Recetario ();
+		recetario = recetario.buscarReceta (null, null, "jamonCrudo", "verano", 5, 100, "verduras", 2);
+		iterator = (recetario.getListaRecetas()).iterator(); 
+		
+		while (iterator.hasNext())
+		{
+			if (  ((iterator.next()).getNombreReceta()).equals("tiranosaurioREX_GRRRR")  )
+				a=1;
+		}
+		
+		if (a==1) 
+		{
+			assertTrue(true);
+		} 
+		else 
+		{
+			assertTrue(false);
+		}
+		recetario = null;								//Elimino la instancia usuario				
+		
+		
+	}
+	
+	
+	
 	
 	
 	@Test

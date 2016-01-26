@@ -57,6 +57,8 @@ public class Receta {
 		return this.idReceta;
 	}
 	
+	
+	/* --- Pase el buscarReceta a Recetario ----
 	//Buscar_Receta
 	Recetario buscarReceta (String nombreReceta, String usuario, String ingredientePrincipal, String temporada, int dificultad, int calorias, String sectorPiramide, int calificacion)
 	{
@@ -88,7 +90,7 @@ public class Receta {
 		
 		//TODO: si llego hasta aca devuelve error...
 	}
-	
+	*/
 	
 	
 	
@@ -449,13 +451,21 @@ public int getCaloriasdeTodosLosIngrediente(){
 	
 
 
-	/// control string
-	
+/// control string
+
 	@SuppressWarnings("null")
-	public boolean noEsStringVacio(String unString){
-		
-			
-		return ((unString != null) || (unString.length()!=0));
+	public boolean noEsStringVacio(String unString)
+	{
+		try
+		{
+			//En caso de que no funcione probar con:
+			//return (unString !=null && !unString.isEmpty())	;
+			return ((unString != null) || (unString.length()!=0));
+		}
+		catch (NullPointerException npe)
+		{
+	        return false;
+	    }
 	}
 	
 	
