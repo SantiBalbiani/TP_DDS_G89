@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Recetario 
 {
-	private Set<Receta> listaRecetas;
+	private Set<Receta2> listaRecetas;
 
 	
 	//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR Recetas++++++++++++++++++++++++++++++++++++++++++++//
@@ -20,27 +20,27 @@ public class Recetario
 				return true;
 			}
 	
-			private Set<Receta> crearRecetarioPrivado()
+			private Set<Receta2> crearRecetarioPrivado()
 			{
-				Set<Receta> recetario ; 
-				recetario = new HashSet<Receta>();
+				Set<Receta2> recetario ; 
+				recetario = new HashSet<Receta2>();
 				return recetario;
 			}
 			
-			public boolean agregarReceta(receta.Receta unaReceta)
+			public boolean agregarReceta(receta.Receta2 unaReceta)
 			{
 			    //se agrega la receta
-				Set<Receta> unRecetario;
+				Set<Receta2> unRecetario;
 				unRecetario = this.getListaRecetas();
 				unRecetario.add(unaReceta);
 				this.setListaRecetas(unRecetario);
 				return true;
 			}
 			
-			public boolean eliminarReceta(receta.Receta unaReceta)
+			public boolean eliminarReceta(receta.Receta2 unaReceta)
 			{
 				//se vaaa la receta
-				Set<Receta> unRecetario;
+				Set<Receta2> unRecetario;
 				unRecetario = this.getListaRecetas();
 				unRecetario.remove(unaReceta);
 				this.setListaRecetas(unRecetario);
@@ -50,11 +50,11 @@ public class Recetario
 		
 	
 	
-	public Set<Receta> getListaRecetas() {
+	public Set<Receta2> getListaRecetas() {
 		return listaRecetas;
 	}
 
-	public void setListaRecetas(Set<Receta> listaRecetas) {
+	public void setListaRecetas(Set<Receta2> listaRecetas) {
 		this.listaRecetas = listaRecetas;
 	}
 	

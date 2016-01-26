@@ -1,6 +1,6 @@
 package Testeo;
 
-import receta.Receta;
+import receta.Receta2;
 import usuario.Usuario;
 import receta.Condimento;
 import receta.Ingrediente;
@@ -32,7 +32,7 @@ public class TestReceta {
 	@Test
 	public void testCalificarReceta() 
 	{
-		Receta pruebaReceta = new Receta ();			//Instancio una nueva receta
+		Receta2 pruebaReceta = new Receta2 ();			//Instancio una nueva receta
 		Usuario pruebaUser1 = new Usuario ();			//Instancio un nuevo usuario
 		pruebaUser1.setNombreUsuario("Pedro_PicaPiedras");		//Le agrego un nombre al usuario nuevo
 		pruebaUser1.calificar(pruebaReceta, (short) 0);
@@ -51,7 +51,7 @@ public class TestReceta {
 	@Test
 	public void testRecetario() 
 	{
-		Receta pruebaReceta = new Receta ();			//Instancio una nueva receta
+		Receta2 pruebaReceta = new Receta2 ();			//Instancio una nueva receta
 		pruebaReceta.setNombreReceta("tiranosaurioREX_GRRRR");
 		receta.Recetario recetario = new receta.Recetario ();
 		recetario.crearRecetario() ;
@@ -84,7 +84,7 @@ public class TestReceta {
 		
 		//Creo Receta
 		
-		Receta unaReceta = new Receta ();
+		Receta2 unaReceta = new Receta2 ();
 		short calificacion = 4;
 		short sectorP = 4;
 		

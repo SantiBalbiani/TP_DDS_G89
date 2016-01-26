@@ -18,7 +18,7 @@ import java.util.Set;
 
 import receta.Condimento;
 import receta.Ingrediente;
-import receta.Receta;
+import receta.Receta2;
 
 public class TestUsuario {
 

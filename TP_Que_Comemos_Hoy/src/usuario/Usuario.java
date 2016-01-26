@@ -16,7 +16,7 @@ import org.hibernate.cfg.Configuration;
 
 import receta.Condimento;
 import receta.Ingrediente;
-import receta.Receta;
+import receta.Receta2;
 //import usuario.Usuario;
 
  
@@ -107,14 +107,14 @@ public class Usuario {
 	
 	
 	
-	public boolean calificar(Receta unaReceta, short unaCalificacion ) 
+	public boolean calificar(Receta2 unaReceta, short unaCalificacion ) 
 	{
 			if ((unaCalificacion > 5) | (unaCalificacion < 1))		//Compruebo 1 <= unaCalificacion <= 5
 			{
 				//System.out.println("La calificacion debe ser entre 1 y 5 estrellas\n");
 				return false;
 			}
-			if (unaReceta instanceof Receta)			//Compruebo si es una Receta
+			if (unaReceta instanceof Receta2)			//Compruebo si es una Receta
 			{
 				if (unaReceta.calificar(unaCalificacion))
 				{
@@ -169,13 +169,13 @@ public class Usuario {
 	
 	
 	
-	public Receta crear_receta(Ingrediente unIngrediente, int calificacion, int calorias, Condimento unCondimento, String unNombre ){
+	public Receta2 crear_receta(Ingrediente unIngrediente, int calificacion, int calorias, Condimento unCondimento, String unNombre ){
 		//llama a metodo new para crear Receta 
 		//invoca los setters de la clase Receta para el alta de
 		//ingredientes, condimentos y otros atributos...
 		//devuelve la receta creada
 		
-		Receta nuevaReceta = new Receta();
+		Receta2 nuevaReceta = new Receta2();
 
 		nuevaReceta.nombreReceta(unNombre); //entrada x teclado
 		nuevaReceta.agregarIngredientePrincipal(unIngrediente);
