@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ene-2016 10:54:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="receta.Condimento" table="CONDIMENTO">
+    
+        <id name="idCondimento" type="int">
+            <column name="IDCONDIMENTO" />
+            <generator class="increment" />
+        </id>
+        
+        <property name="nombre" type="java.lang.String">
+        	<column name="NOMBRE"></column>
+        </property>
+        <property name="tipo" type="java.lang.String">
+            <column name="TIPO" />
+        </property>
+    </class>
+</hibernate-mapping>
