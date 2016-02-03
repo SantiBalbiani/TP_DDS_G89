@@ -23,7 +23,7 @@
   <body onload="posicionarCursor();">
 
     <div class="container">
-      <form class="form-signin" action="login" >
+      <form class="form-signin" action="login" method="POST">
         <h2 class="form-signin-heading">Iniciar Sesion</h2>
         <label for="inputText" class="sr-only">Usuario</label>
         <input type="text" id="inputText" class="form-control" placeholder="Usuario" name="usuario" required>

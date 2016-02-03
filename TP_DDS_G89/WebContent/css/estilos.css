@@ -6,3 +6,19 @@
 .jumbotron-kd{
 	padding: 20px 0;
 }
+
+#columna1 {
+	width: 70%;
+	float: left;
+	position: relative;
+}
+
+#columna2 {
+	width: 25%;
+	float: right;
+	position: relative;
+}
+
+#perfil {
+	float: right;
+}

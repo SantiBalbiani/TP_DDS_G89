@@ -17,7 +17,7 @@ import usuario.Usuario;
  */
 
 
-@WebServlet(name="Login", urlPatterns="/login")
+@WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,29 +34,6 @@ public class Login extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		try
-		{	    
-
-		     //UserBean user = new UserBean();
-			String usuario = request.getParameter("usuario");
-			String contrasenia = request.getParameter("contrasenia");
-
-			   		    
-			if(usuario.equals("admin") && contrasenia.equals("admin")){
-		          HttpSession session = request.getSession(true);	    
-		          session.setAttribute("currentSessionUser",usuario); 
-		          response.sendRedirect("welcome.jsp");     		
-		     }    
-		     else 
-		    	 response.sendRedirect("login.jsp");
-		} 
-				
-				
-		catch (Throwable theException) 	    
-		{
-		     System.out.println(theException); 
-		}
 	}
 
 	/**
@@ -64,6 +41,26 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try
+		{	    
+		     //UserBean user = new UserBean();
+			String usuario = request.getParameter("usuario");
+			String contrasenia = request.getParameter("contrasenia");
+
+			if(usuario.equals("admin") && contrasenia.equals("admin")){
+		          HttpSession session = request.getSession(true);	    
+		          session.setAttribute("currentSessionUser",usuario); 
+		          response.sendRedirect("welcome.jsp");
+		     }
+		     else 
+		    	 response.sendRedirect("login.jsp?usuario=admin");
+		} 
+				
+				
+		catch (Throwable theException) 	    
+		{
+		     System.out.println(theException); 
+		}
 	}
 
 }
