@@ -51,12 +51,13 @@ public class GrupoUsuarios {
 	}
 	
 	
+	/*
 	public Set<Receta> getRecetasDelGrupo(){
 		
 		// coleccion de las recetas del gr los integrantes del grupo
 		return Set<Receta>; 
 	}
-	
+	*/
 	//++++++++++++++++++ FIN OPERACIONES DE GRUPOS DE USUARIO++++++++++++++++++++++++++++++++++++++++++++//
 	
 	
