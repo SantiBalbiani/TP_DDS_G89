@@ -62,7 +62,10 @@ public class Registrarse extends HttpServlet {
 		//TODO: si el sexo es hombre que sea 'M' y 'H'
 		//TODO: la altura hay que castearla a double....
 		
-		usuario.altaUsuario(nombreUsuario, 'H', fechaNac, complexion, 1.00 , " ", condPreexis, " ", " ", password);
+		//usuario.altaUsuario(nombreUsuario, 'H', "20150313", complexion, 1.70 , " ", condPreexis, " ", " ", password);
+		usuario.altaUsuario("admin", 'H', "20150313", "media", (double)1.70 , " ", condPreexis, " ", " ", "123");
+		
+		usuario.guardarUsuario(usuario);
 		
 		response.sendRedirect("welcome.jsp?usuario=" + nombreUsuario + "&datos=0");
 	}

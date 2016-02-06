@@ -18,9 +18,9 @@
 	
 <!-- Related to mapping START -->
 <mapping resource="usuario.hbm.xml" />
-<mapping resource="receta/receta.hbm.xml"/>
-<mapping resource="receta/ingrediente.hbm.xml"/>
-<mapping resource="receta/condimento.hbm.xml"/>
+<!-- <mapping resource="receta/receta.hbm.xml"/> -->
+<!-- <mapping resource="receta/ingrediente.hbm.xml"/> -->
+<!-- <mapping resource="receta/condimento.hbm.xml"/> -->
 <!-- Related to mapping START -->
 
 	

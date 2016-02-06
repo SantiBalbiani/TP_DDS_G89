@@ -40,6 +40,7 @@ public class TestUsuario {
 		condPreexis.add(1); //generico
 		
 		nuevoUsuario.altaUsuario("Santiago", 'M', "20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
+		
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 	}
 	
