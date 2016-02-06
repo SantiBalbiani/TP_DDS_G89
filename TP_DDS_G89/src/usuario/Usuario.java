@@ -137,7 +137,7 @@ public class Usuario {
 
 	
 	
-	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina, String password ) {
+	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, Set<Integer> condPreexistentes,String dieta, String rutina, String password ) {
 		
 		
 		//this.setIdUsuario(13);
@@ -227,7 +227,7 @@ public class Usuario {
 
 public void buscarReceta(){
 	
-	this.getCondicionesPreexistentes().buscarReceta(this);
+//	this.getCondicionesPreexistentes().buscarReceta(this);
 }
 
 	
@@ -239,9 +239,9 @@ public void buscarReceta(){
 		
 
 	
-
+/*
 public Set<Receta> getUltimas10RecetasAceptadas(){
-	return  Set<Receta>;
+	return  this.get;
 	
 }
 
@@ -249,7 +249,7 @@ public Set<Receta> getrecomendacionesDiarias() {
 	return  Set<Receta>;
 	
 }
-
+*/
 
 
 
