@@ -43,45 +43,18 @@ public class Registrarse extends HttpServlet {
 	 */
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession(true);
-		String usuario = request.getParameter("nombre");
-		//TODO:  Bajar MD5 y llamarlo en el cliente
-		String contrasenia1 = request.getParameter("pass");
-		//String contrasenia2 = request.getParameter("contrasenia2");
-		String fechaNac = request.getParameter("fechaNacimiento");
-		//String alturaTexto = request.getParameter("altura");
-		//String sexoTexto = request.getParameter("sexo");
-		String complexion = request.getParameter("complexion");
-		//char sexo;
-		//Double altura = Double.parseDouble(alturaTexto);
-		
-		//sexo = (char)sexoTexto.charAt(0);
-		
-        out.println("<html>");
-        out.println("<head></head>");         
-        out.println("<body>");
 
-        out.println("Usuario:");
-        out.println(usuario);
-        out.println("</br>");
-        out.println("Password:");         
-        out.println(contrasenia1);
-        out.println("</body>");
-        out.println("</html>");  
+		Usuario usuario = new Usuario();
+		String nombreUsuario = request.getParameter("usuario");
+		String password = request.getParameter("password");
+		String fechaNac = request.getParameter("fechaNacimiento");
+		String altura = request.getParameter("altura");
+		String sexo = request.getParameter("sexo");
+		String complexion = request.getParameter("complexion");		
 		
+		usuario.altaUsuario(nombreUsuario, sexo, fechaNac, complexion, altura, preferencias_alimenticias, condPreexistentes, dieta, rutina, password);
 		
-		Usuario nuevoUsuario = new Usuario();
-		nuevoUsuario.altaUsuario(usuario, 'M', fechaNac, complexion, 0.00, " ", " ", " ", " ",contrasenia1);
-		
-		
-		
-		nuevoUsuario.guardarUsuario(nuevoUsuario);
-		
-		
-		
-		
-		response.sendRedirect("welcome.jsp");
+		response.sendRedirect("welcome.jsp?usuario=" + nombreUsuario + "&datos=0");
 	}
 
 }

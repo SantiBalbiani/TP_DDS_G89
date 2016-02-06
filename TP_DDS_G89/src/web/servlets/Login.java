@@ -2,6 +2,7 @@ package web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,7 @@ import usuario.Usuario;
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String nombreUsuario;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,16 +46,23 @@ public class Login extends HttpServlet {
 		try
 		{	    
 		     //UserBean user = new UserBean();
-			String usuario = request.getParameter("usuario");
+			nombreUsuario = request.getParameter("usuario");
 			String contrasenia = request.getParameter("contrasenia");
+			Array recetas [];
+			Usuario user = new Usuario();
 
-			if(usuario.equals("admin") && contrasenia.equals("admin")){
-		          HttpSession session = request.getSession(true);	    
-		          session.setAttribute("currentSessionUser",usuario); 
-		          response.sendRedirect("welcome.jsp");
+			if(nombreUsuario.equals("admin") && contrasenia.equals("admin")){
+		         HttpSession session = request.getSession(true);	    
+		         session.setAttribute("currentSessionUser",nombreUsuario); 
+		         response.sendRedirect("welcome.jsp?usuario=admin&datos=0");
+		     }else{
+		    	 //validar si existe el usuario
+//		    	 for(int i; i <= 3; i++){
+//		    		 recetas[i] = user.buscarMisRecetas();
+//		    	 }
+		    	 response.sendRedirect("login.jsp");
 		     }
-		     else 
-		    	 response.sendRedirect("login.jsp?usuario=admin");
+		    	 
 		} 
 				
 				
