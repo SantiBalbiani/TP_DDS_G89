@@ -39,13 +39,17 @@ public class GrupoUsuarios {
 	
 	public void darAltaGrupo(Usuario unUsuario, String unNombreDeGrupo){
 		
-		this.crearGrupo();
+		this.grupoDeUsuarios = this.crearGrupo();
 		this.ingresarGrupo(unUsuario);
 		this.setNombreDeGrupo(unNombreDeGrupo);
 		 
 	}
 	
 	
+	public String getNombreDeGrupo() {
+		return nombreDeGrupo;
+	}
+
 	public void setNombreDeGrupo(String unNombreDeGrupo){
 		this.nombreDeGrupo =unNombreDeGrupo;
 	}
