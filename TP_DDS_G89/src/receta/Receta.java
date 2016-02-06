@@ -58,40 +58,7 @@ public class Receta {
 	}
 	
 	
-	/* --- Pase el buscarReceta a Recetario ----
-	//Buscar_Receta
-	Recetario buscarReceta (String nombreReceta, String usuario, String ingredientePrincipal, String temporada, int dificultad, int calorias, String sectorPiramide, int calificacion)
-	{
-		if (nombreReceta !=null && !nombreReceta.isEmpty())
-		{
-			//TODO: consulta BD por jerarquia1 (nombre_receta)
-			//return Recetario
-		}
-		if (usuario !=null && !usuario.isEmpty())
-		{
-			//TODO: consulta BD por jerarquia2 (usuario/grupo)
-			//return Recetario
-		}
-		if ((ingredientePrincipal !=null && !ingredientePrincipal.isEmpty()) || (temporada !=null && !temporada.isEmpty()) || (dificultad!=-1) || (calorias !=-1) || (calificacion !=-1) || (sectorPiramide !=null && !sectorPiramide.isEmpty()))
-		//revisa que alguno de los campos restantes no este vacio
-		{
-			//TODO: consulta BD por jerarquia3 (lo demas)
-			//return Recetario
-		}
-		//para que compile le pongo un return recetario generico..
-		//   {
-		Receta pruebaReceta = new Receta ();			//Instancio una nueva receta
-		pruebaReceta.setNombreReceta("tiranosaurioREX_GRRRR");
-		receta.Recetario recetario = new receta.Recetario ();
-		recetario.crearRecetario() ;
-		recetario.agregarReceta(pruebaReceta);
-		return recetario;
-		//    }
-		
-		//TODO: si llego hasta aca devuelve error...
-	}
-	*/
-	
+
 	
 	
 	//++++++++++++++++++ INICIO METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
@@ -131,7 +98,7 @@ public class Receta {
 		
 		Transaction TR = session.beginTransaction();
 		session.save(nuevaReceta);
-		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
+		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistiï¿½ ok el objeto
 		TR.commit();
 		session.close();
 		SF.close();
@@ -445,9 +412,63 @@ public int getCaloriasdeTodosLosIngrediente(){
 }
 	
 	
+/*
+CATEGORIA
+=========
+
+List<String> listaCategoria = new ArrayList<String>(){{add("Desayuno"); add("Almuerzo"); add("Merienda");add("Cena");}};
+
+public List<String> getListaCategoria() {
+	return listaCategoria;
+}
+
+public void setListaCategoria(List<String> listaCategoria) {
+	this.listaCategoria = listaCategoria;
+}
+
+DIFICULTAD
+==========
+List<String> listaDificultad = new ArrayList<String>(){{add("Facil"); add("Media"); add("Dificil");add("Muy Dificil");}};
+
+public List<String> getListaDificultad() {
+	return listaDificultad;
+}
+
+public void setListaDificultad(List<String> listaDificultad) {
+	this.listaDificultad = listaDificultad;
+}	
+
+TEMPORADA PLATO
+=================
+
+	ArrayList<String> temporadaPlato ;
+	List<String> listaTemporadaPlato = new ArrayList<String>(){{add("Verano"); add("Otono"); add("Invierno");add("Primavera");add("Pascuas");add("Navidad");}};
+
+	public List<String> getListaTemporadaPlato() {
+		return listaTemporadaPlato;
+	}
+
+	public void setListaTemporadaPlato(List<String> listaTemporadaPlato) {
+		this.listaTemporadaPlato = listaTemporadaPlato;
+	}
+
 	
-	
-	
+	public void agregarTemporada(String unaTemporada) {
+		
+		this.getTemporadaPlato().add(unaTemporada);
+		
+		
+	}
+
+	public ArrayList<String> getTemporadaPlato() {
+		return temporadaPlato;
+	}
+
+
+
+
+
+*/
 	
 
 

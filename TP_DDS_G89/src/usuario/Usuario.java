@@ -4,6 +4,8 @@ package usuario;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import javax.persistence.*;
@@ -31,7 +33,19 @@ public class Usuario {
 	private char sexo;
 	private String fecha_nacimiento;
 	private String complexion;
-
+	private double  altura;
+	private String preferencias_alimenticias;
+	private String dieta;
+	private CondicionesPreexistentes condicionesPreexistentes;
+	private String rutina;
+	
+	List<String> listaDieta = new ArrayList<String>(){{add("Normal"); add("Ovolacteovegetariano"); add("Vegetariano"); add("Vegano");}};
+	
+	List<String> listaRutina = new ArrayList<String>(){{add("Sedentaria con algo de ejercicio (-30 min.)"); add("Sedentaria con nada de ejercicio");
+														add("Sedentaria con ejercicio (+30 min.)"); add("Vegano");}};
+	
+	
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,39 +66,8 @@ public class Usuario {
 		this.idUsuario = idUsuario;
 	}
 
-	private double  altura;
-	private String preferencias_alimenticias;
-	private String dieta;
-	private String condicionesPreexistentes;
-	private String rutina;
-	
-	
-	
-	
-	
-	//++++++++++++++++++ INICIO OPERACIONES DE GRUPOS DE USUARIO++++++++++++++++++++++++++++++++++++++++++++//
-	public Set<Usuario> crearGrupo(){
-	Set<Usuario> grupo ; 
-	grupo = new HashSet<Usuario>();
-	
-	return grupo;
-	}
-	
-	public Set<Usuario> ingresarGrupo(Set<Usuario> unGrupo){
-	    //se agrega el usuario
-		unGrupo.add(this);
-		
-		return unGrupo;
-	}
-	public Set<Usuario> salirGrupo(Set<Usuario> unGrupo){
-		//el usuario sale del grupo 
-		unGrupo.remove(this);
-		
-		return unGrupo;
-	}
-	//++++++++++++++++++ FIN OPERACIONES DE GRUPOS DE USUARIO++++++++++++++++++++++++++++++++++++++++++++//
-	
-	
+
+
 	
 	
 	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina, String password ) {
@@ -107,8 +90,12 @@ public class Usuario {
 	
 	
 	
-	public boolean calificar(Receta unaReceta, short unaCalificacion ) 
+	public void /*boolean*/ calificar(Receta unaReceta, short unaCalificacion )   //FIXME: LA VALIDACION NO LA HACE EL USUARIO
 	{
+		
+unaReceta.calificar(unaCalificacion);
+		
+		/*
 			if ((unaCalificacion > 5) | (unaCalificacion < 1))		//Compruebo 1 <= unaCalificacion <= 5
 			{
 				//System.out.println("La calificacion debe ser entre 1 y 5 estrellas\n");
@@ -125,6 +112,7 @@ public class Usuario {
 			}											//Hubo un problema
 			//System.out.println("Hubo un error calificando la receta\n");
 			return false;
+			*/
 	}
 	
 	
@@ -157,7 +145,7 @@ public class Usuario {
 		
 		Transaction TR = session.beginTransaction();
 		session.save(unUsuario);
-		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
+		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistiï¿½ ok el objeto
 		TR.commit();
 		session.close();
 		SF.close();
@@ -197,6 +185,19 @@ public class Usuario {
 	}
 	
 	
+	public void buscarReceta(){
+		
+		this.getCondicionesPreexistentes().buscarReceta(this);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//++++++++++++++++++ INICIO GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -228,19 +229,8 @@ public class Usuario {
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
-	public String getPrefAlim() { //Preferencias Alimenticias
-		return preferencias_alimenticias;
-	}
-	public void setPrefAlim(String prefAlim) {//Preferencias Alimenticias
-		this.preferencias_alimenticias = prefAlim;
-	}
-	
-	public String getCondPreexistentes() { 
-		return condicionesPreexistentes;
-	}
-	public void setCondPreexistentes(String condPreexsistente) {
-		this.condicionesPreexistentes =  condPreexsistente;
-	}	
+
+
 	public String getDieta() { 
 		return dieta;
 	}
@@ -257,9 +247,6 @@ public class Usuario {
 
 	
 	
-	///////////////////SE REPITE!
-	
-	
 	public String getPreferencias_alimenticias() {
 		return preferencias_alimenticias;
 	}
@@ -268,7 +255,7 @@ public class Usuario {
 		this.preferencias_alimenticias = preferencias_alimenticias;
 	}
 
-	public String getCondicionesPreexistentes() {
+	public CondicionesPreexistentes getCondicionesPreexistentes() {
 		return condicionesPreexistentes;
 	}
 
@@ -278,8 +265,28 @@ public class Usuario {
 	
 	}
 	
+	public void agregarCondicionesPreexistentes(String unaCondicionPreexistente) {
+		this.getCondicionesPreexistentes().add(unaCondicionPreexistente) ;
 	
+	
+	}
+	
+	
+
 	
 	
 	//++++++++++++++++++ FIN GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+public Set<Receta> getUltimas10RecetasAceptadas(){
+	return  Set<Receta>;
+	
+}
+
+public Set<Receta> getrecomendacionesDiarias() {
+	return  Set<Receta>;
+	
+}
+
+
+
 }
