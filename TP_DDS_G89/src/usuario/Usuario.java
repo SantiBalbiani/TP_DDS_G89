@@ -45,7 +45,9 @@ public class Usuario {
 														add("Sedentaria con ejercicio (+30 min.)"); add("Vegano");}};
 	
 	
-	
+
+//++++++++++++++++++ INICIO GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
+														
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,138 +69,6 @@ public class Usuario {
 	}
 
 
-
-	
-	
-	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina, String password ) {
-		
-		
-		//this.setIdUsuario(13);
-		this.setNombreUsuario(nombreUsuario);
-		this.setPassword(password);
-		this.setSexo(sexo);
-		this.setFecha_nacimiento(fnac); //formato mmddaaa
-		this.setComplexion(complexion);
-		this.setAltura(altura);
-		this.setPrefAlim(preferencias_alimenticias);
-		this.setCondPreexistentes(condPreexistentes);
-		this.setDieta(dieta);
-		this.setRutina(rutina);
-		
-		
-	}
-	
-	
-	
-	public void /*boolean*/ calificar(Receta unaReceta, short unaCalificacion )   //FIXME: LA VALIDACION NO LA HACE EL USUARIO
-	{
-		
-unaReceta.calificar(unaCalificacion);
-		
-		/*
-			if ((unaCalificacion > 5) | (unaCalificacion < 1))		//Compruebo 1 <= unaCalificacion <= 5
-			{
-				//System.out.println("La calificacion debe ser entre 1 y 5 estrellas\n");
-				return false;
-			}
-			if (unaReceta instanceof Receta)			//Compruebo si es una Receta
-			{
-				if (unaReceta.calificar(unaCalificacion)>0)
-				{
-					//La calificacion fue exitosa
-					//System.out.println("La calificacion fue exitosa\n");
-					return true;
-				}
-			}											//Hubo un problema
-			//System.out.println("Hubo un error calificando la receta\n");
-			return false;
-			*/
-	}
-	
-	
-	public void obtenerPesoIdeal(char sexo, float altura)
-	{
-		//TODO:     Hacer una consulta a la base de datos segun sexo y altura me muestre:
-		//  IX. Peso-Ideal-Hombres: altura, medida-tórax, medida-cintura, medida-cadera peso,
-		//  peso-min, peso-max
-		//  X. Peso-Ideal-Mujeres: altura, medida-tórax, medida-cintura, medida-cadera peso,
-		//  peso-min, peso-max
-	}
-	
-	
-	
-	public void guardarUsuario(Usuario unUsuario){
-		Configuration con = new Configuration();
-		con.configure("hibernate.cfg.xml");
-		SessionFactory SF = con.buildSessionFactory();
-		Session session = SF.openSession();
-		
-		Usuario nuevoUsuario = new Usuario();
-		String nombre = unUsuario.getNombreUsuario();
-		//nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
-		nuevoUsuario.setNombreUsuario(nombre);
-		nuevoUsuario.setAltura(unUsuario.getAltura());
-		nuevoUsuario.setComplexion(unUsuario.getComplexion());
-		nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
-		nuevoUsuario.setSexo(unUsuario.getSexo());
-		nuevoUsuario.setPassword(unUsuario.getPassword());
-		
-		Transaction TR = session.beginTransaction();
-		session.save(unUsuario);
-		System.out.println("Object Saved Succesfully"); // Si imprime es porque persisti� ok el objeto
-		TR.commit();
-		session.close();
-		SF.close();
-		
-	}
-	
-	
-	
-	
-	
-	
-	public Receta crear_receta(Ingrediente unIngrediente, short calificacion, int calorias, Condimento unCondimento, String unNombre, String unaPreparacion, String temporadaPlato ){
-		//llama a metodo new para crear Receta 
-		//invoca los setters de la clase Receta para el alta de
-		//ingredientes, condimentos y otros atributos...
-		//devuelve la receta creada
-		
-		Receta nuevaReceta = new Receta();
-
-		nuevaReceta.setNombreReceta(unNombre); //entrada x teclado
-		nuevaReceta.agregarIngredientePrincipal(unIngrediente);
-		
-		//TODO: debe haber un loop de 1 a n ingredientes y/o condimentos 
-		nuevaReceta.agregarIngrediente(unIngrediente);
-		nuevaReceta.agregarCalorias(calorias);
-		
-		
-		nuevaReceta.agregarCondimento(unCondimento);
-		nuevaReceta.agregarPreparacion(unaPreparacion);
-		nuevaReceta.setTemporadaPlato(temporadaPlato);
-		nuevaReceta.calificar(calificacion);
-		return nuevaReceta;
-		
-		
-		
-		
-	}
-	
-	
-	public void buscarReceta(){
-		
-		this.getCondicionesPreexistentes().buscarReceta(this);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//++++++++++++++++++ INICIO GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -243,10 +113,7 @@ unaReceta.calificar(unaCalificacion);
 	public void setRutina(String unaRutina) {
 		this.rutina= unaRutina;
 	}	
-	
-
-	
-	
+		
 	public String getPreferencias_alimenticias() {
 		return preferencias_alimenticias;
 	}
@@ -271,11 +138,114 @@ unaReceta.calificar(unaCalificacion);
 	
 	}
 	
+
+	
+	//++++++++++++++++++ FIN GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	
+	
+	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, String condPreexistentes,String dieta, String rutina, String password ) {
+		
+		
+		//this.setIdUsuario(13);
+		this.setNombreUsuario(nombreUsuario);
+		this.setPassword(password);
+		this.setSexo(sexo);
+		this.setFecha_nacimiento(fnac); //formato mmddaaa
+		this.setComplexion(complexion);
+		this.setAltura(altura);
+		this.setPreferencias_alimenticias(preferencias_alimenticias);
+		this.setCondicionesPreexistentes(condPreexistentes);
+		this.setDieta(dieta);
+		this.setRutina(rutina);
+		
+		
+	}
+	
+	
+	
+	public void  calificar(Receta unaReceta, short unaCalificacion )  
+	{
+		
+		unaReceta.calificar(unaCalificacion);
+		
+	}
 	
 
 	
 	
-	//++++++++++++++++++ FIN GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void guardarUsuario(Usuario unUsuario){
+		Configuration con = new Configuration();
+		con.configure("hibernate.cfg.xml");
+		SessionFactory SF = con.buildSessionFactory();
+		Session session = SF.openSession();
+		
+		Usuario nuevoUsuario = new Usuario();
+		String nombre = unUsuario.getNombreUsuario();
+		//nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
+		nuevoUsuario.setNombreUsuario(nombre);
+		nuevoUsuario.setAltura(unUsuario.getAltura());
+		nuevoUsuario.setComplexion(unUsuario.getComplexion());
+		nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
+		nuevoUsuario.setSexo(unUsuario.getSexo());
+		nuevoUsuario.setPassword(unUsuario.getPassword());
+		
+		Transaction TR = session.beginTransaction();
+		session.save(unUsuario);
+		System.out.println("Object Saved Succesfully"); // Si imprime es porque persisti� ok el objeto
+		TR.commit();
+		session.close();
+		SF.close();
+		
+	}
+	
+	
+	
+	
+	
+	
+	public Receta crearReceta(Ingrediente unIngrediente, short calificacion, int calorias, Condimento unCondimento, String unNombre, String unaPreparacion, String temporadaPlato ){
+		//llama a metodo new para crear Receta 
+		//invoca los setters de la clase Receta para el alta de
+		//ingredientes, condimentos y otros atributos...
+		//devuelve la receta creada
+		
+		Receta nuevaReceta = new Receta();
+
+		nuevaReceta.setNombreReceta(unNombre); //entrada x teclado
+		nuevaReceta.agregarIngredientePrincipal(unIngrediente);
+		
+		//TODO: debe haber un loop de 1 a n ingredientes y/o condimentos 
+		nuevaReceta.agregarIngrediente(unIngrediente);
+		nuevaReceta.agregarCalorias(calorias);
+		
+		
+		nuevaReceta.agregarCondimento(unCondimento);
+		nuevaReceta.agregarPreparacion(unaPreparacion);
+		nuevaReceta.setTemporadaPlato(temporadaPlato);
+		nuevaReceta.calificar(calificacion);
+		return nuevaReceta;
+		
+		
+		
+		
+	}
+	
+
+public void buscarReceta(){
+	
+	this.getCondicionesPreexistentes().buscarReceta(this);
+}
+
+	
+	
+	
+	
+	
+	
+		
+
+	
 
 public Set<Receta> getUltimas10RecetasAceptadas(){
 	return  Set<Receta>;
@@ -287,6 +257,17 @@ public Set<Receta> getrecomendacionesDiarias() {
 	
 }
 
+
+
+
+public void obtenerPesoIdeal(char sexo, float altura)
+{
+	//TODO:     Hacer una consulta a la base de datos segun sexo y altura me muestre:
+	//  IX. Peso-Ideal-Hombres: altura, medida-tórax, medida-cintura, medida-cadera peso,
+	//  peso-min, peso-max
+	//  X. Peso-Ideal-Mujeres: altura, medida-tórax, medida-cintura, medida-cadera peso,
+	//  peso-min, peso-max
+}
 
 
 }

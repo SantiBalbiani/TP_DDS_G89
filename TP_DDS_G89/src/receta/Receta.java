@@ -38,17 +38,23 @@ public class Receta {
 	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
 	private String dificultadReceta;
-	private List<String> temporadaPlato;
+	private ArrayList<String> temporadaPlato;
 	private short sectorPiramideAlimenticia;
+
+	List<String> listaPreparacion = new ArrayList<String>();
+	
+	List<String> listaTemporadaPlato = new ArrayList<String>(){{add("Verano"); add("Otono"); add("Invierno");add("Primavera");add("Pascuas");add("Navidad");}};
+
+	List<String> listaDificultad = new ArrayList<String>(){{add("Facil"); add("Media"); add("Dificil");add("Muy Dificil");}};
+
+	List<String> listaCategoria = new ArrayList<String>(){{add("Desayuno"); add("Almuerzo"); add("Merienda");add("Cena");}};
+
 	
 	//Atributos relacionados a la BD
 	private String creadoPor;
 	private Set<Receta> listaRecetas;
 	
 
-	public Receta(){
-		
-	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -162,9 +168,6 @@ public class Receta {
 	}
 
 
-	public List<String> getTemporadaPlato() {
-		return temporadaPlato;
-	}
 
 	public short getSectorPiramideAlimenticia() {
 		return sectorPiramideAlimenticia;
@@ -340,83 +343,11 @@ public void agregarlistaProcedimiento(String unaProcedimiento) {
 	
 	this.getListaProcedimiento().add(unaProcedimiento);
 }
-	//++++++++++++++++++ INICIO METODOS QUITAR DE RECETA ++++++++++++++//
-	
-	public void quitarTemporada(String unaTemporada){
-		
-		this.getTemporadaPlato().remove(unaTemporada);
-	}
-	
-	public void quitarIngredientePrincipal(){
-		
-		this.ingredientePrincipal = null;
-	}
-	
-	public void quitarCondimento(Condimento unCondimento){
-		
-		this.getListaCondimentos().remove(unCondimento);
-	}
-	
-	public void quitarIngrediente(Ingrediente unIngrediente){
-		
-		this.getListaIngredientes().remove(unIngrediente);
-	}
-	
-	public void quitarCategoria(String unaCategoria){
-		
-		this.getListaCategorias().remove(unaCategoria);
-	}
-	
-	public void quitarProcedimiento(String unProcedimiento){
-		
-		this.getListaProcedimiento().remove(unProcedimiento);
-	}	
-	
-//++++++++++++++++++ FIN METODOS QUITAR DE RECETA ++++++++++++++//
-//++++++++++++++++++ FIN METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
 
-//++++++++++++++++++ INICIO LISTAS BAGS SETS ETC++++++++++++++++++++++++++++++++++++++++++++//
 
-	List<String> listaPreparacion = new ArrayList<String>();
-	
-	List<String> listaCategoria = new ArrayList<String>(){{add("Desayuno"); add("Almuerzo"); add("Merienda");add("Cena");add("Colacion");}};
-	
-	List<String> listaDificultad = new ArrayList<String>(){{add("Facil"); add("Media"); add("Dificil");add("Muy Dificil");}};
-	
-	List<String> listaTemporadaPlato = new ArrayList<String>(){{add("Verano"); add("Otono"); add("Invierno");add("Primavera");add("Pascuas");add("Navidad");}};
-	
-	//Esto va en la clase usuario
-	//List<String> listaCondicionesPreexistentes = new ArrayList<String>(){{add("Diabetes"); add("Hipertension"); add("Celiasis");}};
-	
-	
-	
-	//++++++++++++++++++ MISC ++++++++++++++++++++++++++++++++++++++++++++//
+//CATEGORIA
+//=========
 
-	
-	
-	
-	public  void setTotalCalorias(){
-		
-		this.setCalorias(this.getCaloriasIngredientePrincipal()); //falta sumar calorias del grupo de ingredientes
-	}
-	
-	public int getCaloriasIngredientePrincipal(){
-		
-		return this.getIngredientePrincipal().getCalorias();
-	}
-	
-public int getCaloriasdeTodosLosIngrediente(){
-		
-// hacer un foreach getCalorias de cada ingrediente y acumular. retornar el acumulado final		
-	return 0;
-}
-	
-	
-/*
-CATEGORIA
-=========
-
-List<String> listaCategoria = new ArrayList<String>(){{add("Desayuno"); add("Almuerzo"); add("Merienda");add("Cena");}};
 
 public List<String> getListaCategoria() {
 	return listaCategoria;
@@ -426,9 +357,14 @@ public void setListaCategoria(List<String> listaCategoria) {
 	this.listaCategoria = listaCategoria;
 }
 
-DIFICULTAD
-==========
-List<String> listaDificultad = new ArrayList<String>(){{add("Facil"); add("Media"); add("Dificil");add("Muy Dificil");}};
+public void quitarCategoria(String unaCategoria){
+	
+	this.getListaCategorias().remove(unaCategoria);
+}
+
+//DIFICULTAD
+//==========
+
 
 public List<String> getListaDificultad() {
 	return listaDificultad;
@@ -438,11 +374,10 @@ public void setListaDificultad(List<String> listaDificultad) {
 	this.listaDificultad = listaDificultad;
 }	
 
-TEMPORADA PLATO
-=================
+//TEMPORADA PLATO
+//=================
 
-	ArrayList<String> temporadaPlato ;
-	List<String> listaTemporadaPlato = new ArrayList<String>(){{add("Verano"); add("Otono"); add("Invierno");add("Primavera");add("Pascuas");add("Navidad");}};
+
 
 	public List<String> getListaTemporadaPlato() {
 		return listaTemporadaPlato;
@@ -467,9 +402,59 @@ TEMPORADA PLATO
 
 
 
-
-*/
+//++++++++++++++++++ INICIO METODOS QUITAR DE RECETA ++++++++++++++//
 	
+	public void quitarTemporada(String unaTemporada){
+		
+		this.getTemporadaPlato().remove(unaTemporada);
+	}
+	
+	public void quitarIngredientePrincipal(){
+		
+		this.ingredientePrincipal = null;
+	}
+	
+	public void quitarCondimento(Condimento unCondimento){
+		
+		this.getListaCondimentos().remove(unCondimento);
+	}
+	
+	public void quitarIngrediente(Ingrediente unIngrediente){
+		
+		this.getListaIngredientes().remove(unIngrediente);
+	}
+	
+	
+	public void quitarProcedimiento(String unProcedimiento){
+		
+		this.getListaProcedimiento().remove(unProcedimiento);
+	}	
+	
+//++++++++++++++++++ FIN METODOS QUITAR DE RECETA ++++++++++++++//
+//++++++++++++++++++ FIN METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
+
+
+
+	
+	
+	public  void setTotalCalorias(){
+		
+		this.setCalorias(this.getCaloriasIngredientePrincipal()); //falta sumar calorias del grupo de ingredientes
+	}
+	
+	public int getCaloriasIngredientePrincipal(){
+		
+		return this.getIngredientePrincipal().getCalorias();
+	}
+	
+public int getCaloriasdeTodosLosIngrediente(){
+		
+// hacer un foreach getCalorias de cada ingrediente y acumular. retornar el acumulado final		
+	return 0;
+}
+	
+
+
 
 
 /// control string
