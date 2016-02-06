@@ -37,7 +37,7 @@ public class Receta {
 	private Set<Condimento> listaCondimentos;
 	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
-	private String dificultadReceta;
+	private int dificultadReceta;
 	private ArrayList<String> temporadaPlato;
 	private short sectorPiramideAlimenticia;
 
@@ -69,7 +69,7 @@ public class Receta {
 	
 	//++++++++++++++++++ INICIO METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
 	
-	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias,  String unNombre, String unaPreparacion, String unaCategoria,String unaDificultad, String unaTemporada, short unSectorPiramide ){
+	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias,  String unNombre, String unaPreparacion, String unaCategoria,int unaDificultad, String unaTemporada, short unSectorPiramide ){
 		//llama a metodo new para crear Receta 
 		//invoca los setters de la clase Receta para el alta de
 		//ingredientes, condimentos y otros atributos...
@@ -131,7 +131,7 @@ public class Receta {
 		this.calificacion= 0;
 		this.calorias = 0; 
 		
-		this.dificultadReceta=null;
+		this.dificultadReceta=0;
 		this.getTemporadaPlato().clear();
 		this.sectorPiramideAlimenticia =0 ;  // Discutir piramide
 			
@@ -163,7 +163,7 @@ public class Receta {
 	}
 
 	
-	public String getDificultadReceta() {
+	public int getDificultadReceta() {
 		return this.dificultadReceta;
 	}
 
@@ -260,7 +260,7 @@ public  ArrayList<String> getListaProcedimiento() {
 	}
 	
 	//DIFICULTAD
-	public void setDificultadReceta(String dificultadReceta) {
+	public void setDificultadReceta(int dificultadReceta) {
 		this.dificultadReceta = dificultadReceta;
 	}
 	

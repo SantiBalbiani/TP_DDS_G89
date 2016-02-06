@@ -11,10 +11,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import java.util.HashSet;
 import java.util.Iterator;
-
-
-
+import java.awt.List;
 import java.util.Set;
 
 
@@ -70,6 +70,7 @@ public class TestReceta {
 	}
 	*/
 	
+	/*
 	@Test
 	public void testBuscarReceta()
 	{
@@ -151,11 +152,11 @@ public class TestReceta {
 		
 		
 	}
+	*/
 	
 	
 	
-	
-	
+	/*
 	@Test
 	public void crearUnIngrediente(){
 		//Creo Ingrediente
@@ -163,7 +164,7 @@ public class TestReceta {
 		unIngrediente.crearIngrediente("papa", 10, 56);
 		unIngrediente.guardarIngrediente(unIngrediente);
 	}
-	
+	*/
 	
 //	@Test
 //	public void crearUnCondimento(){
@@ -173,51 +174,134 @@ public class TestReceta {
 //	}
 	
 	
-//	
-//	@Test
-//	/* 		---- Junit Test Case ----
-//	 * 		Codigo de condicion de Test: CreR.01
-//	 * 
-//	 * 		Testeado por: Santiago Balbiani
-//	 * 
-//	 * 	 Descripción:
-//	 *   El metodo setea atributos dentro del mismo objeto que contiene dentro de dicho metodo
-//	 *   Luego se llama a guardar usuario que persiste el objeto Usuario.
-//	 */
-//	public void crearUnaReceta(){
-//		
-//		//Creo Ingrediente
-//		Ingrediente unIngrediente = new Ingrediente();
-//		unIngrediente.crearIngrediente("papa", 10, 56);
-//		unIngrediente.guardarIngrediente(unIngrediente);
-//		
-//		//Creo Condimento
-//		
-//		Condimento unCondimento = new Condimento();
-//		unCondimento.crearCondimento("mostaza", "aderezo");
-//		unCondimento.guardarCondimento(unCondimento);
-//		
-//		
-//		//Creo Receta
-//		
-//		Receta unaReceta = new Receta ();
-//		short calificacion = 4;
-//		short sectorP = 4;
-//		
-//		// Agrego Condimentos
-//		
-//		unaReceta.agregarIngrediente(unIngrediente);
-//		unaReceta.agregarCondimento(unCondimento);
-//		
-//		
-//		
-//		
-//		unaReceta.crear_receta(unIngrediente, calificacion, 4, "RecetaLoca", "hola", "como salga", "guachita", "4", sectorP);
-//		
-//	
-//		//System.out.println(unCondimento.getNombre());
-//		
-//	}
+	
+	@Test
+	/* 		---- Junit Test Case ----
+	 * 		Codigo de condicion de Test: CreR.01
+	 * 
+	 * 		Testeado por: Santiago Balbiani
+	 * 
+	 * 	 Descripción:
+	 *   El metodo setea atributos dentro del mismo objeto que contiene dentro de dicho metodo
+	 *   Luego se llama a guardar usuario que persiste el objeto Usuario.
+	 */
+	public void crearUnaReceta() {
+
+		// Creo Ingrediente
+		Ingrediente unIngrediente = new Ingrediente();
+		unIngrediente.crearIngrediente("papa", 10, 56);
+		// unIngrediente.guardarIngrediente(unIngrediente);
+
+		// Creo Condimento
+
+		Condimento unCondimento = new Condimento();
+		unCondimento.crearCondimento("mostaza", "aderezo");
+		// unCondimento.guardarCondimento(unCondimento);
+
+		// Creo Receta
+
+		Receta unaReceta = new Receta();
+		short calificacion = 4;
+		short sectorP = 4;
+
+		// Agrego Condimentos
+
+		unaReceta.setListaIngredientes(unaReceta.crearListaIngrediente());
+		unaReceta.agregarIngrediente(unIngrediente);
+		unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
+		unaReceta.agregarCondimento(unCondimento);
+
+		// unaReceta.setIngredientePrincipal(ingredientePrincipal);
+		unaReceta.setCalificacion(calificacion);
+		unaReceta.setSectorPiramideAlimenticia(sectorP);
+		unaReceta.setIngredientePrincipal(unIngrediente);
+		unaReceta.setCalorias(500);
+		unaReceta.setPreparacion("cortas la papa le pones manteca y wuala");
+		unaReceta.setNombreReceta("La_PAPA_Milanesa");
+		unaReceta.setDificultadReceta(5);
+
+		// ---------------------------------
+
+		// Creo Ingrediente
+		Ingrediente unIngrediente2 = new Ingrediente();
+		unIngrediente2.crearIngrediente("estiercol", 10, 56);
+		// unIngrediente.guardarIngrediente(unIngrediente);
+
+		// Creo Condimento
+
+		Condimento unCondimento2 = new Condimento();
+		unCondimento2.crearCondimento("Noe", "aderezo");
+		// unCondimento.guardarCondimento(unCondimento);
+
+		// Creo Receta
+
+		Receta unaReceta2 = new Receta();
+		short calificacion2 = 4;
+		short sectorP2 = 4;
+
+		// Agrego Condimentos
+
+		unaReceta2.setListaIngredientes(unaReceta2.crearListaIngrediente());
+		unaReceta2.agregarIngrediente(unIngrediente2);
+		unaReceta2.setListaCondimentos(unaReceta2.crearListaCondimentos());
+		unaReceta2.agregarCondimento(unCondimento2);
+
+		// unaReceta.setIngredientePrincipal(ingredientePrincipal);
+		unaReceta2.setCalificacion(calificacion2);
+		unaReceta2.setSectorPiramideAlimenticia(sectorP2);
+		unaReceta2.setIngredientePrincipal(unIngrediente2);
+		unaReceta2.setCalorias(250);
+		unaReceta2.setPreparacion("noe se fue a la altamar");
+		unaReceta2.setNombreReceta("noe_en_altamar");
+		unaReceta2.setDificultadReceta(1);
+
+		// ---------------------------------
+
+		// Creo Ingrediente
+		Ingrediente unIngrediente3 = new Ingrediente();
+		unIngrediente3.crearIngrediente("lucas", 10, 56);
+		// unIngrediente.guardarIngrediente(unIngrediente);
+
+		// Creo Condimento
+
+		Condimento unCondimento3 = new Condimento();
+		unCondimento3.crearCondimento("quindimil", "aderezo");
+		// unCondimento.guardarCondimento(unCondimento);
+
+		// Creo Receta
+
+		Receta unaReceta3 = new Receta();
+		short calificacion3 = 4;
+		short sectorP3 = 4;
+
+		// Agrego Condimentos
+
+		unaReceta3.setListaIngredientes(unaReceta3.crearListaIngrediente());
+		unaReceta3.agregarIngrediente(unIngrediente3);
+		unaReceta3.setListaCondimentos(unaReceta3.crearListaCondimentos());
+		unaReceta3.agregarCondimento(unCondimento3);
+
+		// unaReceta.setIngredientePrincipal(ingredientePrincipal);
+		unaReceta3.setCalificacion(calificacion3);
+		unaReceta3.setSectorPiramideAlimenticia(sectorP3);
+		unaReceta3.setIngredientePrincipal(unIngrediente3);
+		unaReceta3.setCalorias(100);
+		unaReceta3.setPreparacion("accenture es muy linda y le gusta los cursos");
+		unaReceta3.setNombreReceta("accenture se fue a vw");
+		unaReceta3.setDificultadReceta(3);
+
+		Set<Receta> listaRecetas;
+		listaRecetas = new HashSet<Receta>();
+		listaRecetas.add(unaReceta);
+		listaRecetas.add(unaReceta2);
+		listaRecetas.add(unaReceta3);
+		
+		//unaReceta.crear_receta(unIngrediente, calificacion, 4, "RecetaLoca", "hola", "como salga", "guachita", "4", sectorP);
+		
+	
+		//System.out.println(unCondimento.getNombre());
+		
+	}
 
 	
 }
