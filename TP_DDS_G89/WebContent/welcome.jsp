@@ -4,7 +4,11 @@
 
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
 
-<% String usuario1 = request.getParameter("usuario"); %>
+<%  String usuario1 = request.getParameter("usuario");
+	String datos [] = request.getParameterValues("datos");
+	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
+	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
+%>
 
 <head>
 	<meta charset="UTF-8">
@@ -14,7 +18,7 @@
 	<link rel="stylesheet" href="css/estilos.css">
 </head>
 
-<body onload="cargarDatos();">
+<body>
 	<header>
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container">
@@ -29,23 +33,6 @@
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Inicio</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> Recetas <span
-								class="caret"></span>
-						</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Desayuno</a></li>
-								<li><a href="#">Almuerzo</a></li>
-								<li><a href="#">Merienda</a></li>
-								<li><a href="#">Cena</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Todas</a></li>
-							</ul></li>
-						<li><a href="#">Grupos</a></li>
-						<li><a href="#">Configuracion</a></li>
-					</ul>
-
 					<form action="" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar">
@@ -79,7 +66,12 @@
 			<div class="panel-heading">Recetas tuyas, <%=usuario1%></div>
 			<div class="panel-body">
 				<!-- Buscar las recetas del usuario y poner algunas aca -->
-				<a class="btn btn-default" href="" role="button" id="perfil">Perfil</a>
+				<% if(datos[0].equals("0")){ %>
+					<p>Todavía no tienes ninguna receta!</p>
+				<% } else {%>
+					<p>Aca se van a mostrar las recetas</p>
+				<% } %>
+				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta">Crear Nueva Receta</a>
 			</div>
 		</div>
 <!-- Hacer una seccion para que se puedan ver los grupos a los que pertenece el usuario -->

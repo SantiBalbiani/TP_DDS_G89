@@ -26,13 +26,13 @@
 				    <div class="form-group">
 				      <label for="inputUsuario" class="col-lg-3 control-label">Usuario</label>
 				      <div class="col-lg-9">
-				        <input type="text" class="form-control" name ="inputUsuario" id="inputUsuario" placeholder="Usuario" required>
+				        <input type="text" class="form-control" name ="usuario" id="inputUsuario" placeholder="Usuario" required>
 				      </div>
 				    </div>
 				    <div class="form-group">
 				      <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
 				      <div class="col-lg-9">
-				        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña" required>
+				        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Contraseña" required>
 				      </div>
 				    </div>
 				    <div class="form-group">
@@ -44,7 +44,7 @@
 					<div class="form-group">
 				      <label for="inputAltura" class="col-lg-3 control-label">Altura</label>
 				      <div class="col-lg-9">
-				        <input type="text" class="form-control" id="inputAltura" name="inputAltura" placeholder="Altura(cm)" required>
+				        <input type="text" class="form-control" id="altura" name="altura" placeholder="Altura(cm)" required>
 				      </div>
 				    </div>
 				    <div class="form-group">
@@ -52,13 +52,13 @@
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionMasc" id="optionMasc" value="optionMasc" checked="">
+				            <input type="radio" name="optionMasc" id="optionMasc" value="M" checked="">
 				            Masculino
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionFem" id="optionFem" value="optionFem">
+				            <input type="radio" name="optionFem" id="optionFem" value="F">
 				            Femenino
 				          </label>
 				        </div>
@@ -68,12 +68,56 @@
 				      <label for="select" class="col-lg-3 control-label">Complexion</label>
 				      <div class="col-lg-9">
 				        <select class="form-control" id="select">
-				          <option value="">Pequeña</option>
-				          <option value="">Mediana</option>
-				          <option value="">Grande</option>
+				          <option value="P">Pequeña</option>
+				          <option value="M">Mediana</option>
+				          <option value="G">Grande</option>
 				        </select>
 				      </div>
 				    </div>
+				    <!-- Falta agregar las condiciones preexistentes, rutina y preferencias alimenticias -->
+				    <div class="form-group">
+				      <label for="select" class="col-lg-3 control-label">Dieta</label>
+				      <div class="col-lg-9">
+				        <select class="form-control" id="select">
+				          <option value="N">Normal</option>
+				          <option value="V">Vegetariano</option>
+				          <option value="Veg">Vegano</option>
+				          <option value="OLV">Ovolacteovegetariano</option>
+				        </select>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label class="col-lg-3 control-label">Rutina</label>
+				      <div class="col-lg-9">
+				        <div class="radio">
+				          <label>
+				            <input type="radio" value="">Sedentaria con algo de ejercicio (-30 min.) LEVE
+				          </label>
+				        </div>
+				        <div class="radio">
+				          <label>
+				            <input type="radio" value="">Sedentaria con nada de ejercicio NADA
+				          </label>
+				        </div>
+				        <div class="radio">
+				          <label>
+				            <input type="radio" value="">Sedentaria con ejercicio MEDIANO
+				          </label>
+				        </div>
+				        <div class="radio">
+				          <label>
+				            <input type="radio" value="">Activa con ejercicio adicional (+30 min.) INTENSIVO
+				          </label>
+				        </div>
+				        <div class="radio">
+				          <label>
+				            <input type="radio" value="">Activa con ejercicio adicional (+30 min.)
+				          </label>
+				        </div>
+				      </div>
+				    </div>
+				    
+				    
 				    <div class="form-group">
 				      <div class="col-lg-9 col-lg-offset-3">
 				        <button type="reset" class="btn btn-default">Cancelar</button>

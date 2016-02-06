@@ -19,6 +19,7 @@
 	position: relative;
 }
 
-#perfil {
-	float: right;
+#nuevaReceta {
+	float: left;
+	position: relative;
 }
