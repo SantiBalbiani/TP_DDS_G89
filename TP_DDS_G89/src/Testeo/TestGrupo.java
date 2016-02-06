@@ -14,6 +14,8 @@ public class TestGrupo {
 	@Test
 	public void test_grupo1() 
 	{
+		//Pruebo el test_grupo....
+		
 		Usuario pruebaUser1 = new Usuario ();			//Instancio un nuevo usuario
 		pruebaUser1.setNombreUsuario("soyUnaPrueba");
 		
@@ -53,7 +55,7 @@ public class TestGrupo {
 		iterator = (grupo1.getGrupo()).iterator(); 
 		while (iterator.hasNext())
 		{
-			String temporal =  ((iterator.next()).getNombreUsuario()  );
+		  String temporal =  ((iterator.next()).getNombreUsuario()  );
 			if (  temporal.equals("eraUnaPrueba"));
 				a=a+1;
 		}
