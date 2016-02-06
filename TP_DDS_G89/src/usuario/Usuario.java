@@ -36,7 +36,7 @@ public class Usuario {
 	private double  altura;
 	private String preferencias_alimenticias;
 	private String dieta;
-	private CondicionesPreexistentes condicionesPreexistentes;
+	private Set<Integer> condicionesPreexistentes;
 	private String rutina;
 	
 	List<String> listaDieta = new ArrayList<String>(){{add("Normal"); add("Ovolacteovegetariano"); add("Vegetariano"); add("Vegano");}};
@@ -122,23 +122,16 @@ public class Usuario {
 		this.preferencias_alimenticias = preferencias_alimenticias;
 	}
 
-	public CondicionesPreexistentes getCondicionesPreexistentes() {
+	public Set<Integer> getCondicionesPreexistentes() {
 		return condicionesPreexistentes;
 	}
 
-	public void setCondicionesPreexistentes(String condicionesPreexistentes) {
+	public void setCondicionesPreexistentes(Set<Integer> condicionesPreexistentes) {
 		this.condicionesPreexistentes = condicionesPreexistentes;
 	
 	
 	}
 	
-	public void agregarCondicionesPreexistentes(String unaCondicionPreexistente) {
-		this.getCondicionesPreexistentes().add(unaCondicionPreexistente) ;
-	
-	
-	}
-	
-
 	
 	//++++++++++++++++++ FIN GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
