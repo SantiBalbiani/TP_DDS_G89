@@ -2,6 +2,8 @@ package web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,7 +54,15 @@ public class Registrarse extends HttpServlet {
 		String sexo = request.getParameter("sexo");
 		String complexion = request.getParameter("complexion");		
 		
-		usuario.altaUsuario(nombreUsuario, sexo, fechaNac, complexion, altura, preferencias_alimenticias, condPreexistentes, dieta, rutina, password);
+		//TODO: falta agregar: String preferencias_alimenticias, Set<Integer> condPreexistentes,String dieta, String rutina, String password
+		//ejemplo de prueba compilar
+		Set<Integer> condPreexis;
+		condPreexis = new HashSet<Integer>();
+		condPreexis.add(1); //generico
+		//TODO: si el sexo es hombre que sea 'M' y 'H'
+		//TODO: la altura hay que castearla a double....
+		
+		usuario.altaUsuario(nombreUsuario, 'H', fechaNac, complexion, 1.00 , " ", condPreexis, " ", " ", password);
 		
 		response.sendRedirect("welcome.jsp?usuario=" + nombreUsuario + "&datos=0");
 	}

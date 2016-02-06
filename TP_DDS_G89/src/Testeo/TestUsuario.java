@@ -7,10 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-
-
-
-
+import java.util.HashSet;
 import java.util.Set;
  
 
@@ -36,7 +33,13 @@ public class TestUsuario {
 	public void testAltaDeUsuario()
 	{
 		Usuario nuevoUsuario = new Usuario();
-		nuevoUsuario.altaUsuario("Santiago", 'M', "20150313", "mediana", 1.70, " ", " ", " ", " ", "1234");
+		
+		//(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, Set<Integer> condPreexistentes,String dieta, String rutina, String password ) {
+		Set<Integer> condPreexis;
+		condPreexis = new HashSet<Integer>();
+		condPreexis.add(1); //generico
+		
+		nuevoUsuario.altaUsuario("Santiago", 'M', "20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 	}
 	

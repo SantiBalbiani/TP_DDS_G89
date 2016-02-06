@@ -48,7 +48,7 @@ public class Usuario {
 														add("Activa con ejercicio adicional (+30 min.) INTENSIVO");
 														add("Activa con ejercicio adicional (+30 min.)");}};
 	
-//++++++++++++++++++ FIN_HARDCODE_PARA_MARTIN+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++ INICIO_HARDCODE_PARA_MARTIN+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 public Set<Receta> recetas_ejemplo(){
 															
@@ -356,16 +356,16 @@ public Set<Receta> recetas_ejemplo(){
 	
 
 public void buscarReceta(Filtro unFiltroDeBusqueda){
-	
-	
-this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
+	//Benja revisa esta parte del codigo... lo arregle para que no tire error pero nose si esta era la idea del codigo
+	CondicionesPreexistentes cond1 = new CondicionesPreexistentes();
+	cond1.buscarReceta(this, unFiltroDeBusqueda);
 }
 
 	
 	
 public Set<Receta> buscarMisRecetas(){
 	
-	this.getRecetario().getListaRecetas();
+	return this.getRecetario().getListaRecetas();
 	
 }
 	
