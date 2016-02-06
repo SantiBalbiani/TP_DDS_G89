@@ -27,7 +27,9 @@ public class CondicionesPreexistentes {
 		Set<Integer> condicionesDelUsuario = unUsuario.getCondicionesPreexistentes();
 		Set<CondicionesPreexistentes> condicionesGlobales =  this.getListaGlobalCondiciones();
 		
-		//unUsuario.getRecetario().buscarReceta(unUsuario,this);
+		//filtar indices de condicionesGlobales contra condicionesDelUsuario y return condicionesGlobales
+		
+		 unUsuario.getRecetario().buscarReceta(unUsuario);
 		
 	}
 

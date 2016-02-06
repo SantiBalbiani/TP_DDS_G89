@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.persistence.*;
 
 import org.hibernate.Session;
@@ -15,11 +14,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-
 import receta.Condimento;
 import receta.Ingrediente;
 import receta.Receta;
 //import usuario.Usuario;
+import receta.Recetario;
 
  
 @Entity
@@ -38,11 +37,16 @@ public class Usuario {
 	private String dieta;
 	private Set<Integer> condicionesPreexistentes;
 	private String rutina;
+	private Recetario recetario;
+	
 	
 	List<String> listaDieta = new ArrayList<String>(){{add("Normal"); add("Ovolacteovegetariano"); add("Vegetariano"); add("Vegano");}};
 	
-	List<String> listaRutina = new ArrayList<String>(){{add("Sedentaria con algo de ejercicio (-30 min.)"); add("Sedentaria con nada de ejercicio");
-														add("Sedentaria con ejercicio (+30 min.)"); add("Vegano");}};
+	List<String> listaRutina = new ArrayList<String>(){{add("Sedentaria con algo de ejercicio (-30 min.) LEVE");
+														add("Sedentaria con nada de ejercicio NADA");
+														add("Sedentaria con ejercicio MEDIANO");
+														add("Activa con ejercicio adicional (+30 min.) INTENSIVO");
+														add("Activa con ejercicio adicional (+30 min.)");}};
 	
 	
 
@@ -227,13 +231,16 @@ public class Usuario {
 
 public void buscarReceta(){
 	
-//	this.getCondicionesPreexistentes().buscarReceta(this);
+this.getCondicionesPreexistentes().buscarReceta(this);
 }
 
 	
 	
+public Set<Receta> buscarMisRecetas(){
 	
+	this.getRecetario().getListaRecetas();
 	
+}
 	
 	
 		
@@ -260,6 +267,14 @@ public void obtenerPesoIdeal(char sexo, float altura)
 	//  peso-min, peso-max
 	//  X. Peso-Ideal-Mujeres: altura, medida-tórax, medida-cintura, medida-cadera peso,
 	//  peso-min, peso-max
+}
+
+public Recetario getRecetario() {
+	return recetario;
+}
+
+public void setRecetario(Recetario recetario) {
+	this.recetario = recetario;
 }
 
 
