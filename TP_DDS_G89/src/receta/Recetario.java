@@ -59,18 +59,33 @@ public class Recetario
 			public Recetario buscarRecetaPorFiltro(Usuario unUsuario , Filtro  unFiltroBusqueda){
 				
 				String nombreReceta = unFiltroBusqueda.getNombreReceta();
-				String nombreUsuario = unUsuario.getNombreUsuario();
+				 
 				String ingredientePrincipal = unFiltroBusqueda.getNombreingredientePrincipal();
 				Set<String> ingredientesSecundarios = unFiltroBusqueda.getNombreingredientesSecundarios();
-				ArrayList<String> temporada =  unFiltroBusqueda.getTemporada();
+				Set<Integer> temporada =  unFiltroBusqueda.getTemporada();
 				int dificultad = unFiltroBusqueda.getDificultad();
 				int calorias = unFiltroBusqueda.getCalorias();
 				int sectorPiramide = unFiltroBusqueda.getSectorPiramide();
 				int calificacion = unFiltroBusqueda.getCalificacion();
 				
-		 
+		 //TODO
+			//	-nombreUsuario
+				//-ingredientesPrincipales y Secundarios iterar Select dentro de metodo.
+				//temporada set de enteros que pega con la base misma logia de condicionesPree
+				//dificultad de 1 a 4 (4 facil)
+				//calorias es un entero...
+				//sector de la piramide... nombre
+				//calificacion  int 1, 5 
+				
+				//jerarq. siempre excluyente
+				//1 nombre receta
+				
+				
 				if (noEsStringVacio(nombreReceta))
 				{
+					
+					
+					
 					//TODO: consulta BD por jerarquia1 (nombre_receta)
 					//return Recetario
 					//
@@ -84,22 +99,9 @@ public class Recetario
 					return recetario;
 					//    }
 				}
-				if (noEsStringVacio(nombreUsuario))
-				{
-					//TODO: consulta BD por jerarquia2 (usuario/grupo)
-					//return Recetario
-					//
-					//para que compile le pongo un return recetario generico..
-					//   {
-					Receta pruebaReceta = new Receta ();			//Instancio una nueva receta
-					pruebaReceta.setNombreReceta("receta_buscada_por_usuario_grupo");
-					receta.Recetario recetario = new receta.Recetario ();
-					recetario.crearRecetario() ;
-					recetario.agregarReceta(pruebaReceta);
-					return recetario;
-					//    }
-				}
-				if (noEsStringVacio(ingredientePrincipal) || noEsStringVacio(temporada) || (dificultad<=0) || (calorias <=0) || (calificacion <=0) || noEsStringVacio(sectorPiramide))
+				 
+ 
+				if (noEsStringVacio(ingredientePrincipal) || /* (temporada<=0) ||*/ (dificultad<=0) || (calorias <=0) || (calificacion <=0) /*||  noEsStringVacio(sectorPiramide)*/)
 				//TODO: coordinar con el front para que los campos incompletos por defecto los pase en un numero negativo
 				//revisa que alguno de los campos restantes no este vacio
 				{
