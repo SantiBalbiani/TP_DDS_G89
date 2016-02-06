@@ -22,14 +22,14 @@ public class CondicionesPreexistentes {
 
 	
 	
-	public void buscarReceta(Usuario unUsuario){
+	public void buscarReceta(Usuario unUsuario, Filtro unFiltroBusqueda){
 		
 		Set<Integer> condicionesDelUsuario = unUsuario.getCondicionesPreexistentes();
 		Set<CondicionesPreexistentes> condicionesGlobales =  this.getListaGlobalCondiciones();
 		
 		//filtar indices de condicionesGlobales contra condicionesDelUsuario y return condicionesGlobales
 		
-		 unUsuario.getRecetario().buscarReceta(unUsuario);
+		 unUsuario.getRecetario().buscarRecetaPorFiltro(unUsuario , unFiltroBusqueda);
 		
 	}
 

@@ -229,9 +229,10 @@ public class Usuario {
 	}
 	
 
-public void buscarReceta(){
+public void buscarReceta(Filtro unFiltroDeBusqueda){
 	
-this.getCondicionesPreexistentes().buscarReceta(this);
+	
+this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
 }
 
 	

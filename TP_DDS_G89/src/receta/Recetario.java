@@ -1,7 +1,12 @@
 package receta;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import usuario.Filtro;
+import usuario.Usuario;
 
 
 
@@ -49,8 +54,21 @@ public class Recetario
 			//++++++++++++++++++ FIN OPERACIONES DE AGREGAR Recetas++++++++++++++++++++++++++++++++++++++++++++//
 		
 			//Buscar_Receta
-			public Recetario buscarReceta (String nombreReceta, String usuario, String ingredientePrincipal, String temporada, int dificultad, int calorias, String sectorPiramide, int calificacion)
-			{
+			 
+			
+			public Recetario buscarRecetaPorFiltro(Usuario unUsuario , Filtro  unFiltroBusqueda){
+				
+				String nombreReceta = unFiltroBusqueda.getNombreReceta();
+				String nombreUsuario = unUsuario.getNombreUsuario();
+				String ingredientePrincipal = unFiltroBusqueda.getNombreingredientePrincipal();
+				Set<String> ingredientesSecundarios = unFiltroBusqueda.getNombreingredientesSecundarios();
+				ArrayList<String> temporada =  unFiltroBusqueda.getTemporada();
+				int dificultad = unFiltroBusqueda.getDificultad();
+				int calorias = unFiltroBusqueda.getCalorias();
+				int sectorPiramide = unFiltroBusqueda.getSectorPiramide();
+				int calificacion = unFiltroBusqueda.getCalificacion();
+				
+		 
 				if (noEsStringVacio(nombreReceta))
 				{
 					//TODO: consulta BD por jerarquia1 (nombre_receta)
@@ -66,7 +84,7 @@ public class Recetario
 					return recetario;
 					//    }
 				}
-				if (noEsStringVacio(usuario))
+				if (noEsStringVacio(nombreUsuario))
 				{
 					//TODO: consulta BD por jerarquia2 (usuario/grupo)
 					//return Recetario
