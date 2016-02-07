@@ -41,7 +41,7 @@ public class Condimento {
 		
 		public Set<Condimento> eliminar(Set<Condimento> unaListaCondimento)
 		{
-		    //se agrega el condimento
+		    //se elimina el condimento
 			unaListaCondimento.remove(this);
 			return unaListaCondimento;
 		}
