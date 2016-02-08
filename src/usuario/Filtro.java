@@ -11,12 +11,14 @@ public class Filtro {
 	 private String nombreReceta;
 	 private String usuario; 
 	 private String nombreingredientePrincipal;
-	 private Set<String> nombreingredientesSecundarios;
-	 private  Set<Integer> temporada;
+	 private String nombreingredienteSecundario;
+	 private int temporada;
 	 private int dificultad;
 	 private int calorias;
 	 private int sectorPiramide;
 	 private int calificacion;
+	 private ArrayList<CondicionesPreexistentes> condicionesPreexistentes ;
+	 
 	public String getNombreReceta() {
 		return nombreReceta;
 	}
@@ -35,21 +37,33 @@ public class Filtro {
 	public void setNombreingredientePrincipal(String nombreingredientePrincipal) {
 		this.nombreingredientePrincipal = nombreingredientePrincipal;
 	}
-	public Set<String> getNombreingredientesSecundarios() {
-		return nombreingredientesSecundarios;
+	public  String  getNombreingredienteSecundario() {
+		return nombreingredienteSecundario;
 	}
-	public void setNombreingredientesSecundarios(
-			Set<String> nombreingredientesSecundarios) {
-		this.nombreingredientesSecundarios = nombreingredientesSecundarios;
+	public void setNombreingredienteSecundario(
+			 String  nombreingredienteSecundario) {
+		this.nombreingredienteSecundario  = nombreingredienteSecundario ;
 	}
 	
 	//TODO: CONSULTAR ID A LA BASE
-	public Set<Integer> getTemporada() {
+	public int getTemporada() {
 		return temporada;
 	}
-	public void setTemporada(Set<Integer> temporada) {
+	public void setTemporada(int  temporada) {
 		this.temporada = temporada;
 	}
+	
+	
+	//TODO: CONSULTAR ID A LA BASE
+	public ArrayList<CondicionesPreexistentes> getcondicionesPreexistentes() {
+		return condicionesPreexistentes;
+	}
+	public void setcondicionesPreexistentes(ArrayList<CondicionesPreexistentes> condicionesPreexistentes) {
+		this.condicionesPreexistentes = condicionesPreexistentes;
+	}
+	
+	
+	
 	public int getDificultad() {
 		return dificultad;
 	}

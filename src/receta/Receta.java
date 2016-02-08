@@ -50,7 +50,21 @@ public class Receta {
 	private Set<Condimento> listaCondimentos;
 	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
+	private ArrayList<String> contraindicaciones;
 	
+	
+	public ArrayList<String> getContraindicaciones() {
+		return contraindicaciones;
+	}
+
+	public void setContraindicaciones(ArrayList<String> contraindicaciones) {
+		this.contraindicaciones = contraindicaciones;
+	}
+
+
+
+
+
 	private ArrayList<String> temporadaPlato;
 
 

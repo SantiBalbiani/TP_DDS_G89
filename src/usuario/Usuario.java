@@ -35,7 +35,8 @@ public class Usuario {
 	private double  altura;
 	private String preferencias_alimenticias;
 	private String dieta;
-	private Set<Integer> condicionesPreexistentes;
+	//private ArrayList<Integer> condicionesPreexistentes;
+	private CondicionesPreexistentes condicionesPreexistentes;
 	private String rutina;
 	private Recetario recetario;
 	
@@ -252,11 +253,11 @@ public Set<Receta> recetas_ejemplo(){
 		this.preferencias_alimenticias = preferencias_alimenticias;
 	}
 
-	public Set<Integer> getCondicionesPreexistentes() {
+	public CondicionesPreexistentes getCondicionesPreexistentes() {
 		return condicionesPreexistentes;
 	}
 
-	public void setCondicionesPreexistentes(Set<Integer> condicionesPreexistentes) {
+	public void setCondicionesPreexistentes(CondicionesPreexistentes condicionesPreexistentes) {
 		this.condicionesPreexistentes = condicionesPreexistentes;
 	
 	
@@ -267,7 +268,7 @@ public Set<Receta> recetas_ejemplo(){
 
 	
 	
-	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, Set<Integer> condPreexistentes,String dieta, String rutina, String password ) {
+	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, CondicionesPreexistentes condPreexistentes,String dieta, String rutina, String password ) {
 		
 		
 		//this.setIdUsuario(13);
@@ -355,22 +356,22 @@ public Set<Receta> recetas_ejemplo(){
 	}
 	
 
-public void buscarReceta(Filtro unFiltroDeBusqueda){
-	//Benja revisa esta parte del codigo... lo arregle para que no tire error pero nose si esta era la idea del codigo
-	CondicionesPreexistentes cond1 = new CondicionesPreexistentes();
-	cond1.buscarReceta(this, unFiltroDeBusqueda);
+public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda){
+
+
+	return this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
 }
 
 	
 	
 public Set<Receta> buscarMisRecetas(){
 	
-	return this.getRecetario().getListaRecetas();
+	return this.getRecetario().getListaRecetas(); // el metodo getListaRecetas() deberia consultar a la base por las recetas del usuario
 	
 }
 	
 	
-		
+		 
 
 	
 /*

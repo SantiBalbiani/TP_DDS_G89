@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import usuario.CondicionesPreexistentes;
 import usuario.Filtro;
 import usuario.Usuario;
 
@@ -56,75 +57,97 @@ public class Recetario
 			//Buscar_Receta
 			 
 			
-			public Recetario buscarRecetaPorFiltro(Usuario unUsuario , Filtro  unFiltroBusqueda){
+			public ArrayList<Receta> buscarRecetaPorFiltro(Usuario unUsuario , Filtro  unFiltroBusqueda){
+				
+				
+				ArrayList<Receta> resultadoBusqueda = new  ArrayList<Receta>();
 				
 				String nombreReceta = unFiltroBusqueda.getNombreReceta();
-				 
-				String ingredientePrincipal = unFiltroBusqueda.getNombreingredientePrincipal();
-				Set<String> ingredientesSecundarios = unFiltroBusqueda.getNombreingredientesSecundarios();
-				Set<Integer> temporada =  unFiltroBusqueda.getTemporada();
-				int dificultad = unFiltroBusqueda.getDificultad();
-				int calorias = unFiltroBusqueda.getCalorias();
-				int sectorPiramide = unFiltroBusqueda.getSectorPiramide();
-				int calificacion = unFiltroBusqueda.getCalificacion();
-				
-		 //TODO
-			//	-nombreUsuario
-				//-ingredientesPrincipales y Secundarios iterar Select dentro de metodo.
-				//temporada set de enteros que pega con la base misma logia de condicionesPree
-				//dificultad de 1 a 4 (4 facil)
-				//calorias es un entero...
-				//sector de la piramide... nombre
-				//calificacion  int 1, 5 
-				
-				//jerarq. siempre excluyente
-				//1 nombre receta
-				
-				
-				if (noEsStringVacio(nombreReceta))
-				{
+
+ 
+				if (noEsStringVacio(nombreReceta)) {
 					
-					
-					
-					//TODO: consulta BD por jerarquia1 (nombre_receta)
-					//return Recetario
-					//
-					//para que compile le pongo un return recetario generico..
-					//   {
-					Receta pruebaReceta = new Receta ();			//Instancio una nueva receta
-					pruebaReceta.setNombreReceta("receta_buscada_por_nombre_receta");
-					receta.Recetario recetario = new receta.Recetario ();
-					recetario.crearRecetario() ;
-					recetario.agregarReceta(pruebaReceta);
-					return recetario;
-					//    }
-				}
+						resultadoBusqueda.addAll( consultarBusquedaPorNombreReceta( unUsuario ,   unFiltroBusqueda));
+					}
 				 
  
-				if (noEsStringVacio(ingredientePrincipal) || /* (temporada<=0) ||*/ (dificultad<=0) || (calorias <=0) || (calificacion <=0) /*||  noEsStringVacio(sectorPiramide)*/)
-				//TODO: coordinar con el front para que los campos incompletos por defecto los pase en un numero negativo
-				//revisa que alguno de los campos restantes no este vacio
-				{
-					//TODO: consulta BD por jerarquia3 (lo demas)
-					//return Recetario
-					//
-					//para que compile le pongo un return recetario generico..
-					//   {
-					Receta pruebaReceta = new Receta ();			//Instancio una nueva receta
-					pruebaReceta.setNombreReceta("tiranosaurioREX_GRRRR");
-					receta.Recetario recetario = new receta.Recetario ();
-					recetario.crearRecetario() ;
-					recetario.agregarReceta(pruebaReceta);
-					return recetario;
-					//    }
-				}
-				//TODO: si llego hasta aca devuelve error...
-				return null;
+					else if (tieneIngredientesUOtrosCamposdeBusqueda(unFiltroBusqueda)) {
+						
+						resultadoBusqueda.addAll( consultarBusquedaPorIngredienteYOtrosCampos( unUsuario ,  unFiltroBusqueda))	;
+					}
+	
+	
+				return resultadoBusqueda;
 			}
+			
+
+			
+			
+			public boolean tieneIngredientesUOtrosCamposdeBusqueda(Filtro unFiltroBusqueda){
+				
+				String ingredientePrincipal = unFiltroBusqueda.getNombreingredientePrincipal();				 
+				String  ingredienteSecundario  = unFiltroBusqueda.getNombreingredienteSecundario();
+				int dificultad = unFiltroBusqueda.getDificultad();
+				int calorias = unFiltroBusqueda.getCalorias();
+				int calificacion = unFiltroBusqueda.getCalificacion();
+				int  temporada =  unFiltroBusqueda.getTemporada();
+				return ( noEsStringVacio(ingredientePrincipal) || ( noEsStringVacio(ingredienteSecundario)) || (dificultad<0) || (calorias <0) || (calificacion <0) || (temporada <0)) ;
+				
+				
+			}
+			
+ 
+			
+			
+		public ArrayList<Receta> consultarBusquedaPorNombreReceta(Usuario unUsuario , Filtro  unFiltroBusqueda)	{
+						
+						ArrayList<Receta> recetarasObtenidasPorNombre = new  ArrayList<Receta>();
+						
+						/*
+						 * TODO:
+						 * HACER CONSULTAS A LA DB
+						 * AGREGAR LOS RESULTADOS EN recetarioObtenidoPorNombre
+						 * 
+						 * 
+						 */
+						
+						
+						return recetarasObtenidasPorNombre;
+						
+		}
+			
+		public ArrayList<Receta> consultarBusquedaPorIngredienteYOtrosCampos(Usuario unUsuario , Filtro  unFiltroBusqueda)	{
+			
+			ArrayList<Receta> recetasObtenidas = new  ArrayList<Receta>();
+			
+			String ingredientePrincipal = unFiltroBusqueda.getNombreingredientePrincipal();				 
+			String ingredienteSecundario = unFiltroBusqueda.getNombreingredienteSecundario();
+			int dificultad = unFiltroBusqueda.getDificultad();
+			int calorias = unFiltroBusqueda.getCalorias();
+			int calificacion = unFiltroBusqueda.getCalificacion();
+			int  temporada =  unFiltroBusqueda.getTemporada();
+			
+
+			/*
+			 * TODO:
+			 * HACER CONSULTAS A LA DB 
+			 * AGREGAR LOS RESULTADOS EN recetasObtenidas
+			 * 
+			 * 
+			 * 
+			 * 
+			 */
+			
+			
+	       return recetasObtenidas;						
+			
+}			
+			
+			
 			
 			
 	
-	public Set<Receta> getListaRecetas() {
+	public Set<Receta> getListaRecetas() { // el metodo  deberia consultar a la base por las recetas del usuario
 		return listaRecetas;
 	}
 
