@@ -43,7 +43,7 @@ public class TestUsuario {
 		CondicionesPreexistentes condPreexis = new CondicionesPreexistentes();
 		condPreexis.getIndiceCondicionesDelUsuario().add(1); //generico
 		
-		nuevoUsuario.altaUsuario("Santiago", 'M', "20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
+		nuevoUsuario.altaUsuario("Santiago", 'M', 25,"20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
 		
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 	}

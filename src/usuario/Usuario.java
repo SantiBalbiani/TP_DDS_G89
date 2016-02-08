@@ -39,7 +39,7 @@ public class Usuario {
 	private CondicionesPreexistentes condicionesPreexistentes;
 	private String rutina;
 	private Recetario recetario;
-	
+	private int edad;
 	
 	List<String> listaDieta = new ArrayList<String>(){{add("Normal"); add("Ovolacteovegetariano"); add("Vegetariano"); add("Vegano");}};
 	
@@ -48,6 +48,9 @@ public class Usuario {
 														add("Sedentaria con ejercicio MEDIANO");
 														add("Activa con ejercicio adicional (+30 min.) INTENSIVO");
 														add("Activa con ejercicio adicional (+30 min.)");}};
+	
+	List<String> listaComplexion = new ArrayList<String>(){{add("Pequena"); add("Media"); add("Grande");}};	
+	
 	
 //++++++++++++++++++ INICIO_HARDCODE_PARA_MARTIN+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -209,6 +212,14 @@ public Set<Receta> recetas_ejemplo(){
 	public char getSexo() {
 		return sexo;
 	}
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
@@ -268,13 +279,14 @@ public Set<Receta> recetas_ejemplo(){
 
 	
 	
-	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, CondicionesPreexistentes condPreexistentes,String dieta, String rutina, String password ) {
+	public void altaUsuario(String nombreUsuario, char sexo, int edad, String fnac, String complexion,double altura,String preferencias_alimenticias, CondicionesPreexistentes condPreexistentes,String dieta, String rutina, String password ) {
 		
 		
 		//this.setIdUsuario(13);
 		this.setNombreUsuario(nombreUsuario);
 		this.setPassword(password);
 		this.setSexo(sexo);
+		this.setEdad(edad);
 		this.setFecha_nacimiento(fnac); //formato mmddaaa
 		this.setComplexion(complexion);
 		this.setAltura(altura);
@@ -312,6 +324,7 @@ public Set<Receta> recetas_ejemplo(){
 		nuevoUsuario.setComplexion(unUsuario.getComplexion());
 		nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
 		nuevoUsuario.setSexo(unUsuario.getSexo());
+		nuevoUsuario.setEdad(unUsuario.getEdad());
 		nuevoUsuario.setPassword(unUsuario.getPassword());
 		
 		Transaction TR = session.beginTransaction();
@@ -388,14 +401,37 @@ public Set<Receta> getrecomendacionesDiarias() {
 
 
 
-public void obtenerPesoIdeal(char sexo, float altura)
-{
-	//TODO:     Hacer una consulta a la base de datos segun sexo y altura me muestre:
-	//  IX. Peso-Ideal-Hombres: altura, medida-tórax, medida-cintura, medida-cadera peso,
-	//  peso-min, peso-max
-	//  X. Peso-Ideal-Mujeres: altura, medida-tórax, medida-cintura, medida-cadera peso,
-	//  peso-min, peso-max
+public double obtenerPesoIdeal() {
+
+
+		double altura = this.getAltura();
+		String complexion = this.getComplexion();
+		double indiceComplexion = calcularIndiceComplexion(complexion);
+		int edad = this.getEdad();
+		
+		
+		return  ((altura - 100 + (edad / 10)) * 0.9 * indiceComplexion);
+
 }
+
+public double calcularIndiceComplexion(String complexion){
+	
+		double indiceComplexion = 1;
+		
+	if (complexion == "Pequena") {
+		 indiceComplexion = 0.9;
+	}
+	if (complexion == "Media") {
+		 indiceComplexion = 1;
+	}
+	if (complexion == "Grande") {
+		 indiceComplexion = 1.1;
+	}
+		
+	return indiceComplexion;
+}
+
+
 
 public Recetario getRecetario() {
 	return recetario;
