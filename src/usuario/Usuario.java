@@ -1,7 +1,5 @@
 package usuario;
 
-
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
@@ -12,19 +10,21 @@ import javax.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+
+//import com.mkyong.util.HibernateUtil;
+
+import hibernate.HibernateConf;
 import receta.Condimento;
 import receta.Ingrediente;
 import receta.Receta;
-//import usuario.Usuario;
 import receta.Recetario;
 
- 
 @Entity
-@Table(name="usuarios")
+@Table(name = "USUARIO")
 public class Usuario {
-	
 
 	private int idUsuario;
 	private String nombreUsuario;
@@ -32,30 +32,47 @@ public class Usuario {
 	private char sexo;
 	private String fecha_nacimiento;
 	private String complexion;
-	private double  altura;
+	private double altura;
 	private String preferencias_alimenticias;
 	private String dieta;
-	//private ArrayList<Integer> condicionesPreexistentes;
+	// private ArrayList<Integer> condicionesPreexistentes;
+
 	private CondicionesPreexistentes condicionesPreexistentes;
 	private String rutina;
 	private Recetario recetario;
-	private int edad;
-	
-	List<String> listaDieta = new ArrayList<String>(){{add("Normal"); add("Ovolacteovegetariano"); add("Vegetariano"); add("Vegano");}};
-	
-	List<String> listaRutina = new ArrayList<String>(){{add("Sedentaria con algo de ejercicio (-30 min.) LEVE");
-														add("Sedentaria con nada de ejercicio NADA");
-														add("Sedentaria con ejercicio MEDIANO");
-														add("Activa con ejercicio adicional (+30 min.) INTENSIVO");
-														add("Activa con ejercicio adicional (+30 min.)");}};
-	
-	List<String> listaComplexion = new ArrayList<String>(){{add("Pequena"); add("Media"); add("Grande");}};	
-	
-	
-//++++++++++++++++++ INICIO_HARDCODE_PARA_MARTIN+++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//private int edad; 	//damos de baja el atributo... hay que calcular la edad!! no guardarla
 
-public Set<Receta> recetas_ejemplo(){
-															
+	List<String> listaDieta = new ArrayList<String>() {
+		{
+			add("Normal");
+			add("Ovolacteovegetariano");
+			add("Vegetariano");
+			add("Vegano");
+		}
+	};
+
+	List<String> listaRutina = new ArrayList<String>() {
+		{
+			add("Sedentaria con algo de ejercicio (-30 min.) LEVE");
+			add("Sedentaria con nada de ejercicio NADA");
+			add("Sedentaria con ejercicio MEDIANO");
+			add("Activa con ejercicio adicional (+30 min.) INTENSIVO");
+			add("Activa con ejercicio adicional (+30 min.)");
+		}
+	};
+
+	List<String> listaComplexion = new ArrayList<String>() {
+		{
+			add("Pequena");
+			add("Media");
+			add("Grande");
+		}
+	};
+
+	// ++++++++++++++++++ INICIO_HARDCODE_PARA_MARTIN +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	public Set<Receta> recetas_ejemplo() {
+
 		// Creo Ingrediente
 		Ingrediente unIngrediente = new Ingrediente();
 		unIngrediente.crearIngrediente("papa", 10, 56);
@@ -75,7 +92,7 @@ public Set<Receta> recetas_ejemplo(){
 
 		// Agrego Condimentos
 
-		//unaReceta.setListaIngredientes(unaReceta.crearListaIngrediente());
+		// unaReceta.setListaIngredientes(unaReceta.crearListaIngrediente());
 		unaReceta.agregarunIngrediente(unIngrediente);
 		unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
 		unaReceta.agregarCondimento(unCondimento);
@@ -110,7 +127,7 @@ public Set<Receta> recetas_ejemplo(){
 
 		// Agrego Condimentos
 
-		//unaReceta2.setListaIngredientes(unaReceta2.crearListaIngrediente());
+		// unaReceta2.setListaIngredientes(unaReceta2.crearListaIngrediente());
 		unaReceta2.agregarunIngrediente(unIngrediente2);
 		unaReceta2.setListaCondimentos(unaReceta2.crearListaCondimentos());
 		unaReceta2.agregarCondimento(unCondimento2);
@@ -145,7 +162,7 @@ public Set<Receta> recetas_ejemplo(){
 
 		// Agrego Condimentos
 
-		//unaReceta3.setListaIngredientes(unaReceta3.crearListaIngrediente());
+		// unaReceta3.setListaIngredientes(unaReceta3.crearListaIngrediente());
 		unaReceta3.agregarunIngrediente(unIngrediente3);
 		unaReceta3.setListaCondimentos(unaReceta3.crearListaCondimentos());
 		unaReceta3.agregarCondimento(unCondimento3);
@@ -164,35 +181,16 @@ public Set<Receta> recetas_ejemplo(){
 		listaRecetas.add(unaReceta);
 		listaRecetas.add(unaReceta2);
 		listaRecetas.add(unaReceta3);
-		
+
 		return listaRecetas;
-		
-	}
-														
-//++++++++++++++++++ FIN_HARDCODE_PARA_MARTIN+++++++++++++++++++++++++++++++++++++++++++++++++++++
-														
-														
-														
-														
-														
-														
-														
-														
-														
-														
-//++++++++++++++++++ INICIO GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
-														
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="idUsuario")
-	public int getIdUsuario() {
-		return idUsuario;
+
 	}
 
-	public String getPassword() {
-		return password;
-	}
+// ++++++++++++++++++FIN_HARDCODE_PARA_MARTIN+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	
+	
+// ++++++++++++++++++ INICIO GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -202,330 +200,413 @@ public Set<Receta> recetas_ejemplo(){
 		this.idUsuario = idUsuario;
 	}
 
-
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
-	public char getSexo() {
-		return sexo;
-	}
-	public int getEdad() {
-		return edad;
-	}
-
+/*		--proximamente borrar
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-
+*/
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	public String getFecha_nacimiento() {
-		return fecha_nacimiento;
-	}
+
 	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
-	public String getComplexion() {
-		return complexion;
-	}
+
 	public void setComplexion(String complexion) {
 		this.complexion = complexion;
 	}
-	public double getAltura() {
-		return altura;
-	}
+
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
 
-
-	public String getDieta() { 
-		return dieta;
-	}
 	public void setDieta(String unaDieta) {
-		this.dieta= unaDieta;
-	}	
-	public String getRutina() { 
-		return rutina;
+		this.dieta = unaDieta;
 	}
+
 	public void setRutina(String unaRutina) {
-		this.rutina= unaRutina;
-	}	
-		
-	public String getPreferencias_alimenticias() {
-		return preferencias_alimenticias;
+		this.rutina = unaRutina;
 	}
 
 	public void setPreferencias_alimenticias(String preferencias_alimenticias) {
 		this.preferencias_alimenticias = preferencias_alimenticias;
 	}
 
+	public void setCondicionesPreexistentes(CondicionesPreexistentes condicionesPreexistentes) {
+		this.condicionesPreexistentes = condicionesPreexistentes;
+
+	}
+	
+	public void setRecetario(Recetario recetario) {
+		this.recetario = recetario;
+	}
+
+	public void setListaDieta(List<String> listaDieta) {
+		this.listaDieta = listaDieta;
+	}
+
+	public void setListaRutina(List<String> listaRutina) {
+		this.listaRutina = listaRutina;
+	}
+
+	public void setListaComplexion(List<String> listaComplexion) {
+		this.listaComplexion = listaComplexion;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_USER")
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	@Column(name = "NOMBRE")
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	@Column(name = "PASSWORD")
+	public String getPassword() {
+		return password;
+	}
+
+	@Column(name = "SEXO")
+	public char getSexo() {
+		return sexo;
+	}
+
+	@Column(name = "F_NAC")
+	public String getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+
+	@Column(name = "COMPLEXION")
+	public String getComplexion() {
+		return complexion;
+	}
+
+	@Column(name = "ALTURA")
+	public double getAltura() {
+		return altura;
+	}
+
+	@Column(name = "PREF_ALIM")
+	public String getPreferencias_alimenticias() {
+		return preferencias_alimenticias;
+	}
+
+	@Column(name = "DIETA")
+	public String getDieta() {
+		return dieta;
+	}
+
+	@Transient
 	public CondicionesPreexistentes getCondicionesPreexistentes() {
 		return condicionesPreexistentes;
 	}
 
-	public void setCondicionesPreexistentes(CondicionesPreexistentes condicionesPreexistentes) {
-		this.condicionesPreexistentes = condicionesPreexistentes;
-	
-	
+	@Column(name = "RUTINA")
+	public String getRutina() {
+		return rutina;
 	}
-	
-	
-	//++++++++++++++++++ FIN GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-	
-	
-	public void altaUsuario(String nombreUsuario, char sexo, int edad, String fnac, String complexion,double altura,String preferencias_alimenticias, CondicionesPreexistentes condPreexistentes,String dieta, String rutina, String password ) {
-		
-		
-		//this.setIdUsuario(13);
+/*		--proximamente borrar
+	@Column(name = "EDAD")
+	public int getEdad() {
+		return edad;
+	}
+*/
+	@Transient
+	public Recetario getRecetario() {
+		return recetario;
+	}
+
+	@Transient
+	public List<String> getListaDieta() {
+		return listaDieta;
+	}
+
+	@Transient
+	public List<String> getListaRutina() {
+		return listaRutina;
+	}
+
+	@Transient
+	public List<String> getListaComplexion() {
+		return listaComplexion;
+	}
+
+
+// ++++++++++++++++++ FIN GETTERS y	SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	public void altaUsuario(String nombreUsuario, char sexo, int edad, String fnac, String complexion, double altura,
+			String preferencias_alimenticias, CondicionesPreexistentes condPreexistentes, String dieta, String rutina,
+			String password) {
+
+		// TODO: revisar este metodo para que guarde todos los campos....
+		// this.setIdUsuario(13);
 		this.setNombreUsuario(nombreUsuario);
 		this.setPassword(password);
 		this.setSexo(sexo);
-		this.setEdad(edad);
-		this.setFecha_nacimiento(fnac); //formato mmddaaa
+		//this.setEdad(edad); 		--proximamente borrar
+		this.setFecha_nacimiento(fnac); // formato mmddaaa
 		this.setComplexion(complexion);
 		this.setAltura(altura);
 		this.setPreferencias_alimenticias(preferencias_alimenticias);
-		this.setCondicionesPreexistentes(condPreexistentes);
+		// this.setCondicionesPreexistentes(condPreexistentes);
 		this.setDieta(dieta);
 		this.setRutina(rutina);
-		
-		
-	}
-	
-	
-	
-	public void  calificar(Receta unaReceta, short unaCalificacion )  
-	{
-		
-		unaReceta.calificar(unaCalificacion);
-		
-	}
-	
 
-	
-	
-	public void guardarUsuario(Usuario unUsuario){
-		Configuration con = new Configuration();
-		con.configure("hibernate.cfg.xml");
-		SessionFactory SF = con.buildSessionFactory();
-		Session session = SF.openSession();
-		
-		Usuario nuevoUsuario = new Usuario();
-		String nombre = unUsuario.getNombreUsuario();
-		//nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
-		nuevoUsuario.setNombreUsuario(nombre);
-		nuevoUsuario.setAltura(unUsuario.getAltura());
-		nuevoUsuario.setComplexion(unUsuario.getComplexion());
-		nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
-		nuevoUsuario.setSexo(unUsuario.getSexo());
-		nuevoUsuario.setEdad(unUsuario.getEdad());
-		nuevoUsuario.setPassword(unUsuario.getPassword());
-		
-		Transaction TR = session.beginTransaction();
-		session.save(unUsuario);
-		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistiï¿½ ok el objeto
-		TR.commit();
-		session.close();
-		SF.close();
-		
 	}
-	
-	
-	
-	
-	
-	
-	public Receta crearReceta(Ingrediente unIngrediente, short calificacion, int calorias, Condimento unCondimento, String unNombre, String unaPreparacion, String temporadaPlato ){
-		//llama a metodo new para crear Receta 
-		//invoca los setters de la clase Receta para el alta de
-		//ingredientes, condimentos y otros atributos...
-		//devuelve la receta creada
-		
+
+	public void calificar(Receta unaReceta, short unaCalificacion) {
+
+		unaReceta.calificar(unaCalificacion);
+
+	}
+
+	public void guardarUsuario(Usuario unUsuario) {
+		// TODO: revisar este metodo para que guarde todos los campos....
+
+		// Configuration con = new Configuration();
+		// con.configure("hibernate.cfg.xml");
+		// SessionFactory SF = con.buildSessionFactory();
+		// Session session = SF.openSession();
+		// Session session = HibernateConf.getSessionFactory().openSession();
+		// Session session = HibernateConf.getSessionFactory().openSession();
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		//Usuario nuevoUsuario = new Usuario();
+		//String nombre = unUsuario.getNombreUsuario();
+		// nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
+		//nuevoUsuario.setNombreUsuario(nombre);
+		// nuevoUsuario.setAltura(unUsuario.getAltura());
+		// nuevoUsuario.setComplexion(unUsuario.getComplexion());
+		// nuevoUsuario.setFecha_nacimiento(unUsuario.getFecha_nacimiento());
+		// nuevoUsuario.setSexo(unUsuario.getSexo());
+		// nuevoUsuario.setEdad(unUsuario.getEdad());
+		// nuevoUsuario.setPassword(unUsuario.getPassword());
+
+		// Transaction TR = session.beginTransaction();
+		// session.save(unUsuario);
+		// System.out.println("Object Saved Succesfully"); // Si imprime es
+		// porque persistiï¿½ ok el objeto
+		// TR.commit();
+		// session.close();
+		// SF.close();
+
+		session.save(unUsuario);
+		session.getTransaction().commit();
+		System.out.println("Done");
+		session.close();
+		// factory.close();
+
+	}
+
+	public Receta crearReceta(Ingrediente unIngrediente, short calificacion, int calorias, Condimento unCondimento,
+			String unNombre, String unaPreparacion, String temporadaPlato) {
+		// llama a metodo new para crear Receta
+		// invoca los setters de la clase Receta para el alta de
+		// ingredientes, condimentos y otros atributos...
+		// devuelve la receta creada
+
 		Receta nuevaReceta = new Receta();
 
-		nuevaReceta.setNombreReceta(unNombre); //entrada x teclado
+		nuevaReceta.setNombreReceta(unNombre); // entrada x teclado
 		nuevaReceta.agregarIngredientePrincipal(unIngrediente);
-		
-		//TODO: debe haber un loop de 1 a n ingredientes y/o condimentos 
+
+		// TODO: debe haber un loop de 1 a n ingredientes y/o condimentos
 		nuevaReceta.agregarunIngrediente(unIngrediente);
 		nuevaReceta.agregarCalorias(calorias);
-		
-		
+
 		nuevaReceta.agregarCondimento(unCondimento);
 		nuevaReceta.agregarPreparacion(unaPreparacion);
 		nuevaReceta.setTemporadaPlato(temporadaPlato);
 		nuevaReceta.calificar(calificacion);
 		return nuevaReceta;
-		
-		
-		
-		
+
 	}
-	
 
-public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda){
+	public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda) {
 
-
-	return this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
-}
-
-	
-	
-public Set<Receta> buscarMisRecetas(){
-	
-	return this.getRecetario().getListaRecetas(); // el metodo getListaRecetas() deberia consultar a la base por las recetas del usuario
-	
-}
-	
-	
-		 
-
-public ArrayList<Receta> mostrarDiezRecetas(){
-	
-	ArrayList<Receta> mostrarRecetas = new ArrayList<Receta>(); 
-	
-	//ultimas diez recetas que acepto
-	mostrarRecetas.addAll(this.getUltimasDiezRecetasAceptadas());
-	
-	 //si no acepto recetas ultiamas 10 que califico
-	if(mostrarRecetas.isEmpty()){
-		
-		mostrarRecetas.addAll(this.getMejoresDiezQueCalifico());	
+		return this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
 	}
-	
-	//si tampoco califico las ultimas 10 que busco
-	if(mostrarRecetas.isEmpty()){
-		
-		mostrarRecetas.addAll(this.getUltimasDiezBuscadas());		
+
+	public Set<Receta> buscarMisRecetas() {
+
+		return this.getRecetario().getListaRecetas(); // el metodo
+														// getListaRecetas()
+														// deberia consultar a
+														// la base por las
+														// recetas del usuario
+
 	}
-	
-	//si ingresa por primera vez vera las mejores 10 calificadas
-	if(mostrarRecetas.isEmpty()){
-		
-		mostrarRecetas.addAll(this.mejoresDiezCalificadas());
-		
-	}	
-	
-	return mostrarRecetas;
-}
 
+	public ArrayList<Receta> mostrarDiezRecetas() {
 
-public  ArrayList<Receta>  mejoresDiezCalificadas(){
-	
-	ArrayList<Receta> mostrarDiezRecetasCalificadas = new ArrayList<Receta>(); 
-	
-	/*
-	 * 
-	 * CONSULTAR A LA BASE CON LIMITE DE RESULTADOS 10 CON MAYOR CALIFICACION
-	 * 
-	 */
-	
-	return mostrarDiezRecetasCalificadas; 
-	
-}
+		ArrayList<Receta> mostrarRecetas = new ArrayList<Receta>();
 
+		// ultimas diez recetas que acepto
+		mostrarRecetas.addAll(this.recetasUltimasDiezRecetasAceptadas());
 
-public ArrayList<Receta> getUltimasDiezBuscadas(){
-	
-	ArrayList<Receta> mostrarDiezBuscadas = new ArrayList<Receta>(); 
-	
-	/*
-	 * 
-	 * CONSULTAR A LA BASE TABLA DIEZBUSCADAS
-	 * 
-	 */
-	
-	return mostrarDiezBuscadas;
-	
+		// si no acepto recetas ultiamas 10 que califico
+		if (mostrarRecetas.isEmpty()) {
 
-}
+			mostrarRecetas.addAll(this.recetasMejoresDiezQueCalifico());
+		}
 
-public ArrayList<Receta> getMejoresDiezQueCalifico() {
+		// si tampoco califico las ultimas 10 que busco
+		if (mostrarRecetas.isEmpty()) {
 
-	ArrayList<Receta> mostrarDiezRecetasQueCalifico = new ArrayList<Receta>(); 
-	
-	/*
-	 * 
-	 * CONSULTAR A LA BASE "CALIFICADAS POR USUARIO" CON LIMITE DE RESULTADOS 10 ORDENADO POR TRANSACCION MAS  RECIENTE
-	 * 
-	 */
-	
-	return mostrarDiezRecetasQueCalifico;
-	
-}
+			mostrarRecetas.addAll(this.recetasUltimasDiezBuscadas());
+		}
 
- 
-public ArrayList<Receta> getUltimasDiezRecetasAceptadas(){
-	
-	ArrayList<Receta> ultimasDiezRecetas = new ArrayList<Receta>(); 
-	
-	/*
-	 * 
-	 * CONSULTAR A LA BASE "ACEPTADAS" CON LIMITE DE RESULTADOS 10 ORDENADO POR TRANSACCION MAS  RECIENTE
-	 * 
-	 */
-	
-	
-	return ultimasDiezRecetas;
-	
-}
+		// si ingresa por primera vez vera las mejores 10 calificadas
+		if (mostrarRecetas.isEmpty()) {
 
-public ArrayList<Receta> getrecomendacionesDiarias() {
-	
-	ArrayList<Receta> recomendacionesDiarias = new ArrayList<Receta>(); 
-	
-	return recomendacionesDiarias;
-	
-}
- 
+			mostrarRecetas.addAll(this.mejoresDiezCalificadas());
 
+		}
 
+		return mostrarRecetas;
+	}
 
-public double obtenerPesoIdeal() {
+	public ArrayList<Receta> mejoresDiezCalificadas() {
 
+		ArrayList<Receta> mostrarDiezRecetasCalificadas = new ArrayList<Receta>();
+
+		/*
+		 * 
+		 * CONSULTAR A LA BASE CON LIMITE DE RESULTADOS 10 CON MAYOR
+		 * CALIFICACION
+		 * 
+		 */
+
+		return mostrarDiezRecetasCalificadas;
+
+	}
+
+	public ArrayList<Receta> recetasUltimasDiezBuscadas() {
+
+		ArrayList<Receta> mostrarDiezBuscadas = new ArrayList<Receta>();
+
+		/*
+		 * 
+		 * CONSULTAR A LA BASE TABLA DIEZBUSCADAS
+		 * 
+		 */
+
+		return mostrarDiezBuscadas;
+
+	}
+
+	public ArrayList<Receta> recetasMejoresDiezQueCalifico() {
+
+		ArrayList<Receta> mostrarDiezRecetasQueCalifico = new ArrayList<Receta>();
+
+		/*
+		 * 
+		 * CONSULTAR A LA BASE "CALIFICADAS POR USUARIO" CON LIMITE DE
+		 * RESULTADOS 10 ORDENADO POR TRANSACCION MAS RECIENTE
+		 * 
+		 */
+
+		return mostrarDiezRecetasQueCalifico;
+
+	}
+
+	public ArrayList<Receta> recetasUltimasDiezRecetasAceptadas() {
+
+		ArrayList<Receta> ultimasDiezRecetas = new ArrayList<Receta>();
+
+		/*
+		 * 
+		 * CONSULTAR A LA BASE "ACEPTADAS" CON LIMITE DE RESULTADOS 10 ORDENADO
+		 * POR TRANSACCION MAS RECIENTE
+		 * 
+		 */
+
+		return ultimasDiezRecetas;
+
+	}
+
+	public ArrayList<Receta> recetasRecomendacionesDiarias() {
+
+		ArrayList<Receta> recomendacionesDiarias = new ArrayList<Receta>();
+
+		return recomendacionesDiarias;
+
+	}
+
+	public double obtenerPesoIdeal() {
 
 		double altura = this.getAltura();
 		String complexion = this.getComplexion();
 		double indiceComplexion = calcularIndiceComplexion(complexion);
-		int edad = this.getEdad();
-		
-		
-		return  ((altura - 100 + (edad / 10)) * 0.9 * indiceComplexion);
+		int edad = this.calcularEdad(this.getFecha_nacimiento());
 
-}
+		return ((altura - 100 + (edad / 10)) * 0.9 * indiceComplexion);
 
-public double calcularIndiceComplexion(String complexion){
-	
+	}
+
+	public double calcularIndiceComplexion(String complexion) {
+
 		double indiceComplexion = 1;
-		
-	if (complexion == "Pequena") {
-		 indiceComplexion = 0.9;
+
+		if (complexion == "Pequena") {
+			indiceComplexion = 0.9;
+		}
+		if (complexion == "Media") {
+			indiceComplexion = 1;
+		}
+		if (complexion == "Grande") {
+			indiceComplexion = 1.1;
+		}
+
+		return indiceComplexion;
 	}
-	if (complexion == "Media") {
-		 indiceComplexion = 1;
+
+	public int calcularEdad(String fecha) {
+		java.util.Date fechaNac = null;
+		try {
+			/*
+			 * Se puede cambiar la mascara por el formato de la fecha que se
+			 * quiera recibir, por ejemplo año mes día "yyyy-MM-dd" en este caso
+			 * es día mes año
+			 */
+			/*	------Ejemplo de como llamarlo --------
+			 * Usuario nuevoUsuario = new Usuario(); int prueba =
+			 * nuevoUsuario.calcularEdad("2014-02-10");
+			 * System.out.println(prueba);
+			 * 
+			 * //De "2014-02-09" a "2016-02-09"... la funcion devuelve 2 
+			 * //De "2014-02-09" a "2016-02-10"... la funcion devuelve 1
+			 *
+			 */
+			fechaNac = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+		} catch (Exception ex) {
+			System.out.println("Error:" + ex);
+		}
+		java.util.Calendar fechaNacimiento = java.util.Calendar.getInstance();
+		// Se crea un objeto con la fecha actual
+		java.util.Calendar fechaActual = java.util.Calendar.getInstance();
+		// Se asigna la fecha recibida a la fecha de nacimiento.
+		fechaNacimiento.setTime(fechaNac);
+		// Se restan la fecha actual y la fecha de nacimiento
+		int año = fechaActual.get(java.util.Calendar.YEAR) - fechaNacimiento.get(java.util.Calendar.YEAR);
+		int mes = fechaActual.get(java.util.Calendar.MONTH) - fechaNacimiento.get(java.util.Calendar.MONTH);
+		int dia = fechaActual.get(java.util.Calendar.DATE) - fechaNacimiento.get(java.util.Calendar.DATE);
+		// Se ajusta el año dependiendo el mes y el día
+		if (mes < 0 || (mes == 0 && dia < 0)) {
+			año--;
+		}
+		// Regresa la edad en base a la fecha de nacimiento
+		return (int) año;
 	}
-	if (complexion == "Grande") {
-		 indiceComplexion = 1.1;
-	}
-		
-	return indiceComplexion;
-}
-
-
-
-public Recetario getRecetario() {
-	return recetario;
-}
-
-public void setRecetario(Recetario recetario) {
-	this.recetario = recetario;
-}
-
 
 }

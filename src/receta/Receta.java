@@ -31,8 +31,8 @@ import receta.Condimento;
 import receta.Ingrediente;
 
 
-@Entity
-@Table(name="RECETA")
+//@Entity
+//@Table(name="RECETA")
 public class Receta {
 
 	private int idReceta;
@@ -83,19 +83,19 @@ public class Receta {
 	
 
 	//++++++++++++++++++ GETTERS ++++++++++++++//
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name="idReceta", unique = true, nullable = false)
+	//@Id
+	//@GeneratedValue(strategy = IDENTITY)
+	//@Column(name="idReceta", unique = true, nullable = false)
 	public int getidReceta(){
 		return this.idReceta;
 	}
 	
-	@Column(name = "NOMBRERECETA", unique = true, nullable = false, length = 20)
+	//@Column(name = "NOMBRERECETA", unique = true, nullable = false, length = 20)
 	public String getNombreReceta() {
 		return this.nombreReceta;
 	}
 
-	@Column(name = "INGREDIENTEPRINCIPAL", unique = true, nullable = false, length = 11)
+	//@Column(name = "INGREDIENTEPRINCIPAL", unique = true, nullable = false, length = 11)
 	public int getIdIngredientePrincipal(){
 		return ingredientePrincipal.getIdIngrediente();
 	}
@@ -103,30 +103,30 @@ public class Receta {
 	
 
 	
-	@Column(name = "PREPARACION", unique = true, nullable = false, length = 255)
+	//@Column(name = "PREPARACION", unique = true, nullable = false, length = 255)
 	public String getPreparacion() {
 		return this.preparacion;
 	}
 	
-	@Column(name = "CALIFICACION", unique = true, nullable = false, length = 6)
+	//@Column(name = "CALIFICACION", unique = true, nullable = false, length = 6)
 	public short getCalificacion() {
 		return this.calificacion;
 	}
 	
-	@Column(name = "CALORIAS", unique = true, nullable = false, length = 11)
+	//@Column(name = "CALORIAS", unique = true, nullable = false, length = 11)
 	public int getCalorias() {
 		return this.calorias;
 	}
 
 
 
-	@Column(name = "DIFICULTADRECETA", unique = true, nullable = false, length = 255)
+	//@Column(name = "DIFICULTADRECETA", unique = true, nullable = false, length = 255)
 	public int getDificultadReceta() {
 		return this.dificultadReceta;
 	}
 
 
-	@Column(name = "SECTORPIRAMIDEALIMENTICIA", unique = true, nullable = false, length = 6)
+	//@Column(name = "SECTORPIRAMIDEALIMENTICIA", unique = true, nullable = false, length = 6)
 	public short getSectorPiramideAlimenticia() {
 		return sectorPiramideAlimenticia;
 	}
@@ -227,12 +227,13 @@ public  ArrayList<String> getListaProcedimiento() {
 	//++++++++++++++++++ SETTERS ++++++++++++++//
 
 	//CALIFICACION
-	
+	/*
 @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 @JoinTable(name = "receta_por_ingrediente", joinColumns = { 
 		@JoinColumn(name = "IDRECETA", nullable = false, updatable = false) }, 
 		inverseJoinColumns = { @JoinColumn(name = "IDINGREDIENTE", 
 				nullable = false, updatable = false) })
+				*/
 public Set<Ingrediente> getingredientes() {
 	return this.ingredientes;
 }

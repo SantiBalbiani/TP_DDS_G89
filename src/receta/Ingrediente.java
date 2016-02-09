@@ -20,15 +20,15 @@ import receta.Receta;
 
 
 
-@Entity
-@Table(name="INGREDIENTE")
+//@Entity
+//@Table(name="INGREDIENTE")
 public class Ingrediente {
 	
 	int idIngrediente;
 	
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name="IDINGREDIENTE", unique = true, nullable = false )
+	//@Id
+	//@GeneratedValue(strategy = IDENTITY)
+	//@Column(name="IDINGREDIENTE", unique = true, nullable = false )
 	public int getIdIngrediente() {
 		return idIngrediente;
 	}
@@ -70,7 +70,7 @@ public class Ingrediente {
 		return nuevoIngrediente;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
+	//@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
 	public Set<Receta> getRecetas() {
 		return this.recetas;
 	}
@@ -98,20 +98,20 @@ public class Ingrediente {
 	}
 	//++++++++++++++++++ FIN OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
 	
-	@Column(name="NOMBRE", nullable = false, length = 45)
+	//@Column(name="NOMBRE", nullable = false, length = 45)
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	@Column(name = "porcion", nullable = false)
+	//@Column(name = "porcion", nullable = false)
 	public int getPorcion() {
 		return porcion;
 	}
 	public void setPorcion(int porcion) {
 		this.porcion = porcion;
-	}@Column(name = "calorias", nullable = false)
+	}//@Column(name = "calorias", nullable = false)
 	public int getCalorias() {
 		return calorias;
 	}

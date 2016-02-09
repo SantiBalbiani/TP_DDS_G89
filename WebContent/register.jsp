@@ -52,13 +52,13 @@
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionMasc" id="optionMasc" value="M" checked="">
+				            <input type="radio" name="optionSexo"  value="M" checked="">
 				            Masculino
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionFem" id="optionFem" value="F">
+				            <input type="radio" name="optionSexo" value="F">
 				            Femenino
 				          </label>
 				        </div>

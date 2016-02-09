@@ -180,7 +180,7 @@ public class TestReceta {
 	
 	
 	
-	@Test
+	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: CreR.01
 	 * 
@@ -190,6 +190,8 @@ public class TestReceta {
 	 *   El metodo setea atributos dentro del mismo objeto que contiene dentro de dicho metodo
 	 *   Luego se llama a guardar usuario que persiste el objeto Usuario.
 	 */
+	/*
+	@Test
 	public void testcrearUnaReceta() {
 		
 		Session session = HibernateConf.getSessionFactory().openSession();
@@ -296,7 +298,7 @@ public class TestReceta {
 		unaReceta3.setIngredientePrincipal(unIngrediente3);
 		unaReceta3.setCalorias(100);
 		unaReceta3.setPreparacion("accenture es muy linda y le gusta los cursos");
-		unaReceta3.setNombreReceta("accenture se fue a vw");
+		unaReceta3.setNombreReceta("aguante ibm papa!");
 		unaReceta3.setDificultadReceta(3);
 
 		Set<Receta> listaRecetas;
@@ -320,5 +322,14 @@ public class TestReceta {
 		
 	}
 
+	*/
 	
+	
+	@Test
+
+	public void crearUnCondimento(){
+		Condimento unCondimento = new Condimento();
+		unCondimento = unCondimento.crearCondimento("mostaza", "aderezo");
+		unCondimento.guardarCondimento(unCondimento);
+	}
 }
