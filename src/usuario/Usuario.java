@@ -386,18 +386,104 @@ public Set<Receta> buscarMisRecetas(){
 	
 		 
 
+public ArrayList<Receta> mostrarDiezRecetas(){
 	
-/*
-public Set<Receta> getUltimas10RecetasAceptadas(){
-	return  this.get;
+	ArrayList<Receta> mostrarRecetas = new ArrayList<Receta>(); 
+	
+	//ultimas diez recetas que acepto
+	mostrarRecetas.addAll(this.getUltimasDiezRecetasAceptadas());
+	
+	 //si no acepto recetas ultiamas 10 que califico
+	if(mostrarRecetas.isEmpty()){
+		
+		mostrarRecetas.addAll(this.getMejoresDiezQueCalifico());	
+	}
+	
+	//si tampoco califico las ultimas 10 que busco
+	if(mostrarRecetas.isEmpty()){
+		
+		mostrarRecetas.addAll(this.getUltimasDiezBuscadas());		
+	}
+	
+	//si ingresa por primera vez vera las mejores 10 calificadas
+	if(mostrarRecetas.isEmpty()){
+		
+		mostrarRecetas.addAll(this.mejoresDiezCalificadas());
+		
+	}	
+	
+	return mostrarRecetas;
+}
+
+
+public  ArrayList<Receta>  mejoresDiezCalificadas(){
+	
+	ArrayList<Receta> mostrarDiezRecetasCalificadas = new ArrayList<Receta>(); 
+	
+	/*
+	 * 
+	 * CONSULTAR A LA BASE CON LIMITE DE RESULTADOS 10 CON MAYOR CALIFICACION
+	 * 
+	 */
+	
+	return mostrarDiezRecetasCalificadas; 
 	
 }
 
-public Set<Receta> getrecomendacionesDiarias() {
-	return  Set<Receta>;
+
+public ArrayList<Receta> getUltimasDiezBuscadas(){
+	
+	ArrayList<Receta> mostrarDiezBuscadas = new ArrayList<Receta>(); 
+	
+	/*
+	 * 
+	 * CONSULTAR A LA BASE TABLA DIEZBUSCADAS
+	 * 
+	 */
+	
+	return mostrarDiezBuscadas;
+	
+
+}
+
+public ArrayList<Receta> getMejoresDiezQueCalifico() {
+
+	ArrayList<Receta> mostrarDiezRecetasQueCalifico = new ArrayList<Receta>(); 
+	
+	/*
+	 * 
+	 * CONSULTAR A LA BASE "CALIFICADAS POR USUARIO" CON LIMITE DE RESULTADOS 10 ORDENADO POR TRANSACCION MAS  RECIENTE
+	 * 
+	 */
+	
+	return mostrarDiezRecetasQueCalifico;
 	
 }
-*/
+
+ 
+public ArrayList<Receta> getUltimasDiezRecetasAceptadas(){
+	
+	ArrayList<Receta> ultimasDiezRecetas = new ArrayList<Receta>(); 
+	
+	/*
+	 * 
+	 * CONSULTAR A LA BASE "ACEPTADAS" CON LIMITE DE RESULTADOS 10 ORDENADO POR TRANSACCION MAS  RECIENTE
+	 * 
+	 */
+	
+	
+	return ultimasDiezRecetas;
+	
+}
+
+public ArrayList<Receta> getrecomendacionesDiarias() {
+	
+	ArrayList<Receta> recomendacionesDiarias = new ArrayList<Receta>(); 
+	
+	return recomendacionesDiarias;
+	
+}
+ 
 
 
 
