@@ -14,21 +14,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+import hibernate.HibernateConf;
 import receta.Receta;
 
 
 
 
 
-//@Entity
-//@Table(name="INGREDIENTE")
+@Entity
+@Table(name="INGREDIENTE")
 public class Ingrediente {
 	
 	int idIngrediente;
 	
-	//@Id
-	//@GeneratedValue(strategy = IDENTITY)
-	//@Column(name="IDINGREDIENTE", unique = true, nullable = false )
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ID_INGREDIENTE")
 	public int getIdIngrediente() {
 		return idIngrediente;
 	}
@@ -71,19 +73,35 @@ public class Ingrediente {
 	}
 	
 	//@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
+	@Transient
 	public Set<Receta> getRecetas() {
 		return this.recetas;
 	}
 	
 	public void guardarIngrediente(Ingrediente unIngrediente){
-		
+		/*
 		Ingrediente nuevoIngrediente = new Ingrediente();
 		
 		nuevoIngrediente.setCalorias(unIngrediente.getCalorias());
 		nuevoIngrediente.setNombre(unIngrediente.getNombre());
 		nuevoIngrediente.setPorcion(unIngrediente.getPorcion());
+		*/
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		session.save(unIngrediente);
+
+		session.getTransaction().commit();
+		// Transaction TR = session.beginTransaction();
+		// session.save(unCondimento);
+		System.out.println("Object Saved Succesfully"); // Si imprime es porque
+														// persistió ok el
+														// objeto
+		// TR.commit();
+		session.close();
+		// SF.close();
 		
-		
+		/*
 		Configuration con = new Configuration();
 		con.configure("hibernate.cfg.xml");
 		SessionFactory SF = con.buildSessionFactory();
@@ -95,23 +113,24 @@ public class Ingrediente {
 		TR.commit();
 		session.close();
 		SF.close();
+		*/
 	}
 	//++++++++++++++++++ FIN OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
 	
-	//@Column(name="NOMBRE", nullable = false, length = 45)
+	@Column(name="NOMBRE")
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	//@Column(name = "porcion", nullable = false)
+	@Column(name = "PORCION")
 	public int getPorcion() {
 		return porcion;
 	}
 	public void setPorcion(int porcion) {
 		this.porcion = porcion;
-	}//@Column(name = "calorias", nullable = false)
+	}@Column(name = "CALORIAS")
 	public int getCalorias() {
 		return calorias;
 	}

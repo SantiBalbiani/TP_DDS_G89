@@ -161,15 +161,7 @@ public class TestReceta {
 	
 	
 	
-	/*
-	@Test
-	public void crearUnIngrediente(){
-		//Creo Ingrediente
-		Ingrediente unIngrediente = new Ingrediente();
-		unIngrediente.crearIngrediente("papa", 10, 56);
-		unIngrediente.guardarIngrediente(unIngrediente);
-	}
-	*/
+	
 	
 //	@Test
 //	public void crearUnCondimento(){
@@ -332,4 +324,14 @@ public class TestReceta {
 		unCondimento = unCondimento.crearCondimento("mostaza", "aderezo");
 		unCondimento.guardarCondimento(unCondimento);
 	}
+	
+	
+	@Test
+	public void crearUnIngrediente(){
+		//Creo Ingrediente
+		Ingrediente unIngrediente = new Ingrediente();
+		unIngrediente = unIngrediente.crearIngrediente("papa", (int) 10, (int) 56);
+		unIngrediente.guardarIngrediente(unIngrediente);
+	}
+	
 }
