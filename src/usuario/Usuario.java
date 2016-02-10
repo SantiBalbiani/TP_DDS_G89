@@ -567,7 +567,7 @@ public class Usuario {
 		calendar.setTime(date);  
 		int horaDelDia= calendar.get(Calendar.HOUR_OF_DAY);	
 		
-		String categoria;
+		String categoria= null;
 		 /* 
 		  * horario:
 		  * 04-10hs: desayuno 

@@ -30,7 +30,7 @@ public class TestUsuario {
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: CarP.01
 	 * 
-	 * 		Testeado por: Santiago Balbiani
+	 * 		Testeado por: Chespy
 	 * 
 	 * 	 Descripciï¿½n:
 	 *   El metodo setea atributos dentro del mismo objeto que contiene dentro de dicho metodo
@@ -78,7 +78,7 @@ public class TestUsuario {
 	{
 		Usuario nuevoUsuario = new Usuario();
 		int prueba = nuevoUsuario.calcularEdad("2014-02-10");
-		System.out.println(prueba);	    
+		System.out.println("La edad del tipo es de: "+prueba +" años");	    
 		
 		//De "2014-02-09" a "2016-02-09"... la funcion devuelve 2
 		//De "2014-02-09" a "2016-02-10"... la funcion devuelve 1

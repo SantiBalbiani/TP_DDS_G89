@@ -34,28 +34,28 @@ import receta.Ingrediente;
 import usuario.CondicionesPreexistentes;
 import usuario.Usuario;
 
-
 @Entity
-@Table(name="RECETA")
+@Table(name = "RECETA")
 public class Receta {
 
 	private int idReceta;
 	private String nombreReceta;
 	private String preparacion;
-	
-	private Set<Ingrediente> ingredientes = new HashSet<Ingrediente>(0);	//Para el many-to-many
-	private short calificacion;		
+
+	private Set<Ingrediente> ingredientes = new HashSet<Ingrediente>(0); // Para
+																			// el
+																			// many-to-many
+	private short calificacion;
 	private int calorias;
 	private int dificultadReceta;
 	private short sectorPiramideAlimenticia;
-	
-	
+
 	private Ingrediente ingredientePrincipal;
 	private Set<Condimento> listaCondimentos = new HashSet<Condimento>(0);
 	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
 	private ArrayList<String> contraindicaciones;
-	
+
 	@Transient
 	public ArrayList<String> getContraindicaciones() {
 		return contraindicaciones;
@@ -65,15 +65,14 @@ public class Receta {
 		this.contraindicaciones = contraindicaciones;
 	}
 
-
-
-
-	//@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetas")
+	// @ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetas")
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "receta_por_ingrediente",  joinColumns = { 					//agregar catalogo de ser necesario...
-			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "ID_INGREDIENTE", 
-					nullable = false, updatable = false) })
+	@JoinTable(name = "receta_por_ingrediente", joinColumns = { // agregar
+																// catalogo de
+																// ser
+																// necesario...
+			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_INGREDIENTE", nullable = false, updatable = false) })
 	public Set<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
@@ -82,475 +81,101 @@ public class Receta {
 		this.ingredientes = ingredientes;
 	}
 
-
-
-
 	private ArrayList<String> temporadaPlato;
 
-
 	List<String> listaPreparacion = new ArrayList<String>();
-	
-	List<String> listaTemporadaPlato = new ArrayList<String>(){{add("Verano"); add("Otono"); add("Invierno");add("Primavera");add("Pascuas");add("Navidad");}};
 
-	List<String> listaDificultad = new ArrayList<String>(){{add("Facil"); add("Media"); add("Dificil");add("Muy Dificil");}};
+	List<String> listaTemporadaPlato = new ArrayList<String>() {
+		{
+			add("Verano");
+			add("Otono");
+			add("Invierno");
+			add("Primavera");
+			add("Pascuas");
+			add("Navidad");
+		}
+	};
 
-	List<String> listaCategoria = new ArrayList<String>(){{add("Desayuno"); add("Almuerzo"); add("Merienda");add("Cena");}};
+	List<String> listaDificultad = new ArrayList<String>() {
+		{
+			add("Facil");
+			add("Media");
+			add("Dificil");
+			add("Muy Dificil");
+		}
+	};
 
-	
-	//Atributos relacionados a la BD
-//	private String creadoPor;	//REVISAR.. NO TENDRIA QUE SER EL ID??
-//	private Set<Receta> listaRecetas;
-	
+	List<String> listaCategoria = new ArrayList<String>() {
+		{
+			add("Desayuno");
+			add("Almuerzo");
+			add("Merienda");
+			add("Cena");
+		}
+	};
 
-	//++++++++++++++++++ GETTERS ++++++++++++++//
-	
-	
+	// TODO: agregar estos campos al mapeo BD!!
+	// Atributos relacionados a la BD
+	// private String creadoPor; //REVISAR.. NO TENDRIA QUE SER EL ID??
+	// private Set<Receta> listaRecetas;
+
+	// ++++++++++++++++++ GETTERS ++++++++++++++//
+
 	@Column(name = "NOMBRE")
 	public String getNombreReceta() {
 		return this.nombreReceta;
 	}
 
-//	@Column(name = "INGREDIENTE_PPAL")
-//	public int getIdIngredientePrincipal(){
-//		return ingredientePrincipal.getIdIngrediente();
-//	}
+	public int obtenerIdIngredientePrincipal() {
+		return ingredientePrincipal.getIdIngrediente();
+	}
 
-	
-
-	
 	@Column(name = "PREPARACION")
 	public String getPreparacion() {
 		return this.preparacion;
 	}
-	
+
 	@Column(name = "CALIFICACION")
 	public short getCalificacion() {
 		return this.calificacion;
 	}
-	
+
 	@Column(name = "CALORIAS")
 	public int getCalorias() {
 		return this.calorias;
 	}
-
-
 
 	@Column(name = "DIFICULTAD")
 	public int getDificultadReceta() {
 		return this.dificultadReceta;
 	}
 
-
 	@Column(name = "SECTOR_PIRAMIDE")
 	public short getSectorPiramideAlimenticia() {
 		return sectorPiramideAlimenticia;
 	}
 
-	
-	
-	//++++++++++++++++++ INICIO METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
-	
-//	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias,  String unNombre, String unaPreparacion, String unaCategoria,int unaDificultad, String unaTemporada, short unSectorPiramide ){
-//		//llama a metodo new para crear Receta 
-//		//invoca los setters de la clase Receta para el alta de
-//		//ingredientes, condimentos y otros atributos...
-//		//devuelve la receta creada
-//		
-//		Receta nuevaReceta = new Receta();
-//
-//		nuevaReceta.setNombreReceta(unNombre);
-//		nuevaReceta.agregarIngredientePrincipal(unIngredientePrincipal);
-//
-//		//nuevaReceta.setListaIngredientes(nuevaReceta.crearListaIngrediente());
-//		nuevaReceta.setListaCondimentos(nuevaReceta.crearListaCondimentos());
-//		
-//		nuevaReceta.agregarPreparacion(unaPreparacion);
-//		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
-//		nuevaReceta.agregarCategoria(unaCategoria);
-//
-//		nuevaReceta.calificar(calificacion);
-//		nuevaReceta.agregarCalorias((int) calorias);
-//		
-//		
-//		nuevaReceta.setDificultadReceta(unaDificultad);
-//		nuevaReceta.setTemporadaPlato(unaTemporada);
-//		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
-//		
-//		/*
-//		Configuration con = new Configuration();
-//		con.configure("hibernate.cfg.xml");
-//		SessionFactory SF = con.buildSessionFactory();
-//		Session session = SF.openSession();
-//		
-//
-//		
-//		Transaction TR = session.beginTransaction();
-//		session.save(nuevaReceta);
-//		System.out.println("Object Saved Succesfully"); // Si imprime es porque persisti� ok el objeto
-//		TR.commit();
-//		session.close();
-//		SF.close();
-//		*/
-//		return nuevaReceta;
-//		
-//			
-//	}
-
-//	public void eliminar_receta(){
-//		
-//		
-//		
-//
-//		this.nombreReceta= null;
-//		this.ingredientePrincipal = null;
-//
-//		this.getListaIngredientes().clear();
-//		this.getListaCondimentos().clear();
-//		
-//		this.getListaProcedimiento().clear();
-//		this.listaCategoria= null;
-//
-//		this.calificacion= 0;
-//		this.calorias = 0; 
-//		
-//		this.dificultadReceta=0;
-//		this.getTemporadaPlato().clear();
-//		this.sectorPiramideAlimenticia =0 ;  // Discutir piramide
-//			
-//	}
-	
-	
-	//@Transient
+	// @Transient
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "receta_por_condimento",  joinColumns = { 					//agregar catalogo de ser necesario...
-			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "ID_CONDIMENTO", 
-					nullable = false, updatable = false) })
+	@JoinTable(name = "receta_por_condimento", joinColumns = { // agregar
+																// catalogo de
+																// ser
+																// necesario...
+			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_CONDIMENTO", nullable = false, updatable = false) })
 	public Set<Condimento> getListaCondimentos() {
 		return listaCondimentos;
 	}
-
-
 
 	@Transient
 	public Set<String> getListaCategorias() {
 		return listaCategorias;
 	}
-	
+
 	@Transient
-public  ArrayList<String> getListaProcedimiento() {
-		
+	public ArrayList<String> getListaProcedimiento() {
+
 		return listaProcedimiento;
-}
-
-	//++++++++++++++++++ SETTERS ++++++++++++++//
-
-	//CALIFICACION
-	/*
-@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-@JoinTable(name = "receta_por_ingrediente", joinColumns = { 
-		@JoinColumn(name = "IDRECETA", nullable = false, updatable = false) }, 
-		inverseJoinColumns = { @JoinColumn(name = "IDINGREDIENTE", 
-				nullable = false, updatable = false) })
-				*/
-//	@Transient
-//public Set<Ingrediente> getingredientes() {
-//	return this.ingredientes;
-//}
-
-	public void setCalificacion(short calificacion) {
-		this.calificacion = calificacion;
-	}
-	
-	public short calificar(short unaCalificacion)   
-	{
-			if ((unaCalificacion >=1) || (unaCalificacion <=5)) {
-			this.setCalificacion(unaCalificacion);
-			}
-			return this.getCalificacion();
-	}
-
-	//NOMBRE
-	public String setNombreReceta(String unNombre) {
-		this.nombreReceta= unNombre;
-		return this.nombreReceta;
-	}
-	
-
-	public String ponerNombreReceta(String nombreReceta) {
-		
-		if (noEsStringVacio(nombreReceta)) {  
-			this.setNombreReceta(nombreReceta); 
-		}
-		return this.getNombreReceta();
-	}
-	
-	//INGREDIENTE PRINCIPAL
-	public void setIngredientePrincipal(Ingrediente ingredientePrincipal) {
-		this.ingredientePrincipal = ingredientePrincipal;
-	}
-	
-	public void agregarIngredientePrincipal(Ingrediente unIngrediente){ 
-		this.setIngredientePrincipal(unIngrediente);
-	}
-	
-	//CALORIAS
-	public void setCalorias(int calorias) {
-		this.calorias = calorias;
-	}
-	
-	public int agregarCalorias(int calorias) {
-		
-		if (calorias >=0) {
-			this.setCalorias(calorias);
-		};
-		return this.getCalorias();
-	}
-	
-	//PREPARACION
-	public String agregarPreparacion(String unaPreparacion) {
-		
-		if (noEsStringVacio(unaPreparacion)) {  
-			this.setPreparacion(unaPreparacion); 
-		}
-		return this.getPreparacion();
-	}
-		
-	
-	public void setPreparacion(String preparacion) {
-		this.preparacion = preparacion;
-	}
-	
-	//DIFICULTAD
-	public void setDificultadReceta(int dificultadReceta) {
-		this.dificultadReceta = dificultadReceta;
-	}
-	
-	//TEMPORADA
-	public void setTemporadaPlato(String  temporadaPlato) {
-		this.getTemporadaPlato().add(temporadaPlato);
-	}
-	
-	//PIRAMIDE
-	public void setSectorPiramideAlimenticia(short sectorPiramideAlimenticia) {
-		this.sectorPiramideAlimenticia = sectorPiramideAlimenticia;
-	}
-	
-	//CONDIMENTOS
-	public void setListaCondimentos(Set<Condimento> listaCondimentos) {
-		this.listaCondimentos = listaCondimentos;
-	}
-	
-	public Set<Condimento> crearListaCondimentos()
-	{
-		Set<Condimento> listaCondimentos ; 
-		listaCondimentos = new HashSet<Condimento>();
-		return listaCondimentos;
-	}
-	
-	public void agregarCondimento(Condimento unCondimento) {
-		
-		this.listaCondimentos.add(unCondimento);
-	}
-	
-	
-//	//INGREDIENTES
-//	
-//	public void setIngredientes(Set<Ingrediente> ingredientes) {
-//		this.ingredientes = ingredientes;
-//	}
-//
-	public void agregarUnIngrediente(Ingrediente unIngrediente) {
-		
-		this.ingredientes.add(unIngrediente);
-	}
-	
-	public Set<Ingrediente> crearListaIngrediente()
-	{
-		Set<Ingrediente> listaIngrediente ; 
-		listaIngrediente = new HashSet<Ingrediente>();
-		return listaIngrediente;
-	}
-	
-	
-	//CATEGORIA
-
-	public Set<String> crearListaCategorias()
-	{
-		Set<String> listaCategoria; 
-		listaCategoria = new HashSet<String>();
-		return listaCategoria;
-	}
-
-	public void setListaCategorias(Set<String> listaCategorias) {
-		this.listaCategorias = listaCategorias;
-	}
-	
-public void agregarCategoria(String unaCategoria) {
-		
-		this.getListaCategorias().add(unaCategoria);
-	}
-
-//PROCEDIMIENTO
-public Set<String> crearListaProcedimiento()
-{
-	Set<String> listaProcedimiento; 
-	listaProcedimiento = new HashSet<String>();
-	return listaProcedimiento;
-}
-
-public void setListalistaProcedimiento(ArrayList<String> unaListaProcedimiento) {
-	this.listaProcedimiento= unaListaProcedimiento;
-}
-
-public void agregarlistaProcedimiento(String unaProcedimiento) {
-	
-	this.getListaProcedimiento().add(unaProcedimiento);
-}
-
-
-//CATEGORIA
-//=========
-
-@Transient
-public List<String> getListaCategoria() {
-	return listaCategoria;
-}
-
-public void setListaCategoria(List<String> listaCategoria) {
-	this.listaCategoria = listaCategoria;
-}
-
-public void quitarCategoria(String unaCategoria){
-	
-	this.getListaCategorias().remove(unaCategoria);
-}
-
-//DIFICULTAD
-//==========
-
-@Transient
-public List<String> getListaDificultad() {
-	return listaDificultad;
-}
-
-public void setListaDificultad(List<String> listaDificultad) {
-	this.listaDificultad = listaDificultad;
-}	
-
-//TEMPORADA PLATO
-//=================
-
-
-@Transient
-	public List<String> getListaTemporadaPlato() {
-		return listaTemporadaPlato;
-	}
-
-	public void setListaTemporadaPlato(List<String> listaTemporadaPlato) {
-		this.listaTemporadaPlato = listaTemporadaPlato;
-	}
-
-	
-//	public void agregarTemporada(String unaTemporada) {
-//		
-//		this.getTemporadaPlato().add(unaTemporada);
-//		
-//		
-//	}
-	
-@Transient
-	public ArrayList<String> getTemporadaPlato() {
-		return temporadaPlato;
-	}
-
-
-
-
-//++++++++++++++++++ INICIO METODOS QUITAR DE RECETA ++++++++++++++//
-	
-//	public void quitarTemporada(String unaTemporada){
-//		
-//		this.getTemporadaPlato().remove(unaTemporada);
-//	}
-//	
-//	public void quitarIngredientePrincipal(){
-//		
-//		this.ingredientePrincipal = null;
-//	}
-//	
-//	public void quitarCondimento(Condimento unCondimento){
-//		
-//		this.getListaCondimentos().remove(unCondimento);
-//	}
-//	
-//	public void quitarIngrediente(Ingrediente unIngrediente){
-//		
-//		this.getListaIngredientes().remove(unIngrediente);
-//	}
-//	
-//	
-	public void quitarProcedimiento(String unProcedimiento){
-		
-		this.getListaProcedimiento().remove(unProcedimiento);
-	}	
-	
-//++++++++++++++++++ FIN METODOS QUITAR DE RECETA ++++++++++++++//
-//++++++++++++++++++ FIN METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
-
-
-
-	
-	/*
-	public  void setTotalCalorias(){
-		//falta sumar calorias del grupo de ingredientes
-	
-		this.setCalorias(this.getCaloriasIngredientePrincipal()+getCaloriasdeTodosLosIngrediente());
-		
-		 
-		 }
-/*	
-	public int getCaloriasIngredientePrincipal(){
-		
-		return this.getIngredientePrincipal().getCalorias();
-	}
-*/	
-//@Transient
-//public int getCaloriasdeTodosLosIngrediente(){
-//		
-//	 Set<Ingredientes> ingredientes = this.getingredientes();
-//	 int calorias = 0;
-//	for (Ingredientes   ingrediente  : ingredientes) {
-//			
-//		  calorias = calorias + ingrediente.getCalorias();
-			
-//		}
-//	return calorias;
-//	}
-	
-	
-	
-//}
-//	
-
-
-
-
-/// control string
-
-	@SuppressWarnings("null")
-	public boolean noEsStringVacio(String unString)
-	{
-		try
-		{
-			//En caso de que no funcione probar con:
-			//return (unString !=null && !unString.isEmpty())	;
-			return ((unString != null) || (unString.length()!=0));
-		}
-		catch (NullPointerException npe)
-		{
-	        return false;
-	    }
 	}
 
 	@Id
@@ -563,6 +188,7 @@ public void setListaDificultad(List<String> listaDificultad) {
 	public void setIdReceta(int idReceta) {
 		this.idReceta = idReceta;
 	}
+
 	@Transient
 	public List<String> getListaPreparacion() {
 		return listaPreparacion;
@@ -571,31 +197,11 @@ public void setListaDificultad(List<String> listaDificultad) {
 	public void setListaPreparacion(List<String> listaPreparacion) {
 		this.listaPreparacion = listaPreparacion;
 	}
-//	@Column(name = "CREADO_POR")
-//	public String getCreadoPor() {
-//		return creadoPor;
-//	}
-//
-//	public void setCreadoPor(String creadoPor) {
-//		this.creadoPor = creadoPor;
-//	}
-//	@Transient
-//	public Set<Receta> getListaRecetas() {
-//		return listaRecetas;
-//	}
-//
-//	public void setListaRecetas(Set<Receta> listaRecetas) {
-//		this.listaRecetas = listaRecetas;
-//	}
-//	@Transient
-//	public Set<Ingrediente> getIngredientes() {
-//		return ingredientes;
-//	}
-	
-	//@Transient
-	//@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "ID_INGREDIENTE")
-	//@ManyToOne(fetch = FetchType.LAZY, mappedBy = "stock")
+
+	// @Transient
+	// @OneToOne(cascade = CascadeType.ALL)
+	// @JoinColumn(name = "ID_INGREDIENTE")
+	// @ManyToOne(fetch = FetchType.LAZY, mappedBy = "stock")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_INGREDIENTE", nullable = false)
 	public Ingrediente getIngredientePrincipal() {
@@ -609,7 +215,331 @@ public void setListaDificultad(List<String> listaDificultad) {
 	public void setTemporadaPlato(ArrayList<String> temporadaPlato) {
 		this.temporadaPlato = temporadaPlato;
 	}
-	
+
+	// ++++++++++++++++++ SETTERS ++++++++++++++//
+
+	public void setCalificacion(short calificacion) {
+		this.calificacion = calificacion;
+	}
+
+	public short calificar(short unaCalificacion) {
+		if ((unaCalificacion >= 1) || (unaCalificacion <= 5)) {
+			this.setCalificacion(unaCalificacion);
+		}
+		return this.getCalificacion();
+	}
+
+	// NOMBRE
+	public String setNombreReceta(String unNombre) {
+		this.nombreReceta = unNombre;
+		return this.nombreReceta;
+	}
+
+	public String ponerNombreReceta(String nombreReceta) {
+
+		if (noEsStringVacio(nombreReceta)) {
+			this.setNombreReceta(nombreReceta);
+		}
+		return this.getNombreReceta();
+	}
+
+	// INGREDIENTE PRINCIPAL
+	public void setIngredientePrincipal(Ingrediente ingredientePrincipal) {
+		this.ingredientePrincipal = ingredientePrincipal;
+	}
+
+	public void agregarIngredientePrincipal(Ingrediente unIngrediente) {
+		this.setIngredientePrincipal(unIngrediente);
+	}
+
+	// CALORIAS
+	public void setCalorias(int calorias) {
+		this.calorias = calorias;
+	}
+
+	public int agregarCalorias(int calorias) {
+
+		if (calorias >= 0) {
+			this.setCalorias(calorias);
+		}
+		;
+		return this.getCalorias();
+	}
+
+	// PREPARACION
+	public String agregarPreparacion(String unaPreparacion) {
+
+		if (noEsStringVacio(unaPreparacion)) {
+			this.setPreparacion(unaPreparacion);
+		}
+		return this.getPreparacion();
+	}
+
+	public void setPreparacion(String preparacion) {
+		this.preparacion = preparacion;
+	}
+
+	// DIFICULTAD
+	public void setDificultadReceta(int dificultadReceta) {
+		this.dificultadReceta = dificultadReceta;
+	}
+
+	// TEMPORADA
+	public void setTemporadaPlato(String temporadaPlato) {
+		this.getTemporadaPlato().add(temporadaPlato);
+	}
+
+	// PIRAMIDE
+	public void setSectorPiramideAlimenticia(short sectorPiramideAlimenticia) {
+		this.sectorPiramideAlimenticia = sectorPiramideAlimenticia;
+	}
+
+	// CONDIMENTOS
+	public void setListaCondimentos(Set<Condimento> listaCondimentos) {
+		this.listaCondimentos = listaCondimentos;
+	}
+
+	public Set<Condimento> crearListaCondimentos() {
+		Set<Condimento> listaCondimentos;
+		listaCondimentos = new HashSet<Condimento>();
+		return listaCondimentos;
+	}
+
+	public void agregarCondimento(Condimento unCondimento) {
+
+		this.listaCondimentos.add(unCondimento);
+	}
+
+	public void agregarUnIngrediente(Ingrediente unIngrediente) {
+
+		this.ingredientes.add(unIngrediente);
+	}
+
+	public Set<Ingrediente> crearListaIngrediente() {
+		Set<Ingrediente> listaIngrediente;
+		listaIngrediente = new HashSet<Ingrediente>();
+		return listaIngrediente;
+	}
+
+	// CATEGORIA
+
+	public Set<String> crearListaCategorias() {
+		Set<String> listaCategoria;
+		listaCategoria = new HashSet<String>();
+		return listaCategoria;
+	}
+
+	public void setListaCategorias(Set<String> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
+
+	public void agregarCategoria(String unaCategoria) {
+
+		this.getListaCategorias().add(unaCategoria);
+	}
+
+	// PROCEDIMIENTO
+	public Set<String> crearListaProcedimiento() {
+		Set<String> listaProcedimiento;
+		listaProcedimiento = new HashSet<String>();
+		return listaProcedimiento;
+	}
+
+	public void setListalistaProcedimiento(ArrayList<String> unaListaProcedimiento) {
+		this.listaProcedimiento = unaListaProcedimiento;
+	}
+
+	public void agregarlistaProcedimiento(String unaProcedimiento) {
+
+		this.getListaProcedimiento().add(unaProcedimiento);
+	}
+
+	// CATEGORIA
+	// =========
+
+	@Transient
+	public List<String> getListaCategoria() {
+		return listaCategoria;
+	}
+
+	public void setListaCategoria(List<String> listaCategoria) {
+		this.listaCategoria = listaCategoria;
+	}
+
+	public void quitarCategoria(String unaCategoria) {
+
+		this.getListaCategorias().remove(unaCategoria);
+	}
+
+	// DIFICULTAD
+	// ==========
+
+	@Transient
+	public List<String> getListaDificultad() {
+		return listaDificultad;
+	}
+
+	public void setListaDificultad(List<String> listaDificultad) {
+		this.listaDificultad = listaDificultad;
+	}
+
+	// TEMPORADA PLATO
+	// =================
+
+	@Transient
+	public List<String> getListaTemporadaPlato() {
+		return listaTemporadaPlato;
+	}
+
+	public void setListaTemporadaPlato(List<String> listaTemporadaPlato) {
+		this.listaTemporadaPlato = listaTemporadaPlato;
+	}
+
+	public void agregarTemporada(String unaTemporada) {
+
+		this.getTemporadaPlato().add(unaTemporada);
+
+	}
+
+	@Transient
+	public ArrayList<String> getTemporadaPlato() {
+		return temporadaPlato;
+	}
+
+	// ++++++++++++++++++ INICIO METODOS QUITAR DE RECETA ++++++++++++++//
+
+	public void quitarTemporada(String unaTemporada) {
+
+		this.getTemporadaPlato().remove(unaTemporada);
+	}
+
+	public void quitarIngredientePrincipal() {
+
+		this.ingredientePrincipal = null;
+	}
+
+	public void quitarCondimento(Condimento unCondimento) {
+
+		this.getListaCondimentos().remove(unCondimento);
+	}
+
+	public void quitarIngrediente(Ingrediente unIngrediente) {
+
+		this.getIngredientes().remove(unIngrediente);
+	}
+
+	public void quitarProcedimiento(String unProcedimiento) {
+
+		this.getListaProcedimiento().remove(unProcedimiento);
+	}
+
+	// ++++++++++++++++++ FIN METODOS QUITAR DE RECETA ++++++++++++++//
+	// ++++++++++++++++++ FIN METODOS DE
+	// RECETA++++++++++++++++++++++++++++++++++++++++++++//
+
+	// ++++++++++++++++++ INICIO METODOS DE
+	// RECETA++++++++++++++++++++++++++++++++++++++++++++//
+
+	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias, String unNombre,
+			String unaPreparacion, String unaCategoria, int unaDificultad, String unaTemporada,
+			short unSectorPiramide) {
+		// llama a metodo new para crear Receta
+		// invoca los setters de la clase Receta para el alta de
+		// ingredientes, condimentos y otros atributos...
+		// devuelve la receta creada
+
+		Receta nuevaReceta = new Receta();
+
+		nuevaReceta.setNombreReceta(unNombre);
+		nuevaReceta.agregarIngredientePrincipal(unIngredientePrincipal);
+
+		// nuevaReceta.setListaIngredientes(nuevaReceta.crearListaIngrediente());
+		nuevaReceta.setListaCondimentos(nuevaReceta.crearListaCondimentos());
+
+		nuevaReceta.agregarPreparacion(unaPreparacion);
+		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
+		nuevaReceta.agregarCategoria(unaCategoria);
+
+		nuevaReceta.calificar(calificacion);
+		nuevaReceta.agregarCalorias((int) calorias);
+
+		nuevaReceta.setDificultadReceta(unaDificultad);
+		nuevaReceta.setTemporadaPlato(unaTemporada);
+		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
+
+		/*
+		 * Configuration con = new Configuration();
+		 * con.configure("hibernate.cfg.xml"); SessionFactory SF =
+		 * con.buildSessionFactory(); Session session = SF.openSession();
+		 * 
+		 * 
+		 * 
+		 * Transaction TR = session.beginTransaction();
+		 * session.save(nuevaReceta); System.out.println(
+		 * "Object Saved Succesfully"); // Si imprime es porque persisti� ok
+		 * el objeto TR.commit(); session.close(); SF.close();
+		 */
+		return nuevaReceta;
+
+	}
+
+	public void eliminar_receta() {
+
+		this.nombreReceta = null;
+		this.ingredientePrincipal = null;
+
+		this.getIngredientes().clear();
+		this.getListaCondimentos().clear();
+
+		this.getListaProcedimiento().clear();
+		this.listaCategoria = null;
+
+		this.calificacion = 0;
+		this.calorias = 0;
+
+		this.dificultadReceta = 0;
+		this.getTemporadaPlato().clear();
+		this.sectorPiramideAlimenticia = 0; // Discutir piramide
+
+	}
+
+	public void setTotalCalorias() {
+		// falta sumar calorias del grupo de ingredientes
+
+		this.setCalorias(this.obtenerCaloriasIngredientePrincipal() + obtenerCaloriasdeTodosLosIngrediente());
+
+	}
+
+	public int obtenerCaloriasIngredientePrincipal() {
+
+		return this.getIngredientePrincipal().getCalorias();
+	}
+
+	public int obtenerCaloriasdeTodosLosIngrediente() {
+
+		Set<Ingrediente> ingredientes = this.getIngredientes();
+		int calorias = 0;
+		for (Ingrediente ingrediente : ingredientes) {
+
+			calorias = calorias + ingrediente.getCalorias();
+
+		}
+		return calorias;
+	}
+
+	/// control string
+
+	@SuppressWarnings("null")
+	public boolean noEsStringVacio(String unString) {
+		try {
+			// En caso de que no funcione probar con:
+			// return (unString !=null && !unString.isEmpty()) ;
+			return ((unString != null) || (unString.length() != 0));
+		} catch (NullPointerException npe) {
+			return false;
+		}
+	}
+
 	public void guardarReceta(Receta unaReceta) {
 		// TODO: revisar este metodo para que guarde todos los campos....
 
@@ -625,4 +555,3 @@ public void setListaDificultad(List<String> listaDificultad) {
 	}
 
 }
-
