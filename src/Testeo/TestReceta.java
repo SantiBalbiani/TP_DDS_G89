@@ -186,9 +186,6 @@ public class TestReceta {
 	@Test
 	public void testcrearUnaReceta() {
 		//Con esto probamos la receta y los metodos del many to many & Many to One...!!
-		//Session session = HibernateConf.getSessionFactory().openSession();
-
-		//session.beginTransaction();
 		
 		// Creo Ingrediente
 		Ingrediente unIngrediente = new Ingrediente();
@@ -224,7 +221,6 @@ public class TestReceta {
 		unaReceta.setIngredientePrincipal(ingredientePPAL);
 		unaReceta.setCalificacion(calificacion);
 		unaReceta.setSectorPiramideAlimenticia(sectorP);
-		//unaReceta.setIngredientePrincipal(unIngrediente);
 		unaReceta.setCalorias(500);
 		unaReceta.setPreparacion("cortas la papa le pones manteca y wuala");
 		unaReceta.setNombreReceta("La_PAPA_Milanesa");
@@ -311,17 +307,8 @@ public class TestReceta {
 		listaRecetas.add(unaReceta3);
 		
 		
-		
-		session.save(unaReceta);
-	    
-		session.getTransaction().commit();
-		
-		session.close();
-		HibernateConf.shutdown();
 		//unaReceta.crear_receta(unIngrediente, calificacion, 4, "RecetaLoca", "hola", "como salga", "guachita", "4", sectorP);
 		
-	
-		//System.out.println(unCondimento.getNombre());
 		*/
 	}
 
