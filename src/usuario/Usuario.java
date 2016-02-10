@@ -179,7 +179,7 @@ public class Usuario {
 		unaReceta3.setIngredientePrincipal(unIngrediente3);
 		unaReceta3.setCalorias(100);
 		unaReceta3.setPreparacion("accenture es muy linda y le gusta los cursos");
-		unaReceta3.setNombreReceta("accenture se fue a vw");
+		unaReceta3.setNombreReceta("aguante ibm papa!");
 		unaReceta3.setDificultadReceta(3);
 
 		Set<Receta> listaRecetas;

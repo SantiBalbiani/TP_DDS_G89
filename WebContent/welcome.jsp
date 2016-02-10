@@ -16,6 +16,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
+
 </head>
 
 <body>
@@ -93,6 +94,32 @@
 	</div>
 	</section>
 	<footer></footer>
+	
+	
+<!-- 	Ejemplo para levantar recetas.... -->
+
+<!-- http://stackoverflow.com/questions/10898393/how-to-access-a-request-attribute-set-by-a-servlet-in-jsp -->
+
+<!-- http://stackoverflow.com/tags/el/info -->
+
+<!-- http://stackoverflow.com/questions/20371220/what-is-the-difference-between-response-sendredirect-and-request-getrequestdis -->
+
+<!-- http://stackoverflow.com/questions/20280203/name-was-not-previously-introduced-as-per-jsp-5-3 -->
+
+<!-- http://profesores.elo.utfsm.cl/~agv/elo330/2s03/projects/Tomcat/doc/1.2/syntaxref1216.html#8856 -->
+
+
+<!-- El problema que tenemos ahora es que si yo entro de una al welcome.jsp, sin haber ejecutado previamente el servlet... me muestra datos en blanco. -->
+<!-- Habria que chequear si se puede llamar al objeto desde esta pagina, o organizar mucho mejor el manejo de la session.... Igual por ahora que las muestre asi nomas!! -->
+	<p>El nombre es: ${receta_ejemplo.nombreReceta} </p>
+	<p>Se prepara asi: ${receta_ejemplo.preparacion} </p>
+	<p>Las calorias son: ${receta_ejemplo.calorias} </p>
+	<p>La dificultad: ${receta_ejemplo.dificultadReceta} </p>
+	<p>La calificacion es: ${receta_ejemplo.calificacion} </p>	
+	<p>El sector de la piramide es: ${receta_ejemplo.sectorPiramideAlimenticia} </p>	
+	
+	
+	
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
