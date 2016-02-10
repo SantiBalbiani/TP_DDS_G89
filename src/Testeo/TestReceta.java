@@ -185,7 +185,7 @@ public class TestReceta {
 	
 	@Test
 	public void testcrearUnaReceta() {
-		
+		//Con esto probamos la receta y los metodos del many to many & Many to One...!!
 		//Session session = HibernateConf.getSessionFactory().openSession();
 
 		//session.beginTransaction();

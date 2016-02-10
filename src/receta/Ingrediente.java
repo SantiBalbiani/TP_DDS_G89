@@ -43,7 +43,7 @@ public class Ingrediente {
 	public int porcion;
 	public int calorias;
 	private Set<Receta> recetas = new HashSet<Receta>(0);	//para el many-to-many
-	private Set<Receta> recetas2 = new HashSet<Receta>(0);	//para el many-to-one
+	private Set<Receta> recetas2 = new HashSet<Receta>(0);	//para el many-to-ONE
 	
 	//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
 	
