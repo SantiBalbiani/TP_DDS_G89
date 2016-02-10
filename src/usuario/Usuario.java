@@ -93,7 +93,7 @@ public class Usuario {
 		// Agrego Condimentos
 
 		// unaReceta.setListaIngredientes(unaReceta.crearListaIngrediente());
-		unaReceta.agregarunIngrediente(unIngrediente);
+		unaReceta.agregarUnIngrediente(unIngrediente);
 		unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
 		unaReceta.agregarCondimento(unCondimento);
 
@@ -128,7 +128,7 @@ public class Usuario {
 		// Agrego Condimentos
 
 		// unaReceta2.setListaIngredientes(unaReceta2.crearListaIngrediente());
-		unaReceta2.agregarunIngrediente(unIngrediente2);
+		unaReceta2.agregarUnIngrediente(unIngrediente2);
 		unaReceta2.setListaCondimentos(unaReceta2.crearListaCondimentos());
 		unaReceta2.agregarCondimento(unCondimento2);
 
@@ -163,7 +163,7 @@ public class Usuario {
 		// Agrego Condimentos
 
 		// unaReceta3.setListaIngredientes(unaReceta3.crearListaIngrediente());
-		unaReceta3.agregarunIngrediente(unIngrediente3);
+		unaReceta3.agregarUnIngrediente(unIngrediente3);
 		unaReceta3.setListaCondimentos(unaReceta3.crearListaCondimentos());
 		unaReceta3.agregarCondimento(unCondimento3);
 
@@ -421,7 +421,7 @@ public class Usuario {
 		nuevaReceta.agregarIngredientePrincipal(unIngrediente);
 
 		// TODO: debe haber un loop de 1 a n ingredientes y/o condimentos
-		nuevaReceta.agregarunIngrediente(unIngrediente);
+		nuevaReceta.agregarUnIngrediente(unIngrediente);
 		nuevaReceta.agregarCalorias(calorias);
 
 		nuevaReceta.agregarCondimento(unCondimento);
