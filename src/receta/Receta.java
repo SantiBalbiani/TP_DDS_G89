@@ -31,6 +31,7 @@ import org.hibernate.cfg.Configuration;
 import hibernate.HibernateConf;
 import receta.Condimento;
 import receta.Ingrediente;
+import usuario.CondicionesPreexistentes;
 import usuario.Usuario;
 
 
@@ -502,9 +503,12 @@ public void setListaDificultad(List<String> listaDificultad) {
 	
 	/*
 	public  void setTotalCalorias(){
+		//falta sumar calorias del grupo de ingredientes
+	
+		this.setCalorias(this.getCaloriasIngredientePrincipal()+getCaloriasdeTodosLosIngrediente());
 		
-		this.setCalorias(this.getCaloriasIngredientePrincipal()); //falta sumar calorias del grupo de ingredientes
-	}
+		 
+		 }
 /*	
 	public int getCaloriasIngredientePrincipal(){
 		
@@ -514,8 +518,18 @@ public void setListaDificultad(List<String> listaDificultad) {
 //@Transient
 //public int getCaloriasdeTodosLosIngrediente(){
 //		
-//// hacer un foreach getCalorias de cada ingrediente y acumular. retornar el acumulado final		
-//	return 0;
+//	 Set<Ingredientes> ingredientes = this.getingredientes();
+//	 int calorias = 0;
+//	for (Ingredientes   ingrediente  : ingredientes) {
+//			
+//		  calorias = calorias + ingrediente.getCalorias();
+			
+//		}
+//	return calorias;
+//	}
+	
+	
+	
 //}
 //	
 

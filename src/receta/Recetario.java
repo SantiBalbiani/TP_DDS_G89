@@ -143,11 +143,13 @@ public class Recetario
 			
 }			
 			
-			
-			
-			
-	
-	public Set<Receta> getListaRecetas() { // el metodo  deberia consultar a la base por las recetas del usuario
+	public Set<Receta> getListaRecetas() { 
+		/*
+		 * TODO:
+		 * HACER CONSULTAS A LA DB SOBRE LAS RECETAS DEL USUARIO
+		 * AGREGAR LOS RESULTADOS EN listaRecetas
+		 * 
+		 */	
 		return listaRecetas;
 	}
 

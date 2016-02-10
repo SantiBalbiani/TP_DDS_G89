@@ -1,5 +1,8 @@
 package usuario;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
@@ -15,6 +18,9 @@ import org.hibernate.cfg.Configuration;
 
 
 //import com.mkyong.util.HibernateUtil;
+
+
+
 
 import hibernate.HibernateConf;
 import receta.Condimento;
@@ -496,7 +502,7 @@ public class Usuario {
 		ArrayList<Receta> mostrarDiezBuscadas = new ArrayList<Receta>();
 
 		/*
-		 * 
+		 * TODO:
 		 * CONSULTAR A LA BASE TABLA DIEZBUSCADAS
 		 * 
 		 */
@@ -510,7 +516,7 @@ public class Usuario {
 		ArrayList<Receta> mostrarDiezRecetasQueCalifico = new ArrayList<Receta>();
 
 		/*
-		 * 
+		 * TODO:
 		 * CONSULTAR A LA BASE "CALIFICADAS POR USUARIO" CON LIMITE DE
 		 * RESULTADOS 10 ORDENADO POR TRANSACCION MAS RECIENTE
 		 * 
@@ -525,7 +531,7 @@ public class Usuario {
 		ArrayList<Receta> ultimasDiezRecetas = new ArrayList<Receta>();
 
 		/*
-		 * 
+		 * TODO:
 		 * CONSULTAR A LA BASE "ACEPTADAS" CON LIMITE DE RESULTADOS 10 ORDENADO
 		 * POR TRANSACCION MAS RECIENTE
 		 * 
@@ -535,13 +541,60 @@ public class Usuario {
 
 	}
 
-	public ArrayList<Receta> recetasRecomendacionesDiarias() {
-
-		ArrayList<Receta> recomendacionesDiarias = new ArrayList<Receta>();
-
-		return recomendacionesDiarias;
-
+	public  Receta  recomendacionDiaria() {
+		
+		 Receta  recomendacionDiaria = new  Receta(); 
+		 String  preferenciasAlimenticias = this.getPreferencias_alimenticias(); 
+		 String categoriaSegunHora  = obtenerCategoriaSegunHora(); 
+		  
+		 
+		 /*TODO:  
+		  * HACER SELECT SINGLE 
+		  * USANDO EL MISMO SELECT DE getRecetasDelGrupo() JUNTO CON LOS FILTROS DE LAS VARIABLES DE ARRIBA
+		  *  
+		  * 
+		  */
+		 
+		 
+		return recomendacionDiaria;
+		
 	}
+	
+	public String obtenerCategoriaSegunHora(){
+		
+		Date date = new Date();    
+		Calendar calendar = GregorianCalendar.getInstance(); 
+		calendar.setTime(date);  
+		int horaDelDia= calendar.get(Calendar.HOUR_OF_DAY);	
+		
+		String categoria;
+		 /* 
+		  * horario:
+		  * 04-10hs: desayuno 
+		  * 10-15hs: almuerzo
+		  * 15-19hs. merienda
+		  * 19-04hs:cena
+		  */
+		
+		
+		if ((horaDelDia >4) &&  (horaDelDia <=10)){
+			categoria = "Desayuno" ;
+		}
+		
+		if ((horaDelDia >10) &&  (horaDelDia <=15)){
+			categoria = "Almuerzo" ;
+		}
+					
+		if ((horaDelDia >15) &&  (horaDelDia <=19)){
+			categoria = "Merienda" ;
+		}		
+		if ((horaDelDia >19) &&  (horaDelDia <=4)){
+			categoria = "Cena" ;
+		}	
+		
+		return categoria;
+	}
+
 
 	public double obtenerPesoIdeal() {
 
@@ -576,8 +629,8 @@ public class Usuario {
 		try {
 			/*
 			 * Se puede cambiar la mascara por el formato de la fecha que se
-			 * quiera recibir, por ejemplo año mes día "yyyy-MM-dd" en este caso
-			 * es día mes año
+			 * quiera recibir, por ejemplo aï¿½o mes dï¿½a "yyyy-MM-dd" en este caso
+			 * es dï¿½a mes aï¿½o
 			 */
 			/*	------Ejemplo de como llamarlo --------
 			 * Usuario nuevoUsuario = new Usuario(); int prueba =
@@ -598,15 +651,15 @@ public class Usuario {
 		// Se asigna la fecha recibida a la fecha de nacimiento.
 		fechaNacimiento.setTime(fechaNac);
 		// Se restan la fecha actual y la fecha de nacimiento
-		int año = fechaActual.get(java.util.Calendar.YEAR) - fechaNacimiento.get(java.util.Calendar.YEAR);
+		int anio = fechaActual.get(java.util.Calendar.YEAR) - fechaNacimiento.get(java.util.Calendar.YEAR);
 		int mes = fechaActual.get(java.util.Calendar.MONTH) - fechaNacimiento.get(java.util.Calendar.MONTH);
 		int dia = fechaActual.get(java.util.Calendar.DATE) - fechaNacimiento.get(java.util.Calendar.DATE);
-		// Se ajusta el año dependiendo el mes y el día
+		// Se ajusta el aï¿½o dependiendo el mes y el dï¿½a
 		if (mes < 0 || (mes == 0 && dia < 0)) {
-			año--;
+			anio--;
 		}
 		// Regresa la edad en base a la fecha de nacimiento
-		return (int) año;
+		return (int) anio;
 	}
 
 }
