@@ -371,7 +371,7 @@ public class Usuario {
 
 	public void calificar(Receta unaReceta, short unaCalificacion) {
 
-		unaReceta.calificar(unaCalificacion);
+		unaReceta.setCalificacion(unaCalificacion);
 
 	}
 

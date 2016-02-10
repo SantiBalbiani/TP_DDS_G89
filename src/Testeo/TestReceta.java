@@ -35,7 +35,7 @@ public class TestReceta {
 	 *   y luego califica la receta con la calificacion dada.
 	 */
 	
-	/*
+	
 	@Test
 	public void testCalificarReceta() 
 	{
@@ -43,18 +43,28 @@ public class TestReceta {
 		Usuario pruebaUser1 = new Usuario ();			//Instancio un nuevo usuario
 		pruebaUser1.setNombreUsuario("Pedro_PicaPiedras");		//Le agrego un nombre al usuario nuevo
 		pruebaUser1.calificar(pruebaReceta, (short) 0);
-		assertTrue(pruebaUser1.calificar(pruebaReceta, (short) 3));		//La calificacion fue exitosa 	(1 =< x <=5)
-		assertTrue(pruebaUser1.calificar(pruebaReceta, (short) 1));		//La calificacion fue exitosa 	(1 =< x <=5)
-		assertTrue(pruebaUser1.calificar(pruebaReceta, (short) 5));		//La calificacion fue exitosa 	(1 =< x <=5)
-		assertFalse(pruebaUser1.calificar(pruebaReceta, (short) 0));		//La calificacion fallo 	(1 =< x <=5)
-		assertFalse(pruebaUser1.calificar(pruebaReceta, (short) 8));		//La calificacion fallo 	(1 =< x <=5)
+		
+		pruebaUser1.calificar(pruebaReceta, (short) 3);
+		assertTrue((short)pruebaReceta.getCalificacion()==(short) 3);		//La calificacion fue exitosa 	(1 =< x <=5)
+		
+		pruebaUser1.calificar(pruebaReceta, (short) 1);
+		assertTrue((short)pruebaReceta.getCalificacion()==(short) 1);		//La calificacion fue exitosa 	(1 =< x <=5)
+		
+		pruebaUser1.calificar(pruebaReceta, (short) 5);
+		assertTrue((short)pruebaReceta.getCalificacion()==(short) 5);		//La calificacion fue exitosa 	(1 =< x <=5)
+		
+		pruebaUser1.calificar(pruebaReceta, (short) 0);
+		assertTrue((short)pruebaReceta.getCalificacion()==(short) 0);		//La calificacion fallo 	(1 =< x <=5)
+		
+		pruebaUser1.calificar(pruebaReceta, (short) 8);
+		assertTrue((short)pruebaReceta.getCalificacion()==(short) 8);		//La calificacion fallo 	(1 =< x <=5)
 		//Agregar pruebas "banana" le mando cualquier cosa y falla...
 		//Agregar pruebas por falla
 		pruebaReceta = null;							//Elimino la instancia receta
 		pruebaUser1 = null;								//Elimino la instancia usuario		
 	}
-	*/
-	/*
+	
+	
 	@Test
 	public void testRecetario() 
 	{
@@ -73,7 +83,7 @@ public class TestReceta {
 		pruebaReceta = null;							//Elimino la instancia receta
 		recetario = null;								//Elimino la instancia usuario	
 	}
-	*/
+	
 	
 	/*
 	@Test
@@ -163,16 +173,6 @@ public class TestReceta {
 	
 	
 	
-//	@Test
-//	public void crearUnCondimento(){
-//		Condimento unCondimento = new Condimento();
-//		unCondimento.crearCondimento("mostaza", "aderezo");
-//		unCondimento.guardarCondimento(unCondimento);
-//	}
-	
-	
-	
-	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: CreR.01
 	 * 
@@ -231,6 +231,8 @@ public class TestReceta {
 		
 		/*
 		// ---------------------------------
+		//Esto de aca abajo era una prueba de hardcode para Martin.....
+
 
 		// Creo Ingrediente
 		Ingrediente unIngrediente2 = new Ingrediente();
