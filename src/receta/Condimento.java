@@ -1,5 +1,6 @@
 package receta;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Condimento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "IDCONDIMENTO")
+	@Column(name = "ID_CONDIMENTO")
 	public int getIdCondimento() {
 		return idCondimento;
 	}
@@ -30,6 +31,8 @@ public class Condimento {
 
 	public String nombre;
 	public String tipo;
+	
+	private Set<Receta> recetas = new HashSet<Receta>(0);	//para el many-to-many
 
 	// ++++++++++++++++++ INICIO OPERACIONES DE AGREGAR
 	// CONDIMENTO++++++++++++++++++++++++++++++++++++++++++++//
@@ -55,10 +58,10 @@ public class Condimento {
 
 	public void guardarCondimento(Condimento unCondimento) {
 
-		Condimento nuevoCondimento = new Condimento();
-
-		nuevoCondimento.setNombre(unCondimento.getNombre());
-		nuevoCondimento.setTipo(unCondimento.getTipo());
+		//Condimento nuevoCondimento = new Condimento();
+//
+	//	nuevoCondimento.setNombre(unCondimento.getNombre());
+		//nuevoCondimento.setTipo(unCondimento.getTipo());
 
 		// Configuration con = new Configuration();
 		// con.configure("hibernate.cfg.xml");
@@ -68,7 +71,7 @@ public class Condimento {
 		Session session = HibernateConf.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		session.save(nuevoCondimento);
+		session.save(unCondimento);
 
 		session.getTransaction().commit();
 		// Transaction TR = session.beginTransaction();
@@ -103,5 +106,14 @@ public class Condimento {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaCondimentos")
+	public Set<Receta> getRecetas() {
+		return recetas;
+	}
+
+	public void setRecetas(Set<Receta> recetas) {
+		this.recetas = recetas;
 	}
 }

@@ -182,24 +182,27 @@ public class TestReceta {
 	 *   El metodo setea atributos dentro del mismo objeto que contiene dentro de dicho metodo
 	 *   Luego se llama a guardar usuario que persiste el objeto Usuario.
 	 */
-	/*
+	
 	@Test
 	public void testcrearUnaReceta() {
-		
-		Session session = HibernateConf.getSessionFactory().openSession();
-
-		session.beginTransaction();
+		//Con esto probamos la receta y los metodos del many to many & Many to One...!!
 		
 		// Creo Ingrediente
 		Ingrediente unIngrediente = new Ingrediente();
-		unIngrediente.crearIngrediente("papa", 10, 56);
-		// unIngrediente.guardarIngrediente(unIngrediente);
+		unIngrediente = unIngrediente.crearIngrediente("unChori", (int) 80, (int)10);
+		unIngrediente.guardarIngrediente(unIngrediente);
+		
+		
+		// Creo Ingrediente PPAL
+		Ingrediente ingredientePPAL = new Ingrediente();
+		ingredientePPAL = ingredientePPAL.crearIngrediente("pasto", (int) 22, (int)33);
+		ingredientePPAL.guardarIngrediente(ingredientePPAL);
 
 		// Creo Condimento
 
 		Condimento unCondimento = new Condimento();
-		unCondimento.crearCondimento("mostaza", "aderezo");
-		// unCondimento.guardarCondimento(unCondimento);
+		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
+		unCondimento.guardarCondimento(unCondimento);
 
 		// Creo Receta
 
@@ -209,20 +212,24 @@ public class TestReceta {
 
 		// Agrego Condimentos
 
-		//unaReceta.setListaIngredientes(unaReceta.crearListaIngrediente());
-		unaReceta.agregarunIngrediente(unIngrediente);
-		unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
+		//unaReceta.setIngredientes(unaReceta.crearListaIngrediente());
+		unaReceta.agregarUnIngrediente(unIngrediente);
+
+		//unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
 		unaReceta.agregarCondimento(unCondimento);
 
-		// unaReceta.setIngredientePrincipal(ingredientePrincipal);
+		unaReceta.setIngredientePrincipal(ingredientePPAL);
 		unaReceta.setCalificacion(calificacion);
 		unaReceta.setSectorPiramideAlimenticia(sectorP);
-		unaReceta.setIngredientePrincipal(unIngrediente);
 		unaReceta.setCalorias(500);
 		unaReceta.setPreparacion("cortas la papa le pones manteca y wuala");
 		unaReceta.setNombreReceta("La_PAPA_Milanesa");
 		unaReceta.setDificultadReceta(5);
 
+		
+		unaReceta.guardarReceta(unaReceta);
+		
+		/*
 		// ---------------------------------
 
 		// Creo Ingrediente
@@ -300,21 +307,12 @@ public class TestReceta {
 		listaRecetas.add(unaReceta3);
 		
 		
-		
-		session.save(unaReceta);
-	    
-		session.getTransaction().commit();
-		
-		session.close();
-		HibernateConf.shutdown();
 		//unaReceta.crear_receta(unIngrediente, calificacion, 4, "RecetaLoca", "hola", "como salga", "guachita", "4", sectorP);
 		
-	
-		//System.out.println(unCondimento.getNombre());
-		
+		*/
 	}
 
-	*/
+
 	
 	
 	@Test
@@ -323,6 +321,7 @@ public class TestReceta {
 		Condimento unCondimento = new Condimento();
 		unCondimento = unCondimento.crearCondimento("mostaza", "aderezo");
 		unCondimento.guardarCondimento(unCondimento);
+		//System.out.println(unCondimento.getIdCondimento());
 	}
 	
 	

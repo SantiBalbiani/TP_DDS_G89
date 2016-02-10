@@ -19,8 +19,8 @@
 	
 
 <!-- Related to mapping START -->
-<!--     	<mapping class="receta.Receta" /> -->
-<!--     	<mapping class="receta.Ingrediente" /> -->
+    <mapping class="receta.Receta" />
+    <mapping class="receta.Ingrediente" />
 	<mapping class="usuario.Usuario" /> 
 	<mapping class="receta.Condimento"/>
 	

@@ -14,7 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -25,21 +28,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-
-
+import hibernate.HibernateConf;
 import receta.Condimento;
 import receta.Ingrediente;
+import usuario.Usuario;
 
 
-//@Entity
-//@Table(name="RECETA")
+@Entity
+@Table(name="RECETA")
 public class Receta {
 
 	private int idReceta;
 	private String nombreReceta;
 	private String preparacion;
 	
-	private Set<Ingrediente> ingredientes = new HashSet<Ingrediente>(0);
+	private Set<Ingrediente> ingredientes = new HashSet<Ingrediente>(0);	//Para el many-to-many
 	private short calificacion;		
 	private int calorias;
 	private int dificultadReceta;
@@ -47,12 +50,12 @@ public class Receta {
 	
 	
 	private Ingrediente ingredientePrincipal;
-	private Set<Condimento> listaCondimentos;
+	private Set<Condimento> listaCondimentos = new HashSet<Condimento>(0);
 	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
 	private ArrayList<String> contraindicaciones;
 	
-	
+	@Transient
 	public ArrayList<String> getContraindicaciones() {
 		return contraindicaciones;
 	}
@@ -61,6 +64,22 @@ public class Receta {
 		this.contraindicaciones = contraindicaciones;
 	}
 
+
+
+
+	//@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetas")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "receta_por_ingrediente",  joinColumns = { 					//agregar catalogo de ser necesario...
+			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "ID_INGREDIENTE", 
+					nullable = false, updatable = false) })
+	public Set<Ingrediente> getIngredientes() {
+		return ingredientes;
+	}
+
+	public void setIngredientes(Set<Ingrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
 
 
 
@@ -78,55 +97,50 @@ public class Receta {
 
 	
 	//Atributos relacionados a la BD
-	private String creadoPor;
-	private Set<Receta> listaRecetas;
+//	private String creadoPor;	//REVISAR.. NO TENDRIA QUE SER EL ID??
+//	private Set<Receta> listaRecetas;
 	
 
 	//++++++++++++++++++ GETTERS ++++++++++++++//
-	//@Id
-	//@GeneratedValue(strategy = IDENTITY)
-	//@Column(name="idReceta", unique = true, nullable = false)
-	public int getidReceta(){
-		return this.idReceta;
-	}
 	
-	//@Column(name = "NOMBRERECETA", unique = true, nullable = false, length = 20)
+	
+	@Column(name = "NOMBRE")
 	public String getNombreReceta() {
 		return this.nombreReceta;
 	}
 
-	//@Column(name = "INGREDIENTEPRINCIPAL", unique = true, nullable = false, length = 11)
-	public int getIdIngredientePrincipal(){
-		return ingredientePrincipal.getIdIngrediente();
-	}
+//	@Column(name = "INGREDIENTE_PPAL")
+//	public int getIdIngredientePrincipal(){
+//		return ingredientePrincipal.getIdIngrediente();
+//	}
 
 	
 
 	
-	//@Column(name = "PREPARACION", unique = true, nullable = false, length = 255)
+	@Column(name = "PREPARACION")
 	public String getPreparacion() {
 		return this.preparacion;
 	}
 	
-	//@Column(name = "CALIFICACION", unique = true, nullable = false, length = 6)
+	@Column(name = "CALIFICACION")
 	public short getCalificacion() {
 		return this.calificacion;
 	}
 	
-	//@Column(name = "CALORIAS", unique = true, nullable = false, length = 11)
+	@Column(name = "CALORIAS")
 	public int getCalorias() {
 		return this.calorias;
 	}
 
 
 
-	//@Column(name = "DIFICULTADRECETA", unique = true, nullable = false, length = 255)
+	@Column(name = "DIFICULTAD")
 	public int getDificultadReceta() {
 		return this.dificultadReceta;
 	}
 
 
-	//@Column(name = "SECTORPIRAMIDEALIMENTICIA", unique = true, nullable = false, length = 6)
+	@Column(name = "SECTOR_PIRAMIDE")
 	public short getSectorPiramideAlimenticia() {
 		return sectorPiramideAlimenticia;
 	}
@@ -135,94 +149,98 @@ public class Receta {
 	
 	//++++++++++++++++++ INICIO METODOS DE RECETA++++++++++++++++++++++++++++++++++++++++++++//
 	
-	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias,  String unNombre, String unaPreparacion, String unaCategoria,int unaDificultad, String unaTemporada, short unSectorPiramide ){
-		//llama a metodo new para crear Receta 
-		//invoca los setters de la clase Receta para el alta de
-		//ingredientes, condimentos y otros atributos...
-		//devuelve la receta creada
-		
-		Receta nuevaReceta = new Receta();
+//	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias,  String unNombre, String unaPreparacion, String unaCategoria,int unaDificultad, String unaTemporada, short unSectorPiramide ){
+//		//llama a metodo new para crear Receta 
+//		//invoca los setters de la clase Receta para el alta de
+//		//ingredientes, condimentos y otros atributos...
+//		//devuelve la receta creada
+//		
+//		Receta nuevaReceta = new Receta();
+//
+//		nuevaReceta.setNombreReceta(unNombre);
+//		nuevaReceta.agregarIngredientePrincipal(unIngredientePrincipal);
+//
+//		//nuevaReceta.setListaIngredientes(nuevaReceta.crearListaIngrediente());
+//		nuevaReceta.setListaCondimentos(nuevaReceta.crearListaCondimentos());
+//		
+//		nuevaReceta.agregarPreparacion(unaPreparacion);
+//		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
+//		nuevaReceta.agregarCategoria(unaCategoria);
+//
+//		nuevaReceta.calificar(calificacion);
+//		nuevaReceta.agregarCalorias((int) calorias);
+//		
+//		
+//		nuevaReceta.setDificultadReceta(unaDificultad);
+//		nuevaReceta.setTemporadaPlato(unaTemporada);
+//		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
+//		
+//		/*
+//		Configuration con = new Configuration();
+//		con.configure("hibernate.cfg.xml");
+//		SessionFactory SF = con.buildSessionFactory();
+//		Session session = SF.openSession();
+//		
+//
+//		
+//		Transaction TR = session.beginTransaction();
+//		session.save(nuevaReceta);
+//		System.out.println("Object Saved Succesfully"); // Si imprime es porque persisti� ok el objeto
+//		TR.commit();
+//		session.close();
+//		SF.close();
+//		*/
+//		return nuevaReceta;
+//		
+//			
+//	}
 
-		nuevaReceta.setNombreReceta(unNombre);
-		nuevaReceta.agregarIngredientePrincipal(unIngredientePrincipal);
-
-		//nuevaReceta.setListaIngredientes(nuevaReceta.crearListaIngrediente());
-		nuevaReceta.setListaCondimentos(nuevaReceta.crearListaCondimentos());
-		
-		nuevaReceta.agregarPreparacion(unaPreparacion);
-		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
-		nuevaReceta.agregarCategoria(unaCategoria);
-
-		nuevaReceta.calificar(calificacion);
-		nuevaReceta.agregarCalorias((int) calorias);
-		
-		
-		nuevaReceta.setDificultadReceta(unaDificultad);
-		nuevaReceta.setTemporadaPlato(unaTemporada);
-		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
-		
-		Configuration con = new Configuration();
-		con.configure("hibernate.cfg.xml");
-		SessionFactory SF = con.buildSessionFactory();
-		Session session = SF.openSession();
-		
-
-		
-		Transaction TR = session.beginTransaction();
-		session.save(nuevaReceta);
-		System.out.println("Object Saved Succesfully"); // Si imprime es porque persisti� ok el objeto
-		TR.commit();
-		session.close();
-		SF.close();
-		
-		return nuevaReceta;
-		
-			
-	}
-
-	public void eliminar_receta(){
-		
-		
-		
-
-		this.nombreReceta= null;
-		this.ingredientePrincipal = null;
-
-		this.getListaIngredientes().clear();
-		this.getListaCondimentos().clear();
-		
-		this.getListaProcedimiento().clear();
-		this.listaCategoria= null;
-
-		this.calificacion= 0;
-		this.calorias = 0; 
-		
-		this.dificultadReceta=0;
-		this.getTemporadaPlato().clear();
-		this.sectorPiramideAlimenticia =0 ;  // Discutir piramide
-			
-	}
+//	public void eliminar_receta(){
+//		
+//		
+//		
+//
+//		this.nombreReceta= null;
+//		this.ingredientePrincipal = null;
+//
+//		this.getListaIngredientes().clear();
+//		this.getListaCondimentos().clear();
+//		
+//		this.getListaProcedimiento().clear();
+//		this.listaCategoria= null;
+//
+//		this.calificacion= 0;
+//		this.calorias = 0; 
+//		
+//		this.dificultadReceta=0;
+//		this.getTemporadaPlato().clear();
+//		this.sectorPiramideAlimenticia =0 ;  // Discutir piramide
+//			
+//	}
 	
 	
-
+	//@Transient
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "receta_por_condimento",  joinColumns = { 					//agregar catalogo de ser necesario...
+			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "ID_CONDIMENTO", 
+					nullable = false, updatable = false) })
 	public Set<Condimento> getListaCondimentos() {
 		return listaCondimentos;
 	}
 
 
-	public Set<Ingrediente> getListaIngredientes() {
-		return ingredientes;
-	}
 
-
+	@Transient
 	public Set<String> getListaCategorias() {
 		return listaCategorias;
 	}
 	
+	@Transient
 public  ArrayList<String> getListaProcedimiento() {
 		
 		return listaProcedimiento;
-	}
+}
 
 	//++++++++++++++++++ SETTERS ++++++++++++++//
 
@@ -234,9 +252,10 @@ public  ArrayList<String> getListaProcedimiento() {
 		inverseJoinColumns = { @JoinColumn(name = "IDINGREDIENTE", 
 				nullable = false, updatable = false) })
 				*/
-public Set<Ingrediente> getingredientes() {
-	return this.ingredientes;
-}
+//	@Transient
+//public Set<Ingrediente> getingredientes() {
+//	return this.ingredientes;
+//}
 
 	public void setCalificacion(short calificacion) {
 		this.calificacion = calificacion;
@@ -330,20 +349,28 @@ public Set<Ingrediente> getingredientes() {
 	
 	public void agregarCondimento(Condimento unCondimento) {
 		
-		this.getListaCondimentos().add(unCondimento);
+		this.listaCondimentos.add(unCondimento);
 	}
 	
 	
-	//INGREDIENTES
-	
-	public void setIngredientes(Set<Ingrediente> ingredientes) {
-		this.ingredientes = ingredientes;
-	}
-
-	public void agregarunIngrediente(Ingrediente unIngrediente) {
+//	//INGREDIENTES
+//	
+//	public void setIngredientes(Set<Ingrediente> ingredientes) {
+//		this.ingredientes = ingredientes;
+//	}
+//
+	public void agregarUnIngrediente(Ingrediente unIngrediente) {
 		
 		this.ingredientes.add(unIngrediente);
 	}
+	
+	public Set<Ingrediente> crearListaIngrediente()
+	{
+		Set<Ingrediente> listaIngrediente ; 
+		listaIngrediente = new HashSet<Ingrediente>();
+		return listaIngrediente;
+	}
+	
 	
 	//CATEGORIA
 
@@ -384,7 +411,7 @@ public void agregarlistaProcedimiento(String unaProcedimiento) {
 //CATEGORIA
 //=========
 
-
+@Transient
 public List<String> getListaCategoria() {
 	return listaCategoria;
 }
@@ -401,7 +428,7 @@ public void quitarCategoria(String unaCategoria){
 //DIFICULTAD
 //==========
 
-
+@Transient
 public List<String> getListaDificultad() {
 	return listaDificultad;
 }
@@ -414,7 +441,7 @@ public void setListaDificultad(List<String> listaDificultad) {
 //=================
 
 
-
+@Transient
 	public List<String> getListaTemporadaPlato() {
 		return listaTemporadaPlato;
 	}
@@ -424,13 +451,14 @@ public void setListaDificultad(List<String> listaDificultad) {
 	}
 
 	
-	public void agregarTemporada(String unaTemporada) {
-		
-		this.getTemporadaPlato().add(unaTemporada);
-		
-		
-	}
-
+//	public void agregarTemporada(String unaTemporada) {
+//		
+//		this.getTemporadaPlato().add(unaTemporada);
+//		
+//		
+//	}
+	
+@Transient
 	public ArrayList<String> getTemporadaPlato() {
 		return temporadaPlato;
 	}
@@ -440,27 +468,27 @@ public void setListaDificultad(List<String> listaDificultad) {
 
 //++++++++++++++++++ INICIO METODOS QUITAR DE RECETA ++++++++++++++//
 	
-	public void quitarTemporada(String unaTemporada){
-		
-		this.getTemporadaPlato().remove(unaTemporada);
-	}
-	
-	public void quitarIngredientePrincipal(){
-		
-		this.ingredientePrincipal = null;
-	}
-	
-	public void quitarCondimento(Condimento unCondimento){
-		
-		this.getListaCondimentos().remove(unCondimento);
-	}
-	
-	public void quitarIngrediente(Ingrediente unIngrediente){
-		
-		this.getListaIngredientes().remove(unIngrediente);
-	}
-	
-	
+//	public void quitarTemporada(String unaTemporada){
+//		
+//		this.getTemporadaPlato().remove(unaTemporada);
+//	}
+//	
+//	public void quitarIngredientePrincipal(){
+//		
+//		this.ingredientePrincipal = null;
+//	}
+//	
+//	public void quitarCondimento(Condimento unCondimento){
+//		
+//		this.getListaCondimentos().remove(unCondimento);
+//	}
+//	
+//	public void quitarIngrediente(Ingrediente unIngrediente){
+//		
+//		this.getListaIngredientes().remove(unIngrediente);
+//	}
+//	
+//	
 	public void quitarProcedimiento(String unProcedimiento){
 		
 		this.getListaProcedimiento().remove(unProcedimiento);
@@ -483,12 +511,13 @@ public void setListaDificultad(List<String> listaDificultad) {
 		return this.getIngredientePrincipal().getCalorias();
 	}
 */	
-public int getCaloriasdeTodosLosIngrediente(){
-		
-// hacer un foreach getCalorias de cada ingrediente y acumular. retornar el acumulado final		
-	return 0;
-}
-	
+//@Transient
+//public int getCaloriasdeTodosLosIngrediente(){
+//		
+//// hacer un foreach getCalorias de cada ingrediente y acumular. retornar el acumulado final		
+//	return 0;
+//}
+//	
 
 
 
@@ -509,8 +538,77 @@ public int getCaloriasdeTodosLosIngrediente(){
 	        return false;
 	    }
 	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_RECETA")
+	public int getIdReceta() {
+		return idReceta;
+	}
+
+	public void setIdReceta(int idReceta) {
+		this.idReceta = idReceta;
+	}
+	@Transient
+	public List<String> getListaPreparacion() {
+		return listaPreparacion;
+	}
+
+	public void setListaPreparacion(List<String> listaPreparacion) {
+		this.listaPreparacion = listaPreparacion;
+	}
+//	@Column(name = "CREADO_POR")
+//	public String getCreadoPor() {
+//		return creadoPor;
+//	}
+//
+//	public void setCreadoPor(String creadoPor) {
+//		this.creadoPor = creadoPor;
+//	}
+//	@Transient
+//	public Set<Receta> getListaRecetas() {
+//		return listaRecetas;
+//	}
+//
+//	public void setListaRecetas(Set<Receta> listaRecetas) {
+//		this.listaRecetas = listaRecetas;
+//	}
+//	@Transient
+//	public Set<Ingrediente> getIngredientes() {
+//		return ingredientes;
+//	}
 	
+	//@Transient
+	//@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "ID_INGREDIENTE")
+	//@ManyToOne(fetch = FetchType.LAZY, mappedBy = "stock")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_INGREDIENTE", nullable = false)
+	public Ingrediente getIngredientePrincipal() {
+		return ingredientePrincipal;
+	}
+
+	public void setListaProcedimiento(ArrayList<String> listaProcedimiento) {
+		this.listaProcedimiento = listaProcedimiento;
+	}
+
+	public void setTemporadaPlato(ArrayList<String> temporadaPlato) {
+		this.temporadaPlato = temporadaPlato;
+	}
 	
+	public void guardarReceta(Receta unaReceta) {
+		// TODO: revisar este metodo para que guarde todos los campos....
+
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		session.save(unaReceta);
+		session.getTransaction().commit();
+		System.out.println("Done");
+		session.close();
+		// factory.close();
+
+	}
 
 }
 

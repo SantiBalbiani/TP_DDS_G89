@@ -42,7 +42,8 @@ public class Ingrediente {
 	public String nombre;
 	public int porcion;
 	public int calorias;
-	private Set<Receta> recetas = new HashSet<Receta>(0);
+	private Set<Receta> recetas = new HashSet<Receta>(0);	//para el many-to-many
+	private Set<Receta> recetas2 = new HashSet<Receta>(0);	//para el many-to-ONE
 	
 	//++++++++++++++++++ INICIO OPERACIONES DE AGREGAR INGREDIENTE++++++++++++++++++++++++++++++++++++++++++++//
 	
@@ -55,7 +56,17 @@ public class Ingrediente {
 		return unaListaIngrediente;
 	}
 	
-	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ingredientePrincipal")
+	public Set<Receta> getRecetas2() {
+		return recetas2;
+	}
+
+
+	public void setRecetas2(Set<Receta> recetas2) {
+		this.recetas2 = recetas2;
+	}
+
+
 	public Set<Ingrediente> eliminar(Set<Ingrediente> unaListaIngrediente)
 	{
 	    //se agrega el ingrediente
@@ -63,6 +74,11 @@ public class Ingrediente {
 		return unaListaIngrediente;
 	}
 	
+	public void setRecetas(Set<Receta> recetas) {
+		this.recetas = recetas;
+	}
+
+
 	public Ingrediente crearIngrediente(String unNombre, int porcion, int unasCalorias){
 		Ingrediente nuevoIngrediente = new Ingrediente();
 		nuevoIngrediente.setCalorias(unasCalorias);
@@ -73,7 +89,13 @@ public class Ingrediente {
 	}
 	
 	//@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
-	@Transient
+	//@Transient
+//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinTable(name = "receta_por_ingrediente",  joinColumns = { 					//agregar catalogo de ser necesario...
+//			@JoinColumn(name = "ID_INGREDIENTE", nullable = false, updatable = false) }, 
+//			inverseJoinColumns = { @JoinColumn(name = "ID_RECETA", 
+//					nullable = false, updatable = false) })
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
 	public Set<Receta> getRecetas() {
 		return this.recetas;
 	}
