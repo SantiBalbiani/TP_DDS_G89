@@ -30,7 +30,7 @@
 					<a href="#" class="navbar-brand">Que Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="http://localhost:8080/TP_DDS_G89/welcome.jsp">Inicio</a></li>
-						<li><a href="infoGrupo.jsp">Mis Grupos</a></li>
+						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 					</ul>
 				</div>

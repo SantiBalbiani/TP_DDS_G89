@@ -2,6 +2,9 @@
 
 <!DOCTYPE html>
 <html lang="es">
+<%@page import="usuario.Usuario, receta.Receta" %>
+
+<%	String receta2 = "Arrozz"; %>
 
 <head>
 	<meta charset="UTF-8">
@@ -14,10 +17,8 @@
 </head>
 
 
-
 <body>
-	<header>
-		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-kd">
@@ -46,33 +47,14 @@
 				</div>
 			</div>
 		</nav>
-	<header>
-	
-	<section class="jumbotron jumbotron-kd">
+
+<section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
-			<p>Mis Recetas</p>
+			<p>Mis Grupos</p>
 		</div>
 	</section>
-	
-	
-<div class="panel panel-default" width="10" height="10"> 
-  <div class="panel-heading"> Receta "Nombre de Receta"  
-  	<span class="input-group-btn-align-right" > 
-  		<button class="btn btn-default" type="button">Ver Informacion completa de la receta</button> 
-      </span>
-  </div>
-  
-  
-  
-  
-  
-<!--   <button type="button" class="btn btn-default">Ver Receta Completa</button> -->
-<!--   <a class="btn btn-default" href="verReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Ver Receta Completa" data-placement="right"> -->
-<!-- 			Ver receta completa  <span class="glyphicon glyphicon-plus"></span> -->
-<!--   </a> -->
-<!--  </div> -->
-	
-				
+
+
 </body>
 </html>
