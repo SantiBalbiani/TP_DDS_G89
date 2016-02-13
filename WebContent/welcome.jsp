@@ -42,6 +42,8 @@
 					<a href="#" class="navbar-brand">Que Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="#">Inicio</a></li>
+						<li><a href="infoGrupo.jsp">Mis Grupos</a></li>
+						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
@@ -57,6 +59,8 @@
 				</div>
 			</div>
 		</nav>
+		
+		
 	</header>
 
 	<!-- Jumbotron -->
@@ -149,8 +153,13 @@
 				<br />
 				<br />
 				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="left">
-					Crear Receta  <span class="glyphicon glyphicon-plus"></span>
+					Crear receta  <span class="glyphicon glyphicon-plus"></span>
 				</a>
+				
+				<a class="btn btn-default" href="listadoDeRecetas.jsp" role="button" id="verRecetas" data-toggle="tooltip" title="Ver todas las recetas disponibles" data-placement="right">
+					Ver todas mis recetas  <span class="glyphicon glyphicon-plus"></span>
+				</a>
+				
 			</div>
 		</div>
 <!-- Hacer una seccion para que se puedan ver los grupos a los que pertenece el usuario -->

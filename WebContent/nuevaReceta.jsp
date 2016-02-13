@@ -28,6 +28,8 @@
 					<ul class="nav navbar-nav">
 						<!-- Agregar la session para que quede guardado el usuario -->
 						<li><a href="welcome.jsp">Inicio</a></li>
+						<li><a href="infoGrupo.jsp">Mis Grupos</a></li>
+						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
