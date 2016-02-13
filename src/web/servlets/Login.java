@@ -47,8 +47,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try
-		{	    
+		/*try
+		{*/	    
 		     //UserBean user = new UserBean();
 			nombreUsuario = request.getParameter("usuario");
 			String contrasenia = request.getParameter("contrasenia");
@@ -80,12 +80,13 @@ public class Login extends HttpServlet {
 		    	 
 		} 
 				
-				
+				/*
 		catch (Throwable theException) 	    
 		{
 		     System.out.println(theException); 
 		}
+		*/
 	}
 
-}
+
  
