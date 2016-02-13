@@ -20,6 +20,32 @@
 }
 
 #nuevaReceta {
-	float: left;
-	position: relative;
+	float: right;
+}
+
+#preparacion {
+	min-width: 300px;
+	max-width: 500px;
+	min-height: 135px;
+	max-height: 200px; 
+}
+
+#nombreDeReceta {
+	width: 300px;
+}
+
+#ingrediente {
+	width: 150px;
+}
+
+#calorias {
+	width: 150px;
+}
+
+#condimento {
+	width: 300px;
+}
+
+#dificultad {
+	width: 300px;
 }

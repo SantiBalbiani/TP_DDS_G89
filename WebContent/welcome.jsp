@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
-
+<%@page import="usuario.Usuario, receta.Receta" %>
 <%  String usuario1 = request.getParameter("usuario");
 	String datos [] = request.getParameterValues("datos");
+	Receta receta = new Receta();
+	receta = (Receta) request.getAttribute("receta_ejemplo");
+	Boolean datosRecibidos = false;
 	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
 	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
 %>
@@ -14,9 +18,10 @@
 	<meta charset="UTF-8">
 	<title>Que Comemos Hoy?</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
-
 </head>
 
 <body>
@@ -31,6 +36,9 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a href="#" class="navbar-brand">Que Comemos Hoy?</a>
+                    <ul class="nav navbar-nav">
+						<li><a href="#">Inicio</a></li>
+					</ul>
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
@@ -67,21 +75,43 @@
 			<div class="panel-heading">Recetas tuyas, <%=usuario1%></div>
 			<div class="panel-body">
 				<!-- Buscar las recetas del usuario y poner algunas aca -->
-				<% if(datos[0].equals("0")){ %>
+				<% if(datosRecibidos){ %>
 					<p>Todavía no tienes ninguna receta!</p>
 				<% } else {%>
-					<p>Aca se van a mostrar las recetas</p>
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+<%-- 					<% for(Receta receta : recetas){ %>				 --%>
+						<div class="panel panel-default">
+    						<div class="panel-heading" role="tab" id="headingOne">
+      							<h4 class="panel-title">
+        							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          								${receta_ejemplo.nombreReceta}
+        							</a>
+      							</h4>
+    						</div>
+    						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      						<div class="panel-body">
+      							Preparacion : 
+      								${receta_ejemplo.preparacion}
+      						</div>
+    						</div>
+  						</div>
 				<% } %>
-				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta">Crear Nueva Receta</a>
+				<br />
+				<br />
+				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="left">
+					Crear Receta <span class="glyphicon glyphicon-plus"></span>
+				</a>
 			</div>
 		</div>
 <!-- Hacer una seccion para que se puedan ver los grupos a los que pertenece el usuario -->
 		<div class="panel panel-default" id="grupos">
-			<div class="panel-heading">Grupos a los que pertenece</div>
+			<div class="panel-heading">Grupos a los que perteneces</div>
 			<div class="panel-body">
 				<!-- Buscar los grupos a los que pertenece el usuario -->
 			</div>
 		</div>
+	</div>
 	</div>
 <!-- Hacer una seccion para que se puedan ver las recetas recomendadas (en forma de columna a la derecha) -->
 	<div id="columna2">
@@ -94,34 +124,5 @@
 	</div>
 	</section>
 	<footer></footer>
-	
-	
-<!-- 	Ejemplo para levantar recetas.... -->
-
-<!-- http://stackoverflow.com/questions/10898393/how-to-access-a-request-attribute-set-by-a-servlet-in-jsp -->
-
-<!-- http://stackoverflow.com/tags/el/info -->
-
-<!-- http://stackoverflow.com/questions/20371220/what-is-the-difference-between-response-sendredirect-and-request-getrequestdis -->
-
-<!-- http://stackoverflow.com/questions/20280203/name-was-not-previously-introduced-as-per-jsp-5-3 -->
-
-<!-- http://profesores.elo.utfsm.cl/~agv/elo330/2s03/projects/Tomcat/doc/1.2/syntaxref1216.html#8856 -->
-
-
-<!-- El problema que tenemos ahora es que si yo entro de una al welcome.jsp, sin haber ejecutado previamente el servlet... me muestra datos en blanco. -->
-<!-- Habria que chequear si se puede llamar al objeto desde esta pagina, o organizar mucho mejor el manejo de la session.... Igual por ahora que las muestre asi nomas!! -->
-	<p>El nombre es: ${receta_ejemplo.nombreReceta} </p>
-	<p>Se prepara asi: ${receta_ejemplo.preparacion} </p>
-	<p>Las calorias son: ${receta_ejemplo.calorias} </p>
-	<p>La dificultad: ${receta_ejemplo.dificultadReceta} </p>
-	<p>La calificacion es: ${receta_ejemplo.calificacion} </p>	
-	<p>El sector de la piramide es: ${receta_ejemplo.sectorPiramideAlimenticia} </p>	
-	
-	
-	
-
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
