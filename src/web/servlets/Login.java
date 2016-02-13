@@ -67,6 +67,7 @@ public class Login extends HttpServlet {
 		 		 unaReceta = iterator.next(); // avanzo un objeto en la lista.. (habira que hacer while etc..)
 
 		         session.setAttribute("receta_ejemplo",unaReceta); 
+		         session.setAttribute("recetas", listaRecetas);
 		         //hasta aca termina la prueba de levantar recetas del usuario...
 		         
 		         response.sendRedirect("welcome.jsp?usuario=admin&datos=0");
