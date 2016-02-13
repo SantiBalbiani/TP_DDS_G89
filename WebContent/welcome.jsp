@@ -4,12 +4,16 @@
 <html lang="es">
 
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
-<%@page import="usuario.Usuario, receta.Receta" %>
+<%@page import="usuario.Usuario, receta.Receta, java.util.*" %>
 <%  String usuario1 = request.getParameter("usuario");
 	String datos [] = request.getParameterValues("datos");
 	Receta receta = new Receta();
 	receta = (Receta) request.getAttribute("receta_ejemplo");
+	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas"); 
 	Boolean datosRecibidos = false;
+	if(recetas.isEmpty()){
+		datosRecibidos = true;
+	}
 	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
 	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
 %>
@@ -51,8 +55,6 @@
 						</button>
 					</form>
 				</div>
-
-
 			</div>
 		</nav>
 	</header>
@@ -79,28 +81,75 @@
 					<p>Todavía no tienes ninguna receta!</p>
 				<% } else {%>
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-<%-- 					<% for(Receta receta : recetas){ %>				 --%>
+						<% int i = 0; 
+						String collapse1 = "collapseOne";
+						String heading1 = "headingOne";
+						String collapse2 = "collapseTwo";
+						String heading2 = "headingTwo";
+						String collapse3 = "collapseThree";
+						String heading3 = "headingThree";
+						
+						for(Receta receta1 : recetas) { 
+							i++;
+						%>
 						<div class="panel panel-default">
-    						<div class="panel-heading" role="tab" id="headingOne">
-      							<h4 class="panel-title">
-        							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          								${receta_ejemplo.nombreReceta}
-        							</a>
-      							</h4>
-    						</div>
-    						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      						<div class="panel-body">
-      							Preparacion : 
-      								${receta_ejemplo.preparacion}
-      						</div>
-    						</div>
+						
+<!--     						<div class="panel-heading" role="tab" id="headingOne"> -->
+<!--       							<h4 class="panel-title"> -->
+<!--         							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> -->
+
+          								<% switch(i){
+          								case 1: out.println("<div class=\"panel-heading\" role=\"tab\" id=\"" + heading1 + "\"");
+          										out.println("<h4 class=\"panel-title\"");
+          										out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + collapse1 + "\" aria-expanded=\"true\" aria-controls=\"" + collapse1 +"\">");  
+          										out.println(receta1.getNombreReceta()); 
+          										out.println("</a>");
+          										out.println("</h4>");
+  												out.println("</div>");
+  												out.println("<div id=\""+ collapse1 + "\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=" + heading1 + ">");
+          										break;
+          								case 2: out.println("<div class=\"panel-heading\" role=\"tab\" id=\"" + heading2 + "\"");
+  												out.println("<h4 class=\"panel-title\"");
+          										out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + collapse2 + "\" aria-expanded=\"false\" aria-controls=\"" + collapse2 +"\">");  
+  												out.println(receta1.getNombreReceta()); 
+  												out.println("</a>");
+  												out.println("</h4>");
+  												out.println("</div>");
+  												out.println("<div id=\""+ collapse2 + "\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=" + heading2 + ">");
+          										break;
+          								case 3: out.println("<div class=\"panel-heading\" role=\"tab\" id=\"" + heading3 + "\"");
+												out.println("<h4 class=\"panel-title\"");
+          										out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + collapse3 + "\" aria-expanded=\"false\" aria-controls=\"" + collapse3 +"\">");  
+  												out.println(receta1.getNombreReceta()); 
+  												out.println("</a>");
+  												out.println("</h4>");
+  												out.println("</div>");
+  												out.println("<div id=\""+ collapse3 + "\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=" + heading3 + ">");
+          										break;
+          								default:
+          										out.println("<p>Todavía no tienes ninguna receta!</p>");
+          										break;
+          								}
+          								%>
+          								
+<!--       							</h4> -->
+<!--     						</div> -->
+<!--     						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"> -->
+<!--       						<div class="panel-body"> -->
+      								<%  out.println("<div class=\"panel-body\"> Preparacion :");
+      									out.println(receta1.getPreparacion()); 
+      									out.println("</div>");
+      									out.println("</div>");
+      								%>
+<!--       						</div> -->
+<!--     						</div> -->
   						</div>
+  						<% } %>
 				<% } %>
 				<br />
 				<br />
 				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="left">
-					Crear Receta <span class="glyphicon glyphicon-plus"></span>
+					Crear Receta  <span class="glyphicon glyphicon-plus"></span>
 				</a>
 			</div>
 		</div>
@@ -124,5 +173,7 @@
 	</div>
 	</section>
 	<footer></footer>
+	
+	
 </body>
 </html>
