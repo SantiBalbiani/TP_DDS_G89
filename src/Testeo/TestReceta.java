@@ -12,15 +12,14 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashSet;
 import java.util.Set;
 import org.hibernate.Session;
-import org.hibernate.Session;
+import org.hibernate.Query;
 import org.junit.Test;
 import hibernate.HibernateConf;
 
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.awt.List;
-import java.util.Set;
+
 
 
 public class TestReceta {
@@ -34,7 +33,6 @@ public class TestReceta {
 	 *   El metodo calificar recibe unaReceta y unaCalificacion, valida los datos de entrada
 	 *   y luego califica la receta con la calificacion dada.
 	 */
-	
 	
 	@Test
 	public void testCalificarReceta() 
@@ -170,8 +168,36 @@ public class TestReceta {
 	*/
 	
 	
+	/* 		---- Junit Test Case ----
+	 * 		Codigo de condicion de Test: ConR.01
+	 * 
+	 * 		Testeado por: Santiago Balbiani
+	 * 
+	 * 	 Descripción:
+	 *   Se consulta una receta a la base de datos
+	 *   
+	 */
 	
-	
+	@Test	
+	public void consultarUnaReceta(){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Receta");
+
+		query.setFirstResult(1);
+		
+		java.util.List<?> lista = query.list();
+		
+	Receta nombreReceta = (Receta)lista.get(0);
+		
+		System.out.println(nombreReceta.getNombreReceta()+"acaa");
+
+		
+		
+		
+		
+	}
 	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: CreR.01
