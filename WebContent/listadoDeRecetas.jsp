@@ -3,6 +3,22 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
+<!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
+<%@page import="usuario.Usuario, receta.Receta, java.util.*" %>
+<%  String usuario1 = request.getParameter("usuario");
+	String datos [] = request.getParameterValues("datos");
+	Receta receta = new Receta();
+	receta = (Receta) request.getAttribute("receta_ejemplo");
+	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas"); 
+	Boolean datosRecibidos = false;
+	if(recetas.isEmpty()){
+		datosRecibidos = true;
+	}
+	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
+	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
+%>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Que Comemos Hoy?</title>
@@ -46,7 +62,7 @@
 				</div>
 			</div>
 		</nav>
-	<header>
+</header>
 	
 	<section class="jumbotron jumbotron-kd">
 		<div class="container">
@@ -55,16 +71,17 @@
 		</div>
 	</section>
 	
-	
-<div class="panel panel-default" width="10" height="10"> 
-  <div class="panel-heading"> Receta "Nombre de Receta"  
-  	<span class="input-group-btn-align-right" > 
-  		<button class="btn btn-default" type="button">Ver Informacion completa de la receta</button> 
-      </span>
+
+<div class="panel panel-default"> 
+
+  <div class="panel-heading">         Receta "Nombre de Receta"  
+    <a href="verReceta.jsp" class="btn btn-primary btn-sm pull-right  ">Ver detalles</a>
   </div>
+</div> 
   
-  
-  
+<!--   	<span class="input-group-btn-align-left" >  -->
+<!-- 		<button class="btn btn-default" type="button" href="verReceta.jsp">Ver Informacion completa de la receta</button>  -->
+<!--       </span> -->
   
   
 <!--   <button type="button" class="btn btn-default">Ver Receta Completa</button> -->
