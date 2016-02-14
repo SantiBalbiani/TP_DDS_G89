@@ -4,18 +4,11 @@
 <html lang="es">
 
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
-<%@page import="usuario.Usuario, receta.Receta, java.util.*" %>
-<%  String usuario1 = request.getParameter("usuario");
-	String datos [] = request.getParameterValues("datos");
-	Receta receta = new Receta();
-	receta = (Receta) request.getAttribute("receta_ejemplo");
-	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas"); 
-	Boolean datosRecibidos = false;
-	if(recetas.isEmpty()){
-		datosRecibidos = true;
-	}
-	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
-	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
+<%@page import="usuario.Usuario, usuario.GrupoUsuarios, receta.Receta, java.util.*" %>
+<%  
+	Usuario user = (Usuario) session.getAttribute("usuario");
+	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
+	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 %>
 
 <head>
@@ -48,7 +41,7 @@
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="Buscar" class="navbar-form navbar-right" role="search">
+					<form action="Buscar" method="post" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar" name="nombreReceta">
 						</div>
@@ -78,78 +71,67 @@
 	<div id="columna1">
 		<div class="panel panel-default" id="recetasPropias">
 			<!-- Asi se muestran lo que se recibe del servlet -->
-			<div class="panel-heading">Recetas tuyas, <%=usuario1%></div>
+			<div class="panel-heading">Recetas tuyas, <% out.println(user.getNombreUsuario()); %></div>
 			<div class="panel-body">
 				<!-- Buscar las recetas del usuario y poner algunas aca -->
-				<% if(datosRecibidos){ %>
+				<% if(recetas.isEmpty()){ %>
 					<p>Todavía no tienes ninguna receta!</p>
 				<% } else {%>
-					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-						<% int i = 0; 
-						String collapse1 = "collapseOne";
-						String heading1 = "headingOne";
-						String collapse2 = "collapseTwo";
-						String heading2 = "headingTwo";
-						String collapse3 = "collapseThree";
-						String heading3 = "headingThree";
+					<div class="panel-group" id="accordion" role="tablist"
+						aria-multiselectable="true">
+						<%
+							int i = 0;
 						
-						for(Receta receta1 : recetas) { 
-							i++;
+							for (Receta receta1 : recetas) {
+								i++;
 						%>
 						<div class="panel panel-default">
 						
-<!--     						<div class="panel-heading" role="tab" id="headingOne"> -->
-<!--       							<h4 class="panel-title"> -->
-<!--         							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> -->
+<%
+								switch (i) {
+										case 1:
+											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">");
+										    out.println("<h4 class=\"panel-title\">");
+										    out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">");
+										    out.println(receta1.getNombreReceta());
+										    out.println("</a>");
+											out.println("</h4>");
+											out.println("</div>");
+										    out.println("<div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">");
+											break;
+										case 2:
+											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">");
+											out.println("<h4 class=\"panel-title\">"); 
+											out.println("<a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">");
+											out.println(receta1.getNombreReceta());
+											out.println("</a>");
+											out.println("</h4>");
+											out.println("</div>");
+										    out.println("<div id=\"collapseTwo\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">");
+											break;
+										case 3:
+											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingThree\">");
+										    out.println("<h4 class=\"panel-title\">");
+										    out.println("<a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">");
+										    out.println(receta1.getNombreReceta());
+										    out.println("</a>");
+											out.println("</h4>");
+											out.println("</div>");
+										    out.println("<div id=\"collapseThree\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingThree\">");
+											break;
+										default:
+											out.println("<p>Todavía no tienes ninguna receta!</p>");
+											break;
+										}
 
-          								<% switch(i){
-          								case 1: out.println("<div class=\"panel-heading\" role=\"tab\" id=\"" + heading1 + "\"");
-          										out.println("<h4 class=\"panel-title\"");
-          										out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + collapse1 + "\" aria-expanded=\"true\" aria-controls=\"" + collapse1 +"\">");  
-          										out.println(receta1.getNombreReceta()); 
-          										out.println("</a>");
-          										out.println("</h4>");
-  												out.println("</div>");
-  												out.println("<div id=\""+ collapse1 + "\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=" + heading1 + ">");
-          										break;
-          								case 2: out.println("<div class=\"panel-heading\" role=\"tab\" id=\"" + heading2 + "\"");
-  												out.println("<h4 class=\"panel-title\"");
-          										out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + collapse2 + "\" aria-expanded=\"false\" aria-controls=\"" + collapse2 +"\">");  
-  												out.println(receta1.getNombreReceta()); 
-  												out.println("</a>");
-  												out.println("</h4>");
-  												out.println("</div>");
-  												out.println("<div id=\""+ collapse2 + "\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=" + heading2 + ">");
-          										break;
-          								case 3: out.println("<div class=\"panel-heading\" role=\"tab\" id=\"" + heading3 + "\"");
-												out.println("<h4 class=\"panel-title\"");
-          										out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + collapse3 + "\" aria-expanded=\"false\" aria-controls=\"" + collapse3 +"\">");  
-  												out.println(receta1.getNombreReceta()); 
-  												out.println("</a>");
-  												out.println("</h4>");
-  												out.println("</div>");
-  												out.println("<div id=\""+ collapse3 + "\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=" + heading3 + ">");
-          										break;
-          								default:
-          										out.println("<p>Todavía no tienes ninguna receta!</p>");
-          										break;
-          								}
-          								%>
-          								
-<!--       							</h4> -->
-<!--     						</div> -->
-<!--     						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"> -->
-<!--       						<div class="panel-body"> -->
-      								<%  out.println("<div class=\"panel-body\"> Preparacion :");
-      									out.println(receta1.getPreparacion()); 
-      									out.println("</div>");
-      									out.println("</div>");
-      								%>
-<!--       						</div> -->
-<!--     						</div> -->
-  						</div>
-  						<% } %>
-				<% } %>
+										out.println("<div class=\"panel-body\"> Preparacion :");
+										out.println(receta1.getPreparacion());
+										out.println("</div>");
+										out.println("</div>");
+										out.println("</div>");
+									}
+								}
+							%>
 				<br />
 				<br />
 				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="left">
@@ -157,20 +139,28 @@
 				</a>
 				
 				<a class="btn btn-default" href="listadoDeRecetas.jsp" role="button" id="verRecetas" data-toggle="tooltip" title="Ver todas las recetas disponibles" data-placement="right">
-					Ver todas mis recetas  <span class="glyphicon glyphicon-plus"></span>
+					Ver todas mis recetas  <span class="glyphicon glyphicon-th-list"></span>
 				</a>
 				
 			</div>
 		</div>
+	</div>
 <!-- Hacer una seccion para que se puedan ver los grupos a los que pertenece el usuario -->
 		<div class="panel panel-default" id="grupos">
 			<div class="panel-heading">Grupos a los que perteneces</div>
 			<div class="panel-body">
 				<!-- Buscar los grupos a los que pertenece el usuario -->
+<%-- 				<% for(GrupoUsuarios grupo : grupos) { %> --%>
+				<div class="panel panel-default">
+  					<div class="panel-body">
+    					Grupo 1<span class="glyphicon glyphicon-menu-right" id="flechita"></span>
+  					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	</div>
+	
 <!-- Hacer una seccion para que se puedan ver las recetas recomendadas (en forma de columna a la derecha) -->
 	<div id="columna2">
 		<div class="panel panel-default" id="recomendaciones">
@@ -181,7 +171,9 @@
 		</div>
 	</div>
 	</section>
-	<footer></footer>
+	<footer>
+		<!-- Aca deberia ir un logout o algo por el estilo -->
+	</footer>
 	
 	
 </body>

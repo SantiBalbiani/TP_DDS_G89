@@ -49,3 +49,7 @@
 #dificultad {
 	width: 300px;
 }
+
+#flechita {
+	float: right;
+}

@@ -39,25 +39,22 @@ public class Buscar extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
+
+		HttpSession session = request.getSession(true);
 		
 		nombreReceta = request.getParameter("nombreReceta");
-		
 		Receta recetaBuscada = new Receta();
 		
-		recetaBuscada = recetaBuscada.buscarRecetaPorNombre(nombreReceta);
+		try{
+			recetaBuscada = recetaBuscada.buscarRecetaPorNombre(nombreReceta);
 		
-
-	     // response.setContentType("text/html");
-
-	
-//	      PrintWriter out = response.getWriter();
-//	      out.println("<h1>" + recetaBuscada.getNombreReceta() + "</h1>");
-		if (recetaBuscada.getNombreReceta()== nombreReceta){
-			response.sendRedirect("nuevaReceta.jsp?receta=" + recetaBuscada + "&datos=0");
+			session.setAttribute("recetaEncontrada", recetaBuscada);
+		
+			response.sendRedirect("verReceta.jsp");
+			
+		}catch(Throwable Exception){
+			System.out.println(Exception);
 		}
-		
 		
 	}
 
