@@ -23,6 +23,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -445,7 +446,9 @@ public class Receta {
 			short unSectorPiramide) {
 		// llama a metodo new para crear Receta
 		// invoca los setters de la clase Receta para el alta de
-		// ingredientes, condimentos y otros atributos...
+		// ingredientes, condimentos y otros atributos...`
+
+		
 		// devuelve la receta creada
 
 		Receta nuevaReceta = new Receta();
@@ -501,6 +504,25 @@ public class Receta {
 		this.getTemporadaPlato().clear();
 		this.sectorPiramideAlimenticia = 0; // Discutir piramide
 
+	}
+	
+	
+	public Receta buscarRecetaPorNombre(String unNombre){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+
+		query.setString("nombre", unNombre);
+		
+		java.util.List<?> lista = query.list();
+		
+	Receta recetaBuscada = (Receta)lista.get(0);
+
+
+	return recetaBuscada;
+			
+		
 	}
 
 	public void setTotalCalorias() {

@@ -167,6 +167,38 @@ public class TestReceta {
 	}
 	*/
 	
+	/* 		---- Junit Test Case ----
+	 * 		Codigo de condicion de Test: BusR.01
+	 * 
+	 * 		Testeado por: Santiago Balbiani
+	 * 
+	 * 	 Descripción:
+	 *   Obtiene las primeras 3 recetas
+	 *   
+	 */
+	
+	@Test	
+	public void buscarReceta(){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+
+		query.setString("nombre", "La_PAPA_Milanesa");
+		
+		java.util.List<?> lista = query.list();
+		
+	Receta nombreReceta1 = (Receta)lista.get(0);
+	Receta nombreReceta2 = (Receta)lista.get(0);
+	Receta nombreReceta3 = (Receta)lista.get(0);
+		
+		System.out.println(nombreReceta1.getNombreReceta()+"acaa");
+		System.out.println(nombreReceta2.getNombreReceta()+"acaa");
+		System.out.println(nombreReceta3.getNombreReceta()+"acaa");
+				
+		
+	}
+	
 	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: ConR.01
@@ -174,28 +206,27 @@ public class TestReceta {
 	 * 		Testeado por: Santiago Balbiani
 	 * 
 	 * 	 Descripción:
-	 *   Se consulta una receta a la base de datos
+	 *   Obtiene las primeras 3 recetas
 	 *   
 	 */
 	
 	@Test	
-	public void consultarUnaReceta(){
+	public void consultarLas3PrimerasRecetas(){
 		
 		Session session = HibernateConf.getSessionFactory().openSession();
 
 		Query query = session.createQuery("FROM Receta");
 
-		query.setFirstResult(1);
+		query.setFirstResult(3);
 		
 		java.util.List<?> lista = query.list();
 		
 	Receta nombreReceta = (Receta)lista.get(0);
 		
 		System.out.println(nombreReceta.getNombreReceta()+"acaa");
-
-		
-		
-		
+		System.out.println(nombreReceta.getNombreReceta()+"acaa");
+		System.out.println(nombreReceta.getNombreReceta()+"acaa");
+				
 		
 	}
 	
@@ -248,13 +279,19 @@ public class TestReceta {
 		unaReceta.setCalificacion(calificacion);
 		unaReceta.setSectorPiramideAlimenticia(sectorP);
 		unaReceta.setCalorias(500);
-		unaReceta.setPreparacion("cortas la papa le pones manteca y wuala");
-		unaReceta.setNombreReceta("La_PAPA_Milanesa");
+		unaReceta.setPreparacion("Se hace como venga");
+		unaReceta.setNombreReceta("tarta");
 		unaReceta.setDificultadReceta(5);
 
 		
 		unaReceta.guardarReceta(unaReceta);
 		
+		/*
+		Receta unaReceta2 = new Receta();
+		unaReceta2 = unaReceta2.crear_receta(ingredientePPAL, (short)1, 2, "tarta", "googlealo", "ComidaLight", 2, "verano", (short)2);
+		
+		unaReceta2.guardarReceta(unaReceta2);                                              
+		*/
 		/*
 		// ---------------------------------
 		//Esto de aca abajo era una prueba de hardcode para Martin.....

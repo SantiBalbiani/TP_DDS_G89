@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -594,6 +595,8 @@ public class Usuario {
 	}
 
 
+
+	
 	public double obtenerPesoIdeal() {
 
 		double altura = this.getAltura();
