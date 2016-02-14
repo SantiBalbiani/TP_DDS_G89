@@ -73,10 +73,9 @@
 	
 
 <div class="panel panel-default"> 
-
-  <div class="panel-heading">         Receta "Nombre de Receta"  
-    <a href="verReceta.jsp" class="btn btn-primary btn-sm pull-right  ">Ver detalles</a>
-  </div>
+	  <a href="verReceta.jsp" class="btn btn-primary btn-sm2 pull-left">Ver detalles</a>   
+  <div class="panel-heading"> Receta "Nombre de Receta"   </div>
+  
 </div> 
   
 <!--   	<span class="input-group-btn-align-left" >  -->
