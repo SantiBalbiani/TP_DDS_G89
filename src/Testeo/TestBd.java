@@ -2,6 +2,7 @@ package Testeo;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.junit.Assert;
 import org.junit.Test;
 
 import hibernate.HibernateConf;
@@ -30,6 +31,18 @@ public class TestBd {
 		System.out.println(nombreReceta2.getNombreReceta()+" Dificultad "+nombreReceta1.getDificultadReceta());
 		System.out.println(nombreReceta3.getNombreReceta()+" Dificultad "+nombreReceta1.getDificultadReceta());
 				
+		
+	}
+	
+	@Test	
+	public void buscarRecetaPorNombre(){
+		
+		Receta unaReceta = new Receta();
+		
+		unaReceta = unaReceta.buscarRecetaPorNombre("tarta");
+		
+		Assert.assertEquals("tarta", unaReceta.getNombreReceta());
+		
 		
 	}
 	

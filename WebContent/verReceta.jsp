@@ -4,7 +4,10 @@
 <html lang="es">
 <%@page import="usuario.Usuario, receta.Receta" %>
 
-<%	String receta2 = "NOMBRE DE RECETA" ; %>
+<%Receta receta = (Receta) session.getAttribute("recetaEncontrada");	
+String receta2 = receta.getNombreReceta() ;
+
+%>
 
 <head>
 	<meta charset="UTF-8">
@@ -55,9 +58,9 @@
 	</section>	
 	
 <div class="panel panel-default" width="14" height="14"> 
-  <div class="panel-heading"> Preparación  </div>
+  <div class="panel-heading">   </div>
    <div class="panel-body"> 
-    <p> ACA VA LA DESCRIPCION <p>
+    <p> PREPARACION: <% out.println(receta.getPreparacion());%> <p>
   </div>
 </div>
  			
