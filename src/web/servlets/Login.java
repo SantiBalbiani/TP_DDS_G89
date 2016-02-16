@@ -52,13 +52,15 @@ public class Login extends HttpServlet {
 			String nombreUsuario = request.getParameter("usuario");
 			String contrasenia = request.getParameter("contrasenia");
 			Usuario user = new Usuario();
-
+			
+			user = user.buscarUsuarioPorNombre(nombreUsuario);
+			
 	    	//Validar si existe el usuario
 	    	//Buscar las primeras 3 recetas para mostrar
 			//Buscar los grupos a los que pertenece
 			//Buscar las recomendaciones
 			
-			if(nombreUsuario.equals("admin") && contrasenia.equals("admin")){
+			if(nombreUsuario.equals(user.getNombreUsuario()) && contrasenia.equals(user.getPassword())){
 		         HttpSession session = request.getSession(true);	    
 		         session.setAttribute("currentSessionUser", nombreUsuario);
 		         

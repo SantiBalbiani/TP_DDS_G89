@@ -438,7 +438,7 @@ public class Usuario {
 	}
 
 	
-	public Usuario BuscarUsuarioPorNombre(String unNombre){
+	public Usuario buscarUsuarioPorNombre(String unNombre){
 		
 		
 		Session session = HibernateConf.getSessionFactory().openSession();
@@ -453,6 +453,7 @@ public class Usuario {
 		
 		return usuarioBuscado;
 }
+	
 	public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda) {
 
 		return this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
