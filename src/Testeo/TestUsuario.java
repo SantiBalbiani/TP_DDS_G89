@@ -121,6 +121,14 @@ public class TestUsuario {
 		
 		//Le hago update al nombre
 		unUsuario.setNombreUsuario("Antonio");
+		unUsuario.setPassword("se_cambio");
+		unUsuario.setFecha_nacimiento("20160413");
+		unUsuario.setSexo('F');
+		unUsuario.setComplexion("alta");
+		unUsuario.setAltura((double)1.22);
+		unUsuario.setDieta("vegetariano");
+		unUsuario.setRutina("intenso");
+		unUsuario.setComplexion("complicada");
 
 		unUsuario.modificarUsuario(unUsuario);
 	}
