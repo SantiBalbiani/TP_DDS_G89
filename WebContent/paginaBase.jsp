@@ -2,9 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<%@page import="usuario.Usuario, receta.Receta" %>
-
-<%	String receta2 = "Arrozz"; %>
 
 <head>
 	<meta charset="UTF-8">
@@ -32,7 +29,8 @@
 						<li><a href="welcome.jsp">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
-						<li><a href="misDatos.jsp">Mis Datos</a></li>
+						<li><a href="misDatos.jsp">Mis Recetas</a></li>
+						
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
@@ -52,7 +50,7 @@
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
-			<p>Mis Grupos</p>
+			<p>"titulo de pagina"</p>
 		</div>
 	</section>
 
