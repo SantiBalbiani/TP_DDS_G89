@@ -165,20 +165,7 @@
 				     
 				    
 				    <div class="form-group">
-				      <div class="col-lg-9 col-lg-offset-3">
-				        <button type="reset" class="btn btn-default">Cancelar</button>
-				        <button type="submit" class="btn btn-primary">Aceptar</button>
-				      </div>
-				    </div>
-				  </fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
-    
-      
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+				      <div class="col-lg-9 col-md-3 col-lg-offset-3">
 
 <!-- Modificar Datos  -->
 <a class="btn btn-default" href="#" role="button" id="modificarDatos" data-toggle="tooltip" title="Aceptar la modificacion de Datos" data-placement="bottom">
@@ -195,5 +182,19 @@
 <a class="btn btn-default" href="welcome.jsp" role="button" id="cancelarCambios" data-toggle="tooltip" title="Cancelar" data-placement="bottom">
 					Cancelar  <span class=" glyphicon glyphicon-remove"></span>
 				</a>
+			
+				      </div>
+				    </div>
+				  </fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+    
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>
