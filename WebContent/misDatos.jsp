@@ -52,9 +52,24 @@
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
-			<p>Mis Grupos</p>
+			<p>Mis Datos</p>
 		</div>
 	</section>
+
+
+<!-- Modificar Datos  -->
+<a class="btn btn-default" href="#" role="button" id="modificarDatos" data-toggle="tooltip" title="Modificar Datos" data-placement="left">
+					Modificar Datos  <span class=" glyphicon glyphicon-edit"></span>
+				</a>
+<br>
+<br>
+<!-- Eliminar Cuenta -->
+
+	<a class="btn btn-default" href="#" role="button" id="eliminarCuenta" data-toggle="tooltip" title="Eliminar cuenta" data-placement="left">
+					Eliminar Cuenta  <span class=" glyphicon glyphicon-trash"></span>
+				</a>
+
+
 
 
 </body>

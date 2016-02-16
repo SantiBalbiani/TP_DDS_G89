@@ -34,6 +34,7 @@ String receta2 = receta.getNombreReceta() ;
 						<li><a href="welcome.jsp">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
+						<li><a href="misDatos.jsp">Mis Datos</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
