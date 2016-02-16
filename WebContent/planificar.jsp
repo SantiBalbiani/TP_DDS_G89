@@ -50,7 +50,7 @@
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
-			<p>Planificar Comidas Diarias</p>
+			<p>Planificar Comidas Diarias </p>
 		</div>
 	</section>
 
