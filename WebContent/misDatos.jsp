@@ -2,9 +2,13 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<%@page import="usuario.Usuario, receta.Receta" %>
-
-<%	String receta2 = "Arrozz"; %>
+<!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
+<%@page import="usuario.Usuario, usuario.GrupoUsuarios, receta.Receta, java.util.*" %>
+<%  
+	Usuario user = (Usuario) session.getAttribute("usuario");
+	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
+	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
+%>
 
 <head>
 	<meta charset="UTF-8">
@@ -62,13 +66,13 @@
     <div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<form class="form-horizontal" method="POST" action="register">
+				<form class="form-horizontal" method="POST" action="Actualizar_Datos">
 				  <fieldset>
 				    <legend>Ingrese sus Datos</legend>
 				    <div class="form-group">
 				      <label for="inputUsuario" class="col-lg-3 control-label">Usuario</label>
 				      <div class="col-lg-9">
-				        <input type="text" class="form-control" name ="usuario" id="inputUsuario" placeholder="Usuario" required>
+				        <input type="text" class="form-control" name ="usuario" id="inputUsuario" placeholder="Usuario" required value="<%  out.println(user.getNombreUsuario()); %>">
 				      </div>
 				    </div>
 				    <div class="form-group">

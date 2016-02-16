@@ -36,7 +36,10 @@ public class Actualizar_Datos extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
+		//(Integer)req.getSession().getAttribute("variable");
+		//out.println(user.getNombreUsuario());
+		
 //		---------------------------------------------------
 //		Desde aca para abajo el codigo deberia ser el mismo que registrarse!
 		String nombreUsuario = request.getParameter("usuario");
@@ -57,24 +60,26 @@ public class Actualizar_Datos extends HttpServlet {
 		//TODO: hay que agregar preferencias alimenticias
 		//nuevoUsuario.setPreferencias_alimenticias("algo");
 
-		Usuario nuevoUsuario = new Usuario();
-				
+//		Usuario nuevoUsuario = new Usuario();
+		
 		//si el sexo es hombre que sea 'M' (Masculino) y 'F' (Femenino)
 		char sexo_char = sexo.charAt(0);
 		sexo_char = ((sexo_char=='M')|| (sexo_char=='F')) ? sexo_char : 'e';
-		nuevoUsuario.setSexo(sexo_char);
 		//el char e es de error...
 		
 		
 		//String text = "192"; // example String.... recordar que es en centimetros
 		double doubleAltura = Double.parseDouble(altura);
-		nuevoUsuario.setAltura(doubleAltura);
 //	---------------------------------------------------
 //		Hasta aca para abajo el codigo deberia ser el mismo que registrarse!
 		
-		//TODO: agregar setparameter nuevoUsuario...
-		nuevoUsuario.altaUsuario(nombreUsuario, sexo_char, fechaNac, complexion, doubleAltura , " ", dieta, rutina, password);
-		nuevoUsuario.guardarUsuario(nuevoUsuario);
+		usuarioActual.setAltura(doubleAltura);
+		usuarioActual.setSexo(sexo_char);
+
+		//TODO: revisar si cambio la contraseña y segun eso la cambia o no..
+
+
+		usuarioActual.modificarUsuario(usuarioActual);
 		
 		response.sendRedirect("welcome.jsp");
 		//response.sendRedirect("login.jsp");
