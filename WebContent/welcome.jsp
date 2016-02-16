@@ -139,7 +139,7 @@
 					Crear receta  <span class="glyphicon glyphicon-plus"></span>
 				</a>
 				
-				<a class="btn btn-default" href="listadoDeRecetas.jsp" role="button" id="verRecetas" data-toggle="tooltip" title="Ver todas las recetas disponibles" data-placement="bottom">
+				<a class="btn btn-default" href="planificar.jsp" role="button" id="verRecetas" data-toggle="tooltip" title="Ver todas las recetas disponibles" data-placement="bottom">
 					Planificar  <span class="glyphicon glyphicon-th-list"></span>
 				</a>
 				
