@@ -1,8 +1,13 @@
 package usuario;
 
+import hibernate.HibernateConf;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import receta.Receta;
 
@@ -101,6 +106,24 @@ public class GrupoUsuarios {
 		}
 
 	
+		public Set<GrupoUsuarios> buscarGrupo(String unNombre){
+			
+			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
+
+				 		
+				 		Session session = HibernateConf.getSessionFactory().openSession();
+				 
+				 		Query query = session.createQuery("FROM Receta e where e.nombreDeGrupo = :nombre");
+				 
+				 		query.setString("nombre", unNombre);
+				 		
+				 		java.util.List<?> lista = query.list();
+				 		
+				 	 gruposEncontrados = (Set<GrupoUsuarios>) lista;
+				 
+				 
+			  return gruposEncontrados;
+		}
 	
 
 }
