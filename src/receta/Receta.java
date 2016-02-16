@@ -470,6 +470,13 @@ public class Receta {
 		nuevaReceta.setTemporadaPlato(unaTemporada);
 		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
 
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		session.save(nuevaReceta);
+		session.getTransaction().commit();
+		session.close();  		
+		
 		/*
 		 * Configuration con = new Configuration();
 		 * con.configure("hibernate.cfg.xml"); SessionFactory SF =
