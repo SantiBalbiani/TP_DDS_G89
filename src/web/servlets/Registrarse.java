@@ -53,41 +53,39 @@ public class Registrarse extends HttpServlet {
 		String altura = request.getParameter("altura");
 		String sexo = request.getParameter("optionSexo");
 		String complexion = request.getParameter("complexion");		
+		String dieta = request.getParameter("dieta");		
+		String rutina = request.getParameter("rutina");	
 		
-		//TODO: falta agregar: String preferencias_alimenticias, Set<Integer> condPreexistentes,String dieta, String rutina, String password
+		//TODO: falta agregar: String preferencias_alimenticias, 
 		//ejemplo de prueba compilar
 		//Set<Integer> condPreexis;
 		//condPreexis = new HashSet<Integer>();
 		//condPreexis.add(1); //generico
 
-
-		//TODO: arreglar alta de usuario
-		//usuario.altaUsuario(nombreUsuario, 'H', "20150313", complexion, 1.70 , " ", condPreexis, " ", " ", password);
-		//usuario.altaUsuario("admin", 'H', "20150313", "media", (double)1.70 , " ", condPreexis, " ", " ", "123");
-		
-		
-		Usuario nuevoUsuario = new Usuario();
-		nuevoUsuario.setNombreUsuario(nombreUsuario);
-		nuevoUsuario.setPassword(password);
-		//TODO: que guarde la password en md5!! (capaz la tendria que mandar desde el cliente asi)
-		//por el momento implica muchos cambios..
-		nuevoUsuario.setFecha_nacimiento(fechaNac);
-		nuevoUsuario.setComplexion(complexion);
-		
 		//TODO: hay que agregar preferencias alimenticias
 		//nuevoUsuario.setPreferencias_alimenticias("algo");
-		//TODO: hay que agregar la dieta
-		//nuevoUsuario.setDieta("ovolactovegetariana");
-		//TODO: hay que agregar la rutina
-		//nuevoUsuario.setRutina("vago");
+
+		
+		Usuario nuevoUsuario = new Usuario();
+		//nuevoUsuario.setNombreUsuario(nombreUsuario);
+		//nuevoUsuario.setPassword(password);
+		//TODO: que guarde la password en md5!! (capaz la tendria que mandar desde el cliente asi)
+		//por el momento implica muchos cambios..
+		//nuevoUsuario.setFecha_nacimiento(fechaNac);
+		//nuevoUsuario.setComplexion(complexion);
+		//nuevoUsuario.setDieta(dieta);
+		//nuevoUsuario.setRutina(rutina);
+		
+
+
 		
 		//se dio de baja el campo edad...
 		//nuevoUsuario.setEdad((int)15);
 		
 		//si el sexo es hombre que sea 'M' (Masculino) y 'F' (Femenino)
-		char c = sexo.charAt(0);
-		c = ((c=='M')|| (c=='F')) ? c : 'e';
-		nuevoUsuario.setSexo(c);
+		char sexo_char = sexo.charAt(0);
+		sexo_char = ((sexo_char=='M')|| (sexo_char=='F')) ? sexo_char : 'e';
+		nuevoUsuario.setSexo(sexo_char);
 		//el char e es de error...
 		
 		
@@ -96,7 +94,9 @@ public class Registrarse extends HttpServlet {
 		nuevoUsuario.setAltura(doubleAltura);
 
 		
-		
+
+		nuevoUsuario.altaUsuario(nombreUsuario, sexo_char, fechaNac, complexion, doubleAltura , " ", dieta, rutina, password);
+				
 		
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 		
