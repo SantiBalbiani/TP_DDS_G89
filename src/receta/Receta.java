@@ -46,6 +46,11 @@ public class Receta {
 	private Set<Ingrediente> ingredientes = new HashSet<Ingrediente>(0); // Para
 																			// el
 																			// many-to-many
+	
+	
+	private Set<Integer> indiceDeIngredientes; 
+	private Set<Integer> indiceDeCondimentos;
+	
 	private short calificacion;
 	private int calorias;
 	private int dificultadReceta;
@@ -74,8 +79,26 @@ public class Receta {
 																// necesario...
 			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "ID_INGREDIENTE", nullable = false, updatable = false) })
+	
+	
 	public Set<Ingrediente> getIngredientes() {
 		return ingredientes;
+	}
+	@Column(name = "INDEX_INGREDIENTES")
+	public Set<Integer> getIndiceDeIngredientes() {
+		return indiceDeIngredientes;
+	}
+
+	public void setIndiceDeIngredientes(Set<Integer> indiceDeIngredientes) {
+		this.indiceDeIngredientes = indiceDeIngredientes;
+	}
+	@Column(name = "INDEX_CONDIMENTOS")
+	public Set<Integer> getIndiceDeCondimentos() {
+		return indiceDeCondimentos;
+	}
+
+	public void setIndiceDeCondimentos(Set<Integer> indiceDeCondimentos) {
+		this.indiceDeCondimentos = indiceDeCondimentos;
 	}
 
 	public void setIngredientes(Set<Ingrediente> ingredientes) {
@@ -219,6 +242,16 @@ public class Receta {
 
 	// ++++++++++++++++++ SETTERS ++++++++++++++//
 
+	
+	public void agregarIndexIngredientes(Set<Integer> IndexIngredientes){
+		this.setIndiceDeIngredientes(IndexIngredientes);
+		
+	}
+	
+	
+	
+	
+	
 	public void setCalificacion(short calificacion) {
 		this.calificacion = calificacion;
 	}
@@ -295,7 +328,16 @@ public class Receta {
 		this.sectorPiramideAlimenticia = sectorPiramideAlimenticia;
 	}
 
+	
+	
 	// CONDIMENTOS
+	
+	public void agregarIndexCondimentos(Set<Integer> IndexCondimentos){
+		this.setIndiceDeCondimentos(IndexCondimentos);
+		
+	}
+
+	
 	public void setListaCondimentos(Set<Condimento> listaCondimentos) {
 		this.listaCondimentos = listaCondimentos;
 	}
@@ -446,7 +488,7 @@ public class Receta {
 	// ++++++++++++++++++ INICIO METODOS DE
 	// RECETA++++++++++++++++++++++++++++++++++++++++++++//
 
-	public Receta crear_receta(Ingrediente unIngredientePrincipal, Set<Ingrediente> ingredientes, Set<Condimento> condimentos,
+	public Receta crear_receta(Ingrediente unIngredientePrincipal, Set<Integer> indexIngredientes, Set<Integer> indexCondimentos,
 			short calificacion, int calorias, String unNombre, String unaPreparacion, String unaCategoria,
 			int unaDificultad, String unaTemporada, short unSectorPiramide) {
 		// llama a metodo new para crear Receta
@@ -463,8 +505,8 @@ public class Receta {
 
 		
 		
-		nuevaReceta.agregarIngredientes(ingredientes);
-		nuevaReceta.setListaCondimentos(condimentos);
+		nuevaReceta.agregarIndexIngredientes(indexIngredientes);
+		nuevaReceta.agregarIndexCondimentos(indexCondimentos);
 
 		nuevaReceta.agregarPreparacion(unaPreparacion);
 		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
