@@ -273,7 +273,8 @@ public class TestReceta {
 		//unCondimento.guardarCondimento(unCondimento);
 		session.save(unCondimento);
 		session.getTransaction().commit();
-		session.close();                	
+		session.close();                	   
+		
 		// Creo Receta
 
 		Receta unaReceta = new Receta();
