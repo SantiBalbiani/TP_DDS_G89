@@ -157,6 +157,29 @@ public class Recetario
 		this.listaRecetas = listaRecetas;
 	}
 	
+
+	
+	public void usuarioSeleccionaReceta(Usuario unUsuario, Receta unaReceta) {
+		
+		this.agregarReceta(unaReceta);
+		//TODO:
+		//AGREGAR EN LA BASE LA RECETA SELECCIONADA
+		
+		
+		
+	}
+	
+	public void usuarioPlanificaReceta(Usuario unUsuario, Receta unaReceta, String fechaPlanif, String categoria) {
+		
+		this.agregarReceta(unaReceta);
+		//TODO:
+		//HACE LO MISMO QUE usuarioSeleccionaReceta() y ademas marca Fecha de Planifacion y Categoria (almuerzo, cena, etc) 
+		
+		
+		
+	}
+		
+	
 	
 	
 	/// control string
