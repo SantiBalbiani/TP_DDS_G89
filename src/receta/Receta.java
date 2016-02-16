@@ -84,7 +84,9 @@ public class Receta {
 	public Set<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
-	@Column(name = "INDEX_INGREDIENTES")
+	//@Column(name = "INDEX_INGREDIENTES")
+	//TODO: mapear esto a la BD
+	@Transient
 	public Set<Integer> getIndiceDeIngredientes() {
 		return indiceDeIngredientes;
 	}
@@ -92,7 +94,9 @@ public class Receta {
 	public void setIndiceDeIngredientes(Set<Integer> indiceDeIngredientes) {
 		this.indiceDeIngredientes = indiceDeIngredientes;
 	}
-	@Column(name = "INDEX_CONDIMENTOS")
+	//@Column(name = "INDEX_CONDIMENTOS")
+	//TODO: mapear esto a la BD
+	@Transient
 	public Set<Integer> getIndiceDeCondimentos() {
 		return indiceDeCondimentos;
 	}

@@ -36,7 +36,7 @@ public class TestUsuario {
 			
 			Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
 			
-			query.setString("nombreUsuario", "Santi");
+			query.setString("nombreUsuario", "Jack");
 			
 			java.util.List<?> lista = query.list();
 			
@@ -102,6 +102,28 @@ public class TestUsuario {
 		//De "2014-02-09" a "2016-02-10"... la funcion devuelve 1
 	}
 	
+	@Test
+	public void modificarUsuario ()
+	{
+		//session.getTransaction().begin();
+		Usuario unUsuario = new Usuario();
+		unUsuario.setNombreUsuario("Emiliano");
+		unUsuario.setPassword("1234");
+		unUsuario.setSexo('M');
+		unUsuario.setFecha_nacimiento("20150313");
+		unUsuario.setComplexion("mediana");
+		unUsuario.setAltura((double)1.70);
+		unUsuario.setPreferencias_alimenticias("algo");
+		unUsuario.setDieta("ovolactovegetariana");
+		unUsuario.setRutina("vago");
+		
+		unUsuario.guardarUsuario(unUsuario);
+		
+		//Le hago update al nombre
+		unUsuario.setNombreUsuario("Antonio");
+
+		unUsuario.modificarUsuario(unUsuario);
+	}
 
 
 }

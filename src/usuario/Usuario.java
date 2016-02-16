@@ -467,6 +467,27 @@ public class Usuario {
 		
 }
 	
+	public void modificarUsuario (Usuario unUsuario)
+	{
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.getTransaction().begin();
+		Query query = session.createSQLQuery("update Usuario set NOMBRE = :nuevoNombre " + " where ID_USER = :idUsuario");
+
+		
+//		UPDATE `usuario` SET `ID_USER`=[value-1],`ALTURA`=[value-2],`COMPLEXION`=[value-3],`DIETA`=[value-4],`F_NAC`=[value-5],`NOMBRE`=[value-6],`PASSWORD`=[value-7],`PREF_ALIM`=[value-8],`RUTINA`=[value-9],`SEXO`=[value-10] WHERE `ID_USER`= 1
+		
+		query.setParameter("nuevoNombre", unUsuario.getNombreUsuario());
+		query.setParameter("idUsuario", unUsuario.getIdUsuario());
+		
+		
+		query.executeUpdate();
+		session.getTransaction().commit();
+		System.out.println("Done");
+		session.close();
+		
+	}
+	
+	
 	public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda) {
 
 		return this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
