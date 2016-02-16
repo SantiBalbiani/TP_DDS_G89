@@ -316,6 +316,11 @@ public class Receta {
 		this.ingredientes.add(unIngrediente);
 	}
 
+	public void agregarIngredientes(Set<Ingrediente> unIngredientes) {
+
+		this.setIngredientes(unIngredientes);
+	}
+	
 	public Set<Ingrediente> crearListaIngrediente() {
 		Set<Ingrediente> listaIngrediente;
 		listaIngrediente = new HashSet<Ingrediente>();
@@ -441,9 +446,9 @@ public class Receta {
 	// ++++++++++++++++++ INICIO METODOS DE
 	// RECETA++++++++++++++++++++++++++++++++++++++++++++//
 
-	public Receta crear_receta(Ingrediente unIngredientePrincipal, short calificacion, int calorias, String unNombre,
-			String unaPreparacion, String unaCategoria, int unaDificultad, String unaTemporada,
-			short unSectorPiramide) {
+	public Receta crear_receta(Ingrediente unIngredientePrincipal, Set<Ingrediente> ingredientes, Set<Condimento> condimentos,
+			short calificacion, int calorias, String unNombre, String unaPreparacion, String unaCategoria,
+			int unaDificultad, String unaTemporada, short unSectorPiramide) {
 		// llama a metodo new para crear Receta
 		// invoca los setters de la clase Receta para el alta de
 		// ingredientes, condimentos y otros atributos...`
@@ -456,8 +461,10 @@ public class Receta {
 		nuevaReceta.setNombreReceta(unNombre);
 		nuevaReceta.agregarIngredientePrincipal(unIngredientePrincipal);
 
-		// nuevaReceta.setListaIngredientes(nuevaReceta.crearListaIngrediente());
-		nuevaReceta.setListaCondimentos(nuevaReceta.crearListaCondimentos());
+		
+		
+		nuevaReceta.agregarIngredientes(ingredientes);
+		nuevaReceta.setListaCondimentos(condimentos);
 
 		nuevaReceta.agregarPreparacion(unaPreparacion);
 		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
@@ -470,6 +477,13 @@ public class Receta {
 		nuevaReceta.setTemporadaPlato(unaTemporada);
 		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
 
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		session.save(nuevaReceta);
+		session.getTransaction().commit();
+		session.close();  		
+		
 		/*
 		 * Configuration con = new Configuration();
 		 * con.configure("hibernate.cfg.xml"); SessionFactory SF =

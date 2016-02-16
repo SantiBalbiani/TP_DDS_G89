@@ -444,15 +444,27 @@ public class Usuario {
 		
 		Session session = HibernateConf.getSessionFactory().openSession();
 		
+		Usuario usuarioBuscado;
+		
 		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
 		
 		query.setString("nombreUsuario", unNombre);
+	try{
 		
 		java.util.List<?> lista = query.list();
 		
-		Usuario usuarioBuscado = (Usuario)lista.get(0);
-		
+		usuarioBuscado = (Usuario)lista.get(0);
 		return usuarioBuscado;
+	}catch(Throwable theException) 	    
+	
+	{
+	    Usuario usuarioNoEncontrado = new Usuario();
+	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constrase�a inexistentes");
+	    usuarioNoEncontrado.setIdUsuario(9999);
+	    return usuarioNoEncontrado;
+	}
+		
+		
 }
 	
 	public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda) {
@@ -680,5 +692,44 @@ public class Usuario {
 		// Regresa la edad en base a la fecha de nacimiento
 		return (int) anio;
 	}
+	
+	
+	//el usuario selecciona la receta solo 
+	public void seleccionarReceta(Receta unaReceta){
+		
+		this.getRecetario().usuarioSeleccionaReceta(this, unaReceta);
+	}
+	
+	public void planificarReceta(Usuario unUsuario, Receta unaReceta, String fechaPlanif, String categoria){
+		
+		this.getRecetario().usuarioPlanificaReceta(unUsuario, unaReceta, fechaPlanif, categoria);
+	}
+	
+	
+	
+	//TODO:
+	/*
+	Para una Rutina-Ejercicio-Físico particular de usuario, las calorías máximas a
+	consumir en una receta, por ejemplo para una rutina LEVE.
+	*/
+	
+	
+	
+	
+	Set<Receta> recetasDisponiblesSegunDieta(){
+		
+		Set<Receta>  recetasPorDieta = new HashSet<Receta>();
+		String dieta =  this.getDieta();
+		
+
+		/*TODO: Select para: 
+		Para un Dieta determinada mostrar las recetas disponibles, por ejemplo para un
+		Vegano.
+		*/
+		
+		return recetasPorDieta;
+	}
+	
+	
 
 }

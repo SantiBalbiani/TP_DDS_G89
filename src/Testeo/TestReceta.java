@@ -172,7 +172,7 @@ public class TestReceta {
 	 * 
 	 * 		Testeado por: Santiago Balbiani
 	 * 
-	 * 	 Descripción:
+	 * 	 Descripciï¿½n:
 	 *   Obtiene las primeras 3 recetas
 	 *   
 	 */
@@ -184,7 +184,7 @@ public class TestReceta {
 
 		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
 
-		query.setString("nombre", "La_PAPA_Milanesa");
+		query.setString("nombre", "tarta");
 		
 		java.util.List<?> lista = query.list();
 		
@@ -205,11 +205,11 @@ public class TestReceta {
 	 * 
 	 * 		Testeado por: Santiago Balbiani
 	 * 
-	 * 	 Descripción:
+	 * 	 Descripciï¿½n:
 	 *   Obtiene las primeras 3 recetas
 	 *   
 	 */
-	
+	/*
 	@Test	
 	public void consultarLas3PrimerasRecetas(){
 		
@@ -221,21 +221,23 @@ public class TestReceta {
 		
 		java.util.List<?> lista = query.list();
 		
-	Receta nombreReceta = (Receta)lista.get(0);
+		
+		
+		Receta nombreReceta = (Receta)lista.get(0);
 		
 		System.out.println(nombreReceta.getNombreReceta()+"acaa");
 		System.out.println(nombreReceta.getNombreReceta()+"acaa");
 		System.out.println(nombreReceta.getNombreReceta()+"acaa");
 				
 		
-	}
+	} */
 	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: CreR.01
 	 * 
 	 * 		Testeado por: Santiago Balbiani
 	 * 
-	 * 	 Descripción:
+	 * 	 Descripciï¿½n:
 	 *   El metodo setea atributos dentro del mismo objeto que contiene dentro de dicho metodo
 	 *   Luego se llama a guardar usuario que persiste el objeto Usuario.
 	 */
@@ -247,20 +249,34 @@ public class TestReceta {
 		// Creo Ingrediente
 		Ingrediente unIngrediente = new Ingrediente();
 		unIngrediente = unIngrediente.crearIngrediente("unChori", (int) 80, (int)10);
-		unIngrediente.guardarIngrediente(unIngrediente);
+		//unIngrediente.guardarIngrediente(unIngrediente);
+		 
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		session.save(unIngrediente);
+ 
+		
+		
+		
 		
 		
 		// Creo Ingrediente PPAL
 		Ingrediente ingredientePPAL = new Ingrediente();
 		ingredientePPAL = ingredientePPAL.crearIngrediente("pasto", (int) 22, (int)33);
 		ingredientePPAL.guardarIngrediente(ingredientePPAL);
-
+		
+		session.save(ingredientePPAL);
+		
 		// Creo Condimento
 
 		Condimento unCondimento = new Condimento();
 		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
-		unCondimento.guardarCondimento(unCondimento);
-
+		//unCondimento.guardarCondimento(unCondimento);
+		session.save(unCondimento);
+		session.getTransaction().commit();
+		session.close();                	   
+		
 		// Creo Receta
 
 		Receta unaReceta = new Receta();
