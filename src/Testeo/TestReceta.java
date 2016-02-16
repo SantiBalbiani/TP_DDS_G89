@@ -184,7 +184,7 @@ public class TestReceta {
 
 		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
 
-		query.setString("nombre", "La_PAPA_Milanesa");
+		query.setString("nombre", "tarta");
 		
 		java.util.List<?> lista = query.list();
 		
@@ -209,7 +209,7 @@ public class TestReceta {
 	 *   Obtiene las primeras 3 recetas
 	 *   
 	 */
-	
+	/*
 	@Test	
 	public void consultarLas3PrimerasRecetas(){
 		
@@ -221,14 +221,16 @@ public class TestReceta {
 		
 		java.util.List<?> lista = query.list();
 		
-	Receta nombreReceta = (Receta)lista.get(0);
+		
+		
+		Receta nombreReceta = (Receta)lista.get(0);
 		
 		System.out.println(nombreReceta.getNombreReceta()+"acaa");
 		System.out.println(nombreReceta.getNombreReceta()+"acaa");
 		System.out.println(nombreReceta.getNombreReceta()+"acaa");
 				
 		
-	}
+	} */
 	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: CreR.01

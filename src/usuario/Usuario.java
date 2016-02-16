@@ -444,15 +444,26 @@ public class Usuario {
 		
 		Session session = HibernateConf.getSessionFactory().openSession();
 		
+		Usuario usuarioBuscado;
+		
 		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
 		
 		query.setString("nombreUsuario", unNombre);
+	try{
 		
 		java.util.List<?> lista = query.list();
 		
-		Usuario usuarioBuscado = (Usuario)lista.get(0);
-		
+		usuarioBuscado = (Usuario)lista.get(0);
 		return usuarioBuscado;
+	}catch(Throwable theException) 	    
+	
+	{
+	    Usuario usuarioNoEncontrado = new Usuario();
+	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseña inexistentes");
+	    return usuarioNoEncontrado;
+	}
+		
+		
 }
 	
 	public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda) {
