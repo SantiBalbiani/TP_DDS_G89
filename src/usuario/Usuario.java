@@ -471,11 +471,13 @@ public class Usuario {
 	{
 		Session session = HibernateConf.getSessionFactory().openSession();
 		session.getTransaction().begin();
-		Query query = session.createSQLQuery("update Usuario set NOMBRE = :nuevoNombre " + " where ID_USER = :idUsuario");
-
+		
+		String sql_query = "update Usuario set NOMBRE = :nuevoNombre " + " where ID_USER = :idUsuario";
+		//TODO: que el nombre de usuario no se pueda cambiar...
+		
 		
 //		UPDATE `usuario` SET `ID_USER`=[value-1],`ALTURA`=[value-2],`COMPLEXION`=[value-3],`DIETA`=[value-4],`F_NAC`=[value-5],`NOMBRE`=[value-6],`PASSWORD`=[value-7],`PREF_ALIM`=[value-8],`RUTINA`=[value-9],`SEXO`=[value-10] WHERE `ID_USER`= 1
-		
+		Query query = session.createSQLQuery(sql_query);
 		query.setParameter("nuevoNombre", unUsuario.getNombreUsuario());
 		query.setParameter("idUsuario", unUsuario.getIdUsuario());
 		
