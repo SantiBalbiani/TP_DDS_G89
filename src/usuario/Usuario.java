@@ -437,6 +437,22 @@ public class Usuario {
 
 	}
 
+	
+	public Usuario BuscarUsuarioPorNombre(String unNombre){
+		
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+		
+		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
+		
+		query.setString("nombreUsuario", unNombre);
+		
+		java.util.List<?> lista = query.list();
+		
+		Usuario usuarioBuscado = (Usuario)lista.get(0);
+		
+		return usuarioBuscado;
+}
 	public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda) {
 
 		return this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);

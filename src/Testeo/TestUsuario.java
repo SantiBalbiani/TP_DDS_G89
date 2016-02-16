@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
@@ -27,6 +28,23 @@ import receta.Receta;
 public class TestUsuario {
 
 
+	@Test
+	public void testBuscarUsuario(){
+		
+			
+			Session session = HibernateConf.getSessionFactory().openSession();
+			
+			Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
+			
+			query.setString("nombreUsuario", "Santi");
+			
+			java.util.List<?> lista = query.list();
+			
+			Usuario usuarioBuscado = (Usuario)lista.get(0);
+			
+			System.out.println(usuarioBuscado.getPassword());
+	}
+	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: CarP.01
 	 * 
