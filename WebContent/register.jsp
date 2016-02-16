@@ -67,7 +67,7 @@
 				    <div class="form-group">
 				      <label for="select" class="col-lg-3 control-label">Complexion</label>
 				      <div class="col-lg-9">
-				        <select class="form-control" id="select">
+				        <select class="form-control" id="complexion" name="complexion">
 				          <option value="P">Pequeña</option>
 				          <option value="M">Mediana</option>
 				          <option value="G">Grande</option>
@@ -78,7 +78,7 @@
 				    <div class="form-group">
 				      <label for="select" class="col-lg-3 control-label">Dieta</label>
 				      <div class="col-lg-9">
-				        <select class="form-control" id="select">
+				        <select class="form-control" id="dieta" name="dieta">
 				          <option value="N">Normal</option>
 				          <option value="V">Vegetariano</option>
 				          <option value="Veg">Vegano</option>
@@ -91,27 +91,27 @@
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Sedentaria con algo de ejercicio (-30 min.) LEVE
+				            <input type="radio" value="LEVE" name="rutina">Sedentaria con algo de ejercicio (-30 min.) [LEVE]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Sedentaria con nada de ejercicio NADA
+				            <input type="radio" value="NADA" name="rutina">Sedentaria con nada de ejercicio [NADA]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Sedentaria con ejercicio MEDIANO
+				            <input type="radio" value="MEDIANO" name="rutina">Sedentaria con ejercicio [MEDIANO]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Activa con ejercicio adicional (+30 min.) INTENSIVO
+				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina">Activa con ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Activa con ejercicio adicional (+30 min.)
+				            <input type="radio" value="INTENSIVO" name="rutina">Activa con ejercicio adicional (+30 min.) [INTENSIVO]
 				          </label>
 				        </div>
 				      </div>

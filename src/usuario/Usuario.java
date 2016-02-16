@@ -348,11 +348,12 @@ public class Usuario {
 
 // ++++++++++++++++++ FIN GETTERS y	SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-	public void altaUsuario(String nombreUsuario, char sexo, int edad, String fnac, String complexion, double altura,
-			String preferencias_alimenticias, CondicionesPreexistentes condPreexistentes, String dieta, String rutina,
+	public void altaUsuario(String nombreUsuario, char sexo, String fnac, String complexion, double altura,
+			String preferencias_alimenticias, String dieta, String rutina,
 			String password) {
 
-		// TODO: revisar este metodo para que guarde todos los campos....
+		//TODO: agregar condicionesPreexistentes
+		//revisar este metodo para que guarde todos los campos....
 		// this.setIdUsuario(13);
 		this.setNombreUsuario(nombreUsuario);
 		this.setPassword(password);
@@ -437,6 +438,23 @@ public class Usuario {
 
 	}
 
+	
+	public Usuario buscarUsuarioPorNombre(String unNombre){
+		
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+		
+		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
+		
+		query.setString("nombreUsuario", unNombre);
+		
+		java.util.List<?> lista = query.list();
+		
+		Usuario usuarioBuscado = (Usuario)lista.get(0);
+		
+		return usuarioBuscado;
+}
+	
 	public ArrayList<Receta> buscarReceta(Filtro unFiltroDeBusqueda) {
 
 		return this.getCondicionesPreexistentes().buscarReceta(this, unFiltroDeBusqueda);
