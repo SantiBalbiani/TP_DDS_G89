@@ -135,11 +135,15 @@
 							%>
 				<br />
 				<br />
-				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="left">
+				<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
 					Crear receta  <span class="glyphicon glyphicon-plus"></span>
 				</a>
 				
-				<a class="btn btn-default" href="listadoDeRecetas.jsp" role="button" id="verRecetas" data-toggle="tooltip" title="Ver todas las recetas disponibles" data-placement="right">
+				<a class="btn btn-default" href="listadoDeRecetas.jsp" role="button" id="verRecetas" data-toggle="tooltip" title="Ver todas las recetas disponibles" data-placement="bottom">
+					Planificar  <span class="glyphicon glyphicon-th-list"></span>
+				</a>
+				
+				<a class="btn btn-default" href="listadoDeRecetas.jsp" role="button" id="verRecetas" data-toggle="tooltip" title="Ver todas las recetas disponibles" data-placement="bottom">
 					Ver todas mis recetas  <span class="glyphicon glyphicon-th-list"></span>
 				</a>
 				

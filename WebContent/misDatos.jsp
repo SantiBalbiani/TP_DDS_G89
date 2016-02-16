@@ -57,12 +57,14 @@
 	</section>
 
 <!-- Datos de usuario -->
-<div class="container">
+</head>
+<body onload="posicionarCursor();">
+    <div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<form class="form-horizontal" method="POST" action="register">
 				  <fieldset>
-<!-- 				    <legend>Mis datos</legend> -->
+				    <legend>Ingrese sus Datos</legend>
 				    <div class="form-group">
 				      <label for="inputUsuario" class="col-lg-3 control-label">Usuario</label>
 				      <div class="col-lg-9">
@@ -107,7 +109,7 @@
 				    <div class="form-group">
 				      <label for="select" class="col-lg-3 control-label">Complexion</label>
 				      <div class="col-lg-9">
-				        <select class="form-control" id="select">
+				        <select class="form-control" id="complexion" name="complexion">
 				          <option value="P">Pequeña</option>
 				          <option value="M">Mediana</option>
 				          <option value="G">Grande</option>
@@ -118,7 +120,7 @@
 				    <div class="form-group">
 				      <label for="select" class="col-lg-3 control-label">Dieta</label>
 				      <div class="col-lg-9">
-				        <select class="form-control" id="select">
+				        <select class="form-control" id="dieta" name="dieta">
 				          <option value="N">Normal</option>
 				          <option value="V">Vegetariano</option>
 				          <option value="Veg">Vegano</option>
@@ -131,47 +133,63 @@
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Sedentaria con algo de ejercicio (-30 min.) LEVE
+				            <input type="radio" value="LEVE" name="rutina">Sedentaria con algo de ejercicio (-30 min.) [LEVE]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Sedentaria con nada de ejercicio NADA
+				            <input type="radio" value="NADA" name="rutina">Sedentaria con nada de ejercicio [NADA]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Sedentaria con ejercicio MEDIANO
+				            <input type="radio" value="MEDIANO" name="rutina">Sedentaria con ejercicio [MEDIANO]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Activa con ejercicio adicional (+30 min.) INTENSIVO
+				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina">Activa con ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="">Activa con ejercicio adicional (+30 min.)
+				            <input type="radio" value="INTENSIVO" name="rutina">Activa con ejercicio adicional (+30 min.) [INTENSIVO]
 				          </label>
-				        <br>
 				        </div>
 				      </div>
 				    </div>
+				    
+				    
+				    <div class="form-group">
+				      <div class="col-lg-9 col-lg-offset-3">
+				        <button type="reset" class="btn btn-default">Cancelar</button>
+				        <button type="submit" class="btn btn-primary">Aceptar</button>
+				      </div>
+				    </div>
+				  </fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+    
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <!-- Modificar Datos  -->
-<a class="btn btn-default" href="#" role="button" id="modificarDatos" data-toggle="tooltip" title="Modificar Datos" data-placement="left">
-					Modificar Datos  <span class=" glyphicon glyphicon-edit"></span>
+<a class="btn btn-default" href="#" role="button" id="modificarDatos" data-toggle="tooltip" title="Aceptar la modificacion de Datos" data-placement="bottom">
+					Aceptar cambios  <span class=" glyphicon glyphicon-edit"></span>
 				</a>
-<br>
-<br>
+<br><br>
 <!-- Eliminar Cuenta -->
 
-	<a class="btn btn-default" href="#" role="button" id="eliminarCuenta" data-toggle="tooltip" title="Eliminar cuenta" data-placement="left">
+	<a class="btn btn-default" href="#" role="button" id="eliminarCuenta" data-toggle="tooltip" title="Eliminar cuenta" data-placement="bottom">
 					Eliminar Cuenta  <span class=" glyphicon glyphicon-trash"></span>
 				</a>
-
-
-
-
+<br><br>
+<!-- Cancelar edicion -->
+<a class="btn btn-default" href="welcome.jsp" role="button" id="cancelarCambios" data-toggle="tooltip" title="Cancelar" data-placement="bottom">
+					Cancelar  <span class=" glyphicon glyphicon-remove"></span>
+				</a>
 </body>
 </html>
