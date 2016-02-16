@@ -460,6 +460,7 @@ public class Usuario {
 	{
 	    Usuario usuarioNoEncontrado = new Usuario();
 	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseña inexistentes");
+	    usuarioNoEncontrado.setIdUsuario(9999);
 	    return usuarioNoEncontrado;
 	}
 		
