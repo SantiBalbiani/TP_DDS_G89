@@ -501,23 +501,11 @@ public class Usuario {
 		Session session = HibernateConf.getSessionFactory().openSession();
 		session.getTransaction().begin();
 		
-		//String sql_query = "update Usuario set NOMBRE = :nuevoNombre " + " where ID_USER = :idUsuario";
 		String sql_query = "delete from Usuario  where ID_USER = :idUsuario";
 		
-		
-//		UPDATE `usuario` SET `ID_USER`=[value-1],`ALTURA`=[value-2],`COMPLEXION`=[value-3],`DIETA`=[value-4],`F_NAC`=[value-5],`NOMBRE`=[value-6],`PASSWORD`=[value-7],`PREF_ALIM`=[value-8],`RUTINA`=[value-9],`SEXO`=[value-10] WHERE `ID_USER`= 1
 		Query query = session.createSQLQuery(sql_query);
-		//query.setParameter("nuevoNombre", unUsuario.getNombreUsuario());	//el nombre de usuario no se pueda cambiar..
 		query.setParameter("idUsuario", unUsuario.getIdUsuario());
-		//query.setParameter("idUsuario", "20");
-//		query.setParameter("nuevaAltura", unUsuario.getAltura());
-//		query.setParameter("nuevaComplexion", unUsuario.getComplexion());
-//		query.setParameter("nuevaDieta", unUsuario.getDieta());
-//		query.setParameter("nuevaF_NAC", unUsuario.getFecha_nacimiento());
-//		query.setParameter("nuevaPWD", unUsuario.getPassword());
-//		query.setParameter("nuevaRutina", unUsuario.getRutina());
-//		query.setParameter("nuevoSexo", unUsuario.getSexo());
-		
+
 		
 		query.executeUpdate();
 		session.getTransaction().commit();

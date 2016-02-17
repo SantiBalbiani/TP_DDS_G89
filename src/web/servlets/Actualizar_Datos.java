@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import usuario.Usuario;
 
@@ -38,15 +39,18 @@ public class Actualizar_Datos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		String eliminarUsuario = request.getParameter("esEliminarUsuario");
+		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
 		
 		if (eliminarUsuario.equals("si"))
 		{
-			System.out.println("holafdafdasfdsafafdasfdasfsafsa");
+			usuarioActual.eliminarUsuario(usuarioActual);
+			request.getSession().invalidate();
+			response.sendRedirect("index.jsp");
 		}
 		else
 		{
 		
-		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
+
 		//(Integer)req.getSession().getAttribute("variable");
 		//out.println(user.getNombreUsuario());
 		
