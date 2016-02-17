@@ -44,18 +44,32 @@
 <!-- 						</button> -->
 <!-- 					</form> -->
 					
-<!-- 				</div> -->
-<!-- 			</div> -->
+</div>
+</div>
 		</nav>
 
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
-			<h1>Que Comemos Hoy?</h1>
-			<p>Información acerca del TP - Diseño De Sistemas</p>
-			<p>Grupo 89</p>
+			<h1 ALIGN=center>Que Comemos Hoy?</h1>
+			<p ALIGN=center>Trabajo Practico - Diseño De Sistemas</p>
+			<p ALIGN=center>Grupo 89</p>
 		</div>
+		
+			<div class="container">
+   				 	 <div class="btn-group" Align=left> 	
+     				 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+     				 Descargas <span class="caret"></span></button> 	
+     				 <ul class="dropdown-menu" role="menu">
+       				 <li><a href="#">Descargar Consigna del TP</a></li>
+        			<li><a href="#">Descargar Informe del TP</a></li>
+      			</ul>
+    		</div>  
+ 		</div> 
+		
+		
 	</section>
-	
+
+
 	
  <div class="row">
   <div class="col-sm-1"></div>
@@ -83,46 +97,95 @@
   <li><p>César Noé Tabarez</p> </li>
   <li><p>Martin Callegari</p> </li>
 </ul>  
-	
-<!--   <h2>Integrantes del Grupo</h2>     -->
-<!--   <table class="table"> -->
-<!--     <thead> -->
-<!--       <tr> -->
-<!--         <th>Nombre</th> -->
-<!--         <th>Apellido</th> -->
-<!--         <th>Legajo</th> -->
-<!--         <th></th> -->
-<!--       </tr> -->
-<!--     </thead> -->
-<!--     <tbody> -->
-<!--       <tr> -->
-<!--         <td>Santiago</td> -->
-<!--         <td>Balbiani</td> -->
-<!--         <td> </td> -->
-<!--       </tr> -->
-<!--       <tr> -->
-<!--         <td>Emiliano</td> -->
-<!--         <td>Suchecky</td> -->
-<!--         <td> </td> -->
-<!--       </tr> -->
-<!--       <tr> -->
-<!--         <td>Benjamin</td> -->
-<!--         <td>Martinez Di Ielsi</td> -->
-<!--         <td></td> -->
-<!--       </tr> -->
-<!--        <tr> -->
-<!--         <td>César Noé</td> -->
-<!--         <td>Tabarez</td> -->
-<!--         <td></td> -->
-<!--       </tr> -->
-<!--       <tr> -->
-<!--         <td>Martin</td> -->
-<!--         <td>Callegari</td> -->
-<!--         <td></td> -->
-<!--       </tr> -->
-<!--     </tbody> -->
-<!--   </table> -->
-</div>
 
+	<h2>Herramientas de comunicacion: </h2>
+<ul>
+  	<li><p>Skype</p> </li>
+	<li><p>Whatsapp</p> </li>
+	<li><p>Gmail</p> </li>	 
+	<li><p>Google Drive</p> </li>
+</ul> 
+
+<h2>Herramientas de desarrollo:  </h2>
+<table class="table">
+  <tr>
+    <th>Herramienta</th>
+    <th>Descripción</th>		
+  </tr>
+  <tr>
+    <td>Eclipse</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Junit</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Java</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Hibernate</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Bootstrap</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>JSP/Servlet</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>HTML5</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Eclipse</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Tomcat</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>(Mysql + PhPmyAdmin)</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Eclipse</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>Adobe Dreamweaver</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>JavaScript</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+ <tr>
+    <td>CSS</td>
+    <td>....</td>		
+   </tr>
+  <tr>
+
+</table>
+</div>
+ 
+ 
 </body>
 </html>
