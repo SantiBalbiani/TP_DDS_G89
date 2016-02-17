@@ -15,30 +15,105 @@
 	}
 	</script>
 	
+	
+<!-- 	Librerias importantes para que ande bootsStrap Validator -->
+	<!-- jQuery library -->
+<script src="js/jquery-2.2.0.js"></script>
+<script src="js/bootstrapvalidator.min.js"></script>
+<script src="js/bootstrapValidator.js"></script>
+<script src="js/bootstrap.min"></script>
+<link rel="stylesheet" href="css/bootstrapvalidator.min.css">
+ 
+<!-- 	Librerias importantes para que ande bootsStrap Validator -->
+
+<!-- 	Este es el script que valida el form de registrarse!! -->
+	<script>
+$(document).ready(function() {
+    $('#registrarse_form').bootstrapValidator({
+         framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	inputUsuario: {
+                validators: {
+                    notEmpty: {
+                        message: 'El nombre de usuario es un campo obligatorio'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The name must be more than 6 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'The name can only consist of alphabetical, number and underscore'
+                    }
+                }
+            },
+            altura: {
+                validators: {
+                    notEmpty: {
+                        message: 'The price is required'
+                    },
+                    numeric: {
+                        message: 'The price must be a number'
+                    }
+                }
+            },
+//             'size[]': {
+//                 validators: {
+//                     notEmpty: {
+//                         message: 'The size is required'
+//                     }
+//                 }
+//             },
+            optionSexo: {
+                validators: {
+                    notEmpty: {
+                        message: 'El sexo es un campo obligatorio'
+                    }
+                }
+             }
+//         },
+        
+// submitHandler: function(validator, form, submitButton) {
+//     var inputUsuario = [validator.getFieldElements('firstName').val(),
+//                     validator.getFieldElements('lastName').val()].join(' ');
+//     alert('Hello ' + fullName);
+// }
+       
+    }
+    });
+});
+</script>
+	
 </head>
 <body onload="posicionarCursor();">
     <div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<form class="form-horizontal" method="POST" action="register">
+				<form class="form-horizontal" method="POST" action="register" id="registrarse_form">
 				  <fieldset>
 				    <legend>Ingrese sus Datos</legend>
 				    <div class="form-group">
 				      <label for="inputUsuario" class="col-lg-3 control-label">Usuario</label>
 				      <div class="col-lg-9">
-				        <input type="text" class="form-control" name ="usuario" id="inputUsuario" placeholder="Usuario" required>
+				        <input type="text" class="form-control" name ="inputUsuario" id="inputUsuario" placeholder="Usuario" required>
 				      </div>
 				    </div>
 				    <div class="form-group">
 				      <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
 				      <div class="col-lg-9">
-				        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Contraseña" required>
+				        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña" required>
 				      </div>
 				    </div>
 				    <div class="form-group">
 				      <label for="textArea" class="col-lg-3 control-label">Fecha de Nacimiento</label>
 				      <div class="col-lg-9">
-				        <input class="form-control" name="fechaNacimiento" type="date" id="fecha" placeholder="dd/mm/aaaa" required>
+				        <input class="form-control" name="fechaNacimiento" type="date" id="fechaNacimiento" placeholder="dd/mm/aaaa" required>
 				      </div>
 				    </div>
 					<div class="form-group">
@@ -130,8 +205,8 @@
 		</div>
 	</div>
     
-      
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!--       Las comento porque actualice las librerias y me tiraba error... por favor revisar que no rompi nada!! -->
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+<!--     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
 </body>
 </html>

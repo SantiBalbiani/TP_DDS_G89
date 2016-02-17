@@ -48,8 +48,8 @@ public class Registrarse extends HttpServlet {
 
 //		---------------------------------------------------
 //		Desde aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
-		String nombreUsuario = request.getParameter("usuario");
-		String password = request.getParameter("password");
+		String nombreUsuario = request.getParameter("inputUsuario");
+		String password = request.getParameter("inputPassword");
 		String fechaNac = request.getParameter("fechaNacimiento");
 		String altura = request.getParameter("altura");
 		String sexo = request.getParameter("optionSexo");
