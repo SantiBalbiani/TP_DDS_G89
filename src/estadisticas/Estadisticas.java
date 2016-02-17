@@ -22,17 +22,13 @@ public class Estadisticas {
 	
 	
 	/*
+	
 	Podrá obtener sus estadísticas semanales y mensuales de los tipos de comidas y sus calorías
 	(por ejemplo) por comida y consolidado.
-
-
-	Podrá obtener sus estadísticas semanales y mensuales de los tipos de comidas y sus calorías
-	(por ejemplo) por comida y consolidado.
-
 
 	Estadísticas (por semana y por mes):
-	o Según el sexo: tipos de receta más consultadas
-	o Consultas según nivel de dificultad de la receta
+	o Según el sexo: tipos de receta más consultadas 
+	o Consultas según nivel de dificultad de la receta >>> aceptadas
 	o Ranking de recetas más consultadas
 	•
 	Reportes (según indicación del usuario):
@@ -113,7 +109,6 @@ public int  consolidadoMensualCaloriasPorComida(){
 
 
 
-
 public int  semanalCaloriasPorComida(String tipoComida){
 	
 
@@ -130,8 +125,12 @@ public int  mesualCaloriasPorComida(String tipoComida){
 
 
 
+
+
 public int estadisticaCaloriasPorComida(String tipoComida, Date fechaInicio){
 	
+
+
 				//Obtiene las calorias de un tipo de comida por semana o mes
 	
 	   			Date hoy =  obtenerFechaActual();
@@ -167,12 +166,110 @@ public int estadisticaCaloriasPorComida(String tipoComida, Date fechaInicio){
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+public int  semanalConsultadasAceptadasporNivelDificutlad(int dificultad){
+	
+
+	return ConsultadasAceptadasporNivelDificutlad(dificultad, primerDiaDeLaSemana());
+
+}
+
+public int  mesualConsultadasAceptadasporNivelDificutlad(int dificultad){
+	
+
+	return ConsultadasAceptadasporNivelDificutlad(dificultad, primerDiaDelMes());
+
+}
 
 
 
 
+public int ConsultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInicio){
+	
+	
+
+		Date hoy =  obtenerFechaActual();
+		Date comienzoSemanaOmes =  fechaInicio; 
+		Set<Receta> recetas = new  HashSet<Receta>(); //se debe usar??
+		int cantidadRecetas;
+
+		
+		
+		//TODO: HACER QUERY le falta comparar fecha
+		//contra campo-columna FechaAlta  >= comienzoSemanaOmes & FechaAlta <= hoy
+		//para calculo semanal o mensual
+		
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+											//TODO: agregar al QUERY clausura where aceptada = 'SI'
+		Query query = session.createQuery("FROM Receta count(e.dificultadReceta) where e.aceptada = :dificultad");
+
+		query.setInteger("dificultadReceta", dificultad);
+
+		
+		java.util.List<?> lista = query.list();
+		
+		cantidadRecetas = (int)lista.get(0);
+		
+		return  cantidadRecetas;
+
+}
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public Set<Receta> rankingConsultadasAceptadasSemanal(){
+	
+
+	return  rankingConsultadasAceptadaspor(primerDiaDeLaSemana());
+
+}
+
+public Set<Receta>  rankingConsultadasAceptadasMensual(){
+	
+
+	return  rankingConsultadasAceptadaspor( primerDiaDelMes());
+
+}
+
+
+public Set<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
+	
+	
+
+	Date hoy =  obtenerFechaActual();
+	Date comienzoSemanaOmes =  fechaInicio; 
+	Set<Receta> rankingRecetas = new  HashSet<Receta>(); //se debe usar??
+	 
+
+	
+	
+	
+	Session session = HibernateConf.getSessionFactory().openSession();
+	//TODO: HACER QUERY le falta comparar fecha
+	//contra campo-columna FechaAlta  >= comienzoSemanaOmes & FechaAlta <= hoy
+	//para calculo semanal o mensual
+	
+	
+	//TODO: agregar al QUERY clausura where aceptada = 'SI'. 
+
+										
+	 Query query = session.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
+
+ 
+
+	
+	java.util.List<?> lista = query.list();
+	
+	rankingRecetas = (Set<Receta>)lista;
+	
+	return  rankingRecetas;
+
+}
 
 
 
