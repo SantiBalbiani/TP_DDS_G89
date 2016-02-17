@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import receta.Condimento;
+import receta.Ingrediente;
 import receta.Receta;
 import usuario.GrupoUsuarios;
 import usuario.Usuario;
@@ -70,10 +72,20 @@ public class Login extends HttpServlet {
 		         listaRecetas = user.recetas_ejemplo();
 		         
 		         Set<GrupoUsuarios> grupos = new HashSet<GrupoUsuarios>();
- 
+		         
+		         Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
+		         Ingrediente ingrediente = new Ingrediente();
+		         ingredientes = ingrediente.mostrarTodosLosIngredientes();
+		         
+		         Set<Condimento> condimentos = new HashSet<Condimento>();
+		         Condimento condimento = new Condimento();
+		         condimentos = condimento.mostrarTodosLosCondimentos();
+		         
 		         session.setAttribute("recetas", listaRecetas);
 		         session.setAttribute("usuario", user);
 		         session.setAttribute("gruposDelUsuario", grupos);
+		         session.setAttribute("todosLosIngredientes", ingredientes);
+		         session.setAttribute("todosLosCondimentos", condimentos);
 		         
 		         response.sendRedirect("welcome.jsp");
 		     }else{    	 
