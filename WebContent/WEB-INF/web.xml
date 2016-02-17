@@ -9,4 +9,9 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+<!--   Ante un error 500 me envia al index.jsp (p.ej. el usuario no se logueo) -->
+  <error-page>
+    <error-code>500</error-code>
+    <location>/index.jsp</location>
+</error-page>
 </web-app>
