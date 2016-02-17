@@ -17,6 +17,20 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+	
+	<script type="text/javascript">
+	function logout(){
+	    if(confirm("Seguro que quieres cerrar la sesion?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+	     {
+	    	window.location="logout.jsp"; 
+	     }else{
+	       return false;
+	    }
+	   return true;
+	 }
+	</script>
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -34,11 +48,11 @@
 					</button>
 					<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
-						<li><a href="#">Inicio</a></li>
+						<li><a href="welcome.jsp">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="#">Cerrar Sesion</a></li>
+						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
