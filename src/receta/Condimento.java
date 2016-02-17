@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import hibernate.HibernateConf;
+import hibernateDAO.HibernateConf;
 
 @Entity
 @Table(name = "CONDIMENTO")
@@ -57,6 +57,20 @@ public class Condimento {
 		return nuevoCondimento;
 	}
 
+	public java.util.List<Condimento> obtenerTodoslosCondimentos(){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Condimento");
+		
+		java.util.List<Condimento> listaDeTodosLosCondimentos = query.list();
+
+		
+	return listaDeTodosLosCondimentos;
+			
+		
+	}
+	
 	public void guardarCondimento(Condimento unCondimento) {
 
 		//Condimento nuevoCondimento = new Condimento();

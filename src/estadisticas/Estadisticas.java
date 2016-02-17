@@ -1,7 +1,5 @@
 package estadisticas;
 
-import hibernate.HibernateConf;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +10,7 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import hibernateDAO.HibernateConf;
 import receta.Ingrediente;
 import receta.Receta;
 

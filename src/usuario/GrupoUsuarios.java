@@ -1,7 +1,5 @@
 package usuario;
 
-import hibernate.HibernateConf;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import hibernateDAO.HibernateConf;
 import receta.Receta;
 
 public class GrupoUsuarios {

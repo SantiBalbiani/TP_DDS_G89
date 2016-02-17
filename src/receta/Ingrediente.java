@@ -15,7 +15,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import hibernate.HibernateConf;
+import hibernateDAO.HibernateConf;
 import receta.Receta;
 
 
@@ -78,6 +78,38 @@ public class Ingrediente {
 		this.recetas = recetas;
 	}
 
+	
+	public java.util.List<Ingrediente> obtenerTodoslosIngredientes(){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Ingrediente");
+		
+		java.util.List<Ingrediente> listaDeTodosLosIngredientes = query.list();
+
+
+	return listaDeTodosLosIngredientes;
+			
+		
+	}
+	
+	public Ingrediente buscarIngredientePorNombre(String unNombre){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Ingrediente e where e.nombre = :nombre");
+
+		query.setString("nombre", unNombre);
+		
+		java.util.List<?> lista = query.list();
+		
+	Ingrediente ingredienteBuscado = (Ingrediente)lista.get(0);
+
+
+	return ingredienteBuscado;
+			
+		
+	}
 
 	public Ingrediente crearIngrediente(String unNombre, int porcion, int unasCalorias){
 		Ingrediente nuevoIngrediente = new Ingrediente();

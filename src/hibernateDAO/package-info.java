@@ -5,4 +5,4 @@
  * @author Santi
  *
  */
-package hibernate;
+package hibernateDAO;

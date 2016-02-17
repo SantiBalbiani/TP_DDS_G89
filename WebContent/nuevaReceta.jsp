@@ -5,8 +5,9 @@
 
 <%@ page import="java.util.*,receta.Receta, receta.Ingrediente, usuario.Usuario" %>
 <%
- 	Set<Ingrediente> ingredientes = (Set<Ingrediente>) session.getAttribute("todosLosIngredientes");
-	Set<Condimento> condimentos = (Set<Condimento>) session.getAttribute("todosLosCondimentos");
+
+ 	Set<Ingrediente> ingredientes = (Set<Ingrediente>)session.getAttribute("todosLosIngredientes");
+	Set<Condimento> condimentos = (Set<Condimento>)session.getAttribute("todosLosCondimentos");
 %>
 <head>
 	<meta charset="UTF-8">
@@ -69,7 +70,7 @@
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="" class="navbar-form navbar-right" role="search">
+					<form action="CrearReceta" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar">
 						</div>

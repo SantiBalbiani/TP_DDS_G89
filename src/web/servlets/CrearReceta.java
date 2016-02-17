@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.util.Set;
 import receta.Receta;
 import receta.Ingrediente;
 import receta.Condimento;
@@ -43,6 +43,19 @@ public class CrearReceta extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		
+		Ingrediente ingredPpal = new Ingrediente();
+		Condimento unCondimento = new Condimento();
+		
+		java.util.List<Condimento> todosloscondimentos = unCondimento.obtenerTodoslosCondimentos();
+		
+		java.util.List<Ingrediente> todoslosingredientes = ingredPpal.obtenerTodoslosIngredientes();
+		
+		Set<Condimento> todosloscond = (Set<Condimento>)todosloscondimentos; 
+		Set<Ingrediente> todosLosIng = (Set<Ingrediente>)todoslosingredientes;
+		
+		session.setAttribute("todosLosIngredientes",todosLosIng);
+		session.setAttribute("todosLosCondimentos", todosloscondimentos);
+		
 		String nombreReceta = request.getParameter("nombreReceta");
 		String ingPrincipal = request.getParameter("ingPrincipal");
 		String preparacion = request.getParameter("preparacion");
@@ -51,7 +64,25 @@ public class CrearReceta extends HttpServlet {
 		String sector = request.getParameter("sector");
 		
 		Receta receta = new Receta();
-		Ingrediente ingredientePrincipal = new Ingrediente();
+		
+		//Buscar ingrediente principal
+		
+		ingredPpal.buscarIngredientePorNombre(ingPrincipal);
+		
+		Receta nuevaReceta = new Receta();
+		
+		nuevaReceta.agregarIngredientePrincipal(ingredPpal);
+		nuevaReceta.setNombreReceta(nombreReceta);
+		//nuevaReceta.setListaCategoria(listaCategoria);
+		int dificult = Integer.parseInt(dificultad);
+		
+		nuevaReceta.setDificultadReceta(dificult);
+		
+		//nuevaReceta.setSectorPiramideAlimenticia(sectorPiramideAlimenticia);
+		
+		
+		
+		//Ingrediente ingredientePrincipal = new Ingrediente();
 //		ingredientePrincipal.crearIngrediente(ingPrincipal, null, unasCalorias);
 		
 //		receta.crear_receta(ingPrincipal, indexIngredientes, indexCondimentos, calificacion, calorias, unNombre, unaPreparacion, unaCategoria, unaDificultad, unaTemporada, unSectorPiramide)

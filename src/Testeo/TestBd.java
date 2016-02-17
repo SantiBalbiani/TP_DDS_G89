@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.junit.Assert;
 import org.junit.Test;
 
-import hibernate.HibernateConf;
+import hibernateDAO.HibernateConf;
 import receta.Receta;
 
 public class TestBd {
