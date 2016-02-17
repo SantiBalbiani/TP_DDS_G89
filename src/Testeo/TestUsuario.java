@@ -133,5 +133,21 @@ public class TestUsuario {
 		unUsuario.modificarUsuario(unUsuario);
 	}
 
-
+	@Test
+	public void eliminarUsuario ()
+	{
+		//busco un usuario por nombre
+		Session session = HibernateConf.getSessionFactory().openSession();
+		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
+		query.setString("nombreUsuario", "Jack");
+		java.util.List<?> lista = query.list();
+		Usuario usuarioBuscado = (Usuario)lista.get(0);
+		System.out.println("el id de usuario es: "+usuarioBuscado.getIdUsuario());
+		
+		
+		//borro el usuario encontrado
+		usuarioBuscado.eliminarUsuario(usuarioBuscado);
+		System.out.println("se borro ok");
+		
+	}
 }
