@@ -4,6 +4,7 @@ import hibernate.HibernateConf;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Query;
@@ -18,6 +19,20 @@ public class GrupoUsuarios {
 	private String nombreDeGrupo;
 	private  Set<Usuario> grupoDeUsuarios;
 	private Usuario Administrador;
+	
+	List<String> listaPiramide = new ArrayList<String>() {
+		{
+			add("Harinas y Legumbres");
+			add("Lacteos");
+			add("Frutas y Vetetales");
+			add("Pescado, Carne y Huevo");
+			add("Sal, Azucar, Grasas y Dulces");
+			add("Aceites");
+		}
+	};
+	
+	
+	
 	
 	public Usuario getAdministrador() {
 		return Administrador;

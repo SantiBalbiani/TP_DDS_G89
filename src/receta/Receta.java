@@ -586,7 +586,7 @@ public class Receta {
 	}
 
 	public void setTotalCalorias() {
-		// falta sumar calorias del grupo de ingredientes
+		//TODO falta sumar calorias del grupo de ingredientes y grabar en la base??
 
 		this.setCalorias(this.obtenerCaloriasIngredientePrincipal() + obtenerCaloriasdeTodosLosIngrediente());
 

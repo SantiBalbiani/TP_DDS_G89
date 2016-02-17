@@ -1,5 +1,8 @@
 package receta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GrupoAlimenticio {
 	
 		
@@ -7,6 +10,17 @@ public class GrupoAlimenticio {
 		private String descripcionGrupo;
 		private String contraindicaciones;
 
+		List<String> listaPiramide = new ArrayList<String>() {
+			{
+				add("Harinas y Legumbres");
+				add("Lacteos");
+				add("Frutas y Vetetales");
+				add("Pescado, Carne y Huevo");
+				add("Sal, Azucar, Grasas y Dulces");
+				add("Aceites");
+			}
+		};
+		
 		
 		public static GrupoAlimenticio crearGrupo(){
 	
