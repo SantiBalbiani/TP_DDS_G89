@@ -108,7 +108,7 @@ public class Actualizar_Datos extends HttpServlet {
 		//response.sendRedirect("login.jsp");
 	}
 	
-	@SuppressWarnings("null")
+
 	public boolean noEsStringVacio(String unString) {
 		try {
 			

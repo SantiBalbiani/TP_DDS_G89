@@ -611,12 +611,16 @@ public class Receta {
 
 	/// control string
 
-	@SuppressWarnings("null")
 	public boolean noEsStringVacio(String unString) {
 		try {
-			// En caso de que no funcione probar con:
-			// return (unString !=null && !unString.isEmpty()) ;
-			return ((unString != null) || (unString.length() != 0));
+			
+			//saco espacios en blanco
+			for (int x=0; x < unString.length(); x++) {
+				  if (unString.charAt(x) != ' ')
+					  unString += unString.charAt(x);
+				}
+			
+			return ((unString != null) && (unString.length() != 0)) ;
 		} catch (NullPointerException npe) {
 			return false;
 		}
