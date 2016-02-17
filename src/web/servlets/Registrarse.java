@@ -46,6 +46,8 @@ public class Registrarse extends HttpServlet {
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		//TODO: dejo este link para noe y para mi (emi) donde esta como validar desde el fornt los campos de ingreso de datos! :) (http://www.solvetic.com/tutoriales/article/1339-validaciones-con-bootstrap-validator/)
+		
 //		---------------------------------------------------
 //		Desde aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
 		String nombreUsuario = request.getParameter("inputUsuario");
