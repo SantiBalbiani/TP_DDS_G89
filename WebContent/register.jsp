@@ -45,24 +45,52 @@ $(document).ready(function() {
                     stringLength: {
                         min: 6,
                         max: 30,
-                        message: 'The name must be more than 6 and less than 30 characters long'
+                        message: 'El nombre de usuario debe tener entre 6 y 30 caracteres'
                     },
                     regexp: {
                         regexp: /^[a-zA-Z0-9_]+$/,
-                        message: 'The name can only consist of alphabetical, number and underscore'
+                        message: 'El nombre solo puede tener valores alfanumericos y guiones bajos'
                     }
                 }
             },
             altura: {
                 validators: {
                     notEmpty: {
-                        message: 'The price is required'
+                        message: 'La altura es un campo obligatorio'
                     },
-                    numeric: {
-                        message: 'The price must be a number'
-                    }
+	   				 regexp: {
+ 					 regexp: /^[0-9]+$/,
+ 					 message: 'La altura solo puede contener números'
+ 				 },
+//                     numeric: {
+//                         message: 'El valor debe estar expresado en números'
+//                     }
+                 }
+            }, 
+            inputPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'La contraseña es un campo obligatorio'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'La contraseña debe tener entre 6 y 30 caracteres'
+                    },
                 }
             },
+            
+           fechaNacimiento: {
+			 validators: {
+				 notEmpty: {
+					 message: 'La fecha de nacimiento es requerida y no puede ser vacia'
+				 },
+				 numeric: {
+					 format: 'DD-MM-YYYY',
+					 message: 'La fecha de nacimiento no es valida. Formato DDMMYYYY'
+				 }
+			 }
+		 },
 //             'size[]': {
 //                 validators: {
 //                     notEmpty: {

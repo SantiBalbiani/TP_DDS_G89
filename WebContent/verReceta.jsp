@@ -76,6 +76,15 @@ String receta2 = receta.getNombreReceta() ;
   <div class="panel-heading">   </div>
    <div class="panel-body"> 
     <p> PREPARACION: <% out.println(receta.getPreparacion());%> <p>
+    <p> NOMBRERECETA: <% out.println(receta.getNombreReceta());%> <p>
+    
+<!--     caloriasIngPpal -->
+<!--     ingPrincipal -->
+<!--     dificultad -->
+<!--     sector -->
+
+    
+    
   </div>
 </div>
  			
