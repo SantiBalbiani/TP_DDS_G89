@@ -84,13 +84,14 @@
 				    <div class="form-group">
 				      <label for="textArea" class="col-lg-3 control-label">Fecha de Nacimiento</label>
 				      <div class="col-lg-9">
-				        <input class="form-control" name="fechaNacimiento" type="date" id="fecha" placeholder="dd/mm/aaaa" required>
+				        <input class="form-control" name="fechaNacimiento" type="date" id="fecha" placeholder="dd/mm/aaaa" required value=<%  out.println("\""+user.getFecha_nacimiento()+"\""); %>>
+<!-- 				         <input class="form-control" name="fechaNacimiento" type="date" id="fecha" placeholder="dd/mm/aaaa" required value="2012-12-12"> -->
 				      </div>
 				    </div>
 					<div class="form-group">
 				      <label for="inputAltura" class="col-lg-3 control-label">Altura</label>
 				      <div class="col-lg-9">
-				        <input type="text" class="form-control" id="altura" name="altura" placeholder="Altura(cm)" required>
+				        <input type="text" class="form-control" id="altura" name="altura" placeholder="Altura(cm)" required value="<%  out.println(user.getAltura()); %>">
 				      </div>
 				    </div>
 				    <div class="form-group">
@@ -98,13 +99,13 @@
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionSexo"  value="M" checked="">
+				            <input type="radio" name="optionSexo"  value="M" <% if ((user.getSexo()) =='M') { out.println("checked"); } %>>
 				            Masculino
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionSexo" value="F">
+				            <input type="radio" name="optionSexo" value="F" <% if ((user.getSexo()) =='F') { out.println("checked"); } %>>
 				            Femenino
 				          </label>
 				        </div>
@@ -113,10 +114,10 @@
 				    <div class="form-group">
 				      <label for="select" class="col-lg-3 control-label">Complexion</label>
 				      <div class="col-lg-9">
-				        <select class="form-control" id="complexion" name="complexion">
-				          <option value="P">Pequeña</option>
-				          <option value="M">Mediana</option>
-				          <option value="G">Grande</option>
+				        <select class="form-control" id="complexion" name="complexion" >
+				          <option value="P" <% if ((user.getComplexion()).equals("P")) { out.println("selected=\"selected\""); } %> >Pequeña</option>
+				          <option value="M" <% if ((user.getComplexion()).equals("M")) { out.println("selected=\"selected\""); } %> >Mediana</option>
+				          <option value="G" <% if ((user.getComplexion()).equals("G")) { out.println("selected=\"selected\""); } %> >Grande</option>
 				        </select>
 				      </div>
 				    </div>
@@ -168,9 +169,9 @@
 				      <div class="col-lg-9 col-md-3 col-lg-offset-3">
 
 <!-- Modificar Datos  -->
-<a class="btn btn-default" href="#" role="button" id="modificarDatos" data-toggle="tooltip" title="Aceptar la modificacion de Datos" data-placement="bottom">
-					Aceptar cambios  <span class=" glyphicon glyphicon-edit"></span>
-				</a>
+<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar cambios     <span class=" glyphicon glyphicon-edit"></span>
+</button>
+
 <br><br>
 <!-- Eliminar Cuenta -->
 

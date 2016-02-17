@@ -129,7 +129,7 @@ public class TestUsuario {
 		unUsuario.setDieta("vegetariano");
 		unUsuario.setRutina("intenso");
 		unUsuario.setComplexion("complicada");
-
+		
 		unUsuario.modificarUsuario(unUsuario);
 	}
 
