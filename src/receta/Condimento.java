@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -77,7 +78,7 @@ public class Condimento {
 		// Transaction TR = session.beginTransaction();
 		// session.save(unCondimento);
 		System.out.println("Object Saved Succesfully"); // Si imprime es porque
-														// persistió ok el
+														// persistiï¿½ ok el
 														// objeto
 		// TR.commit();
 		session.close();
@@ -116,4 +117,41 @@ public class Condimento {
 	public void setRecetas(Set<Receta> recetas) {
 		this.recetas = recetas;
 	}
+	
+	
+	
+	public Set<Condimento> mostrarTodosLosCondimentos(){
+		
+		
+		Set<Condimento> condimentosCargados = new HashSet<Condimento>(); 
+		
+		
+		//TODO: HACER DEBUG
+		
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM  Condimento");
+
+
+		
+		java.util.List<?> lista = query.list();
+		
+		condimentosCargados = (Set<Condimento>)lista;
+		
+		
+		
+		return condimentosCargados;
+			
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

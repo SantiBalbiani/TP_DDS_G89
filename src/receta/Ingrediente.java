@@ -7,9 +7,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import javax.persistence.*;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -117,7 +117,7 @@ public class Ingrediente {
 		// Transaction TR = session.beginTransaction();
 		// session.save(unCondimento);
 		System.out.println("Object Saved Succesfully"); // Si imprime es porque
-														// persistió ok el
+														// persistiï¿½ ok el
 														// objeto
 		// TR.commit();
 		session.close();
@@ -131,7 +131,7 @@ public class Ingrediente {
 		
 		Transaction TR = session.beginTransaction();
 		session.save(nuevoIngrediente);
-		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistió ok el objeto
+		System.out.println("Object Saved Succesfully"); // Si imprime es porque persistiï¿½ ok el objeto
 		TR.commit();
 		session.close();
 		SF.close();
@@ -159,4 +159,49 @@ public class Ingrediente {
 	public void setCalorias(int calorias) {
 		this.calorias = calorias;
 	}
+
+
+
+public Set<Ingrediente> mostrarTodosLosIngredientes(){
+	
+			
+	Set<Ingrediente> ingredientesCargados = new HashSet<Ingrediente>(); 
+	
+	
+	//TODO: HACER DEBUG
+	
+	
+	Session session = HibernateConf.getSessionFactory().openSession();
+
+	Query query = session.createQuery("FROM  Ingrediente");
+
+
+	
+	java.util.List<?> lista = query.list();
+	
+	ingredientesCargados = (Set<Ingrediente>)lista;
+	
+	
+	
+	return ingredientesCargados;
+	
+		
+	
+	
+	
+}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
 }
