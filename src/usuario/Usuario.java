@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import hibernateDAO.HibernateConf;
+import hibernate.HibernateConf;
 import receta.Condimento;
 import receta.Ingrediente;
 import receta.Receta;

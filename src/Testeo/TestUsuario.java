@@ -10,7 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
-import hibernateDAO.HibernateConf;
+import hibernate.HibernateConf;
 
 import java.util.ArrayList;
 import java.util.HashSet;

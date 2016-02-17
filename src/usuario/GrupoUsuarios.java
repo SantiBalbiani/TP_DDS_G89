@@ -8,7 +8,7 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import hibernateDAO.HibernateConf;
+import hibernate.HibernateConf;
 import receta.Receta;
 
 public class GrupoUsuarios {

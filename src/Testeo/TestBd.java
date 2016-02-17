@@ -5,9 +5,12 @@ import org.hibernate.Session;
 import org.junit.Assert;
 import org.junit.Test;
 
-import hibernateDAO.HibernateConf;
+import hibernate.*;
+import receta.Ingrediente;
 import receta.Receta;
 
+import java.util.List;
+import java.util.Set;
 public class TestBd {
 
 	
@@ -82,4 +85,16 @@ public class TestBd {
 		
 	}
 	
+	
+	@Test
+	public void traerTodosLosIngredientes(){
+		Ingrediente unIngrediente = new Ingrediente();
+		
+		List<Ingrediente> todosLosIng = unIngrediente.obtenerTodoslosIngredientes();
+		
+		for (Ingrediente ing : todosLosIng){
+			System.out.println(ing.getNombre());
+		}
+		
+	}
 }

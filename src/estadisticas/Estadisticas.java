@@ -10,7 +10,7 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import hibernateDAO.HibernateConf;
+import hibernate.HibernateConf;
 import receta.Ingrediente;
 import receta.Receta;
 

@@ -29,7 +29,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import hibernateDAO.HibernateConf;
+import hibernate.HibernateConf;
 import receta.Condimento;
 import receta.Ingrediente;
 import usuario.CondicionesPreexistentes;

@@ -15,7 +15,7 @@ import org.hibernate.Session;
 import org.hibernate.Query;
 import org.junit.Test;
 
-import hibernateDAO.HibernateConf;
+import hibernate.HibernateConf;
 
 import java.util.Iterator;
 import java.awt.List;

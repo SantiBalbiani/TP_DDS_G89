@@ -1,4 +1,4 @@
-package hibernateDAO;
+package hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,7 +14,7 @@ public class HibernateConf {
 		try {
 	        if (sessionFactory == null) {
 	            // loads configuration and mappings
-	            Configuration configuration = new Configuration().configure();
+	            Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
 	            ServiceRegistry serviceRegistry
 	                = new StandardServiceRegistryBuilder()
 	                    .applySettings(configuration.getProperties()).build();
