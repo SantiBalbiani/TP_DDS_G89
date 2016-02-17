@@ -14,8 +14,41 @@
 	<meta charset="UTF-8">
 	<title>Que Comemos Hoy?</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+	function comfirm_decision(){
+	    if(confirm("Seguro que quieres descartar los cambios?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+	     {
+ 	       window.location="welcome.jsp"; 
+	     }else{
+	       return false;
+	    }
+	   return true;
+	 }
+	</script>
+	
+	<script type="text/javascript">
+function submit_eliminar()
+{
+	if(confirm("Seguro que quieres eliminar el usuario?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+    {
+		var theForm = document.forms['form_eliminar'];
+	     if (!theForm) {
+	         theForm = document.form_eliminar;
+	     }
+	     theForm.submit();		
+// 		window.location="welcome.jsp"; 
+    }else{
+      return false;
+   }
+  return true;
+} 
+	
+
+</script> 
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -31,7 +64,7 @@
 						<span class="icon-bar"></span> 
 						<span class="icon-bar"></span>
 					</button>
-					<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
+<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="welcome.jsp">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
@@ -70,16 +103,51 @@
 				<form class="form-horizontal" method="POST" action="Actualizar_Datos">
 				  <fieldset>
 				    <legend>Ingrese sus Datos</legend>
+				    
+				    <input type="hidden" name="esEliminarUsuario" id="esEliminarUsuario" value="no">
+				    
 				    <div class="form-group">
 				      <label for="inputUsuario" class="col-lg-3 control-label">Usuario</label>
 				      <div class="col-lg-9">
-				        <input type="text" class="form-control" name ="usuario" id="inputUsuario" placeholder="Usuario" required value="<%  out.println(user.getNombreUsuario()); %>">
+				        <input type="text" class="form-control" name ="usuario" id="inputUsuario" placeholder="Usuario" required value="<%  out.println(user.getNombreUsuario()); %>" readonly>
 				      </div>
 				    </div>
+				    
 				    <div class="form-group">
 				      <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
 				      <div class="col-lg-9">
-				        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Contraseña" required>
+				        
+
+
+
+										<div class="panel-group" id="accordion" role="tablist"
+											aria-multiselectable="true">
+											<div class="panel panel-default">
+											
+												<div class="panel-heading" role="tab" id="headingOne">
+													<h4 class="panel-title">
+														<a role="button" data-toggle="collapse"
+															data-parent="#accordion" href="#nuevaPass"
+															aria-expanded="true" aria-controls="collapseOne">
+															Cambiar Contraseña..
+															
+															</a>
+													</h4>
+												</div>
+												
+												<div id="nuevaPass" class="panel-collapse collapse"
+													role="tabpanel" aria-labelledby="headingOne">
+													<div class="panel-body">
+													
+													<input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Nueva Contraseña">
+													
+													
+													</div>
+												</div>
+												
+											</div>
+
+
 				      </div>
 				    </div>
 				    <div class="form-group">
@@ -100,13 +168,13 @@
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionSexo"  value="M" <% if ((user.getSexo()) =='M') { out.println("checked"); } %>>
+				            <input type="radio" name="optionSexo"  value="M" <% if ((user.getSexo()) =='M') { out.println("checked"); } %> >
 				            Masculino
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionSexo" value="F" <% if ((user.getSexo()) =='F') { out.println("checked"); } %>>
+				            <input type="radio" name="optionSexo" value="F" <% if ((user.getSexo()) =='F') { out.println("checked"); } %> >
 				            Femenino
 				          </label>
 				        </div>
@@ -127,10 +195,10 @@
 				      <label for="select" class="col-lg-3 control-label">Dieta</label>
 				      <div class="col-lg-9">
 				        <select class="form-control" id="dieta" name="dieta">
-				          <option value="N">Normal</option>
-				          <option value="V">Vegetariano</option>
-				          <option value="Veg">Vegano</option>
-				          <option value="OLV">Ovolacteovegetariano</option>
+				          <option value="N" <% if ((user.getDieta()).equals("N")) { out.println("selected=\"selected\""); } %> >Normal</option>
+				          <option value="V" <% if ((user.getDieta()).equals("V")) { out.println("selected=\"selected\""); } %> >Vegetariano</option>
+				          <option value="VEG" <% if ((user.getDieta()).equals("VEG")) { out.println("selected=\"selected\""); } %> >Vegano</option>
+				          <option value="OLV" <% if ((user.getDieta()).equals("OLV")) { out.println("selected=\"selected\""); } %> >Ovolacteovegetariano</option>
 				        </select>
 				      </div>
 				    </div>
@@ -139,27 +207,27 @@
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="LEVE" name="rutina">Sedentaria con algo de ejercicio (-30 min.) [LEVE]
+				            <input type="radio" value="LEVE" name="rutina" <% if ((user.getRutina()).equals("LEVE")) { out.println("checked"); } %> >Sedentaria con algo de ejercicio (-30 min.) [LEVE]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="NADA" name="rutina">Sedentaria con nada de ejercicio [NADA]
+				            <input type="radio" value="NADA" name="rutina" <% if ((user.getRutina()).equals("NADA")) { out.println("checked"); } %> >Sedentaria con nada de ejercicio [NADA]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="MEDIANO" name="rutina">Sedentaria con ejercicio [MEDIANO]
+				            <input type="radio" value="MEDIANO" name="rutina" <% if ((user.getRutina()).equals("MEDIANO")) { out.println("checked"); } %> >Sedentaria con ejercicio [MEDIANO]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina">Activa con ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
+				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina" <% if ((user.getRutina()).equals("MEDIO_INTENSIVO")) { out.println("checked"); } %> >Activa con ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
 				          </label>
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="INTENSIVO" name="rutina">Activa con ejercicio adicional (+30 min.) [INTENSIVO]
+				            <input type="radio" value="INTENSIVO" name="rutina" <% if ((user.getRutina()).equals("INTENSIVO")) { out.println("checked"); } %> >Activa con ejercicio adicional (+30 min.) [INTENSIVO]
 				          </label>
 				        </div>
 				      </div>
@@ -167,28 +235,39 @@
 				     
 				    
 				    <div class="form-group">
+<!-- 				    <div class="row"> -->
 				      <div class="col-lg-9 col-md-3 col-lg-offset-3">
 
 <!-- Modificar Datos  -->
 <button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar cambios     <span class=" glyphicon glyphicon-edit"></span>
 </button>
 
-<br><br>
-<!-- Eliminar Cuenta -->
-
-	<a class="btn btn-default" href="#" role="button" id="eliminarCuenta" data-toggle="tooltip" title="Eliminar cuenta" data-placement="bottom">
-					Eliminar Cuenta  <span class=" glyphicon glyphicon-trash"></span>
-				</a>
+<!-- </div> -->
+<!-- <div class="col-lg-9 col-md-4 col-lg-offset-4"> -->
 <br><br>
 <!-- Cancelar edicion -->
-<a class="btn btn-default" href="welcome.jsp" role="button" id="cancelarCambios" data-toggle="tooltip" title="Cancelar" data-placement="bottom">
-					Cancelar  <span class=" glyphicon glyphicon-remove"></span>
-				</a>
-			
+<button type="button" id="evento_descartar" name="evento_descartar" class="btn btn-default" onclick="comfirm_decision()" >Descartar cambios     <span class=" glyphicon glyphicon-remove"></span>
+</button>
+
+<!-- </div> -->
+<!-- </div> -->
+<br><br>
 				      </div>
 				    </div>
 				  </fieldset>
 				</form>
+<form id="form_eliminar" name="form_eliminar" method="POST" action="Actualizar_Datos">
+
+<!-- Eliminar Cuenta -->
+<button type="submit" id="evento_eliminar" name="evento_eliminar" class="btn btn-default" onclick="submit_eliminar()">Eliminar Cuenta     <span class=" glyphicon glyphicon-trash"></span>
+</button>
+<input type="hidden" name="esEliminarUsuario" id="esEliminarUsuario" value="si">
+
+</form>
+
+
+			
+
 			</div>
 		</div>
 	</div>

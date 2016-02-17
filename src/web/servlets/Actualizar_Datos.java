@@ -36,14 +36,25 @@ public class Actualizar_Datos extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				
+		String eliminarUsuario = request.getParameter("esEliminarUsuario");
+		
+		if (eliminarUsuario.equals("si"))
+		{
+			System.out.println("holafdafdasfdsafafdasfdasfsafsa");
+		}
+		else
+		{
+		
 		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
 		//(Integer)req.getSession().getAttribute("variable");
 		//out.println(user.getNombreUsuario());
 		
 //		---------------------------------------------------
 //		Desde aca para abajo el codigo deberia ser el mismo que registrarse!
-		String nombreUsuario = request.getParameter("usuario");
-		String password = request.getParameter("password");
+		
+		//String nombreUsuario = request.getParameter("usuario");
+		String password = request.getParameter("inputPassword");
 		String fechaNac = request.getParameter("fechaNacimiento");
 		String altura = request.getParameter("altura");
 		String sexo = request.getParameter("optionSexo");
@@ -75,16 +86,42 @@ public class Actualizar_Datos extends HttpServlet {
 		
 		usuarioActual.setAltura(doubleAltura);
 		usuarioActual.setSexo(sexo_char);
+		usuarioActual.setFecha_nacimiento(fechaNac);
+		usuarioActual.setComplexion(complexion);
+		usuarioActual.setDieta(dieta);
+		usuarioActual.setRutina(rutina);
+		
+		
+		if (this.noEsStringVacio(password))
+		{
+			usuarioActual.setPassword(password);
+		}
 
 		//TODO: revisar si cambio la contraseña y segun eso la cambia o no..
 
 
 		usuarioActual.modificarUsuario(usuarioActual);
 		
+		
 		response.sendRedirect("welcome.jsp");
+		}
 		//response.sendRedirect("login.jsp");
 	}
 	
-	
+	@SuppressWarnings("null")
+	public boolean noEsStringVacio(String unString) {
+		try {
+			
+			//saco espacios en blanco
+			for (int x=0; x < unString.length(); x++) {
+				  if (unString.charAt(x) != ' ')
+					  unString += unString.charAt(x);
+				}
+			
+			return ((unString != null) && (unString.length() != 0)) ;
+		} catch (NullPointerException npe) {
+			return false;
+		}
+	}
 
 }

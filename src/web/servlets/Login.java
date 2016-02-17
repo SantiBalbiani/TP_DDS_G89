@@ -75,17 +75,20 @@ public class Login extends HttpServlet {
 		         
 		         Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
 		         Ingrediente ingrediente = new Ingrediente();
-		         ingredientes = ingrediente.mostrarTodosLosIngredientes();
+		         //ingredientes = ingrediente.mostrarTodosLosIngredientes();
+		         //TODO: revisar esto rompe
 		         
 		         Set<Condimento> condimentos = new HashSet<Condimento>();
 		         Condimento condimento = new Condimento();
-		         condimentos = condimento.mostrarTodosLosCondimentos();
+		         //condimentos = condimento.mostrarTodosLosCondimentos();
+		       //TODO: revisar esto rompe
 		         
 		         session.setAttribute("recetas", listaRecetas);
 		         session.setAttribute("usuario", user);
 		         session.setAttribute("gruposDelUsuario", grupos);
-		         session.setAttribute("todosLosIngredientes", ingredientes);
-		         session.setAttribute("todosLosCondimentos", condimentos);
+		       //TODO: revisar esto rompe
+		         //session.setAttribute("todosLosIngredientes", ingredientes);
+		         //session.setAttribute("todosLosCondimentos", condimentos);
 		         
 		         response.sendRedirect("welcome.jsp");
 		     }else{    	 

@@ -46,7 +46,8 @@ public class Registrarse extends HttpServlet {
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+//		---------------------------------------------------
+//		Desde aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
 		String nombreUsuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		String fechaNac = request.getParameter("fechaNacimiento");
@@ -55,6 +56,7 @@ public class Registrarse extends HttpServlet {
 		String complexion = request.getParameter("complexion");		
 		String dieta = request.getParameter("dieta");		
 		String rutina = request.getParameter("rutina");	
+		
 		
 		//TODO: falta agregar: String preferencias_alimenticias, 
 		//ejemplo de prueba compilar
@@ -85,19 +87,20 @@ public class Registrarse extends HttpServlet {
 		//si el sexo es hombre que sea 'M' (Masculino) y 'F' (Femenino)
 		char sexo_char = sexo.charAt(0);
 		sexo_char = ((sexo_char=='M')|| (sexo_char=='F')) ? sexo_char : 'e';
-		nuevoUsuario.setSexo(sexo_char);
 		//el char e es de error...
 		
 		
 		//String text = "192"; // example String.... recordar que es en centimetros
 		double doubleAltura = Double.parseDouble(altura);
+
+
+//		---------------------------------------------------
+//		Hasta aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
+
+		nuevoUsuario.setSexo(sexo_char);
 		nuevoUsuario.setAltura(doubleAltura);
-
 		
-
 		nuevoUsuario.altaUsuario(nombreUsuario, sexo_char, fechaNac, complexion, doubleAltura , " ", dieta, rutina, password);
-				
-		
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 		
 		//response.sendRedirect("welcome.jsp?usuario=" + nombreUsuario + "&datos=0");

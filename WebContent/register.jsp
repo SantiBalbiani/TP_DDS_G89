@@ -81,7 +81,7 @@
 				        <select class="form-control" id="dieta" name="dieta">
 				          <option value="N">Normal</option>
 				          <option value="V">Vegetariano</option>
-				          <option value="Veg">Vegano</option>
+				          <option value="VEG">Vegano</option>
 				          <option value="OLV">Ovolacteovegetariano</option>
 				        </select>
 				      </div>
