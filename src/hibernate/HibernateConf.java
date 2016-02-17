@@ -2,15 +2,28 @@ package hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
- 
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import org.hibernate.service.ServiceRegistry;
+
 public class HibernateConf {
+	
+	private static SessionFactory sessionFactory;
  
-	private static final SessionFactory sessionFactory = buildSessionFactory();
- 
-	private static SessionFactory buildSessionFactory() {
+	public static SessionFactory getSessionFactory() {
 		try {
-			// Creo SessionFactory tomando el archivo hibernate.cfg.xml
-			return new Configuration().configure().buildSessionFactory();
+	        if (sessionFactory == null) {
+	            // loads configuration and mappings
+	            Configuration configuration = new Configuration().configure();
+	            ServiceRegistry serviceRegistry
+	                = new StandardServiceRegistryBuilder()
+	                    .applySettings(configuration.getProperties()).build();
+
+	            // builds a session factory from the service registry
+	            sessionFactory = configuration.buildSessionFactory(serviceRegistry);           
+	        }
+
+	        return sessionFactory;
 		} catch (Throwable ex) {
 			// Aca habría que loguear el error, porque podría tragarla
 			System.err.println("Initial SessionFactory creation failed." + ex);
@@ -18,9 +31,6 @@ public class HibernateConf {
 		}
 	}
  
-	public static SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
  
 	public static void shutdown() {
 		//Vacìo la cache y cierro las conexiones
