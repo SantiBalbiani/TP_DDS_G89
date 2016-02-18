@@ -43,18 +43,6 @@ public class CrearReceta extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		
-		Ingrediente ingredPpal = new Ingrediente();
-		Condimento unCondimento = new Condimento();
-		
-		java.util.List<Condimento> todosloscondimentos = unCondimento.obtenerTodoslosCondimentos();
-		
-		java.util.List<Ingrediente> todoslosingredientes = ingredPpal.obtenerTodoslosIngredientes();
-		
-		Set<Condimento> todosloscond = (Set<Condimento>)todosloscondimentos; 
-		Set<Ingrediente> todosLosIng = (Set<Ingrediente>)todoslosingredientes;
-		
-		session.setAttribute("todosLosIngredientes",todosLosIng);
-		session.setAttribute("todosLosCondimentos", todosloscondimentos);
 		
 		String nombreReceta = request.getParameter("nombreReceta");
 		String ingPrincipal = request.getParameter("ingPrincipal");
@@ -63,13 +51,13 @@ public class CrearReceta extends HttpServlet {
 		String dificultad = request.getParameter("dificultad");
 		String sector = request.getParameter("sector");
 		
-		Receta receta = new Receta();
+		Receta nuevaReceta = new Receta();
 		
 		//Buscar ingrediente principal
 		
+		Ingrediente ingredPpal = new Ingrediente();
 		ingredPpal.buscarIngredientePorNombre(ingPrincipal);
 		
-		Receta nuevaReceta = new Receta();
 		
 		nuevaReceta.agregarIngredientePrincipal(ingredPpal);
 		nuevaReceta.setNombreReceta(nombreReceta);

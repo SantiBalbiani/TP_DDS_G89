@@ -6,8 +6,12 @@
 <%@ page import="java.util.*,receta.Receta, receta.Ingrediente, usuario.Usuario" %>
 <%
 
- 	Set<Ingrediente> ingredientes = (Set<Ingrediente>)session.getAttribute("todosLosIngredientes");
-	Set<Condimento> condimentos = (Set<Condimento>)session.getAttribute("todosLosCondimentos");
+ 	//List<Ingrediente> ingredientes = (List<Ingrediente>)session.getAttribute("todosLosIngredientes");
+Ingrediente unIng = new Ingrediente();
+List<Ingrediente> ingredientes = unIng.obtenerTodoslosIngredientes();
+	//List<Condimento> condimentos = (List<Condimento>)session.getAttribute("todosLosCondimentos");
+Condimento unCond = new Condimento();	
+List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos(); 
 %>
 <head>
 	<meta charset="UTF-8">

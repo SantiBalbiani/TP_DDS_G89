@@ -8,6 +8,7 @@ import org.junit.Test;
 import hibernate.*;
 import receta.Ingrediente;
 import receta.Receta;
+import receta.Condimento;
 
 import java.util.List;
 import java.util.Set;
@@ -92,9 +93,26 @@ public class TestBd {
 		
 		List<Ingrediente> todosLosIng = unIngrediente.obtenerTodoslosIngredientes();
 		
+		
+		
 		for (Ingrediente ing : todosLosIng){
 			System.out.println(ing.getNombre());
 		}
-		
+		System.out.println(todosLosIng.size());
 	}
+
+	@Test
+	public void traerTodosLosCondimentoss(){
+		Condimento unCondimento = new Condimento();
+		
+		List<Condimento> todosLosCond = unCondimento.obtenerTodoslosCondimentos();
+		
+		
+		
+		for (Condimento cond : todosLosCond){
+			System.out.println(cond.getNombre());
+		}
+		System.out.println(todosLosCond.size());
+	}
+
 }
