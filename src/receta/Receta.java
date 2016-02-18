@@ -269,7 +269,7 @@ public class Receta {
 
 	// NOMBRE
 	public String setNombreReceta(String unNombre) {
-		this.nombreReceta = unNombre;
+		this.nombreReceta = unNombre.toUpperCase();
 		return this.nombreReceta;
 	}
 
@@ -314,7 +314,7 @@ public class Receta {
 	}
 
 	public void setPreparacion(String preparacion) {
-		this.preparacion = preparacion;
+		this.preparacion = preparacion.toUpperCase();
 	}
 
 	// DIFICULTAD
@@ -324,7 +324,7 @@ public class Receta {
 
 	// TEMPORADA
 	public void setTemporadaPlato(String temporadaPlato) {
-		this.getTemporadaPlato().add(temporadaPlato);
+		this.getTemporadaPlato().add(temporadaPlato.toUpperCase());
 	}
 
 	// PIRAMIDE
