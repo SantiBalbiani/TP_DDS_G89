@@ -111,7 +111,7 @@ public class Condimento {
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombre = nombre.toUpperCase();
 	}
 
 	@Column(name = "TIPO")
@@ -120,7 +120,7 @@ public class Condimento {
 	}
 
 	public void setTipo(String tipo) {
-		this.tipo = tipo;
+		this.tipo = tipo.toUpperCase();
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaCondimentos")

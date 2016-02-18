@@ -192,7 +192,7 @@ public class Usuario {
 // ++++++++++++++++++ INICIO GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password.toUpperCase();
 	}
 
 	public void setIdUsuario(int idUsuario) {
@@ -200,7 +200,7 @@ public class Usuario {
 	}
 
 	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+		this.nombreUsuario = nombreUsuario.toUpperCase();
 	}
 /*		--proximamente borrar
 	public void setEdad(int edad) {
@@ -212,11 +212,11 @@ public class Usuario {
 	}
 
 	public void setFecha_nacimiento(String fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+		this.fecha_nacimiento = fecha_nacimiento.toUpperCase();
 	}
 
 	public void setComplexion(String complexion) {
-		this.complexion = complexion;
+		this.complexion = complexion.toUpperCase();
 	}
 
 	public void setAltura(double altura) {
@@ -224,15 +224,15 @@ public class Usuario {
 	}
 
 	public void setDieta(String unaDieta) {
-		this.dieta = unaDieta;
+		this.dieta = unaDieta.toUpperCase();
 	}
 
 	public void setRutina(String unaRutina) {
-		this.rutina = unaRutina;
+		this.rutina = unaRutina.toUpperCase();
 	}
 
 	public void setPreferencias_alimenticias(String preferencias_alimenticias) {
-		this.preferencias_alimenticias = preferencias_alimenticias;
+		this.preferencias_alimenticias = preferencias_alimenticias.toUpperCase();
 	}
 
 	public void setCondicionesPreexistentes(CondicionesPreexistentes condicionesPreexistentes) {
@@ -382,8 +382,8 @@ public class Usuario {
 		session.beginTransaction();
 
 		//Usuario nuevoUsuario = new Usuario();
-		//String nombre = unUsuario.getNombreUsuario();
-		// nuevoUsuario.setIdUsuario(unUsuario.getIdUsuario());
+		//String nombre = unUsuario.getNombreUsuario().toU;
+		 //unUsuario.setIdUsuario(unUsuario.getIdUsuario());
 		//nuevoUsuario.setNombreUsuario(nombre);
 		// nuevoUsuario.setAltura(unUsuario.getAltura());
 		// nuevoUsuario.setComplexion(unUsuario.getComplexion());

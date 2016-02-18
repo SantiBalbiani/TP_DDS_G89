@@ -176,7 +176,7 @@ public class Ingrediente {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombre = nombre.toUpperCase();
 	}
 	@Column(name = "PORCION")
 	public int getPorcion() {
