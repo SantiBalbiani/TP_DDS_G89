@@ -64,7 +64,7 @@ $(document).ready(function() {
                     stringLength: {
                         min: 6,
                         max: 30,
-                        message: 'El nombre de usuario debe tener entre 6 y 30 caracteres'
+                        message: 'La contraseña debe tener entre 6 y 30 caracteres'
                     },
                     regexp: {
                         regexp: /^[a-zA-Z0-9_]+$/,
