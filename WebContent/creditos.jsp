@@ -60,8 +60,8 @@
      				 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
      				 Descargas <span class="caret"></span></button> 	
      				 <ul class="dropdown-menu" role="menu">
-       				 <li><a href="#">Descargar Consigna del TP</a></li>
-        			<li><a href="#">Descargar Informe del TP</a></li>
+       				 <li><a href="TP Integrador DDS 2015.pdf" target="_blank">Descargar Consigna del TP</a></li>
+        			<li><a href="https://docs.google.com/uc?id=0B-6znbW0lMJcbWtaTzhOUnhIZ0k&export=download" target="_blank">Descargar Informe del TP</a></li>
       			</ul>
     		</div>  
  		</div> 
@@ -98,6 +98,20 @@
   <li><p>Martin Callegari</p> </li>
 </ul>  
 
+<h2>Repositorio GitHub: </h2>
+<ul>
+ <li><a href="https://github.com/SantiBalbiani/TP_DDS_G89" target="_blank">https://github.com/SantiBalbiani/TP_DDS_G89</a></li>
+ </ul>  
+ 
+ <h2>Requisitos: </h2>
+<ul>
+ <li><p>Es requisito para un correcto funcionamiento de la pagina utilizar:  </p> </li>
+ <li><p>Google Chorme en su ultima version (48.0.2564.109m ó superior)</p> </li>
+ <li><p>Mozilla Firefox en su ultima version (44.0.2 ó superior)</p> </li>
+ <li><p>Tener habilitada la navegacion por JavaScript</p> </li>
+ 
+ </ul>  
+ 
 	<h2>Herramientas de comunicacion: </h2>
 <ul>
   	<li><p>Skype</p> </li>
