@@ -50,7 +50,7 @@ public class CrearReceta extends HttpServlet {
 		String categorias = request.getParameter("optionCategoria");
 		String dificultad = request.getParameter("dificultad");
 		String sector = request.getParameter("sector");
-		
+		String calorias = request.getParameter("caloriasIngPpal");
 		Receta nuevaReceta = new Receta();
 		
 		//Buscar ingrediente principal
@@ -58,6 +58,8 @@ public class CrearReceta extends HttpServlet {
 		Ingrediente ingredPpal = new Ingrediente();
 		ingredPpal.buscarIngredientePorNombre(ingPrincipal);
 		
+		int sectorPiramide = Integer.parseInt(sector);
+		int caloriasIP = Integer.parseInt(calorias);
 		
 		nuevaReceta.agregarIngredientePrincipal(ingredPpal);
 		nuevaReceta.setNombreReceta(nombreReceta);
@@ -77,6 +79,8 @@ public class CrearReceta extends HttpServlet {
 		
 		nuevaReceta.setDificultadReceta(dificult);
 		
+		//Completar ingredientes y condimentos
+		//nuevaReceta.crear_receta(ingredPpal, indexIngredientes, indexCondimentos, 0, caloriasIP, nombreReceta, preparacion, categorias, dificult, unaTemporada, sectorPiramide);
 		//nuevaReceta.setSectorPiramideAlimenticia(sectorPiramideAlimenticia);
 		
 		
