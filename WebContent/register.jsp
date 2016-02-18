@@ -94,13 +94,17 @@ $(document).ready(function() {
 				 notEmpty: {
 					 message: 'La fecha de nacimiento es requerida y no puede ser vacia'
 				 },
-				 date: {
-					 format: 'DD-MM-YYYY',
-					 message: 'La fecha de nacimiento no es valida. Formato DDMMYYYY'
-				 },
+				 between: {
+	                    min: 1011900,
+	                    max: 31123000,
+	                },
+// 				 date: {
+// 					 format: 'DDMMYYYY',
+// 					 message: 'La fecha de nacimiento no es valida. Formato DDMMYYYY'
+// 				 },
 				 regexp: {
                      regexp: /^[a-zA-Z0-9_-]+$/,
-                     message: 'La fecha solo puede tener valores alfanumericos y guiones bajos/altos'
+                     message: 'La fecha solo puede tener valores alfanumericos, guiones bajos/altos y barras'
                  }
 			 }
 		 },
