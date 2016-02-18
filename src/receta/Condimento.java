@@ -70,7 +70,21 @@ public class Condimento {
 			
 		
 	}
-	
+public Condimento buscarCondimentoPorNombre(String unNombre){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Condimento e where e.nombre = :nombre");
+
+		query.setString("nombre", unNombre);
+		
+		java.util.List<?> lista = query.list();
+		
+	Condimento condimentoBuscado = (Condimento)lista.get(0);
+
+
+	return condimentoBuscado;
+}
 	public void guardarCondimento(Condimento unCondimento) {
 
 		//Condimento nuevoCondimento = new Condimento();

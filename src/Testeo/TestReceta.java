@@ -290,7 +290,6 @@ public class TestReceta {
 
 		//unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
 		unaReceta.agregarCondimento(unCondimento);
-
 		unaReceta.setIngredientePrincipal(ingredientePPAL);
 		unaReceta.setCalificacion(calificacion);
 		unaReceta.setSectorPiramideAlimenticia(sectorP);

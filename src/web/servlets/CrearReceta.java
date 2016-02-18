@@ -58,6 +58,9 @@ public class CrearReceta extends HttpServlet {
 		Ingrediente ingredPpal = new Ingrediente();
 		ingredPpal.buscarIngredientePorNombre(ingPrincipal);
 		
+		Condimento cond = new Condimento();
+		cond = cond.buscarCondimentoPorNombre("mostaza");
+		
 		int sectorPiramide = Integer.parseInt(sector);
 		int caloriasIP = Integer.parseInt(calorias);
 		
@@ -76,8 +79,22 @@ public class CrearReceta extends HttpServlet {
 		}
 	
 		
-		
+		nuevaReceta.setNombreReceta(nombreReceta);
 		nuevaReceta.setDificultadReceta(dificult);
+		nuevaReceta.setCalificacion((short)0);
+		nuevaReceta.setCalorias(caloriasIP);
+		nuevaReceta.setDificultadReceta(dificult);
+		nuevaReceta.setIngredientePrincipal(ingredPpal);
+		nuevaReceta.setPreparacion(preparacion);
+		nuevaReceta.setSectorPiramideAlimenticia((short)sectorPiramide);
+		nuevaReceta.agregarUnIngrediente(ingredPpal);
+		
+		nuevaReceta.guardarReceta(nuevaReceta);
+
+		
+		session.setAttribute("recetaEncontrada", nuevaReceta);
+		
+		response.sendRedirect("verReceta.jsp");
 		
 		//Completar ingredientes y condimentos
 		//nuevaReceta.crear_receta(ingredPpal, indexIngredientes, indexCondimentos, 0, caloriasIP, nombreReceta, preparacion, categorias, dificult, unaTemporada, sectorPiramide);
