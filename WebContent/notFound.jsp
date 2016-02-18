@@ -26,7 +26,7 @@
 					</button>
 					<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
-						<li><a href="welcome.jsp">Volver al Inicio</a></li>
+						<li><a href="logout.jsp">Volver al Inicio</a></li>
 <!-- 						<li><a href="misGrupos.jsp">Mis Grupos</a></li> -->
 <!-- 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li> -->
 <!-- 						<li><a href="misDatos.jsp">Mis Datos</a></li> -->
