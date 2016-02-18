@@ -61,7 +61,7 @@
      				 Descargas <span class="caret"></span></button> 	
      				 <ul class="dropdown-menu" role="menu">
        				 <li><a href="TP Integrador DDS 2015.pdf" target="_blank">Descargar Consigna del TP</a></li>
-        			<li><a href="https://docs.google.com/uc?id=0B-6znbW0lMJcbWtaTzhOUnhIZ0k&export=download" target="_blank">Descargar Informe del TP</a></li>
+        			<li><a href="https://drive.google.com/open?id=0B4r1nEVRb-VAWVZEMzNJaEZJNkE&export=download" target="_blank">Descargar Informe del TP</a></li>
       			</ul>
     		</div>  
  		</div> 
