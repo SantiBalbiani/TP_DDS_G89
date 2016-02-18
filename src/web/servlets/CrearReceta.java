@@ -44,7 +44,7 @@ public class CrearReceta extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		
-		String nombreReceta = request.getParameter("nombreReceta");
+		String nombreReceta = request.getParameter("nombreDeReceta");
 		String ingPrincipal = request.getParameter("ingPrincipal");
 		String preparacion = request.getParameter("preparacion");
 		String categorias = request.getParameter("optionCategoria");
@@ -56,7 +56,8 @@ public class CrearReceta extends HttpServlet {
 		//Buscar ingrediente principal
 		
 		Ingrediente ingredPpal = new Ingrediente();
-		ingredPpal.buscarIngredientePorNombre(ingPrincipal);
+		//TODO: arreglar esto
+		ingredPpal.buscarIngredientePorNombre("unChori");
 		
 		Condimento cond = new Condimento();
 		cond = cond.buscarCondimentoPorNombre("mostaza");
@@ -78,6 +79,7 @@ public class CrearReceta extends HttpServlet {
 			dificult = 3;
 		}
 	
+		System.out.println(nuevaReceta.getNombreReceta()+"   acaaaa");
 		
 		nuevaReceta.setNombreReceta(nombreReceta);
 		nuevaReceta.setDificultadReceta(dificult);

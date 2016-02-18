@@ -125,7 +125,7 @@ public Condimento buscarCondimentoPorNombre(String unNombre){
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre.toUpperCase();
+		this.nombre = (nombre.toUpperCase());
 	}
 
 	@Column(name = "TIPO")
@@ -137,7 +137,7 @@ public Condimento buscarCondimentoPorNombre(String unNombre){
 		this.tipo = tipo.toUpperCase();
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaCondimentos")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaCondimentos", cascade=CascadeType.ALL)
 	public Set<Receta> getRecetas() {
 		return recetas;
 	}

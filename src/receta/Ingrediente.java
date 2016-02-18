@@ -127,7 +127,7 @@ public class Ingrediente {
 //			@JoinColumn(name = "ID_INGREDIENTE", nullable = false, updatable = false) }, 
 //			inverseJoinColumns = { @JoinColumn(name = "ID_RECETA", 
 //					nullable = false, updatable = false) })
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes", cascade=CascadeType.ALL)
 	public Set<Receta> getRecetas() {
 		return this.recetas;
 	}
@@ -175,8 +175,9 @@ public class Ingrediente {
 	public String getNombre() {
 		return nombre;
 	}
+	//TODO: pasar a mayusculas
 	public void setNombre(String nombre) {
-		this.nombre = nombre.toUpperCase();
+		this.nombre = nombre;
 	}
 	@Column(name = "PORCION")
 	public int getPorcion() {

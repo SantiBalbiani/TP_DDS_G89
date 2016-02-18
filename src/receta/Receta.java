@@ -230,7 +230,7 @@ public class Receta {
 	// @OneToOne(cascade = CascadeType.ALL)
 	// @JoinColumn(name = "ID_INGREDIENTE")
 	// @ManyToOne(fetch = FetchType.LAZY, mappedBy = "stock")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "ID_INGREDIENTE", nullable = false)
 	public Ingrediente getIngredientePrincipal() {
 		return ingredientePrincipal;

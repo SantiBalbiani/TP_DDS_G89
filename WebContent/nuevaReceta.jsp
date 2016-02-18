@@ -97,13 +97,13 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 					<form action="CrearReceta" method="post">
 						<div class="form-group">
 							<label for="inputNombreReceta">Nombre de la receta</label> 
-							<input type="text" class="form-control" id="nombreDeReceta" name="nombreReceta"/>
+							<input type="text" class="form-control" id="nombreDeReceta" name="nombreDeReceta"/>
 						</div>
 						
 						<div class="form-group">
 							<label for="inputIngPrincipal">Ingrediente Principal</label> 
-							<input type="text" class="form-control" id="nombreDeReceta" name="ingPrincipal"/>
-							<input type="number" class="form-control" id="nombreDeReceta" name="caloriasIngPpal" placeholder="Calorias"/>
+							<input type="text" class="form-control" id="ingPrincipal" name="ingPrincipal"/>
+							<input type="number" class="form-control" id="caloriasIngPpal" name="caloriasIngPpal" placeholder="Calorias"/>
 						</div>
 
 						<div class="form-group">
@@ -186,7 +186,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						
 						<div class="form-group">
 							<label for="inputSector">Sector en la piramide alimenticia</label>
-							<select class="form-control" id="dificultad" name="sector">
+							<select class="form-control" id="sector" name="sector">
 				          			<option value="0">Harinas y Legumbres</option>
 				          			<option value="1">Lacteos</option>
 				          			<option value="2">Frutas y Vetetales</option>
