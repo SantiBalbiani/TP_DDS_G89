@@ -51,8 +51,8 @@ public class Login extends HttpServlet {
 
 		/*try
 		{*/	    
-			String nombreUsuario = request.getParameter("usuario");
-			String contrasenia = request.getParameter("contrasenia");
+			String nombreUsuario = request.getParameter("inputUsuario");
+			String contrasenia = request.getParameter("inputPassword");
 			Usuario user = new Usuario();
 			
 			user = user.buscarUsuarioPorNombre(nombreUsuario);

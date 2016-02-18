@@ -56,7 +56,7 @@
 		</div>
 		
 			<div class="container">
-   				 	 <div class="btn-group" Align=left> 	
+   				 	 <div class="btn-group" Align="center"> 	
      				 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
      				 Descargas <span class="caret"></span></button> 	
      				 <ul class="dropdown-menu" role="menu">
