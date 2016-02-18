@@ -4,9 +4,8 @@
 <html lang="es">
 <%@page import="usuario.Usuario, receta.Receta" %>
 
-<%Receta receta = (Receta) session.getAttribute("recetaEncontrada");	
-String receta2 = receta.getNombreReceta() ;
-
+<%
+Receta receta = (Receta) session.getAttribute("recetaEncontrada");	
 %>
 
 <head>
@@ -68,7 +67,7 @@ String receta2 = receta.getNombreReceta() ;
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
-			<p> <%= receta2 %> </p>
+			<p> <% out.println(receta.getNombreReceta()); %> </p>
 		</div>
 	</section>	
 	

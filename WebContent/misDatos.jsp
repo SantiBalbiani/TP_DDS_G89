@@ -235,7 +235,7 @@ function submit_eliminar()
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina" <% if ((user.getRutina()).equals("MEDIO_INTENSIVO")) { out.println("checked"); } %> >Activa con ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
+				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina" <% if ((user.getRutina()).equals("MEDIO_INTENSIVO")) { out.println("checked"); } %> >Activa sin ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
 				          </label>
 				        </div>
 				        <div class="radio">

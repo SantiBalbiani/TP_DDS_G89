@@ -62,6 +62,11 @@ $(document).ready(function() {
  					 regexp: /^[0-9]+$/,
  					 message: 'La altura solo puede contener números'
  				 },
+ 				between: {
+                    min: 0,
+                    max: 250,
+                    message: 'La altura tiene que ser entre 0 cm  y  250 cm'
+                }
 //                     numeric: {
 //                         message: 'El valor debe estar expresado en números'
 //                     }
@@ -77,6 +82,10 @@ $(document).ready(function() {
                         max: 30,
                         message: 'La contraseña debe tener entre 6 y 30 caracteres'
                     },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'La contraseña solo puede tener valores alfanumericos y guiones bajos'
+                    }
                 }
             },
             
@@ -85,10 +94,14 @@ $(document).ready(function() {
 				 notEmpty: {
 					 message: 'La fecha de nacimiento es requerida y no puede ser vacia'
 				 },
-				 numeric: {
+				 date: {
 					 format: 'DD-MM-YYYY',
 					 message: 'La fecha de nacimiento no es valida. Formato DDMMYYYY'
-				 }
+				 },
+				 regexp: {
+                     regexp: /^[a-zA-Z0-9_-]+$/,
+                     message: 'La fecha solo puede tener valores alfanumericos y guiones bajos/altos'
+                 }
 			 }
 		 },
 //             'size[]': {
@@ -104,7 +117,28 @@ $(document).ready(function() {
                         message: 'El sexo es un campo obligatorio'
                     }
                 }
-             }
+             },
+             dieta: {
+                 validators: {
+                     notEmpty: {
+                         message: 'La dieta es un campo obligatorio'
+                     }
+                 }
+              },
+              complexion: {
+                  validators: {
+                      notEmpty: {
+                          message: 'La complexion es un campo obligatorio'
+                      }
+                  }
+               },
+			rutina: {
+			    validators: {
+			        notEmpty: {
+			            message: 'La rutina es un campo obligatorio'
+			        }
+			    }
+			 }
 //         },
         
 // submitHandler: function(validator, form, submitButton) {
@@ -155,7 +189,7 @@ $(document).ready(function() {
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
-				            <input type="radio" name="optionSexo"  value="M" checked="">
+				            <input type="radio" name="optionSexo"  value="M">
 				            Masculino
 				          </label>
 				        </div>
@@ -171,6 +205,7 @@ $(document).ready(function() {
 				      <label for="select" class="col-lg-3 control-label">Complexion</label>
 				      <div class="col-lg-9">
 				        <select class="form-control" id="complexion" name="complexion">
+				          <option disabled selected> -- Elija una opcion -- </option>
 				          <option value="P">Pequeña</option>
 				          <option value="M">Mediana</option>
 				          <option value="G">Grande</option>
@@ -182,6 +217,7 @@ $(document).ready(function() {
 				      <label for="select" class="col-lg-3 control-label">Dieta</label>
 				      <div class="col-lg-9">
 				        <select class="form-control" id="dieta" name="dieta">
+				          <option disabled selected> -- Elija una opcion -- </option>
 				          <option value="N">Normal</option>
 				          <option value="V">Vegetariano</option>
 				          <option value="VEG">Vegano</option>
@@ -209,7 +245,7 @@ $(document).ready(function() {
 				        </div>
 				        <div class="radio">
 				          <label>
-				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina">Activa con ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
+				            <input type="radio" value="MEDIO_INTENSIVO" name="rutina">Activa sin ejercicio adicional (+30 min.) [MEDIO-INTENSIVO]
 				          </label>
 				        </div>
 				        <div class="radio">
