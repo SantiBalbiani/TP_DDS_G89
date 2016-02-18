@@ -62,7 +62,18 @@ public class CrearReceta extends HttpServlet {
 		nuevaReceta.agregarIngredientePrincipal(ingredPpal);
 		nuevaReceta.setNombreReceta(nombreReceta);
 		//nuevaReceta.setListaCategoria(listaCategoria);
-		int dificult = Integer.parseInt(dificultad);
+		int dificult = 0;
+		if (dificultad == "F"){
+			dificult = 1;
+		}
+		if (dificultad == "M"){
+			dificult = 2;
+		}
+		if (dificultad == "D"){
+			dificult = 3;
+		}
+	
+		
 		
 		nuevaReceta.setDificultadReceta(dificult);
 		

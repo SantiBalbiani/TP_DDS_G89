@@ -36,7 +36,7 @@ public class TestUsuario {
 			
 			Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
 			
-			query.setString("nombreUsuario", "Jack");
+			query.setString("nombreUsuario", "Emiliano");
 			
 			java.util.List<?> lista = query.list();
 			
@@ -70,8 +70,8 @@ public class TestUsuario {
 		//session.beginTransaction();
 		
 		
-		nuevoUsuario.setNombreUsuario("Emiliano");
-		nuevoUsuario.setPassword("1234");
+		nuevoUsuario.setNombreUsuario("Santiago");
+		nuevoUsuario.setPassword("123456");
 		nuevoUsuario.setSexo('M');
 		nuevoUsuario.setFecha_nacimiento("20150313");
 		nuevoUsuario.setComplexion("mediana");
@@ -139,7 +139,7 @@ public class TestUsuario {
 		//busco un usuario por nombre
 		Session session = HibernateConf.getSessionFactory().openSession();
 		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
-		query.setString("nombreUsuario", "Jack");
+		query.setString("nombreUsuario", "Emiliano");
 		java.util.List<?> lista = query.list();
 		Usuario usuarioBuscado = (Usuario)lista.get(0);
 		System.out.println("el id de usuario es: "+usuarioBuscado.getIdUsuario());
