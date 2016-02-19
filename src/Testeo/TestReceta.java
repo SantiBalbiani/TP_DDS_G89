@@ -5,12 +5,13 @@ import usuario.Usuario;
 import receta.Condimento;
 import receta.Ingrediente;
 import receta.Recetario;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import org.hibernate.Session;
 import org.hibernate.Query;
 import org.junit.Test;
@@ -23,16 +24,7 @@ import java.awt.List;
 
 
 public class TestReceta {
-	//E.G.S.
-	/* 		---- Junit Test Case ----
-	 * 		Codigo de condicion de Test: CalR.01
-	 * 
-	 * 		Puntua a la receta del 1-5
-	 * 
-	 * 
-	 *   El metodo calificar recibe unaReceta y unaCalificacion, valida los datos de entrada
-	 *   y luego califica la receta con la calificacion dada.
-	 */
+
 	
 	@Test
 	public void testCalificarReceta() 
@@ -165,7 +157,7 @@ public class TestReceta {
 		
 		
 	}
-	*/
+*/
 	
 	/* 		---- Junit Test Case ----
 	 * 		Codigo de condicion de Test: BusR.01

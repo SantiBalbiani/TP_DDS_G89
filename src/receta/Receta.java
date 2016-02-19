@@ -49,16 +49,13 @@ public class Receta {
 	
 	private Set<Usuario> usuarioRecetas = new HashSet<Usuario>(0); //para el many-to-many
 	
-	private Set<Integer> indiceDeIngredientes; 
-	private Set<Integer> indiceDeCondimentos;
+	private Set<Condimento> listaCondimentos = new HashSet<Condimento>(0);
 	
 	private short calificacion;
 	private int calorias;
 	private int dificultadReceta;
 	private short sectorPiramideAlimenticia;
-
 	private Ingrediente ingredientePrincipal;
-	private Set<Condimento> listaCondimentos = new HashSet<Condimento>(0);
 	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
 	private ArrayList<String> contraindicaciones;
@@ -85,25 +82,10 @@ public class Receta {
 	public Set<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
-	//@Column(name = "INDEX_INGREDIENTES")
-	//TODO: mapear esto a la BD
-	@Transient
-	public Set<Integer> getIndiceDeIngredientes() {
-		return indiceDeIngredientes;
-	}
+ 
 
-	public void setIndiceDeIngredientes(Set<Integer> indiceDeIngredientes) {
-		this.indiceDeIngredientes = indiceDeIngredientes;
-	}
-	//@Column(name = "INDEX_CONDIMENTOS")
-	//TODO: mapear esto a la BD
-	@Transient
-	public Set<Integer> getIndiceDeCondimentos() {
-		return indiceDeCondimentos;
-	}
-
-	public void setIndiceDeCondimentos(Set<Integer> indiceDeCondimentos) {
-		this.indiceDeCondimentos = indiceDeCondimentos;
+	public void setCondimentos(Set<Condimento> condimentos) {
+		this.listaCondimentos = condimentos;
 	}
 
 	public void setIngredientes(Set<Ingrediente> ingredientes) {
@@ -248,14 +230,6 @@ public class Receta {
 	// ++++++++++++++++++ SETTERS ++++++++++++++//
 
 	
-	public void agregarIndexIngredientes(Set<Integer> IndexIngredientes){
-		this.setIndiceDeIngredientes(IndexIngredientes);
-		
-	}
-	
-	
-	
-	
 	
 	public void setCalificacion(short calificacion) {
 		this.calificacion = calificacion;
@@ -336,12 +310,6 @@ public class Receta {
 	
 	
 	// CONDIMENTOS
-	
-	public void agregarIndexCondimentos(Set<Integer> IndexCondimentos){
-		this.setIndiceDeCondimentos(IndexCondimentos);
-		
-	}
-
 	
 	public void setListaCondimentos(Set<Condimento> listaCondimentos) {
 		this.listaCondimentos = listaCondimentos;
@@ -493,15 +461,10 @@ public class Receta {
 	// ++++++++++++++++++ INICIO METODOS DE
 	// RECETA++++++++++++++++++++++++++++++++++++++++++++//
 
-	public Receta crear_receta(Ingrediente unIngredientePrincipal, Set<Integer> indexIngredientes, Set<Integer> indexCondimentos,
+	public Receta crear_receta(Ingrediente unIngredientePrincipal, Set<Ingrediente> ingredientes, Set<Condimento> condimentos,
 			short calificacion, int calorias, String unNombre, String unaPreparacion, String unaCategoria,
 			int unaDificultad, String unaTemporada, short unSectorPiramide) {
-		// llama a metodo new para crear Receta
-		// invoca los setters de la clase Receta para el alta de
-		// ingredientes, condimentos y otros atributos...`
 
-		
-		// devuelve la receta creada
 
 		Receta nuevaReceta = new Receta();
 
@@ -510,8 +473,8 @@ public class Receta {
 
 		
 		
-		nuevaReceta.agregarIndexIngredientes(indexIngredientes);
-		nuevaReceta.agregarIndexCondimentos(indexCondimentos);
+		nuevaReceta.setCondimentos(condimentos); 
+		nuevaReceta.agregarIngredientes(ingredientes);
 
 		nuevaReceta.agregarPreparacion(unaPreparacion);
 		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
@@ -531,18 +494,7 @@ public class Receta {
 		session.getTransaction().commit();
 		session.close();  		
 		
-		/*
-		 * Configuration con = new Configuration();
-		 * con.configure("hibernate.cfg.xml"); SessionFactory SF =
-		 * con.buildSessionFactory(); Session session = SF.openSession();
-		 * 
-		 * 
-		 * 
-		 * Transaction TR = session.beginTransaction();
-		 * session.save(nuevaReceta); System.out.println(
-		 * "Object Saved Succesfully"); // Si imprime es porque persisti� ok
-		 * el objeto TR.commit(); session.close(); SF.close();
-		 */
+
 		return nuevaReceta;
 
 	}
