@@ -46,13 +46,13 @@
 						<span class="icon-bar"></span> 
 						<span class="icon-bar"></span>
 					</button>
-					<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
+					<a href="creditos.jsp" class="navbar-brand">Qué Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="#">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>
+						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
@@ -76,7 +76,7 @@
 
 	<section class="jumbotron jumbotron-kd">
 		<div class="container">
-			<h1>Que Comemos Hoy?</h1>
+			<h1>Qué Comemos Hoy?</h1>
 			<p>Recetas sugeridas para una alimentación saludable</p>
 		</div>
 	</section>
@@ -87,7 +87,7 @@
 	<div id="columna1">
 		<div class="panel panel-default" id="recetasPropias">
 			<!-- Asi se muestran lo que se recibe del servlet -->
-			<div class="panel-heading">Recetas tuyas, <% out.println(user.getNombreUsuario()); %></div>
+			<div class="panel-heading">Tus recetas <% out.println(user.getNombreUsuario()); %></div>
 			<div class="panel-body">
 				<!-- Buscar las recetas del usuario y poner algunas aca -->
 				<% if(recetas.isEmpty()){ %>

@@ -122,6 +122,20 @@ $(document).ready(function() {
                     }
                 }
              },
+             inputMail: {
+    			 validators: {
+    				 notEmpty: {
+    					 message: 'El correo es requerido y no puede ser vacio'
+    				 },
+//     				 emailAddress: {
+//     					 message: 'El correo electronico no es valido'
+//     				 }
+    				 regexp: {
+                         regexp: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i,
+                         message: 'No es un correo valido'
+                     }
+    			 }
+    		 },
              dieta: {
                  validators: {
                      notEmpty: {
@@ -177,6 +191,12 @@ $(document).ready(function() {
 				      </div>
 				    </div>
 				    <div class="form-group">
+				      <label for="inputMail" class="col-lg-3 control-label">E-mail</label>
+				      <div class="col-lg-9">
+				        <input type="text" class="form-control" id="inputMail" name="inputMail" placeholder="E-mail" required>
+				      </div>
+				    </div>
+				    <div class="form-group">
 				      <label for="textArea" class="col-lg-3 control-label">Fecha de Nacimiento</label>
 				      <div class="col-lg-9">
 				        <input class="form-control" name="fechaNacimiento" type="date" id="fechaNacimiento" placeholder="dd/mm/aaaa" required>
@@ -206,7 +226,7 @@ $(document).ready(function() {
 				      </div>
 				    </div>
 				    <div class="form-group">
-				      <label for="select" class="col-lg-3 control-label">Complexion</label>
+				      <label for="select" class="col-lg-3 control-label">Complexión</label>
 				      <div class="col-lg-9">
 				        <select class="form-control" id="complexion" name="complexion">
 				          <option disabled selected> -- Elija una opcion -- </option>
