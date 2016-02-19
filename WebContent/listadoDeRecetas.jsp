@@ -95,6 +95,10 @@
 			
 			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 1" </a></b></div>
 		
+			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 2" </a></b></div>
+			
+			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 3" </a></b></div>
+			
 			<br>
 		</div>
 </section>
@@ -105,6 +109,12 @@
 	<br>
 			<a href="verReceta.jsp" class="btn btn-primary btn-sm2 pull-left">Ver detalles</a>
 	  		<div class="panel-body" style="text-indent: 1cm;" > Receta "Nombre de Receta 1"</div>
+	  		<br>
+			<a href="verReceta.jsp" class="btn btn-primary btn-sm2 pull-left">Ver detalles</a>
+	  		<div class="panel-body" style="text-indent: 1cm;" > Receta "Nombre de Receta 2"</div>
+	  		<br>
+			<a href="verReceta.jsp" class="btn btn-primary btn-sm2 pull-left">Ver detalles</a>
+	  		<div class="panel-body" style="text-indent: 1cm;" > Receta "Nombre de Receta 3"</div>
 			
 </div>
 </section>
