@@ -8,7 +8,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Que Comemos Hoy?</title>
+	<title>Qué Comemos Hoy?</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -52,13 +52,13 @@ a:link, a:visited {
 						<span class="icon-bar"></span> 
 						<span class="icon-bar"></span>
 					</button>
-                    <a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
+                    <a href="creditos.jsp" class="navbar-brand">Qué Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="welcome.jsp">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>
+						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
@@ -77,7 +77,7 @@ a:link, a:visited {
 
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
-			<h1>Que Comemos Hoy?</h1>
+			<h1>Qué Comemos Hoy?</h1>
 			<p>Mis Grupos</p>
 		</div>
 	</section>
