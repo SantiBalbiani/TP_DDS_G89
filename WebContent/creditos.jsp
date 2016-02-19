@@ -107,7 +107,6 @@
 <ul>
  <li><p>Es requisito para un correcto funcionamiento de la pagina utilizar:  </p> </li>
  <li><p>Google Chorme en su ultima version (48.0.2564.109m ó superior)</p> </li>
- <li><p>Mozilla Firefox en su ultima version (44.0.2 ó superior)</p> </li>
  <li><p>Tener habilitada la navegacion por JavaScript</p> </li>
  
  </ul>  
