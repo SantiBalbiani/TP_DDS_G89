@@ -248,7 +248,7 @@ public class TestReceta {
 		
 		// Creo Ingrediente
 		Ingrediente unIngrediente = new Ingrediente();
-		unIngrediente = unIngrediente.crearIngrediente("unChori", (int) 80, (int)10);
+		unIngrediente = unIngrediente.crearIngrediente("Arroz", (int) 80, (int)10);
 		//unIngrediente.guardarIngrediente(unIngrediente);
 		 
 		Session session = HibernateConf.getSessionFactory().openSession();
@@ -263,7 +263,7 @@ public class TestReceta {
 		
 		// Creo Ingrediente PPAL
 		Ingrediente ingredientePPAL = new Ingrediente();
-		ingredientePPAL = ingredientePPAL.crearIngrediente("pasto", (int) 22, (int)33);
+		ingredientePPAL = ingredientePPAL.crearIngrediente("Pollo", (int) 22, (int)33);
 		ingredientePPAL.guardarIngrediente(ingredientePPAL);
 		
 		session.save(ingredientePPAL);
@@ -294,8 +294,8 @@ public class TestReceta {
 		unaReceta.setCalificacion(calificacion);
 		unaReceta.setSectorPiramideAlimenticia(sectorP);
 		unaReceta.setCalorias(500);
-		unaReceta.setPreparacion("Se hace como venga");
-		unaReceta.setNombreReceta("tarta");
+		unaReceta.setPreparacion("Se cocinan los ingredientes por separado y luego se mezclan");
+		unaReceta.setNombreReceta("Arroz con pollo");
 		unaReceta.setDificultadReceta(5);
 
 		
@@ -399,7 +399,7 @@ public class TestReceta {
 
 	public void crearUnCondimento(){
 		Condimento unCondimento = new Condimento();
-		unCondimento = unCondimento.crearCondimento("mostaza", "aderezo");
+		unCondimento = unCondimento.crearCondimento("Mostaza", "aderezo");
 		unCondimento.guardarCondimento(unCondimento);
 		//System.out.println(unCondimento.getIdCondimento());
 	}
@@ -409,7 +409,7 @@ public class TestReceta {
 	public void crearUnIngrediente(){
 		//Creo Ingrediente
 		Ingrediente unIngrediente = new Ingrediente();
-		unIngrediente = unIngrediente.crearIngrediente("papa", (int) 10, (int) 56);
+		unIngrediente = unIngrediente.crearIngrediente("Papa", (int) 10, (int) 56);
 		unIngrediente.guardarIngrediente(unIngrediente);
 	}
 	

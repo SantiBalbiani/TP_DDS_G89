@@ -71,18 +71,20 @@ Receta receta = (Receta) session.getAttribute("recetaEncontrada");
 		</div>
 	</section>	
 	
-<div class="panel panel-default" width="14" height="14"> 
-  <div class="panel-heading">   </div>
+<div class="panel panel-default"> 
+  <div class="panel-heading"> Informacion de la receta  </div>
    <div class="panel-body"> 
-    <p> PREPARACION: <% out.println(receta.getPreparacion());%> <p>
-    <p> NOMBRERECETA: <% out.println(receta.getNombreReceta());%> <p>
-    
-<!--     caloriasIngPpal -->
-<!--     ingPrincipal -->
-<!--     dificultad -->
-<!--     sector -->
+ 	     <p> Nombre de la receta: <% out.println(receta.getNombreReceta());%> <p>
+  
+		 <p> Preparacion: <% out.println(receta.getPreparacion());%> <p> 
+		 
+<%-- 		 <p> Ingrediente Principal:  <% out.println(receta.getIngPrincipal());%> <p>  --%>
+		 		  
+<%-- 		 <p> Calorias: <% out.println(receta.getCalorias());%> <p>  --%>
 
-    
+<%-- 		 <p> Dificultad: <% out.println(receta.getDificultad());%> <p>  --%>
+		 
+<%-- 		 <p> Sector alimenticio: <% out.println(receta.getSector());%> <p>  --%>
     
   </div>
 </div>

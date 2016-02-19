@@ -74,21 +74,21 @@
 <div class="panel panel-default"> 
   <div class="panel-heading">Receta 1 </div>
    <div class="panel-body">
-    <p> ACA VA LA DESCRIPCION DE LA RECETA<p>
+    <p> "Descripcion receta 1"<p>
   </div>
 </div>
  						
 <div class="panel panel-default"> 
   <div class="panel-heading">Receta 2  </div>
    <div class="panel-body">
-    <p> ACA VA LA DESCRIPCION DE LA RECETA<p>
+    <p>"Descripcion receta 2"<p>
   </div>
 </div>
 
 <div class="panel panel-default"> 
   <div class="panel-heading">Receta 3 </div>
    <div class="panel-body">
-    <p> ACA VA LA DESCRIPCION DE LA RECETA<p>
+    <p>""Descripcion receta 2"<p>
   </div>
 </div>
 

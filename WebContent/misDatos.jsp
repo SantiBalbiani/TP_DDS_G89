@@ -428,10 +428,7 @@ $(document).ready(function() {
 </div>
 </form>
 
-
-			
-
-			</div>
+		</div>
 		</div>
 	</div>
     <br><br><br>

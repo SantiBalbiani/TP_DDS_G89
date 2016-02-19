@@ -189,7 +189,7 @@ $(document).ready(function() {
 				      </div>
 				    </div>
 				    <div class="form-group">
-				      <label class="col-lg-3 control-label">Sexo</label>
+				      <label class="col-lg-3 control-label">Género</label>
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>

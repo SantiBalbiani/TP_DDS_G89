@@ -88,23 +88,26 @@
 	</section>
 	
 
-<div class="panel panel-default"> 
-	  <a href="verReceta.jsp" class="btn btn-primary btn-sm2 pull-left">Ver detalles</a>   
-  <div class="panel-heading"> Receta "Nombre de Receta"   </div>
-  
-</div> 
-  
-<!--   	<span class="input-group-btn-align-left" >  -->
-<!-- 		<button class="btn btn-default" type="button" href="verReceta.jsp">Ver Informacion completa de la receta</button>  -->
-<!--       </span> -->
-  
-  
-<!--   <button type="button" class="btn btn-default">Ver Receta Completa</button> -->
-<!--   <a class="btn btn-default" href="verReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Ver Receta Completa" data-placement="right"> -->
-<!-- 			Ver receta completa  <span class="glyphicon glyphicon-plus"></span> -->
-<!--   </a> -->
-<!--  </div> -->
+<section class="main container">
+<div class="panel panel-default" id="MostrarGrupos">
+	<div class="panel-heading"> Seleccionar la receta deseada para ver detalles </div>
 	
+			
+			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 1" </a></b></div>
+		
+			<br>
+		</div>
+</section>
+
+<section class="main container">
+<div class="panel panel-default" id="MostrarGrupos">
+	<div class="panel-heading"> Seleccionar la receta deseada para ver detalles </div>
+	<br>
+			<a href="verReceta.jsp" class="btn btn-primary btn-sm2 pull-left">Ver detalles</a>
+	  		<div class="panel-body" style="text-indent: 1cm;" > Receta "Nombre de Receta 1"</div>
+			
+</div>
+</section>
 				
 </body>
 </html>
