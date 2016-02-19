@@ -9,11 +9,27 @@ import hibernate.*;
 import receta.Ingrediente;
 import receta.Receta;
 import receta.Condimento;
+import usuario.Usuario;
 
 import java.util.List;
 import java.util.Set;
 public class TestBd {
 
+	
+	@Test
+	public void recetasPorUsuario(){
+		
+		Usuario usuario = new Usuario();
+		
+		usuario = usuario.buscarUsuarioPorNombre("Santiago");
+		
+		Set<Receta> recetas = usuario.getRecetasUser();
+		
+		for(Receta r : recetas){
+			System.out.println(r.getNombreReceta());
+		}
+		
+	}
 	
 	@Test	
 	public void buscarRecetaInexistente(){
