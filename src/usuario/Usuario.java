@@ -104,21 +104,21 @@ public class Usuario {
 		unaReceta.setSectorPiramideAlimenticia(sectorP);
 		unaReceta.setIngredientePrincipal(unIngrediente);
 		unaReceta.setCalorias(500);
-		unaReceta.setPreparacion("cortas la papa le pones manteca y wuala");
-		unaReceta.setNombreReceta("La_PAPA_Milanesa");
+		unaReceta.setPreparacion(" Se compran las milanesas hechas, se ponen al horno y se cocinan. Las papas las hacemos fritas. Se sirve todo junto y se condimenta a gusto");
+		unaReceta.setNombreReceta("Milanesa con papas");
 		unaReceta.setDificultadReceta(5);
 
 		// ---------------------------------
 
 		// Creo Ingrediente
 		Ingrediente unIngrediente2 = new Ingrediente();
-		unIngrediente2.crearIngrediente("estiercol", 10, 56);
+		unIngrediente2.crearIngrediente("papa", 10, 56);
 		// unIngrediente.guardarIngrediente(unIngrediente);
 
 		// Creo Condimento
 
 		Condimento unCondimento2 = new Condimento();
-		unCondimento2.crearCondimento("Noe", "aderezo");
+		unCondimento2.crearCondimento("Pimienta", "aderezo");
 		// unCondimento.guardarCondimento(unCondimento);
 
 		// Creo Receta
@@ -139,21 +139,21 @@ public class Usuario {
 		unaReceta2.setSectorPiramideAlimenticia(sectorP2);
 		unaReceta2.setIngredientePrincipal(unIngrediente2);
 		unaReceta2.setCalorias(250);
-		unaReceta2.setPreparacion("noe se fue a la altamar");
-		unaReceta2.setNombreReceta("noe_en_altamar");
+		unaReceta2.setPreparacion("Se cocinan las salchichas en un jarro con agua caliente y se ponen dentro de un pan. Se condimenta a gusto");
+		unaReceta2.setNombreReceta("Hot Dogs");
 		unaReceta2.setDificultadReceta(1);
 
 		// ---------------------------------
 
 		// Creo Ingrediente
 		Ingrediente unIngrediente3 = new Ingrediente();
-		unIngrediente3.crearIngrediente("lucas", 10, 56);
+		unIngrediente3.crearIngrediente("tomate", 10, 56);
 		// unIngrediente.guardarIngrediente(unIngrediente);
 
 		// Creo Condimento
 
 		Condimento unCondimento3 = new Condimento();
-		unCondimento3.crearCondimento("quindimil", "aderezo");
+		unCondimento3.crearCondimento("salsa barbacoa", "aderezo");
 		// unCondimento.guardarCondimento(unCondimento);
 
 		// Creo Receta
@@ -174,8 +174,8 @@ public class Usuario {
 		unaReceta3.setSectorPiramideAlimenticia(sectorP3);
 		unaReceta3.setIngredientePrincipal(unIngrediente3);
 		unaReceta3.setCalorias(100);
-		unaReceta3.setPreparacion("accenture es muy linda y le gusta los cursos");
-		unaReceta3.setNombreReceta("aguante ibm papa!");
+		unaReceta3.setPreparacion("Se cocina el matambre a la parrilla durante un buen rato hasta que esta bien cocido, se le agrega salsa de tomate y queso.");
+		unaReceta3.setNombreReceta("Matambre a la pizza");
 		unaReceta3.setDificultadReceta(3);
 
 		Set<Receta> listaRecetas;

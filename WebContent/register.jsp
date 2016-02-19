@@ -206,7 +206,7 @@ $(document).ready(function() {
 				      </div>
 				    </div>
 				    <div class="form-group">
-				      <label for="select" class="col-lg-3 control-label">Complexion</label>
+				      <label for="select" class="col-lg-3 control-label">Complexión</label>
 				      <div class="col-lg-9">
 				        <select class="form-control" id="complexion" name="complexion">
 				          <option disabled selected> -- Elija una opcion -- </option>

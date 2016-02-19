@@ -12,7 +12,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Que Comemos Hoy?</title>
+	<title>Qué Comemos Hoy?</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script src="js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css/estilos.css">
@@ -170,7 +170,7 @@ $(document).ready(function() {
             optionSexo: {
                 validators: {
                     notEmpty: {
-                        message: 'El sexo es un campo obligatorio'
+                        message: 'El gémero es un campo obligatorio'
                     }
                 }
              },
@@ -226,13 +226,13 @@ $(document).ready(function() {
 						<span class="icon-bar"></span> 
 						<span class="icon-bar"></span>
 					</button>
-				<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
+				<a href="creditos.jsp" class="navbar-brand">Qué Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="welcome.jsp">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>
+						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
@@ -251,7 +251,7 @@ $(document).ready(function() {
 
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
-			<h1>Que Comemos Hoy?</h1>
+			<h1>Qué Comemos Hoy?</h1>
 			<p>Mis Datos</p>
 		</div>
 	</section>
@@ -328,7 +328,7 @@ $(document).ready(function() {
 				      </div>
 				    </div>
 				    <div class="form-group">
-				      <label class="col-lg-3 control-label">Sexo</label>
+				      <label class="col-lg-3 control-label">Género</label>
 				      <div class="col-lg-9">
 				        <div class="radio">
 				          <label>
@@ -345,7 +345,7 @@ $(document).ready(function() {
 				      </div>
 				    </div>
 				    <div class="form-group">
-				      <label for="select" class="col-lg-3 control-label">Complexion</label>
+				      <label for="select" class="col-lg-3 control-label">Complexión</label>
 				      <div class="col-lg-9">
 				        <select class="form-control" id="complexion" name="complexion" >
 				          <option value="P" <% if ((user.getComplexion()).equals("P")) { out.println("selected=\"selected\""); } %> >Pequeña</option>

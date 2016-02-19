@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Que Comemos Hoy?</title>
+	<title>Qué Comemos Hoy?</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -24,7 +24,7 @@
 						<span class="icon-bar"></span> 
 						<span class="icon-bar"></span>
 					</button>
-					<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
+					<a href="creditos.jsp" class="navbar-brand">Qué Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="welcome.jsp">Volver al Inicio</a></li>
 <!-- 						<li><a href="misGrupos.jsp">Mis Grupos</a></li> -->
@@ -50,8 +50,8 @@
 
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
-			<h1 ALIGN=center>Que Comemos Hoy?</h1>
-			<p ALIGN=center>Trabajo Practico - Diseño De Sistemas</p>
+			<h1 ALIGN=center>Qué Comemos Hoy?</h1>
+			<p ALIGN=center>Trabajo Práctico - Diseño De Sistemas</p>
 			<p ALIGN=center>Grupo 89</p>
 		</div>
 		
@@ -73,7 +73,7 @@
 	
  <div class="row">
   <div class="col-sm-1"></div>
-  <div class="col-sm-5"> <h2>Universidad Tecnologica Nacional</h2>
+  <div class="col-sm-5"> <h2>Universidad Tecnológica Nacional</h2>
  						 <h4>Facultad Regional de Buenos Aires</h4> </div>
   <div class="col-sm-5"><img src="logoUtn.jpg" class="img-thumbnail" alt="UTN-FRBA" width="300" height="236"> </div>
   <div class="col-sm-1"></div>
@@ -85,7 +85,7 @@
 	<h2>Profesores</h2>
 <ul>
   <li><p><strong>Profesor a cargo: </strong> Luciano Straccia</p> </li>
-  <li><p><strong>Ayudante: </strong> Lucas</p> </li>
+  <li><p><strong>Ayudante: </strong> Lucas Saclier</p> </li>
   <li><p><strong>Ayudante: </strong> Adriana</p> </li>
 </ul>  
 
@@ -105,14 +105,14 @@
  
  <h2>Requisitos: </h2>
 <ul>
- <li><p>Es requisito para un correcto funcionamiento de la pagina utilizar:  </p> </li>
- <li><p>Google Chorme en su ultima version (48.0.2564.109m ó superior)</p> </li>
- <li><p>Mozilla Firefox en su ultima version (44.0.2 ó superior)</p> </li>
- <li><p>Tener habilitada la navegacion por JavaScript</p> </li>
+ <li><p>Es requisito para un correcto funcionamiento de la página utilizar:  </p> </li>
+ <li><p>Google Chorme en su última versión (48.0.2564.109m ó superior)</p> </li>
+ <li><p>Mozilla Firefox en su última versión (44.0.2 ó superior)</p> </li>
+ <li><p>Tener habilitada la navegación por JavaScript</p> </li>
  
  </ul>  
  
-	<h2>Herramientas de comunicacion: </h2>
+	<h2>Herramientas de comunicación: </h2>
 <ul>
   	<li><p>Skype</p> </li>
 	<li><p>Whatsapp</p> </li>
