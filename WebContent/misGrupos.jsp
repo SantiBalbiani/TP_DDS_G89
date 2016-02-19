@@ -13,6 +13,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	
+<style>
+a:link, a:visited {
+    color: blue;
+ }
+</style>
+
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
 	
@@ -78,7 +84,7 @@
 
 <section class="main container">
 <div class="panel panel-default" id="administracionDeGrupos">
-<div class="panel-heading"> Administrar Grupos </div>
+<div class="panel-heading"> Administrar Grupos  </div>
 
   <div class="container">
     <div class="accordion" id="crearGrupo">
