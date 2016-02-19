@@ -29,6 +29,100 @@ public class TestUsuario {
 
 
 	@Test
+	public void testMANYtoMANYuserRECETA()
+	{
+		Usuario nuevoUsuario = new Usuario();
+		
+		//(String nombreUsuario, char sexo, String fnac, String complexion,double altura,String preferencias_alimenticias, Set<Integer> condPreexistentes,String dieta, String rutina, String password ) {
+		
+		//CondicionesPreexistentes condPreexis = new CondicionesPreexistentes();
+		//condPreexis.getIndiceCondicionesDelUsuario().add(1); //generico
+		
+		//nuevoUsuario.altaUsuario("Santiago", 'M', 25,"20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
+
+		//Session session = HibernateConf.getSessionFactory().openSession();
+		//session.beginTransaction();
+		
+		
+		nuevoUsuario.setNombreUsuario("Santiago");
+		nuevoUsuario.setPassword("123456");
+		nuevoUsuario.setSexo('M');
+		nuevoUsuario.setFecha_nacimiento("20150313");
+		nuevoUsuario.setComplexion("mediana");
+		nuevoUsuario.setAltura((double)1.70);
+		nuevoUsuario.setPreferencias_alimenticias("algo");
+		nuevoUsuario.setDieta("ovolactovegetariana");
+		nuevoUsuario.setRutina("vago");
+		//nuevoUsuario.setEdad((int)15);		//proximamente borrar...
+
+		Receta unaReceta = new Receta();
+		// Creo Ingrediente
+		Ingrediente unIngrediente = new Ingrediente();
+		unIngrediente = unIngrediente.crearIngrediente("unChori", (int) 80, (int)10);
+		//unIngrediente.guardarIngrediente(unIngrediente);
+		 
+		//Session session = HibernateConf.getSessionFactory().openSession();
+		//session.beginTransaction();
+
+		//session.save(unIngrediente);
+ 
+		
+		
+		
+		
+		
+		// Creo Ingrediente PPAL
+		Ingrediente ingredientePPAL = new Ingrediente();
+		ingredientePPAL = ingredientePPAL.crearIngrediente("pasto", (int) 22, (int)33);
+		//ingredientePPAL.guardarIngrediente(ingredientePPAL);
+		
+		//session.save(ingredientePPAL);
+		
+		// Creo Condimento
+
+		Condimento unCondimento = new Condimento();
+		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
+		//unCondimento.guardarCondimento(unCondimento);
+		//session.save(unCondimento);
+		//session.getTransaction().commit();
+		//session.close();                	   
+		
+		// Creo Receta
+		// Creo Receta
+
+		Receta unaReceta2 = new Receta();
+		short calificacion = 4;
+		short sectorP = 4;
+
+		// Agrego Condimentos
+		unaReceta2.agregarUnIngrediente(unIngrediente);
+		unaReceta2.agregarCondimento(unCondimento);
+		unaReceta2.setIngredientePrincipal(ingredientePPAL);
+		unaReceta2.setCalificacion(calificacion);
+		unaReceta2.setSectorPiramideAlimenticia(sectorP);
+		
+		unaReceta2.setCalorias(500);
+		unaReceta2.setPreparacion("Se hace como venga");
+		unaReceta2.setNombreReceta("tarta");
+		unaReceta2.setDificultadReceta(5);
+		nuevoUsuario.getRecetasUser().add(unaReceta2);
+		
+		//unaReceta.guardarReceta(unaReceta);
+		
+		
+		
+		nuevoUsuario.guardarUsuario(nuevoUsuario);
+
+		
+//		 session.save(nuevoUsuario);
+//		 session.getTransaction().commit();
+//		 System.out.println("Done");
+//		 session.close();
+		//nuevoUsuario.guardarUsuario(nuevoUsuario);
+	}
+	
+	
+	@Test
 	public void testBuscarUsuario(){
 		
 			

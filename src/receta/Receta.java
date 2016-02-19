@@ -47,6 +47,7 @@ public class Receta {
 																			// el
 																			// many-to-many
 	
+	private Set<Usuario> usuarioRecetas = new HashSet<Usuario>(0); //para el many-to-many
 	
 	private Set<Integer> indiceDeIngredientes; 
 	private Set<Integer> indiceDeCondimentos;
@@ -639,5 +640,18 @@ public class Receta {
 		// factory.close();
 
 	}
+
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetasUser", cascade=CascadeType.ALL)
+	public Set<Usuario> getUsuarioRecetas() {
+		return usuarioRecetas;
+	}
+
+	public void setUsuarioRecetas(Set<Usuario> usuarioRecetas) {
+		this.usuarioRecetas = usuarioRecetas;
+	}
+
+	
+
 
 }
