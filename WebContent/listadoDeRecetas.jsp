@@ -6,7 +6,9 @@
 
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
 <%@page import="usuario.Usuario, receta.Receta, java.util.*" %>
-<%  String usuario1 = request.getParameter("usuario");
+<%  
+
+	String usuario1 = request.getParameter("usuario");
 	String datos [] = request.getParameterValues("datos");
 	Receta receta = new Receta();
 	receta = (Receta) request.getAttribute("receta_ejemplo");
@@ -15,6 +17,17 @@
 	if(recetas.isEmpty()){
 		datosRecibidos = true;
 	}
+	Usuario unUsuario = new Usuario();
+	unUsuario = unUsuario.buscarUsuarioPorNombre(usuario1);
+	
+	
+	Set<Receta> recetasDeUsaurio =unUsuario.getRecetasUser();
+	Iterator<Receta>  itRecetas  = recetasDeUsaurio.iterator();
+	while (itRecetas.hasNext()) {
+	       
+		  Receta recetaDeUsario = (Receta) itRecetas.next();
+	 		out.println(recetaDeUsario.getNombreReceta()); 
+	  }
 	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
 	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
 %>

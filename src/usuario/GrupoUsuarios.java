@@ -121,7 +121,7 @@ public class GrupoUsuarios {
 		return ((this.getAdministrador().equals(usuario)) && (this.getGrupoDeUsuarios().contains(usuario)) && (this.getGrupoDeUsuarios().size() == 1)) ; 
 	}
 	
-	//TODO: hay que hacer otro many to many a las recetas del grupo
+
 	 @Transient
 		public ArrayList<Receta> getRecetasDelGrupo(){
 			// coleccion de las recetas  los integrantes del grupo
@@ -131,7 +131,7 @@ public class GrupoUsuarios {
 
 		      for(Usuario integrante : usuarios ){
 		    	 
-		    	  recetasDelGrupo.addAll(integrante.getRecetario().getListaRecetas()); 
+		    	  recetasDelGrupo.addAll(integrante.getRecetasUser()); 
 		      }
 			
 			return recetasDelGrupo; 
