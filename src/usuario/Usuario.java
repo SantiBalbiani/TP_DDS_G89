@@ -37,6 +37,7 @@ public class Usuario {
 	// private ArrayList<Integer> condicionesPreexistentes;
 
 	private Set<Receta> recetasUser = new HashSet<Receta>(0); // Para EL MANY TO MANY DE USUARIO-RECETA
+	private Set<GrupoUsuarios> userGrupo = new HashSet<GrupoUsuarios>(0); // Para EL MANY TO MANY DE USUARIO-GRUPO
 	
 	private CondicionesPreexistentes condicionesPreexistentes;
 	private String rutina;
@@ -790,6 +791,23 @@ public class Usuario {
 
 	public void setRecetasUser(Set<Receta> recetasUser) {
 		this.recetasUser = recetasUser;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_por_grupo", joinColumns = { // agregar
+																// catalogo de
+																// ser
+																// necesario...
+			@JoinColumn(name = "ID_USER", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_GRUPO", nullable = false, updatable = false) })
+	
+		
+	public Set<GrupoUsuarios> getUserGrupo() {
+		return userGrupo;
+	}
+
+	public void setUserGrupo(Set<GrupoUsuarios> userGrupo) {
+		this.userGrupo = userGrupo;
 	}
 
 	
