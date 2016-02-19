@@ -34,6 +34,7 @@ public class Usuario {
 	private double altura;
 	private String preferencias_alimenticias;
 	private String dieta;
+	private String email;
 	// private ArrayList<Integer> condicionesPreexistentes;
 
 	private Set<Receta> recetasUser = new HashSet<Receta>(0); // Para EL MANY TO MANY DE USUARIO-RECETA
@@ -808,6 +809,15 @@ public class Usuario {
 
 	public void setUserGrupo(Set<GrupoUsuarios> userGrupo) {
 		this.userGrupo = userGrupo;
+	}
+
+	@Column(name = "EMAIL")
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	

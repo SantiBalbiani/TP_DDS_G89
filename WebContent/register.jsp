@@ -122,6 +122,20 @@ $(document).ready(function() {
                     }
                 }
              },
+             inputMail: {
+    			 validators: {
+    				 notEmpty: {
+    					 message: 'El correo es requerido y no puede ser vacio'
+    				 },
+//     				 emailAddress: {
+//     					 message: 'El correo electronico no es valido'
+//     				 }
+    				 regexp: {
+                         regexp: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i,
+                         message: 'No es un correo valido'
+                     }
+    			 }
+    		 },
              dieta: {
                  validators: {
                      notEmpty: {
@@ -174,6 +188,12 @@ $(document).ready(function() {
 				      <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
 				      <div class="col-lg-9">
 				        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña" required>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="inputMail" class="col-lg-3 control-label">E-mail</label>
+				      <div class="col-lg-9">
+				        <input type="text" class="form-control" id="inputMail" name="inputMail" placeholder="E-mail" required>
 				      </div>
 				    </div>
 				    <div class="form-group">

@@ -52,6 +52,7 @@ public class Registrarse extends HttpServlet {
 //		Desde aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
 		String nombreUsuario = request.getParameter("inputUsuario");
 		String password = request.getParameter("inputPassword");
+		String email = request.getParameter("inputMail");
 		String fechaNac = request.getParameter("fechaNacimiento");
 		String altura = request.getParameter("altura");
 		String sexo = request.getParameter("optionSexo");
@@ -99,6 +100,7 @@ public class Registrarse extends HttpServlet {
 //		---------------------------------------------------
 //		Hasta aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
 
+		nuevoUsuario.setEmail(email);
 		nuevoUsuario.setSexo(sexo_char);
 		nuevoUsuario.setAltura(doubleAltura);
 		
