@@ -51,6 +51,7 @@ public class CrearReceta extends HttpServlet {
 		String dificultad = request.getParameter("dificultad");
 		String sector = request.getParameter("sector");
 		String calorias = request.getParameter("caloriasIngPpal");
+		String ingredientes = request.getParameter("Ingredientes");
 		Receta nuevaReceta = new Receta();
 		
 		//Buscar ingrediente principal

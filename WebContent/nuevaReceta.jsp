@@ -114,18 +114,19 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						</div>
 						
 						<div class="panel panel-default" id="panelDrop">
-							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)">
+							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Ingredientes">
 								<% 
-								int i = ingredientes.size();
+								int i = 1;
 								for(Ingrediente ing : ingredientes){
 									out.println("<span id=\"drag" + i + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
 									out.println(ing.getNombre());
 									out.println("</span>");
+									i++;
 								}
 								%>
-								<span id="drag1" class="label label-default" draggable="true" ondragstart="drag(event)">Default</span>
-								<span id="drag2" class="label label-default" draggable="true" ondragstart="drag(event)">Default</span>
-								<span id="drag3" class="label label-default" draggable="true" ondragstart="drag(event)">Default</span>
+<!-- 								<span id="drag1" class="label label-default" draggable="true" ondragstart="drag(event)">Default</span> -->
+<!-- 								<span id="drag2" class="label label-default" draggable="true" ondragstart="drag(event)">Default</span> -->
+<!-- 								<span id="drag3" class="label label-default" draggable="true" ondragstart="drag(event)">Default</span> -->
 							</div>
 						</div>
 
@@ -141,19 +142,20 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 								</div>
 						</div>
 						
-						<div class="panel panel-default" id="panelDrop">
-							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)">
+						<div class="panel panel-default" id="panelDrop" >
+							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Condimentos">
 								<% 
-								int j = condimentos.size();
+								
 								for(Condimento condimento : condimentos){
 									out.println("<span id=\"drag" + i + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
 									out.println(condimento.getNombre());
 									out.println("</span>");
+									i++;
 								}
 								%>
-								<span id="drag4" class="label label-default" draggable="true" ondragstart="drag(event)">Default1</span>
-								<span id="drag5" class="label label-default" draggable="true" ondragstart="drag(event)">Default2</span>
-								<span id="drag6" class="label label-default" draggable="true" ondragstart="drag(event)">Default3</span>
+<!-- 								<span id="drag4" class="label label-default" draggable="true" ondragstart="drag(event)">Default1</span> -->
+<!-- 								<span id="drag5" class="label label-default" draggable="true" ondragstart="drag(event)">Default2</span> -->
+<!-- 								<span id="drag6" class="label label-default" draggable="true" ondragstart="drag(event)">Default3</span> -->
 							</div>
 						</div>
 						
