@@ -47,13 +47,14 @@ function submit_eliminar()
 	     if (!theForm) {
 	         theForm = document.form_eliminar;
 	     }
+
 	     theForm.submit();		
 // 		window.location="welcome.jsp"; 
     }else{
-      return false;
-   }
-  return true;
-} 
+	       return false;
+	    }
+	   return true;
+	 }
 	
 
 </script> 
@@ -422,7 +423,7 @@ $(document).ready(function() {
 <form id="form_eliminar" name="form_eliminar" method="POST" action="Actualizar_Datos">
 <div class="col-lg-9 col-md-3 col-lg-offset-3">
 <!-- Eliminar Cuenta -->
-<button type="submit" id="evento_eliminar" name="evento_eliminar" class="btn btn-default" onclick="submit_eliminar()">Eliminar Cuenta     <span class=" glyphicon glyphicon-trash"></span>
+<button type="button" id="evento_eliminar" name="evento_eliminar" class="btn btn-default" onclick="submit_eliminar()">Eliminar Cuenta     <span class=" glyphicon glyphicon-trash"></span>
 </button>
 <input type="hidden" name="esEliminarUsuario" id="esEliminarUsuario" value="si">
 </div>
