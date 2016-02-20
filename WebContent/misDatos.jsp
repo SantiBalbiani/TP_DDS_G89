@@ -128,6 +128,22 @@ $(document).ready(function() {
 //                     }
                  }
             }, 
+            peso: {
+                validators: {
+                    notEmpty: {
+                        message: 'El peso es un campo obligatorio'
+                    },
+	   				 regexp: {
+ 					 regexp: /^[0-9]+$/,
+ 					 message: 'El peso solo puede contener números'
+ 				 },
+ 				between: {
+                    min: 1,
+                    max: 300,
+                    message: 'El peso tiene que ser entre 1kg y  300kg'
+                }
+                }
+            },
             inputPassword: {
                 validators: {
                     notEmpty: {
@@ -350,6 +366,12 @@ $(document).ready(function() {
 				      <label for="inputAltura" class="col-lg-3 control-label">Altura</label>
 				      <div class="col-lg-9">
 				        <input type="text" class="form-control" id="altura" name="altura" placeholder="Altura(cm)" required value="<%  out.println((int)user.getAltura()); %>">
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="inputPeso" class="col-lg-3 control-label">Peso</label>
+				      <div class="col-lg-9">
+				        <input type="text" class="form-control" id="peso" name="peso" placeholder="Peso(kg)" required value="<%  out.println((int)user.getPeso()); %>">
 				      </div>
 				    </div>
 				    <div class="form-group">

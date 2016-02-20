@@ -43,6 +43,7 @@ public class Usuario {
 	private String preferencias_alimenticias;
 	private String dieta;
 	private String email;
+	private double peso;
 	// private ArrayList<Integer> condicionesPreexistentes;
 
 	private Set<Receta> recetasUser = new HashSet<Receta>(0); // Para EL MANY TO MANY DE USUARIO-RECETA
@@ -479,7 +480,7 @@ public class Usuario {
 		session.getTransaction().begin();
 		
 		//String sql_query = "update Usuario set NOMBRE = :nuevoNombre " + " where ID_USER = :idUsuario";
-		String sql_query = "update Usuario set PASSWORD = :nuevaPWD, F_NAC = :nuevaF_NAC, SEXO = :nuevoSexo, RUTINA = :nuevaRutina, DIETA = :nuevaDieta, COMPLEXION = :nuevaComplexion, ALTURA = :nuevaAltura, EMAIL = :nuevoMail " + " where ID_USER = :idUsuario";
+		String sql_query = "update Usuario set PASSWORD = :nuevaPWD, F_NAC = :nuevaF_NAC, SEXO = :nuevoSexo, RUTINA = :nuevaRutina, DIETA = :nuevaDieta, COMPLEXION = :nuevaComplexion, ALTURA = :nuevaAltura, EMAIL = :nuevoMail, PESO = :nuevoPeso " + " where ID_USER = :idUsuario";
 		
 		
 //		UPDATE `usuario` SET `ID_USER`=[value-1],`ALTURA`=[value-2],`COMPLEXION`=[value-3],`DIETA`=[value-4],`F_NAC`=[value-5],`NOMBRE`=[value-6],`PASSWORD`=[value-7],`PREF_ALIM`=[value-8],`RUTINA`=[value-9],`SEXO`=[value-10] WHERE `ID_USER`= 1
@@ -494,6 +495,7 @@ public class Usuario {
 		query.setParameter("nuevoMail", unUsuario.getEmail());
 		query.setParameter("nuevaRutina", unUsuario.getRutina());
 		query.setParameter("nuevoSexo", unUsuario.getSexo());
+		query.setParameter("nuevoPeso", unUsuario.getPeso());
 		
 		
 		query.executeUpdate();
@@ -827,6 +829,15 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	@Column(name = "PESO")
+	public double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
 	}
 
 	

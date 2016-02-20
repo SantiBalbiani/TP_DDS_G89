@@ -68,6 +68,7 @@ public class Actualizar_Datos extends HttpServlet {
 		String complexion = request.getParameter("complexion");		
 		String dieta = request.getParameter("dieta");		
 		String rutina = request.getParameter("rutina");	
+		String peso = request.getParameter("peso");
 		
 		//TODO: falta agregar: String preferencias_alimenticias, 
 		//ejemplo de prueba compilar
@@ -88,6 +89,7 @@ public class Actualizar_Datos extends HttpServlet {
 		
 		//String text = "192"; // example String.... recordar que es en centimetros
 		double doubleAltura = Double.parseDouble(altura);
+		double doublePeso = Double.parseDouble(peso);
 //	---------------------------------------------------
 //		Hasta aca para abajo el codigo deberia ser el mismo que registrarse!
 		
@@ -98,6 +100,7 @@ public class Actualizar_Datos extends HttpServlet {
 		usuarioActual.setComplexion(complexion);
 		usuarioActual.setDieta(dieta);
 		usuarioActual.setRutina(rutina);
+		usuarioActual.setPeso(doublePeso);
 		
 		
 		if (this.noEsStringVacio(password))

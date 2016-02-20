@@ -16,6 +16,18 @@
 	</script>
 	
 	
+	<script type="text/javascript">
+	function comfirm_decision(){
+	    if(confirm("Seguro que quieres descartar los cambios?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+	     {
+ 	       window.location="index.jsp"; 
+	     }else{
+	       return false;
+	    }
+	   return true;
+	 }
+	</script>
+	
 <!-- 	Librerias importantes para que ande bootsStrap Validator -->
 	<!-- jQuery library -->
 <script src="js/jquery-2.2.0.js"></script>
@@ -86,7 +98,9 @@ $(document).ready(function() {
                     max: 300,
                     message: 'El peso tiene que ser entre 1kg y  300kg'
                 }
-            }, 
+                }
+            },
+            
             inputPassword: {
                 validators: {
                     notEmpty: {
@@ -180,7 +194,7 @@ $(document).ready(function() {
 //     alert('Hello ' + fullName);
 // }
        
-    }}}
+    }}
     );
 });
 </script>
@@ -304,8 +318,12 @@ $(document).ready(function() {
 				    
 				    <div class="form-group">
 				      <div class="col-lg-9 col-lg-offset-3">
-				        <button type="reset" class="btn btn-default">Cancelar</button>
-				        <button type="submit" class="btn btn-primary">Aceptar</button>
+				        <!-- Cancelar edicion -->
+<button type="button" id="evento_descartar" name="evento_descartar" class="btn btn-default" onclick="comfirm_decision()" >Descartar     <span class=" glyphicon glyphicon-remove"></span>
+</button>
+				       <!-- Modificar Datos  -->
+<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar     <span class=" glyphicon glyphicon-edit"></span>
+</button>
 				      </div>
 				    </div>
 				  </fieldset>

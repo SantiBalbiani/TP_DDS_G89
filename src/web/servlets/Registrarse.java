@@ -59,6 +59,7 @@ public class Registrarse extends HttpServlet {
 		String complexion = request.getParameter("complexion");		
 		String dieta = request.getParameter("dieta");		
 		String rutina = request.getParameter("rutina");	
+		String peso = request.getParameter("peso");
 		
 		
 		//TODO: falta agregar: String preferencias_alimenticias, 
@@ -95,7 +96,7 @@ public class Registrarse extends HttpServlet {
 		
 		//String text = "192"; // example String.... recordar que es en centimetros
 		double doubleAltura = Double.parseDouble(altura);
-
+		double doublePeso = Double.parseDouble(peso);
 
 //		---------------------------------------------------
 //		Hasta aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
@@ -103,6 +104,7 @@ public class Registrarse extends HttpServlet {
 		nuevoUsuario.setEmail(email);
 		nuevoUsuario.setSexo(sexo_char);
 		nuevoUsuario.setAltura(doubleAltura);
+		nuevoUsuario.setPeso(doublePeso);
 		
 		nuevoUsuario.altaUsuario(nombreUsuario, sexo_char, fechaNac, complexion, doubleAltura , " ", dieta, rutina, password);
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
