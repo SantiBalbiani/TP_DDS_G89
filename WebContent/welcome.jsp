@@ -8,6 +8,7 @@
 <%  
 	Usuario user = (Usuario) session.getAttribute("usuario");
 	String errorBusqueda = (String) session.getAttribute("errorBusqueda");
+	String modificoUsuario = (String) session.getAttribute("modificoUsuario");
 	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
 	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 %>
@@ -74,6 +75,15 @@
     out.println("<strong>Info!</strong> No se encontro la receta. Intente nuevamente.");
   out.println("</div>");
 	  session.setAttribute("errorBusqueda", "no");	//reseteo el flag
+				}
+			
+				%>
+				<% if (modificoUsuario.equals("yes")) {
+				 out.println("<div class=\"alert alert-success fade in\">");
+    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+    out.println("<strong>Success!</strong> El usuario se modifico correctamente.");
+  out.println("</div>");
+	  session.setAttribute("modificoUsuario", "no");	//reseteo el flag
 				}
 				
 				%>
