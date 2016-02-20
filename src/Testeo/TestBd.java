@@ -75,7 +75,7 @@ public class TestBd {
 
 		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
 
-		query.setString("nombre", "tarta");
+		query.setString("nombre", "TARTA");
 		
 		java.util.List<?> lista = query.list();
 		

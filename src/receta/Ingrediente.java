@@ -5,6 +5,7 @@ import java.util.Set;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -85,7 +86,7 @@ public class Ingrediente {
 
 		Query query = session.createQuery("FROM Ingrediente");
 		
-		java.util.List<Ingrediente> listaDeTodosLosIngredientes = query.list();
+		List<Ingrediente> listaDeTodosLosIngredientes = query.list();
 
 
 	return listaDeTodosLosIngredientes;
@@ -98,6 +99,7 @@ public class Ingrediente {
 		Session session = HibernateConf.getSessionFactory().openSession();
 
 		Query query = session.createQuery("FROM Ingrediente e where e.nombre = :nombre");
+		
 
 		query.setString("nombre", unNombre);
 		
@@ -127,7 +129,7 @@ public class Ingrediente {
 //			@JoinColumn(name = "ID_INGREDIENTE", nullable = false, updatable = false) }, 
 //			inverseJoinColumns = { @JoinColumn(name = "ID_RECETA", 
 //					nullable = false, updatable = false) })
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes", cascade=CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
 	public Set<Receta> getRecetas() {
 		return this.recetas;
 	}

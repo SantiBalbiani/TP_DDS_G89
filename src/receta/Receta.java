@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -70,15 +71,18 @@ public class Receta {
 	}
 
 	// @ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetas")
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "receta_por_ingrediente", joinColumns = { // agregar
+	@ManyToMany(fetch = FetchType.LAZY)
+	/*@JoinTable(name = "receta_por_ingrediente", joinColumns = { // agregar
 																// catalogo de
 																// ser
 																// necesario...
-			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "ID_INGREDIENTE", nullable = false, updatable = false) })
-	
-	
+			@JoinColumn(name = "ID_RECETA", referencedColumnName="ID_RECETA", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_INGREDIENTE", referencedColumnName="ID_INGREDIENTE", nullable = false, updatable = false) })
+	*/
+	@JoinTable(
+		      name="receta_por_ingrediente",
+		      joinColumns=@JoinColumn(name="ID_RECETA", referencedColumnName="ID_RECETA"),
+		      inverseJoinColumns=@JoinColumn(name="ID_INGREDIENTE", referencedColumnName="ID_INGREDIENTE"))
 	public Set<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
@@ -213,7 +217,7 @@ public class Receta {
 	// @OneToOne(cascade = CascadeType.ALL)
 	// @JoinColumn(name = "ID_INGREDIENTE")
 	// @ManyToOne(fetch = FetchType.LAZY, mappedBy = "stock")
-	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_INGREDIENTE", nullable = false)
 	public Ingrediente getIngredientePrincipal() {
 		return ingredientePrincipal;
