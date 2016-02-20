@@ -84,6 +84,7 @@ public class Login extends HttpServlet {
 		       //TODO: revisar esto rompe
 		         
 		         session.setAttribute("recetas", listaRecetas);
+		         session.setAttribute("errorBusqueda", "no");
 		         session.setAttribute("usuario", user);
 		         session.setAttribute("gruposDelUsuario", grupos);
 		       //TODO: revisar esto rompe

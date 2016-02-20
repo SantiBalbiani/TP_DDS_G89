@@ -526,22 +526,33 @@ public class Receta {
 	
 	public Receta buscarRecetaPorNombre(String unNombre){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
-
-		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
-
-		query.setString("nombre", unNombre);
-		
-		java.util.List<?> lista = query.list();
-		
-	Receta recetaBuscada = (Receta)lista.get(0);
-
-
-	return recetaBuscada;
+		{
 			
-		
-	}
+			try
+			{
+			Session session = HibernateConf.getSessionFactory().openSession();
 
+			Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+
+			query.setString("nombre", unNombre);
+			
+			java.util.List<?> lista = query.list();
+			if (!lista.isEmpty())
+			{
+		Receta recetaBuscada = (Receta)lista.get(0);
+		return recetaBuscada;
+			}
+			else
+				return null;
+			}
+			catch(Throwable Exception){
+				System.out.println(Exception);
+				return null;
+			}
+		}	
+		}
+	
+	
 	public void setTotalCalorias() {
 		//TODO falta sumar calorias del grupo de ingredientes y grabar en la base??
 

@@ -7,6 +7,7 @@
 <%@page import="usuario.Usuario, usuario.GrupoUsuarios, receta.Receta, java.util.*" %>
 <%  
 	Usuario user = (Usuario) session.getAttribute("usuario");
+	String errorBusqueda = (String) session.getAttribute("errorBusqueda");
 	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
 	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 %>
@@ -57,15 +58,25 @@
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="Buscar" method="post" class="navbar-form navbar-right" role="search">
+					<form action="BuscarReceta" method="post" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Buscar" name="nombreReceta">
+							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
 						</div>
 						<button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
 					</form>
 				</div>
+				
+				<% if (errorBusqueda.equals("yes")) {
+				 out.println("<div class=\"alert alert-info fade in\">");
+    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+    out.println("<strong>Info!</strong> No se encontro la receta. Intente nuevamente.");
+  out.println("</div>");
+	  session.setAttribute("errorBusqueda", "no");	//reseteo el flag
+				}
+				
+				%>
 			</div>
 		</nav>
 		
@@ -113,7 +124,7 @@
 										    out.println("</a>");
 											out.println("</h4>");
 											out.println("</div>");
-										    out.println("<div id=\"collapseOne\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingOne\">");
+										    out.println("<div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">");
 											break;
 										case 2:
 											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">");

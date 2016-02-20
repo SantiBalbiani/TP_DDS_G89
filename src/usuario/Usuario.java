@@ -17,8 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -49,7 +47,6 @@ public class Usuario {
 
 	private Set<Receta> recetasUser = new HashSet<Receta>(0); // Para EL MANY TO MANY DE USUARIO-RECETA
 	private Set<GrupoUsuarios> userGrupo = new HashSet<GrupoUsuarios>(0); // Para EL MANY TO MANY DE USUARIO-GRUPO
-	private Set<GrupoUsuarios> adminGrupo = new HashSet<GrupoUsuarios>(0);	//para el many-to-ONE
 	
 	private CondicionesPreexistentes condicionesPreexistentes;
 	private String rutina;
@@ -830,16 +827,6 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "administrador")
-	public Set<GrupoUsuarios> getAdminGrupo() {
-		return adminGrupo;
-	}
-
-	public void setAdminGrupo(Set<GrupoUsuarios> adminGrupo) {
-		this.adminGrupo = adminGrupo;
 	}
 
 	
