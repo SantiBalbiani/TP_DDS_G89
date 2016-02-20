@@ -80,7 +80,7 @@ Receta receta = (Receta) session.getAttribute("recetaEncontrada");
 		 
 <%-- 		 <p> Ingrediente Principal:  <% out.println(receta.getIngPrincipal());%> <p>  --%>
 		 		  
-<%-- 		 <p> Calorias: <% out.println(receta.getCalorias());%> <p>  --%>
+		 <p> Calorias: <% out.println(receta.getCalorias());%> <p> 
 
 <%-- 		 <p> Dificultad: <% out.println(receta.getDificultad());%> <p>  --%>
 		 
