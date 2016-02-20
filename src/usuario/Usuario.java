@@ -35,7 +35,17 @@ public class Usuario {
 	private String preferencias_alimenticias;
 	private String dieta;
 	private String email;
+	private int peso;
 	// private ArrayList<Integer> condicionesPreexistentes;
+	
+	@Column(name = "ID_USER")
+	public int getPeso() {
+		return peso;
+	}
+
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
 
 	private Set<Receta> recetasUser = new HashSet<Receta>(0); // Para EL MANY TO MANY DE USUARIO-RECETA
 	private Set<GrupoUsuarios> userGrupo = new HashSet<GrupoUsuarios>(0); // Para EL MANY TO MANY DE USUARIO-GRUPO
@@ -457,7 +467,7 @@ public class Usuario {
 	
 	{
 	    Usuario usuarioNoEncontrado = new Usuario();
-	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseña inexistentes");
+	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseï¿½a inexistentes");
 	    usuarioNoEncontrado.setIdUsuario(9999);
 	    return usuarioNoEncontrado;
 	}
