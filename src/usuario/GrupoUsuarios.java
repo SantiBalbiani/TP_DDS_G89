@@ -19,7 +19,7 @@ public class GrupoUsuarios {
 
 	private String nombreDeGrupo;
 	private  Set<Usuario> grupoDeUsuarios= new HashSet<Usuario>(0);// Para EL MANY TO MANY DE USUARIO-GRUPO
-	private Usuario Administrador;
+	private Usuario administrador;
 	
 	List<String> listaPiramide = new ArrayList<String>() {
 		{
@@ -41,13 +41,16 @@ public class GrupoUsuarios {
 	
 	
 	//TODO: Ojo aca hay que guardar el ID de usuario y mapear...
-	@Transient
+	//@Transient
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "adminGrupo")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ADMIN", nullable = false)
 	public Usuario getAdministrador() {
-		return Administrador;
+		return administrador;
 	}
 
-	public void setAdministrador(Usuario administrador) {
-		Administrador = administrador;
+	public void setAdministrador(Usuario unAdministrador) {
+		administrador = unAdministrador;
 	}
 	
 	public Set<Usuario> crearGrupo(){
@@ -89,6 +92,7 @@ public class GrupoUsuarios {
 		this.grupoDeUsuarios = this.crearGrupo();
 		this.ingresarGrupo(unUsuario);
 		this.setNombreDeGrupo(unNombreDeGrupo);
+		this.setAdministrador(unUsuario);
 		/*TODO:
 		 * 
 		 * ACA SE DEBE HACER EL ALTA EN LA DB

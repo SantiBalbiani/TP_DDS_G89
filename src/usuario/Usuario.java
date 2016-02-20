@@ -1,19 +1,29 @@
 package usuario;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 import hibernate.HibernateConf;
 import receta.Condimento;
@@ -35,20 +45,11 @@ public class Usuario {
 	private String preferencias_alimenticias;
 	private String dieta;
 	private String email;
-	private int peso;
 	// private ArrayList<Integer> condicionesPreexistentes;
-	
-	@Column(name = "ID_USER")
-	public int getPeso() {
-		return peso;
-	}
-
-	public void setPeso(int peso) {
-		this.peso = peso;
-	}
 
 	private Set<Receta> recetasUser = new HashSet<Receta>(0); // Para EL MANY TO MANY DE USUARIO-RECETA
 	private Set<GrupoUsuarios> userGrupo = new HashSet<GrupoUsuarios>(0); // Para EL MANY TO MANY DE USUARIO-GRUPO
+	private Set<GrupoUsuarios> adminGrupo = new HashSet<GrupoUsuarios>(0);	//para el many-to-ONE
 	
 	private CondicionesPreexistentes condicionesPreexistentes;
 	private String rutina;
@@ -467,7 +468,7 @@ public class Usuario {
 	
 	{
 	    Usuario usuarioNoEncontrado = new Usuario();
-	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseï¿½a inexistentes");
+	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseña inexistentes");
 	    usuarioNoEncontrado.setIdUsuario(9999);
 	    return usuarioNoEncontrado;
 	}
@@ -829,6 +830,16 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "administrador")
+	public Set<GrupoUsuarios> getAdminGrupo() {
+		return adminGrupo;
+	}
+
+	public void setAdminGrupo(Set<GrupoUsuarios> adminGrupo) {
+		this.adminGrupo = adminGrupo;
 	}
 
 	

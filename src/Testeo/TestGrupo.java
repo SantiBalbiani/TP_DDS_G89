@@ -92,7 +92,7 @@ public class TestGrupo {
 		//session.beginTransaction();
 		
 		//TODO: enrealidad hay que buscar el IDUSUARIO porque sino rompe... en mi bd es el user 140
-		nuevoUsuario.setIdUsuario(140);
+		nuevoUsuario.setIdUsuario(10);
 		nuevoUsuario.setNombreUsuario("Santiago");
 		nuevoUsuario.setPassword("123456");
 		nuevoUsuario.setSexo('M');

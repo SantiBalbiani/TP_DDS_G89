@@ -24,16 +24,27 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	<script>
 		function allowDrop(ev) {
     		ev.preventDefault();
+    		document.myform.submit();
 		}
 
 		function drag(ev) {
     		ev.dataTransfer.setData("text", ev.target.id);
+    		 		
 		}
 
 		function drop(ev) {
     		ev.preventDefault();
     		var data = ev.dataTransfer.getData("text");
     		ev.target.appendChild(document.getElementById(data));
+    		
+    		alert(data);
+    		alert(document.getElementById(data));
+    		alert(document.myform.submit());
+    		
+    		alert("santiago");
+    		
+    		
+    		
 		}
 	</script>
 		<script type="text/javascript">
@@ -46,6 +57,10 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	    }
 	   return true;
 	 }
+	
+	function submitform(){
+	  document.myform.submit();
+	}
 	</script>
 	
 	
@@ -114,7 +129,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						</div>
 						
 						<div class="panel panel-default" id="panelDrop">
-							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Ingredientes">
+							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)," name="Ingredientes">
 								<% 
 								int i = 1;
 								for(Ingrediente ing : ingredientes){
