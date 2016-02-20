@@ -2,7 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<%@page import="usuario.Usuario, receta.Receta" %>
+
+<!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
+<%@page import="usuario.Usuario, usuario.GrupoUsuarios, receta.Receta, java.util.*" %>
+<%  
+	Usuario user = (Usuario) session.getAttribute("usuario");
+	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
+	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
+%>
 
 <%	String receta2 = "Arrozz"; %>
 

@@ -26,7 +26,7 @@
 	while (itRecetas.hasNext()) {
 	       
 		  Receta recetaDeUsario = (Receta) itRecetas.next();
-	 		out.println(recetaDeUsario.getNombreReceta()); 
+	 	System.out.println(recetaDeUsario.getNombreReceta()); 
 	  }
 	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
 	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
@@ -116,7 +116,7 @@
 		</div>
 </section>
 
-<section class="main container">
+<!-- <section class="main container">
 <div class="panel panel-default" id="MostrarGrupos">
 	<div class="panel-heading"> Seleccionar la receta deseada para ver detalles </div>
 	<br>
@@ -130,7 +130,7 @@
 	  		<div class="panel-body" style="text-indent: 1cm;" > Receta "Nombre de Receta 3"</div>
 			
 </div>
-</section>
+</section> -->
 				
 </body>
 </html>

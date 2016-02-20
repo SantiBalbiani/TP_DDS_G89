@@ -113,7 +113,7 @@
 										    out.println("</a>");
 											out.println("</h4>");
 											out.println("</div>");
-										    out.println("<div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">");
+										    out.println("<div id=\"collapseOne\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingOne\">");
 											break;
 										case 2:
 											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">");
