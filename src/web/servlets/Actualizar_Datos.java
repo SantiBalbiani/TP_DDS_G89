@@ -40,9 +40,11 @@ public class Actualizar_Datos extends HttpServlet {
 				
 		String eliminarUsuario = request.getParameter("esEliminarUsuario");
 		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
+		HttpSession session = request.getSession(true);
 		
 		if (eliminarUsuario.equals("si"))
 		{
+			//elimino el usuario...
 			usuarioActual.eliminarUsuario(usuarioActual);
 			request.getSession().invalidate();
 			response.sendRedirect("index.jsp");
@@ -108,7 +110,7 @@ public class Actualizar_Datos extends HttpServlet {
 
 		usuarioActual.modificarUsuario(usuarioActual);
 		
-		
+		session.setAttribute("modificoUsuario", "yes");
 		response.sendRedirect("welcome.jsp");
 		}
 		//response.sendRedirect("login.jsp");
