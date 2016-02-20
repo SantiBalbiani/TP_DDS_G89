@@ -73,6 +73,20 @@ public class Login extends HttpServlet {
 		         
 		         Set<GrupoUsuarios> grupos = new HashSet<GrupoUsuarios>();
 		         
+		         //Ejemplos de grupos
+		        usuario.GrupoUsuarios grupo1 = new usuario.GrupoUsuarios ();
+		        usuario.GrupoUsuarios grupo2 = new usuario.GrupoUsuarios ();
+
+		        grupo1.setNombreDeGrupo("Felinos Cosmicos");
+   		 		grupo1.setAdministrador(user);
+   		 		grupo1.ingresarGrupo(user);
+   		 		grupos.add(grupo1);
+		 		
+   		 		grupo2.setNombreDeGrupo("Utnianos");
+ 		 		grupo2.setAdministrador(user);
+ 		 		grupo2.ingresarGrupo(user);
+ 		 		grupos.add(grupo2);
+		 		 
 		         Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
 		         Ingrediente ingrediente = new Ingrediente();
 		         //ingredientes = ingrediente.mostrarTodosLosIngredientes();

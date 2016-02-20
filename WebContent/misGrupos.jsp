@@ -11,8 +11,6 @@
 	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 %>
 
-<%	String receta2 = "Arrozz"; %>
-
 <head>
 	<meta charset="UTF-8">
 	<title>Qué Comemos Hoy?</title>
@@ -20,11 +18,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	
-<style>
-a:link, a:visited {
-    color: blue;
- }
-</style>
+<!-- <!-- <style> -->
+<!-- /* a:link, a:visited { */ -->
+<!-- /*     color: blue; */ -->
+<!-- /*  } */ -->
+<!-- <!-- </style> --> 
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
@@ -65,14 +63,15 @@ a:link, a:visited {
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
+						<li><a href="estadisticas.jsp">Estadisticas</a></li>
 						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="" class="navbar-form navbar-right" role="search">
+					<form action="BuscarReceta" method="post" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Buscar">
+							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
 						</div>
 						<button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-search"></span>
@@ -83,10 +82,15 @@ a:link, a:visited {
 		</nav>
 
 <section class="jumbotron jumbotron-kd">
-		<div class="container">
-			<h1>Qué Comemos Hoy?</h1>
-			<p>Mis Grupos</p>
-		</div>
+			<div class="container">
+		<div class="row">
+			  	<div class="col-sm-8"> <h1>Qué Comemos Hoy?</h1> </div>
+			  	<div class="col-sm-4"><a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
+				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
+			</div>
+			
+			 <p>Mis grupos</p> 
+		</div>	
 	</section>
 
 <section class="main container">

@@ -245,14 +245,15 @@ $(document).ready(function() {
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
+						<li><a href="estadisticas.jsp">Estadisticas</a></li>
 						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="" class="navbar-form navbar-right" role="search">
+					<form action="BuscarReceta" method="post" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Buscar">
+							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
 						</div>
 						<button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-search"></span>
@@ -264,9 +265,14 @@ $(document).ready(function() {
 
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
-			<h1>Qué Comemos Hoy?</h1>
-			<p>Mis Datos</p>
-		</div>
+		<div class="row">
+			  	<div class="col-sm-8"> <h1>Qué Comemos Hoy?</h1> </div>
+			  	<div class="col-sm-4"><a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
+				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
+			</div>
+			
+			 <p>Mis datos</p> 
+		</div>	 
 	</section>
 
 <!-- Datos de usuario -->
@@ -437,6 +443,7 @@ $(document).ready(function() {
 <br><br>
 				      </div>
 				    </div>
+				    
 				  </fieldset>
 				</form>
 <form id="form_eliminar" name="form_eliminar" method="POST" action="Actualizar_Datos">

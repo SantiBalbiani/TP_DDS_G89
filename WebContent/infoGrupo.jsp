@@ -46,14 +46,15 @@
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
+						<li><a href="estadisticas.jsp">Estadisticas</a></li>
 						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="" class="navbar-form navbar-right" role="search">
+					<form action="BuscarReceta" method="post" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Buscar">
+							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
 						</div>
 						<button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-search"></span>
