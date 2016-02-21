@@ -93,12 +93,8 @@ public class GrupoUsuarios {
 		this.ingresarGrupo(unUsuario);
 		this.setNombreDeGrupo(unNombreDeGrupo);
 		this.setAdministrador(unUsuario);
-		/*TODO:
-		 * 
-		 * ACA SE DEBE HACER EL ALTA EN LA DB
-		 * 
-		 * 
-		 */ 
+		
+		//this.guardarGrupo(this);
 	}
 	
 	@Column(name = "NOMBRE")
