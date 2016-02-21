@@ -78,6 +78,99 @@
 			</div>
 		</div>	
 	</section>
+	
+<section class="main container" id="Recetas consultadas">	
+	<div class="panel panel-default" id="Ultimas 3">
+			<div class=panel-heading>  <h3>Recetas consultadas </h3> </div>
+				<div class="panel-body">
+					
+					<div class="row">
+							 	<div class="col-sm-4">
+							   		Fecha Inicial
+								</div>
+						 	  	<div class="col-sm-4">
+							   		Fecha Final
+								</div>
+					</div>
+		  			
+					<div class="form-group">
+					   	<div class="row">
+							 	</div>
+							 	<div class="col-sm-4">
+							   		<input type="date" class="form-control" id="consultaReceta1" name="consultaReceta1" placeholder="Fecha inicial  (dd/mm/aaaa)" required>
+								</div>
+						 	  	<div class="col-sm-4">
+							   		<input type="date" class="form-control" id="consultaReceta2" name="consultaReceta2" placeholder="Fecha final (dd/mm/aaaa)" required>
+								</div>
+								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button>
+						 	</div>
+		  			</div>
+		  			
+		  		</div> 
+	</div>
+</section>
+
+<section class="main container" id="Nuevas Recetas">	
+	<div class="panel panel-default" id="Nuevas Recetas">
+			<div class=panel-heading>  <h3>Recetas Nuevas</h3> </div>
+				<div class="panel-body">
+					
+					<div class="row">
+							 	<div class="col-sm-4">
+							   		Fecha Inicial
+								</div>
+						 	  	<div class="col-sm-4">
+							   		Fecha Final
+								</div>
+					</div>
+		  			
+					<div class="form-group">
+					   	<div class="row">
+							 	</div>
+							 	<div class="col-sm-4">
+							   		<input type="date" class="form-control" id="NewReceta1" name="newReceta1" placeholder="dd/mm/aaaa" required>
+								</div>
+						 	  	<div class="col-sm-4">
+							   		<input type="date" class="form-control" id="newReceta2" name="newReceta2" placeholder="dd/mm/aaaa" required>
+								</div>
+								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button>
+						 	</div>
+		  			</div>
+		  			
+		  		</div> 
+	</div>
+</section>
+
+<section class="main container" id="Recetas por Calorias">	
+	<div class="panel panel-default" id="Recetas por Calorias">
+			<div class=panel-heading>  <h3>Recetas por Calorías</h3> </div>
+				<div class="panel-body">
+					
+					<div class="row">
+							 	<div class="col-sm-4">
+							   		Mín Calorías
+								</div>
+						 	  	<div class="col-sm-4">
+							   		Máx Calorías
+								</div>
+					</div>
+		  			
+					<div class="form-group">
+					   	<div class="row">
+							 	</div>
+							 	<div class="col-sm-4">
+							   		<input type="text" class="form-control" id="MinCal" name="MinCal" placeholder="Calorias (Mín)" required>
+								</div>
+						 	  	<div class="col-sm-4">
+							   		<input type="text" class="form-control" id="MaxCal" name="MaxCal" placeholder="Calorias (Máx)" required>
+								</div>
+								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button>
+						 	</div>
+		  			</div>
+		  			
+		  		</div> 
+	</div>
+</section>
 
 
 </body>
