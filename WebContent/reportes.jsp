@@ -66,21 +66,16 @@
 			<div class="container">
 		<div class="row">
 			  	<div class="col-sm-8"> <h1>Qué Comemos Hoy?</h1> </div>
-			  	<div class="col-md-4"><a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
-				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a>
-				 </div>
+			  	<div class="col-sm-4"><a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
+				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
 			</div>
 			
-			<div class="row">
+			 			<div class="row">
 <!-- 			  	<div class="col-sm-8"> <p>Estadisticas</p> </div> -->
-			  	<div class="col-md-4"><a class="btn btn-default" href="reportes.jsp" role="button" id="nuevoReport" data-toggle="tooltip" title="Ver recetas" data-placement="bottom">
-				 Ver Reportes Adicionales <span class="glyphicon glyphicon-bell"></span></a>
+			  	<div class="col-md-4"><a class="btn btn-default" href="estadisticas.jsp" role="button" id="nuevoReport" data-toggle="tooltip" title="Ver recetas" data-placement="bottom">
+				 Ver Estadisticas <span class="glyphicon glyphicon-bell"></span></a>
 				 </div>
 			</div>
-				
-		
-			  
-			
 		</div>	
 	</section>
 
