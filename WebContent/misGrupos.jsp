@@ -8,6 +8,7 @@
 <%  
 	Usuario user = (Usuario) session.getAttribute("usuario");
 	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
+	String modificoGrupo = (String) session.getAttribute("modificoGrupo");
 	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 %>
 
@@ -77,7 +78,14 @@
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
 					</form>
-				</div>
+					</div>
+					<% if (modificoGrupo.equals("yes")) {
+					out.println("<div class=\"alert alert-success fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Success!</strong> El grupo se creo correctamente.");
+			    	out.println("</div>");
+		        	session.setAttribute("modificoGrupo", "no");	//reseteo el flag
+				}%>
 			</div>
 		</nav>
 
@@ -106,11 +114,12 @@
         </div>
         <div id="collapseCrearGrupo" class="accordion-body collapse">
           <div class="accordion-inner">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="POST" action="ABM_GRUPO">
               <div class="row-fluid">
                 <div class="span4">
-                  <label>Nombre del grupo a crear: </label> <input class="input-medium" type="text" placeholder="">
+                  <label>Nombre del grupo a crear: </label> <input class="input-medium" type="text" name="crearGrupo" id="crearGrupo" placeholder="NombreGrupo">
                   <button type="submit" class="btn">Crear</button>
+                  <input type="hidden" name="esCrearGrupo" id="esCrearGrupo" value="si">
                 </div>
               </div>
             

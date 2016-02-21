@@ -100,6 +100,7 @@ public class Login extends HttpServlet {
 		         session.setAttribute("recetas", listaRecetas);
 		         session.setAttribute("errorBusqueda", "no");
 		         session.setAttribute("modificoUsuario", "no");
+		         session.setAttribute("modificoGrupo", "no");
 		         session.setAttribute("usuario", user);
 		         session.setAttribute("gruposDelUsuario", grupos);
 		       //TODO: revisar esto rompe
