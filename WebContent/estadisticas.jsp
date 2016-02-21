@@ -101,9 +101,9 @@
 			  
 			 <div class="col-sm-5"> <center> <h4><u> Femenino </u></h4> </center>
 			  <ul>
-			 	<li><p>Salchicha</p></li>
-			 	<li><p>Salchicha</p></li>
-			 	<li><p>Salchicha</p></li>
+			 	<li><p>Pizza</p></li>
+			 	<li><p>Pizza</p></li>
+			 	<li><p>Pizza</p></li>
 			 </ul>
 			 </div>
 		</div>
