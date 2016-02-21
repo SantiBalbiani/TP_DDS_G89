@@ -56,16 +56,12 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 // 	       return false;
 // 	    }
 // 	   return true;
-
+		//Desde aca empieza a levantar ingredientes secundarios..
+		
 		var spans = document.getElementById('div_ingredientes').getElementsByTagName('span'),
 		  obj = {};
-
-		
-
 		console.log(obj);
-		
 		//$('inputMeIngrediento').val($.param(obj));
-		
 		var theForm = document.forms['CrearReceta'];
 	     if (!theForm) {
 	         theForm = document.CrearReceta;
@@ -83,6 +79,18 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	     //$('input').val()
 	     //addHidden(theForm, 'key-one', obj);
 	     
+	     //desde aca empieza a levantar condimentos (duplico el codigo de ingredientes...)
+	     var spans2 = document.getElementById('div_condimentos').getElementsByTagName('span'),
+		  obj2 = {};
+		console.log(obj2);
+	     var condimentosHermosos = "&";
+	     for (var j = 0,m = spans2.length; j < m; j++) {
+	    	 condimentosHermosos = condimentosHermosos.concat(spans2[j].textContent || spans2[j].innerText);
+	    	 condimentosHermosos = condimentosHermosos.concat("&");
+			}
+	     addHidden(theForm, 'condimentosDRAGdrop', condimentosHermosos);
+	     
+	     //aca termina de levantar todos los condimentos & ingredientes y hace el submit..! :)
 	     theForm.submit();
 	 }
 	</script>
@@ -168,7 +176,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 								<% 
 								int i = 1;
 								for(Ingrediente ing : ingredientes){
-									out.println("<span id=\"drag" + i + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
+									out.println("<span id=\"ing" + i + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
 									out.println(ing.getNombre());
 									out.println("</span>");
 									i++;
@@ -188,16 +196,16 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						<div class="form-group">
 							<label for="inputCondimentos">Condimentos</label>
 							<div class="panel panel-default" id="panelDrop">
-									<div id="div1" class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div id="div_condimentos" class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 								</div>
 						</div>
 						
 						<div class="panel panel-default" id="panelDrop" >
 							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Condimentos">
 								<% 
-								
+								i=0;
 								for(Condimento condimento : condimentos){
-									out.println("<span id=\"drag" + i + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
+									out.println("<span id=\"cond" + i + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
 									out.println(condimento.getNombre());
 									out.println("</span>");
 									i++;

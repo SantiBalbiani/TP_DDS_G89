@@ -60,6 +60,8 @@ public class CrearReceta extends HttpServlet {
 		String calorias = request.getParameter("caloriasIngPpal");
 		//String ingredientes = request.getParameter("Ingredientes");
 		
+		
+		//aca levanto los ingredientes secundarios del front!
 		String spanIngrediente = request.getParameter("ingredientesDRAGdrop");
 		//nota spanIngrediente recibe los nombres de los ingredientes y los tenemos que trabajar, estan separados por valores clave...
 		//TODO: hacer una funcion para trabajar el string recibido por las palabras clave...
@@ -79,7 +81,29 @@ public class CrearReceta extends HttpServlet {
 		
 		ingredientesSecundarios = listIngredSinToken.stream().map(ing -> Ingrediente.buscarIngredientePorNombre2(ing)).collect(Collectors.toSet());
 		
+		//desde aca levanto los condimentos desde el front...
+		String spanCondimento = request.getParameter("condimentosDRAGdrop");
+		//nota spanIngrediente recibe los nombres de los ingredientes y los tenemos que trabajar, estan separados por valores clave...
+		//TODO: hacer una funcion para trabajar el string recibido por las palabras clave...
 		
+		spanCondimento = spanCondimento.replaceAll("\n", "");
+		
+		spanCondimento = spanCondimento.replaceAll("\r", "");
+		
+		Set<String> listCondSinToken = new HashSet<String>(0);
+		StringTokenizer tokensCond =new StringTokenizer(spanCondimento, "&");
+		
+		while(tokensCond.hasMoreTokens()){
+			listCondSinToken.add(tokensCond.nextToken());
+		}
+		
+		Set<Condimento> condimentosSecundarios;
+		
+		condimentosSecundarios = listCondSinToken.stream().map(cond -> Condimento.buscarCondimentoPorNombre2(cond)).collect(Collectors.toSet());
+		
+		
+		
+		//desde aca sigue con toda la asignacion de la receta nueva
 		
 		//out.println(spanIngrediente);
 		Receta nuevaReceta = new Receta();
@@ -91,17 +115,23 @@ public class CrearReceta extends HttpServlet {
 			
 		}
 		
+		for(Condimento condimento : condimentosSecundarios){
+			
+			nuevaReceta.agregarCondimento(condimento);
+			
+		}
+		
 		//Buscar ingrediente principal
 		
 		Ingrediente ingredPpal = new Ingrediente();
 		//TODO: arreglar esto
 		ingredPpal = ingredPpal.buscarIngredientePorNombre(ingPrincipal);
 		
-		Condimento cond = new Condimento();
-		cond = cond.buscarCondimentoPorNombre("mostaza");
-		
-		Condimento cond2 = new Condimento();
-		cond2 = cond2.buscarCondimentoPorNombre("KETCHUP");
+//		Condimento cond = new Condimento();
+//		cond = cond.buscarCondimentoPorNombre("mostaza");
+//		
+//		Condimento cond2 = new Condimento();
+//		cond2 = cond2.buscarCondimentoPorNombre("KETCHUP");
 		
 		int sectorPiramide = Integer.parseInt(sector);
 		int caloriasIP = Integer.parseInt(calorias);
@@ -130,15 +160,15 @@ public class CrearReceta extends HttpServlet {
 		nuevaReceta.setIngredientePrincipal(ingredPpal);
 		nuevaReceta.setPreparacion(preparacion);
 		nuevaReceta.setSectorPiramideAlimenticia((short)sectorPiramide);
-		nuevaReceta.agregarUnIngrediente(ingredPpal);
-		nuevaReceta.agregarCondimento(cond);
-		nuevaReceta.agregarCondimento(cond2);
+		//nuevaReceta.agregarUnIngrediente(ingredPpal); Lo remuevo porque el ing principal no tiene que ser parte de los secundarios
+		//nuevaReceta.agregarCondimento(cond);
+		//nuevaReceta.agregarCondimento(cond2);
 		
-		Ingrediente ingPrueba = new Ingrediente();
-		
-		ingPrueba = ingPrueba.buscarIngredientePorNombre("Pollo");
-		
-		nuevaReceta.agregarUnIngrediente(ingPrueba);
+//		Ingrediente ingPrueba = new Ingrediente();
+//		
+//		ingPrueba = ingPrueba.buscarIngredientePorNombre("Pollo");
+//		
+//		nuevaReceta.agregarUnIngrediente(ingPrueba);
 		
 		nuevaReceta.getUsuarioRecetas().add(usuarioActual);
 		
