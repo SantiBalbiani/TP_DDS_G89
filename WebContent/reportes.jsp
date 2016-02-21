@@ -84,6 +84,7 @@
 			<div class=panel-heading>  <h3>Recetas consultadas </h3> </div>
 				<div class="panel-body">
 					
+					<form action="ReporteRecetas" method="post" class="form-group">
 					<div class="row">
 							 	<div class="col-sm-4">
 							   		Fecha Inicial
@@ -93,7 +94,7 @@
 								</div>
 					</div>
 		  			
-					<div class="form-group">
+				
 					   	<div class="row">
 							 	</div>
 							 	<div class="col-sm-4">
@@ -104,9 +105,12 @@
 								</div>
 								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button>
 						 	</div>
+						 	
+						 	<input type="hidden" name="esReporte" id="esReporte" value="EntreFechas">
+						 	
+						 </form>
 		  			</div>
-		  			
-		  		</div> 
+		  		
 	</div>
 </section>
 
@@ -115,6 +119,7 @@
 			<div class=panel-heading>  <h3>Recetas Nuevas</h3> </div>
 				<div class="panel-body">
 					
+					<form action="ReporteRecetas" method="post" class="form-group">
 					<div class="row">
 							 	<div class="col-sm-4">
 							   		Fecha Inicial
@@ -124,8 +129,7 @@
 								</div>
 					</div>
 		  			
-					<div class="form-group">
-					   	<div class="row">
+				   	<div class="row">
 							 	</div>
 							 	<div class="col-sm-4">
 							   		<input type="date" class="form-control" id="NewReceta1" name="newReceta1" placeholder="dd/mm/aaaa" required>
@@ -135,8 +139,10 @@
 								</div>
 								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button>
 						 	</div>
-		  			</div>
 		  			
+		  					<input type="hidden" name="esReporte" id="esReporte" value="newEntreFechas">
+					  			
+		  			</form>
 		  		</div> 
 	</div>
 </section>
@@ -145,7 +151,7 @@
 	<div class="panel panel-default" id="Recetas por Calorias">
 			<div class=panel-heading>  <h3>Recetas por Calorías</h3> </div>
 				<div class="panel-body">
-					
+					<form action="ReporteRecetas" method="post" class="form-group">
 					<div class="row">
 							 	<div class="col-sm-4">
 							   		Mín Calorías
@@ -155,8 +161,7 @@
 								</div>
 					</div>
 		  			
-					<div class="form-group">
-					   	<div class="row">
+					<div class="row">
 							 	</div>
 							 	<div class="col-sm-4">
 							   		<input type="text" class="form-control" id="MinCal" name="MinCal" placeholder="Calorias (Mín)" required>
@@ -166,8 +171,10 @@
 								</div>
 								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button>
 						 	</div>
-		  			</div>
-		  			
+					
+					<input type="hidden" name="esReporte" id="esReporte" value="entreCalorias">
+					
+		  			</form>
 		  		</div> 
 	</div>
 </section>

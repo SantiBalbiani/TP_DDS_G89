@@ -108,7 +108,7 @@
 	
 
 <section class="main container">
-<div class="panel panel-default" id="MostrarGrupos">
+<div class="panel panel-default" id="Mostrar Recetas">
 	<div class="panel-heading"> Seleccionar la receta deseada para ver detalles </div>
 	
 			
