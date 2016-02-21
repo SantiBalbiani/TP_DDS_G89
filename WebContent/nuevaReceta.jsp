@@ -46,7 +46,53 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	   return true;
 	 }
 	</script>
+	<script type="text/javascript">
+	function submit_revisar(){
+		
+// 	    if(confirm("Seguro que quieres descartar los cambios?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+// 	     {
+//  	       window.location="welcome.jsp"; 
+// 	     }else{
+// 	       return false;
+// 	    }
+// 	   return true;
+
+		var spans = document.getElementById('div_ingredientes').getElementsByTagName('span'),
+		  obj = {};
+
+		
+
+		console.log(obj);
+		
+		//$('inputMeIngrediento').val($.param(obj));
+		
+		var theForm = document.forms['CrearReceta'];
+	     if (!theForm) {
+	         theForm = document.CrearReceta;
+	     }
+	     
+	     for (var i = 0, l = spans.length; i < l; i++) {
+			  obj[spans[i].id] = spans[i].textContent || spans[i].innerText;
+			  addHidden(theForm, 'key-one', obj[spans[i].id]);
+			}
+
+	     //$('input').val()
+	     //addHidden(theForm, 'key-one', obj);
+	     
+	     theForm.submit();
+	 }
+	</script>
 	
+	<script type="text/javascript">
+	function addHidden(theForm, key, value) {
+	    // Create a hidden input element, and append it to the form:
+	    var input = document.createElement('input');
+	    input.type = 'hidden';
+	    input.name = key;'name-as-seen-at-the-server';
+	    input.value = value;
+	    theForm.appendChild(input);
+	}
+	</script>
 	
 </head>
 
@@ -94,7 +140,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 			<div class="panel panel-heading">Nueva receta!</div>
 			<div class="panel-body">
 				<div class="col-xs-8 col-md-offset-2">
-					<form action="CrearReceta" method="post">
+					<form action="CrearReceta" method="post" id="CrearReceta">
 						<div class="form-group">
 							<label for="inputNombreReceta">Nombre de la receta</label> 
 							<input type="text" class="form-control" id="nombreDeReceta" name="nombreDeReceta"/>
@@ -109,7 +155,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						<div class="form-group">
 							<label for="inputIngredientes">Ingredientes</label>
 								<div class="panel panel-default" id="panelDrop">
-									<div id="div1" class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div id="div_ingredientes" class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 								</div>
 						</div>
 						
@@ -205,7 +251,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						<div class="form-group">
 				      		<div class="col-lg-9 col-lg-offset-3">
 				        		<button type="reset" class="btn btn-default">Cancelar</button>
-				        		<button type="submit" class="btn btn-primary">Aceptar</button>
+				        		<button type="button" class="btn btn-primary" onclick="submit_revisar()">Aceptar</button>
 				      		</div>
 				    	</div>
 					</form>
