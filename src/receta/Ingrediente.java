@@ -130,9 +130,9 @@ public class Ingrediente {
 //			inverseJoinColumns = { @JoinColumn(name = "ID_RECETA", 
 //					nullable = false, updatable = false) })
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredientes")
-	public Set<Receta> getRecetas() {
-		return this.recetas;
-	}
+  	public Set<Receta> getRecetas() {
+  		return this.recetas;
+  	}
 	
 	public void guardarIngrediente(Ingrediente unIngrediente){
 		/*

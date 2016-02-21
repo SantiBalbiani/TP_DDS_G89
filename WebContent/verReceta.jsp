@@ -86,7 +86,7 @@ Receta receta = (Receta) session.getAttribute("recetaEncontrada");
 <%-- 		 <p> Dificultad: <% out.println(receta.getDificultad());%> <p>  --%>
 		 
 <%-- 		 <p> Sector alimenticio: <% out.println(receta.getSector());%> <p>  --%>
-    
+     <p> IngredientePrincipal: <% out.println(receta.getIngredientePrincipal().getNombre());%> <p> 
   </div>
 </div>
  			

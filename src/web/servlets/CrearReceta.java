@@ -58,7 +58,7 @@ public class CrearReceta extends HttpServlet {
 		
 		Ingrediente ingredPpal = new Ingrediente();
 		//TODO: arreglar esto
-		ingredPpal.buscarIngredientePorNombre("unChori");
+		ingredPpal = ingredPpal.buscarIngredientePorNombre(ingPrincipal);
 		
 		Condimento cond = new Condimento();
 		cond = cond.buscarCondimentoPorNombre("mostaza");
@@ -80,7 +80,7 @@ public class CrearReceta extends HttpServlet {
 			dificult = 3;
 		}
 	
-		System.out.println(nuevaReceta.getNombreReceta()+"   acaaaa");
+	
 		
 		nuevaReceta.setNombreReceta(nombreReceta);
 		nuevaReceta.setDificultadReceta(dificult);
@@ -92,9 +92,14 @@ public class CrearReceta extends HttpServlet {
 		nuevaReceta.setSectorPiramideAlimenticia((short)sectorPiramide);
 		nuevaReceta.agregarUnIngrediente(ingredPpal);
 		
+		Ingrediente ingPrueba = new Ingrediente();
+		
+		ingPrueba = ingPrueba.buscarIngredientePorNombre("Pollo");
+		
+		nuevaReceta.agregarUnIngrediente(ingPrueba);
+		
 		nuevaReceta.guardarReceta(nuevaReceta);
 
-		
 		session.setAttribute("recetaEncontrada", nuevaReceta);
 		
 		response.sendRedirect("verReceta.jsp");

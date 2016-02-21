@@ -1,8 +1,7 @@
-<%@page import="receta.Condimento"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="es">
-
+<%@page import="receta.Condimento"%>
 <%@ page import="java.util.*,receta.Receta, receta.Ingrediente, usuario.Usuario" %>
 <%
 

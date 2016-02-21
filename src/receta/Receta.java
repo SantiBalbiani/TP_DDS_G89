@@ -80,12 +80,12 @@ public class Receta {
 					@JoinColumn(name = "ID_INGREDIENTE", referencedColumnName="ID_INGREDIENTE", nullable = false, updatable = false) })
 	*/
 	@JoinTable(
-		      name="receta_por_ingrediente",
-		      joinColumns=@JoinColumn(name="ID_RECETA", referencedColumnName="ID_RECETA"),
-		      inverseJoinColumns=@JoinColumn(name="ID_INGREDIENTE", referencedColumnName="ID_INGREDIENTE"))
-	public Set<Ingrediente> getIngredientes() {
-		return ingredientes;
-	}
+					      name="receta_por_ingrediente",
+					      joinColumns=@JoinColumn(name="ID_RECETA", referencedColumnName="ID_RECETA"),
+				      inverseJoinColumns=@JoinColumn(name="ID_INGREDIENTE", referencedColumnName="ID_INGREDIENTE"))
+			  	public Set<Ingrediente> getIngredientes() {
+			  		return ingredientes;
+			  	}
  
 
 	public void setCondimentos(Set<Condimento> condimentos) {
@@ -171,7 +171,7 @@ public class Receta {
 	}
 
 	// @Transient
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "receta_por_condimento", joinColumns = { // agregar
 																// catalogo de
 																// ser
@@ -218,9 +218,9 @@ public class Receta {
 	// @JoinColumn(name = "ID_INGREDIENTE")
 	// @ManyToOne(fetch = FetchType.LAZY, mappedBy = "stock")
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_INGREDIENTE", nullable = false)
-	public Ingrediente getIngredientePrincipal() {
-		return ingredientePrincipal;
+  	@JoinColumn(name = "ID_INGREDIENTE", nullable = false)
+  	public Ingrediente getIngredientePrincipal() {
+  		return ingredientePrincipal;
 	}
 
 	public void setListaProcedimiento(ArrayList<String> listaProcedimiento) {
@@ -609,7 +609,7 @@ public class Receta {
 	}
 
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetasUser", cascade=CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetasUser")
 	public Set<Usuario> getUsuarioRecetas() {
 		return usuarioRecetas;
 	}
