@@ -21,26 +21,77 @@ public class Estadisticas {
 	
 	
 	/*
+	TODO: REVISAR SI HAY ERRORES Y CONSULTAR A LA BASE
+	FIXME: NO ESTA EN HIBERNATE EL MANEJO DE GRUPO ALIMENTICIO!!!!!
 	
-	Podrá obtener sus estadísticas semanales y mensuales de los tipos de comidas y sus calorías
-	(por ejemplo) por comida y consolidado.
+	1!-
+	Podrá obtener sus estadísticas semanales y mensuales de los tipos de comidas 
+	de la piramide  alim y sus calorías (por ejemplo) por comida y consolidado.
+	
+	int  consolidadoSemanalCaloriasPorComida()
+	int  consolidadoMensualCaloriasPorComida()
+	int  semanalCaloriasPorComida(String tipoComida)
+	int  mesualCaloriasPorComida(String tipoComida) 
+	
+	=================================================================================
 
 	Estadísticas (por semana y por mes):
+	
+	2-
 	o Según el sexo: tipos de receta más consultadas 
-	o Consultas según nivel de dificultad de la receta >>> aceptadas
+	
+	String  mesualTipoRecetaSegunSexo(char sexo )
+	
+	
+	3 -
+	o Consultas según nivel de dificultad de la receta 
+	
+int  semanalConsultadasAceptadasporNivelDificutlad(int dificultad)
+ int  mesualConsultadasAceptadasporNivelDificutlad(int dificultad) 
+ 
+ 
+	
+	
+	
+	4-
+	
 	o Ranking de recetas más consultadas
-	•
+	
+	Set<Receta> rankingConsultadasAceptadasSemanal()
+	Set<Receta>  rankingConsultadasAceptadasMensual()
+	
+	
+
+
+
 	Reportes (según indicación del usuario):
 	o Recetas consultadas en un período dado para un usuario
+	
+	Set<Receta> reporteConsultadasAceptadasEntre(Date fechaInicio,Date fechaFin )
+	
+	
 	o Recetas nuevas propuestas por los usuarios
+	
+	Set<Receta> reporteNuevasEntre(Date fechaInicio,Date fechaFin )
+	
+	
+	
 	o Preferencias de recetas en un período determinado
+	
+	
+	
+	
+	
 	o Recetas según un rango de calorías a indicar por el usuario
+	
+	Set<Receta> reporteRecetasPorCalorias(int caloriasInicio,Date caloriasFin )
+	
 	
 	*/
 	
  
 	
-	
+/////////////////////// MANEJO DE FECHAS /////////////////////////////////////////////////////////	
 public  Date obtenerFechaActual(){
 	
 	
@@ -72,7 +123,11 @@ public Date  primerDiaDelMes() {
    return calendar.getTime();
 }
 
+/////////////////////// FIN MANEJO DE FECHAS //////////////////////////////
 
+
+
+/////////////////////// CALORIAS X SECTOR PIRAMIDE //////////////////////////////
 
 
 public int  consolidadoSemanalCaloriasPorComida(){
@@ -162,31 +217,102 @@ public int estadisticaCaloriasPorComida(String tipoComida, Date fechaInicio){
 	return  calorias;
 	
 }
+/////////////////////// FIN CALORIAS X SECTOR PIRAMIDE //////////////////////////////
+
+
+/////////////////////// TIPO RECETA SEGUN SEXO //////////////////////////////
+
+
+public String  mesualTipoRecetaSegunSexo(char sexo ){
+	
+
+	return tipoRecetaSegunSexo(sexo, primerDiaDelMes());
+
+}
+
+public String  semanalTipoRecetaSegunSexo(char sexo ){
+	
+
+	return tipoRecetaSegunSexo(sexo, primerDiaDeLaSemana());
+
+}
+
+public String tipoRecetaSegunSexo(char unSexo, Date Fecha){
+	
+	   String tipoReceta;
+	   
+	   Set<Receta> recetasAlmuerzo = new HashSet<Receta>();
+	   Set<Receta> recetasDesayuno = new HashSet<Receta>();
+	   Set<Receta> recetasCena = new HashSet<Receta>();
+	   Set<Receta> recetasMerienda = new HashSet<Receta>();
+	   
+	   /*
+	    TODO: hacer un select u Usuario where u.sexo:=unSexo para
+	    
+	    y unir busqueda con select del recetario/receta where tipoReceta y guardar las
+	    recetas retornadas en cada set segun el tipo
+	    
+	    SE TIENE QUE HACER CUATRO QUERYs y asignar a cada set el resultado
+	    
+	    */
+	   tipoReceta = mayorCantidadRecetasPorTipo (recetasAlmuerzo,recetasDesayuno,
+			   recetasCena, recetasMerienda);
+	   
+	return tipoReceta;
+}
+
+   public String mayorCantidadRecetasPorTipo ( Set<Receta> almuerzo,Set<Receta> desayuno,
+		   										Set<Receta> cena, Set<Receta> merienda){
+	   
+	   
+		if(almuerzo.size() >= desayuno.size() && almuerzo.size() >= cena.size() && almuerzo.size() >= merienda.size()){		
+			return "Almuerzo";		
+		}
+   
+   
+	if(cena.size() >= desayuno.size() && cena.size() >= almuerzo.size() && cena.size() >= merienda.size()){		
+		return "Cena";		
+	}
+	   										
+	if(desayuno.size() >= almuerzo.size() && desayuno.size() >= cena.size() && desayuno.size() >= merienda.size()){		
+		return "Desayuno";		
+	}   
+	
+	if(merienda.size() >= almuerzo.size() && merienda.size() >= cena.size() && merienda.size() >= almuerzo.size()){		
+		return "Merienda";		
+	}  
+ 
+	   return "Almuerzo"; //por defecto para que no rompa
+	   
+   }
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////// FIN TIPO RECETA SEGUN SEXO //////////////////////////////
 
 
+ 
+
+/////////////////////// CONSULTADAS POR NIVEL DIFICULTAD //////////////////////////////
 
 public int  semanalConsultadasAceptadasporNivelDificutlad(int dificultad){
 	
 
-	return ConsultadasAceptadasporNivelDificutlad(dificultad, primerDiaDeLaSemana());
+	return consultadasAceptadasporNivelDificutlad(dificultad, primerDiaDeLaSemana());
 
 }
 
 public int  mesualConsultadasAceptadasporNivelDificutlad(int dificultad){
 	
 
-	return ConsultadasAceptadasporNivelDificutlad(dificultad, primerDiaDelMes());
+	return consultadasAceptadasporNivelDificutlad(dificultad, primerDiaDelMes());
 
 }
 
 
 
 
-public int ConsultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInicio){
+public int consultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInicio){
 	
 	
 
@@ -217,9 +343,10 @@ public int ConsultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInic
 		return  cantidadRecetas;
 
 }
+/////////////////////// FIN CONSULTADAS POR NIVEL DIFICULTAD //////////////////////////////
+ 
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////// RANKING CONSULTADAS  //////////////////////////////
 
 public Set<Receta> rankingConsultadasAceptadasSemanal(){
 	
@@ -242,7 +369,7 @@ public Set<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
 
 	Date hoy =  obtenerFechaActual();
 	Date comienzoSemanaOmes =  fechaInicio; 
-	Set<Receta> rankingRecetas = new  HashSet<Receta>(); //se debe usar??
+	Set<Receta> rankingRecetas = new  HashSet<Receta>(); 
 	 
 
 	
@@ -269,6 +396,95 @@ public Set<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
 	return  rankingRecetas;
 
 }
+
+///////////////////////FIN RANKING CONSULTADAS  //////////////////////////////
+
+
+///////////////////////REPORTE  CONSULTADAS POR PERIODO //////////////////////////////
+
+
+// Recetas consultadas en un período dado para un usuario
+
+public Set<Receta> reporteConsultadasAceptadasEntre(Date fechaInicio,Date fechaFin ){
+	
+ 
+	Set<Receta> recetasAceptadas = new  HashSet<Receta>(); 
+	Session session = HibernateConf.getSessionFactory().openSession();
+	//TODO: HACER QUERY le falta comparar fecha
+	//contra campo-columna FechaAlta en RECETARIO entre fechaInicio & FechaFin
+	
+	
+	//TODO: agregar al QUERY clausura where aceptada = 'SI'. 
+
+										
+	 Query query = session.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
+
+ 
+
+	
+	java.util.List<?> lista = query.list();
+	
+	recetasAceptadas = (Set<Receta>)lista;
+	
+	return  recetasAceptadas;
+
+}
+
+/////////////////////// FIN REPORTE  CONSULTADAS POR PERIODO //////////////////////////////
+
+///////////////////////REPORTE  RECETAS NUEVAS POR PERIODO //////////////////////////////
+
+
+
+public Set<Receta> reporteNuevasEntre(Date fechaInicio,Date fechaFin ){
+	
+ 
+	Set<Receta> recetasNuevas = new  HashSet<Receta>(); 
+	Session session = HibernateConf.getSessionFactory().openSession();
+	
+	
+	//TODO: HACER QUERY traer todas las recetas con fechaAlta entre 
+	//la fechaInicio y fechaFin
+	 
+	Query  query = session.createQuery("FROM e Receta where fechaAlta... ");
+
+	
+	 java.util.List<?> lista = query.list();
+	
+	 recetasNuevas = (Set<Receta>)lista;
+	
+	return  recetasNuevas;
+
+}
+
+///////////////////////FIN REPORTE  RECETAS NUEVAS POR PERIODO //////////////////////////////
+
+
+///////////////////////REPORTE  RECETAS  POR RANGO CALORIAS //////////////////////////////
+
+public Set<Receta> reporteRecetasPorCalorias(int caloriasInicio,Date caloriasFin ){
+	
+	 
+	Set<Receta> recetasPorCalorias = new  HashSet<Receta>(); 
+	Session session = HibernateConf.getSessionFactory().openSession();
+	
+	
+	//TODO: HACER QUERY traer todas las recetas con entre el rango >= y <= de calorias
+	
+	
+	 
+	Query  query = session.createQuery("FROM e Receta where e.calorias ... ");
+
+	
+	 java.util.List<?> lista = query.list();
+	
+	 recetasPorCalorias = (Set<Receta>)lista;
+	
+	return  recetasPorCalorias;
+
+}
+
+/////////////////////// FIN REPORTE  RECETAS  POR RANGO CALORIAS //////////////////////////////
 
 
 
