@@ -9,21 +9,16 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/signin.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <script src="js/jquery.js"></script>
+<!--     <script src="js/jquery.js"></script> -->
     <script src="js/bootstrap.min.js"></script>
     
-    <script type="text/javascript">
-    function posicionarCursor(){
-		document.getElementById("usuario").focus();
-	}
-    </script>
     
     <!-- 	Librerias importantes para que ande bootsStrap Validator -->
 	<!-- jQuery library -->
 <script src="js/jquery-2.2.0.js"></script>
 <script src="js/bootstrapvalidator.min.js"></script>
 <script src="js/bootstrapValidator.js"></script>
-<script src="js/bootstrap.min"></script>
+<!-- <script src="js/bootstrap.min"></script> -->
 <link rel="stylesheet" href="css/bootstrapvalidator.min.css">
  
 <!-- 	Librerias importantes para que ande bootsStrap Validator -->
@@ -77,11 +72,28 @@ $(document).ready(function() {
         });
 });
 </script>
-    
+     <script type="text/javascript">
+    function posicionarCursor(){
+		document.getElementById("usuario").focus();
+	}
+    </script>
     
   </head>
 
   <body onload="posicionarCursor();">
+
+
+<%  if (request.getParameter("r") != null) {
+if (request.getParameter("r").equals("1")) {
+	 out.println("<div class=\"alert alert-success fade in\">");
+	    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+	     out.println("<strong>Success!</strong> El usuario se creo correctamente. Por favor ingrese sus datos.");
+	   out.println("</div>");
+	 	//  session.setAttribute("modificoUsuario", "no");	//reseteo el flag
+}
+}%>
+
+
 
     <div class="container">
     <div class="col-md-4 col-md-offset-4">

@@ -110,7 +110,8 @@ public class Registrarse extends HttpServlet {
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 		
 		//response.sendRedirect("welcome.jsp?usuario=" + nombreUsuario + "&datos=0");
-		response.sendRedirect("login.jsp");
+		
+		response.sendRedirect("login.jsp?r=1");
 	}
 
 }
