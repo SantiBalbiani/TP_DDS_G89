@@ -219,6 +219,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						
 						<div class="form-group">
 							<label for="inputCategorias">Categorias</label>
+<!-- 							En el futuro esto tendria que ser consultado a la BD y crearlos.... Por el momento va ok -->
 								<div>
 				          			<label>
 				            			<input type="checkbox" name="optionCategoria"  value="Desayuno" />

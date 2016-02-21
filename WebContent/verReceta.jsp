@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<%@page import="usuario.Usuario, receta.Receta, receta.Ingrediente, receta.Condimento" %>
+<%@page import="usuario.Usuario, receta.Receta, receta.Ingrediente, receta.Condimento, receta.TipoReceta" %>
 
 <%
 Receta receta = (Receta) session.getAttribute("recetaEncontrada");	
@@ -114,6 +114,17 @@ Receta receta = (Receta) session.getAttribute("recetaEncontrada");
 								}
 								%>
      <br>
+     <p> Categorias de la receta </p>
+     <% 
+     
+								int k = 1;
+								for(TipoReceta cat : receta.getListaCategorias()){
+									out.println(cat.getTipoReceta());
+									out.println("<br>");
+									k++;
+								}
+								%>
+								<br>
   </div>
 </div>
  			

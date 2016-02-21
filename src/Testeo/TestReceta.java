@@ -5,6 +5,8 @@ import usuario.Usuario;
 import receta.Condimento;
 import receta.Ingrediente;
 import receta.Recetario;
+import receta.TipoReceta;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -404,5 +406,79 @@ public class TestReceta {
 		unIngrediente = unIngrediente.crearIngrediente("Papa", (int) 10, (int) 56);
 		unIngrediente.guardarIngrediente(unIngrediente);
 	}
+	
+	
+	
+	@Test
+	public void testDeTiposReceta() {
+		//Con esto probamos la receta y los metodos del many to many & Many to One...!!
+		
+		// Creo Ingrediente
+		Ingrediente unIngrediente = new Ingrediente();
+		unIngrediente = unIngrediente.crearIngrediente("Arroz", (int) 80, (int)10);
+		//unIngrediente.guardarIngrediente(unIngrediente);
+		 
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		session.save(unIngrediente);
+ 
+		
+		
+		
+		
+		
+		// Creo Ingrediente PPAL
+		Ingrediente ingredientePPAL = new Ingrediente();
+		ingredientePPAL = ingredientePPAL.crearIngrediente("Pollo", (int) 22, (int)33);
+		ingredientePPAL.guardarIngrediente(ingredientePPAL);
+		
+		session.save(ingredientePPAL);
+		
+		// Creo Condimento
+
+		Condimento unCondimento = new Condimento();
+		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
+		//unCondimento.guardarCondimento(unCondimento);
+		session.save(unCondimento);
+		session.getTransaction().commit();
+		session.close();                	   
+		
+		// Creo Receta
+
+		Receta unaReceta = new Receta();
+		short calificacion = 4;
+		short sectorP = 4;
+
+		// Agrego Condimentos
+
+		//unaReceta.setIngredientes(unaReceta.crearListaIngrediente());
+		unaReceta.agregarUnIngrediente(unIngrediente);
+
+		//unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
+		unaReceta.agregarCondimento(unCondimento);
+		unaReceta.setIngredientePrincipal(ingredientePPAL);
+		unaReceta.setCalificacion(calificacion);
+		unaReceta.setSectorPiramideAlimenticia(sectorP);
+		unaReceta.setCalorias(500);
+		unaReceta.setPreparacion("Se cocinan los ingredientes por separado y luego se mezclan");
+		unaReceta.setNombreReceta("Arroz con pollo");
+		unaReceta.setDificultadReceta(5);
+
+		TipoReceta esDesayuno = new TipoReceta();
+		esDesayuno = esDesayuno.buscarTipoRecetaPorNombre("Desayuno");
+		TipoReceta esMeriendo = new TipoReceta();
+		esMeriendo = esMeriendo.buscarTipoRecetaPorNombre("Merienda");
+		Set<TipoReceta> lasCategorias = new HashSet<TipoReceta>(0);
+		lasCategorias.add(esDesayuno);
+		lasCategorias.add(esMeriendo);
+		
+		unaReceta.setListaCategorias(lasCategorias);
+		
+		unaReceta.guardarReceta(unaReceta);
+		
+		
+	}
+
 	
 }

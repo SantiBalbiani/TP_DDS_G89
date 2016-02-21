@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 import receta.Receta;
+import receta.TipoReceta;
 import usuario.Usuario;
 import receta.Ingrediente;
 import receta.Condimento;
@@ -54,7 +55,7 @@ public class CrearReceta extends HttpServlet {
 		String nombreReceta = request.getParameter("nombreDeReceta");
 		String ingPrincipal = request.getParameter("ingPrincipal");
 		String preparacion = request.getParameter("preparacion");
-		String categorias = request.getParameter("optionCategoria");
+		String[] categorias = request.getParameterValues("optionCategoria"); //es un checkbox! 
 		String dificultad = request.getParameter("dificultad");
 		String sector = request.getParameter("sector");
 		String calorias = request.getParameter("caloriasIngPpal");
@@ -150,8 +151,17 @@ public class CrearReceta extends HttpServlet {
 			dificult = 3;
 		}
 	
-	
+		TipoReceta esTipo = new TipoReceta();
+		Set<TipoReceta> lasCategorias = new HashSet<TipoReceta>(0);
+		//lasCategorias.add(esDesayuno);
 		
+		for (String s : categorias)
+		{
+			esTipo = esTipo.buscarTipoRecetaPorNombre(s);
+			lasCategorias.add(esTipo);
+		}
+		
+		nuevaReceta.setListaCategorias(lasCategorias);
 		nuevaReceta.setNombreReceta(nombreReceta);
 		nuevaReceta.setDificultadReceta(dificult);
 		nuevaReceta.setCalificacion((short)0);

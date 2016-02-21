@@ -30,6 +30,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+//import Testeo.TipoReceta;
 import hibernate.HibernateConf;
 import receta.Condimento;
 import receta.Ingrediente;
@@ -44,6 +45,8 @@ public class Receta {
 	private String nombreReceta;
 	private String preparacion;
 
+	private Set<TipoReceta> listaCategorias = new HashSet<TipoReceta>(0); //agrego listaCategorias para Many-to-Many con TipoReceta
+	
 	private Set<Ingrediente> ingredientes = new HashSet<Ingrediente>(0); // Para
 																			// el
 																			// many-to-many
@@ -57,7 +60,7 @@ public class Receta {
 	private int dificultadReceta;
 	private short sectorPiramideAlimenticia;
 	private Ingrediente ingredientePrincipal;
-	private Set<String> listaCategorias;
+//	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
 	private ArrayList<String> contraindicaciones;
 
@@ -120,14 +123,14 @@ public class Receta {
 		}
 	};
 
-	List<String> listaCategoria = new ArrayList<String>() {
-		{
-			add("Desayuno");
-			add("Almuerzo");
-			add("Merienda");
-			add("Cena");
-		}
-	};
+//	List<String> listaCategoria = new ArrayList<String>() {
+//		{
+//			add("Desayuno");
+//			add("Almuerzo");
+//			add("Merienda");
+//			add("Cena");
+//		}
+//	};
 
 	// TODO: agregar estos campos al mapeo BD!!
 	// Atributos relacionados a la BD
@@ -182,10 +185,10 @@ public class Receta {
 		return listaCondimentos;
 	}
 
-	@Transient
-	public Set<String> getListaCategorias() {
-		return listaCategorias;
-	}
+//	@Transient
+//	public Set<String> getListaCategorias() {
+//		return listaCategorias;
+//	}
 
 	@Transient
 	public ArrayList<String> getListaProcedimiento() {
@@ -354,14 +357,14 @@ public class Receta {
 		return listaCategoria;
 	}
 
-	public void setListaCategorias(Set<String> listaCategorias) {
-		this.listaCategorias = listaCategorias;
-	}
-
-	public void agregarCategoria(String unaCategoria) {
-
-		this.getListaCategorias().add(unaCategoria);
-	}
+//	public void setListaCategorias(Set<String> listaCategorias) {
+//		this.listaCategorias = listaCategorias;
+//	}
+//
+//	public void agregarCategoria(String unaCategoria) {
+//
+//		this.getListaCategorias().add(unaCategoria);
+//	}
 
 	// PROCEDIMIENTO
 	public Set<String> crearListaProcedimiento() {
@@ -382,19 +385,19 @@ public class Receta {
 	// CATEGORIA
 	// =========
 
-	@Transient
-	public List<String> getListaCategoria() {
-		return listaCategoria;
-	}
-
-	public void setListaCategoria(List<String> listaCategoria) {
-		this.listaCategoria = listaCategoria;
-	}
-
-	public void quitarCategoria(String unaCategoria) {
-
-		this.getListaCategorias().remove(unaCategoria);
-	}
+//	@Transient
+//	public List<String> getListaCategoria() {
+//		return listaCategoria;
+//	}
+//
+//	public void setListaCategoria(List<String> listaCategoria) {
+//		this.listaCategoria = listaCategoria;
+//	}
+//
+//	public void quitarCategoria(String unaCategoria) {
+//
+//		this.getListaCategorias().remove(unaCategoria);
+//	}
 
 	// DIFICULTAD
 	// ==========
@@ -481,8 +484,8 @@ public class Receta {
 		nuevaReceta.agregarIngredientes(ingredientes);
 
 		nuevaReceta.agregarPreparacion(unaPreparacion);
-		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
-		nuevaReceta.agregarCategoria(unaCategoria);
+//		nuevaReceta.setListaCategorias(nuevaReceta.crearListaCategorias());
+//		nuevaReceta.agregarCategoria(unaCategoria);
 
 		nuevaReceta.calificar(calificacion);
 		nuevaReceta.agregarCalorias((int) calorias);
@@ -512,7 +515,7 @@ public class Receta {
 		this.getListaCondimentos().clear();
 
 		this.getListaProcedimiento().clear();
-		this.listaCategoria = null;
+//		this.listaCategoria = null;
 
 		this.calificacion = 0;
 		this.calorias = 0;
@@ -624,6 +627,18 @@ public class Receta {
 
 	public void setUsuarioRecetas(Set<Usuario> usuarioRecetas) {
 		this.usuarioRecetas = usuarioRecetas;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "receta_por_tipo", joinColumns = {  // agregar catalogo de ser necesario...
+@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, inverseJoinColumns = {
+@JoinColumn(name = "ID_TIPORECETA", nullable = false, updatable = false) })
+	public Set<TipoReceta> getListaCategorias() {
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(Set<TipoReceta> listaCategorias) {
+		this.listaCategorias = listaCategorias;
 	}
 
 	

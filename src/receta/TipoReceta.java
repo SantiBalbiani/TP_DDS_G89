@@ -15,6 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import hibernate.HibernateConf;
+
 @Entity
 @Table(name = "TIPO_RECETA")
 public class TipoReceta {
@@ -52,30 +57,48 @@ public class TipoReceta {
 	public void setTipoReceta(String tipoReceta) {
 		this.tipoReceta = tipoReceta;
 	}
-	@Transient
-	public List<String> getListaCategoria() {
-		return listaCategoria;
-	}
-
-	public void setListaCategoria(List<String> listaCategoria) {
-		this.listaCategoria = listaCategoria;
-	}
-
 	
-	List<String> listaCategoria = new ArrayList<String>() {
-		{
-			add("Desayuno");
-			add("Almuerzo");
-			add("Merienda");
-			add("Cena");
-		}
-		
-		
-		
-		
-	};
+//	@Transient
+//	public List<String> getListaCategoria() {
+//		return listaCategoria;
+//	}
+//
+//	public void setListaCategoria(List<String> listaCategoria) {
+//		this.listaCategoria = listaCategoria;
+//	}
+//
+//	
+//	List<String> listaCategoria = new ArrayList<String>() {
+//		{
+//			add("Desayuno");
+//			add("Almuerzo");
+//			add("Merienda");
+//			add("Cena");
+//		}
+//		
+//		
+//		
+//		
+//	};
 
-	
+public TipoReceta buscarTipoRecetaPorNombre(String unNombre){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM TipoReceta e where e.tipoReceta = :nombre");
+		
+
+		query.setString("nombre", unNombre);
+		
+		java.util.List<?> lista = query.list();
+		
+	//Ingrediente ingredienteBuscado = (Ingrediente)lista.get(0);
+		TipoReceta tipoBuscado = (TipoReceta)lista.get(0);
+
+	return tipoBuscado;
+			
+		
+	}
 	
 	
 }

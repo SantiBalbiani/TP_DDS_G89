@@ -23,6 +23,7 @@
     <mapping class="receta.Ingrediente" />
 	<mapping class="usuario.Usuario" /> 
 	<mapping class="receta.Condimento"/>
+	<mapping class="receta.TipoReceta"/>
 	<mapping class="usuario.GrupoUsuarios"/>
 	
 	</session-factory>
