@@ -609,7 +609,15 @@ public class Receta {
 	}
 
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetasUser")
+	//TODO: hacer many to many
+	//@Transient
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "receta_por_usuario", joinColumns = { // agregar
+																// catalogo de
+																// ser
+																// necesario...
+			@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_USER", nullable = false, updatable = false) })
 	public Set<Usuario> getUsuarioRecetas() {
 		return usuarioRecetas;
 	}

@@ -789,14 +789,8 @@ public class Usuario {
 
 	
 	
-	// @ManyToMany(fetch = FetchType.LAZY, mappedBy = "recetas")
-		@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-		@JoinTable(name = "receta_por_usuario", joinColumns = { // agregar
-																	// catalogo de
-																	// ser
-																	// necesario...
-				@JoinColumn(name = "ID_USER", nullable = false, updatable = false) }, inverseJoinColumns = {
-						@JoinColumn(name = "ID_RECETA", nullable = false, updatable = false) })
+//TODO: hacer many to many
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarioRecetas")
 	public Set<Receta> getRecetasUser() {
 		return recetasUser;
 	}

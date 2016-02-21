@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Set;
 import receta.Receta;
+import usuario.Usuario;
 import receta.Ingrediente;
 import receta.Condimento;
 
@@ -42,6 +43,7 @@ public class CrearReceta extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
+		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
 		
 		
 		String nombreReceta = request.getParameter("nombreDeReceta");
@@ -62,6 +64,9 @@ public class CrearReceta extends HttpServlet {
 		
 		Condimento cond = new Condimento();
 		cond = cond.buscarCondimentoPorNombre("mostaza");
+		
+		Condimento cond2 = new Condimento();
+		cond2 = cond2.buscarCondimentoPorNombre("KETCHUP");
 		
 		int sectorPiramide = Integer.parseInt(sector);
 		int caloriasIP = Integer.parseInt(calorias);
@@ -92,12 +97,18 @@ public class CrearReceta extends HttpServlet {
 		nuevaReceta.setSectorPiramideAlimenticia((short)sectorPiramide);
 		nuevaReceta.agregarUnIngrediente(ingredPpal);
 		nuevaReceta.agregarCondimento(cond);
+		nuevaReceta.agregarCondimento(cond2);
 		
 		Ingrediente ingPrueba = new Ingrediente();
 		
 		ingPrueba = ingPrueba.buscarIngredientePorNombre("Pollo");
 		
 		nuevaReceta.agregarUnIngrediente(ingPrueba);
+		
+		nuevaReceta.getUsuarioRecetas().add(usuarioActual);
+		
+		
+		
 		
 		nuevaReceta.guardarReceta(nuevaReceta);
 
