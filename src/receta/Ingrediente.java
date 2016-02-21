@@ -112,6 +112,25 @@ public class Ingrediente {
 			
 		
 	}
+	
+public static Ingrediente buscarIngredientePorNombre2(String unNombre){
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+
+		Query query = session.createQuery("FROM Ingrediente e where e.nombre = :nombre");
+		
+
+		query.setString("nombre", unNombre);
+		
+		java.util.List<?> lista = query.list();
+		
+	Ingrediente ingredienteBuscado = (Ingrediente)lista.get(0);
+
+
+	return ingredienteBuscado;
+			
+		
+	}
 
 	public Ingrediente crearIngrediente(String unNombre, int porcion, int unasCalorias){
 		Ingrediente nuevoIngrediente = new Ingrediente();

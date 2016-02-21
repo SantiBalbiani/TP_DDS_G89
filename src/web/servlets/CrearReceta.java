@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 import receta.Receta;
 import usuario.Usuario;
@@ -63,13 +64,6 @@ public class CrearReceta extends HttpServlet {
 		//nota spanIngrediente recibe los nombres de los ingredientes y los tenemos que trabajar, estan separados por valores clave...
 		//TODO: hacer una funcion para trabajar el string recibido por las palabras clave...
 		
-	
-		
-		//out.println(spanIngrediente);
-		Receta nuevaReceta = new Receta();
-		
-		//Buscar ingrediente principal
-		
 		spanIngrediente = spanIngrediente.replaceAll("\n", "");
 		
 		spanIngrediente = spanIngrediente.replaceAll("\r", "");
@@ -77,19 +71,27 @@ public class CrearReceta extends HttpServlet {
 		Set<String> listIngredSinToken = new HashSet<String>(0);
 		StringTokenizer tokens =new StringTokenizer(spanIngrediente, "&");
 		
-		
 		while(tokens.hasMoreTokens()){
 			listIngredSinToken.add(tokens.nextToken());
 		}
 		
+		Set<Ingrediente> ingredientesSecundarios;
 		
-//		listIngredSinToken.forEach(unIngrediente -> unIngrediente.substring(2,(unIngrediente.length()-2) ));
-//			
-		for(String i: listIngredSinToken){
+		ingredientesSecundarios = listIngredSinToken.stream().map(ing -> Ingrediente.buscarIngredientePorNombre2(ing)).collect(Collectors.toSet());
+		
+		
+		
+		//out.println(spanIngrediente);
+		Receta nuevaReceta = new Receta();
+		
+
+		for(Ingrediente ingrediente : ingredientesSecundarios){
 			
-			System.out.println(i);
+			nuevaReceta.agregarUnIngrediente(ingrediente);
+			
 		}
 		
+		//Buscar ingrediente principal
 		
 		Ingrediente ingredPpal = new Ingrediente();
 		//TODO: arreglar esto
