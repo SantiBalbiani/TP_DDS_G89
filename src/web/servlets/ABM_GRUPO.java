@@ -54,8 +54,8 @@ public class ABM_GRUPO extends HttpServlet {
 			//CREO el grupo
 			usuario.GrupoUsuarios grupoNuevo = new usuario.GrupoUsuarios ();
 			grupoNuevo.darAltaGrupo(usuarioActual, crearGrupo);
-			usuarioActual.getUserGrupo().add(grupoNuevo);
-			//grupoNuevo.guardarGrupo(grupoNuevo);
+			//usuarioActual.getUserGrupo().add(grupoNuevo);
+			grupoNuevo.guardarGrupo(grupoNuevo);
 			
 			
 			grupos.add(grupoNuevo);

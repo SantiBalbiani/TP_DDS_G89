@@ -67,7 +67,14 @@ public class GrupoUsuarios {
 	}
 	
 
-@ManyToMany(fetch = FetchType.LAZY, mappedBy = "userGrupo", cascade=CascadeType.ALL)
+//@ManyToMany(fetch = FetchType.LAZY, mappedBy = "userGrupo")
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "usuario_por_grupo", joinColumns = { // agregar
+																// catalogo de
+																// ser
+																// necesario...
+			@JoinColumn(name = "ID_GRUPO", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "ID_USER", nullable = false, updatable = false) })
 	public Set<Usuario> getGrupoDeUsuarios() {
 		return this.grupoDeUsuarios;
 	}

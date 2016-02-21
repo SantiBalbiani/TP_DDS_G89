@@ -799,15 +799,15 @@ public class Usuario {
 		this.recetasUser = recetasUser;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_por_grupo", joinColumns = { // agregar
-																// catalogo de
-																// ser
-																// necesario...
-			@JoinColumn(name = "ID_USER", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "ID_GRUPO", nullable = false, updatable = false) })
+//	@ManyToMany(fetch = FetchType.LAZY)
+//	@JoinTable(name = "usuario_por_grupo", joinColumns = { // agregar
+//																// catalogo de
+//																// ser
+//																// necesario...
+//			@JoinColumn(name = "ID_USER", nullable = false, updatable = false) }, inverseJoinColumns = {
+//					@JoinColumn(name = "ID_GRUPO", nullable = false, updatable = false) })
 	
-		
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "grupoDeUsuarios")
 	public Set<GrupoUsuarios> getUserGrupo() {
 		return userGrupo;
 	}
