@@ -77,12 +77,97 @@
 				 Ver Reportes Adicionales <span class="glyphicon glyphicon-bell"></span></a>
 				 </div>
 			</div>
-				
-		
-			  
-			
 		</div>	
-	</section>
+</section>
+
+
+<section class="main container">
+<div class="panel panel-default" id="MostrarGrupos">
+	<div class="panel-heading"> <h3> Estadísticas Semanales </h3> </div>
+	<div class="panel-body">
+		
+		<div class="panel panel-default" id="Segun Genero">
+		<div class=panel-heading>   <center> <h3> Según Género </h3> </center> </div>
+		<div class="panel-body">
+		<div class="row">
+			  
+			 <div class="col-sm-5"> <center> <h4><u> Masculino </u></h4> </center>
+			 <ul>
+			 	<li><p>Pija</p></li>
+			 	<li><p>Pija</p></li>
+			 	<li><p>Pija</p></li>
+			 </ul>
+			 </div>
+			  
+			 <div class="col-sm-5"> <center> <h4><u> Femenino </u></h4> </center>
+			  <ul>
+			 	<li><p>Concha</p></li>
+			 	<li><p>Concha</p></li>
+			 	<li><p>Concha</p></li>
+			 </ul>
+			 </div>
+		</div>
+		</div>
+		</div>
+	
+		<br><br>
+		
+		<div class="panel panel-default" id="Segun Dificultad">
+		<div class=panel-heading>   <center> <h3> Según Nivel de Dificultad </h3> </center> </div>
+		<div class="panel-body">
+		<div class="row">
+			  
+			 <div class="col-sm-5"> <center> <h4><u>Fácil</u></h4> </center>
+			 <ul>
+				<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+			 </ul>
+			 </div>
+			 
+			 <div class="col-sm-5"> <center> <h4><u>Media</u></h4> </center>
+			 <ul>
+			 	<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+			 </ul>
+			 </div>
+			 
+			 			 
+			 <div class="col-sm-5"> <center> <h4><u>Difícil</u></h4> </center>
+			 <ul>
+			 	<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+			  </ul>
+			 </div>
+			  
+			 <div class="col-sm-5"> <center> <h4><u>Muy difícil</u></h4> </center>
+			  <ul>
+			 	<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+				<center><p>NombreReceta</p></center>
+			 </ul>
+			 </div>
+		</div>
+		</div>
+		</div>
+		
+		<div class="panel panel-default" id="Ultimas 3">
+			<div class=panel-heading>   <center> <h3>Ultimas 3 recetas más consultadas </h3> </center> </div>
+				<div class="panel-body">
+					<div class="row">
+						  <ul>
+						 	<li><p>Nombre de receta 1</p></li>
+						 	<li><p>Nombre de receta 2</p></li>
+						 	<li><p>Nombre de receta 3</p></li>
+						 </ul>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+</section>
 
 
 </body>
