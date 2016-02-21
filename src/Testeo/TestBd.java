@@ -11,10 +11,30 @@ import receta.Receta;
 import receta.Condimento;
 import usuario.Usuario;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 public class TestBd {
 
+	
+	
+	@Test
+	public void consultarMisRecetas(){
+		
+		Usuario user = new Usuario();
+		
+		user = user.buscarUsuarioPorNombre("HOLAMANUEL");
+		
+		Set<Receta> misRecetas = new HashSet<Receta>(0);
+		
+		misRecetas = user.getRecetasUser();
+		
+		for (Receta unaReceta : misRecetas){
+			System.out.println(unaReceta.getNombreReceta());
+			}
+		
+	}
+	
 	
 	@Test
 	public void recetasPorUsuario(){
@@ -130,5 +150,7 @@ public class TestBd {
 		}
 		System.out.println(todosLosCond.size());
 	}
+	
+
 
 }
