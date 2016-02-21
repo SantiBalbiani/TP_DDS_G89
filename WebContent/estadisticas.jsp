@@ -93,17 +93,17 @@
 			  
 			 <div class="col-sm-5"> <center> <h4><u> Masculino </u></h4> </center>
 			 <ul>
-			 	<li><p>Pija</p></li>
-			 	<li><p>Pija</p></li>
-			 	<li><p>Pija</p></li>
+			 	<li><p>Empanada</p></li>
+			 	<li><p>Empanada</p></li>
+			 	<li><p>Empanada</p></li>
 			 </ul>
 			 </div>
 			  
 			 <div class="col-sm-5"> <center> <h4><u> Femenino </u></h4> </center>
 			  <ul>
-			 	<li><p>Concha</p></li>
-			 	<li><p>Concha</p></li>
-			 	<li><p>Concha</p></li>
+			 	<li><p>Salchicha</p></li>
+			 	<li><p>Salchicha</p></li>
+			 	<li><p>Salchicha</p></li>
 			 </ul>
 			 </div>
 		</div>
