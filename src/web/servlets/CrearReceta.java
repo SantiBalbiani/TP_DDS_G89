@@ -91,6 +91,7 @@ public class CrearReceta extends HttpServlet {
 		nuevaReceta.setPreparacion(preparacion);
 		nuevaReceta.setSectorPiramideAlimenticia((short)sectorPiramide);
 		nuevaReceta.agregarUnIngrediente(ingredPpal);
+		nuevaReceta.agregarCondimento(cond);
 		
 		Ingrediente ingPrueba = new Ingrediente();
 		

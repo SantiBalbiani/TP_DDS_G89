@@ -137,7 +137,7 @@ public Condimento buscarCondimentoPorNombre(String unNombre){
 		this.tipo = tipo.toUpperCase();
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaCondimentos", cascade=CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaCondimentos")
 	public Set<Receta> getRecetas() {
 		return recetas;
 	}

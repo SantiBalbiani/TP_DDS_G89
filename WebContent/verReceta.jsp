@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<%@page import="usuario.Usuario, receta.Receta" %>
+<%@page import="usuario.Usuario, receta.Receta, receta.Ingrediente, receta.Condimento" %>
 
 <%
 Receta receta = (Receta) session.getAttribute("recetaEncontrada");	
@@ -87,6 +87,33 @@ Receta receta = (Receta) session.getAttribute("recetaEncontrada");
 		 
 <%-- 		 <p> Sector alimenticio: <% out.println(receta.getSector());%> <p>  --%>
      <p> IngredientePrincipal: <% out.println(receta.getIngredientePrincipal().getNombre());%> <p> 
+    <br>
+     <p> Ingredientes Secundarios: </p>
+     <% 
+     
+								int i = 1;
+								for(Ingrediente ing : receta.getIngredientes()){
+									out.println("<span id=\"drag" + i + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
+									out.println(ing.getNombre());
+									out.println("</span>");
+									out.println("<br>");
+									i++;
+								}
+								%>
+								<br>
+								<p> Condimentos Adicionales: </p>
+								 <% 
+     
+								int j = 1;
+								for(Condimento cond: receta.getListaCondimentos()){
+									out.println("<span id=\"drag" + j + "\" class=\"label label-default\" draggable=\"true\" ondragstart=\"drag(event)\">");
+									out.println(cond.getNombre());
+									out.println("</span>");
+									out.println("<br>");
+									j++;
+								}
+								%>
+     <br>
   </div>
 </div>
  			
