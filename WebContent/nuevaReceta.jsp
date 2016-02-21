@@ -71,11 +71,15 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	         theForm = document.CrearReceta;
 	     }
 	     
+	     var ingredientesHermosos = "&";
 	     for (var i = 0, l = spans.length; i < l; i++) {
-			  obj[spans[i].id] = spans[i].textContent || spans[i].innerText;
-			  addHidden(theForm, 'key-one', obj[spans[i].id]);
+			  //obj[spans[i].id] = spans[i].textContent || spans[i].innerText;
+			//  addHidden(theForm, 'key-one', obj[spans[i].id]);
+	    	 ingredientesHermosos = ingredientesHermosos.concat(spans[i].textContent || spans[i].innerText);
+	    	 ingredientesHermosos = ingredientesHermosos.concat("&");
 			}
 
+	     addHidden(theForm, 'ingredientesDRAGdrop', ingredientesHermosos);
 	     //$('input').val()
 	     //addHidden(theForm, 'key-one', obj);
 	     

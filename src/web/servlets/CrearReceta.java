@@ -53,9 +53,14 @@ public class CrearReceta extends HttpServlet {
 		String dificultad = request.getParameter("dificultad");
 		String sector = request.getParameter("sector");
 		String calorias = request.getParameter("caloriasIngPpal");
-		String ingredientes = request.getParameter("Ingredientes");
+		//String ingredientes = request.getParameter("Ingredientes");
 		
-		String spanIngrediente = request.getParameter("key-one");
+		String spanIngrediente = request.getParameter("ingredientesDRAGdrop");
+		//nota spanIngrediente recibe los nombres de los ingredientes y los tenemos que trabajar, estan separados por valores clave...
+		//TODO: hacer una funcion para trabajar el string recibido por las palabras clave...
+		
+		
+		
 		//out.println(spanIngrediente);
 		Receta nuevaReceta = new Receta();
 		
