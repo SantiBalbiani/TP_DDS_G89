@@ -12,7 +12,7 @@
 	
 		<script type="text/javascript">
 	function logout(){
-	    if(confirm("Seguro que quieres cerrar la sesión?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+	    if(confirm("Seguro que quieres cerrar la sesion?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
 	     {
 	    	window.location="logout.jsp"; 
 	     }else{
@@ -65,7 +65,7 @@
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Qué Comemos Hoy?</h1>
-			<p>Ver Recetas del Período</p>
+			<p>Ver Recetas según preferencias calóricas</p>
 		</div>
 </section>
 
