@@ -171,20 +171,20 @@ $(document).ready(function() {
 	<div class="form-group">
 				      <div class="col-lg-9 col-lg-offset-3">
 				        <!-- Cancelar edicion -->
-<button type="button" id="evento_descartar" name="evento_descartar" class="btn btn-default" onclick="comfirm_decision()" >Descartar     <span class=" glyphicon glyphicon-remove"></span>
-</button>
+			<button type="button" id="evento_descartar" name="evento_descartar" class="btn btn-default" onclick="comfirm_decision()" >
+				Descartar     <span class=" glyphicon glyphicon-remove"></span>
+			</button>
+				    
 				       <!-- Modificar Datos  -->
-<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar     <span class=" glyphicon glyphicon-edit"></span>
-</button>
-				      </div>
-				    </div>
-				  </fieldset>
-				</form>
-																
-		  		
-				
-				</div>
-		 	</div>
+			<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">
+				Aceptar     <span class=" glyphicon glyphicon-edit"></span>
+			</button>
+			</div>
+	</div>
+	</fieldset>
+</form>
+	</div>
+	</div>
 </div>
 </section>
 
