@@ -171,27 +171,27 @@ public class TestReceta {
 	 *   
 	 */
 	
-	@Test	
-	public void buscarReceta(){
-		
-		Session session = HibernateConf.getSessionFactory().openSession();
-
-		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
-
-		query.setString("nombre", "tarta");
-		
-		java.util.List<?> lista = query.list();
-		
-	Receta nombreReceta1 = (Receta)lista.get(0);
-	Receta nombreReceta2 = (Receta)lista.get(0);
-	Receta nombreReceta3 = (Receta)lista.get(0);
-		
-		System.out.println(nombreReceta1.getNombreReceta()+"acaa");
-		System.out.println(nombreReceta2.getNombreReceta()+"acaa");
-		System.out.println(nombreReceta3.getNombreReceta()+"acaa");
-				
-		
-	}
+//	@Test	
+//	public void buscarReceta(){
+//		
+//		Session session = HibernateConf.getSessionFactory().openSession();
+//
+//		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+//
+//		query.setString("nombre", "tarta");
+//		
+//		java.util.List<?> lista = query.list();
+//		
+//	Receta nombreReceta1 = (Receta)lista.get(0);
+//	Receta nombreReceta2 = (Receta)lista.get(0);
+//	Receta nombreReceta3 = (Receta)lista.get(0);
+//		
+//		System.out.println(nombreReceta1.getNombreReceta()+"acaa");
+//		System.out.println(nombreReceta2.getNombreReceta()+"acaa");
+//		System.out.println(nombreReceta3.getNombreReceta()+"acaa");
+//				
+//		
+//	}
 	
 	
 	/* 		---- Junit Test Case ----
@@ -293,7 +293,7 @@ public class TestReceta {
 		unaReceta.setDificultadReceta(5);
 
 		
-		unaReceta.guardarReceta(unaReceta);
+		//unaReceta.guardarReceta(unaReceta);
 		
 		/*
 		Receta unaReceta2 = new Receta();
@@ -409,76 +409,76 @@ public class TestReceta {
 	
 	
 	
-	@Test
-	public void testDeTiposReceta() {
-		//Con esto probamos la receta y los metodos del many to many & Many to One...!!
-		
-		// Creo Ingrediente
-		Ingrediente unIngrediente = new Ingrediente();
-		unIngrediente = unIngrediente.crearIngrediente("Arroz", (int) 80, (int)10);
-		//unIngrediente.guardarIngrediente(unIngrediente);
-		 
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
-
-		session.save(unIngrediente);
- 
-		
-		
-		
-		
-		
-		// Creo Ingrediente PPAL
-		Ingrediente ingredientePPAL = new Ingrediente();
-		ingredientePPAL = ingredientePPAL.crearIngrediente("Pollo", (int) 22, (int)33);
-		ingredientePPAL.guardarIngrediente(ingredientePPAL);
-		
-		session.save(ingredientePPAL);
-		
-		// Creo Condimento
-
-		Condimento unCondimento = new Condimento();
-		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
-		//unCondimento.guardarCondimento(unCondimento);
-		session.save(unCondimento);
-		session.getTransaction().commit();
-		session.close();                	   
-		
-		// Creo Receta
-
-		Receta unaReceta = new Receta();
-		short calificacion = 4;
-		short sectorP = 4;
-
-		// Agrego Condimentos
-
-		//unaReceta.setIngredientes(unaReceta.crearListaIngrediente());
-		unaReceta.agregarUnIngrediente(unIngrediente);
-
-		//unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
-		unaReceta.agregarCondimento(unCondimento);
-		unaReceta.setIngredientePrincipal(ingredientePPAL);
-		unaReceta.setCalificacion(calificacion);
-		unaReceta.setSectorPiramideAlimenticia(sectorP);
-		unaReceta.setCalorias(500);
-		unaReceta.setPreparacion("Se cocinan los ingredientes por separado y luego se mezclan");
-		unaReceta.setNombreReceta("Arroz con pollo");
-		unaReceta.setDificultadReceta(5);
-
-		TipoReceta esDesayuno = new TipoReceta();
-		esDesayuno = esDesayuno.buscarTipoRecetaPorNombre("Desayuno");
-		TipoReceta esMeriendo = new TipoReceta();
-		esMeriendo = esMeriendo.buscarTipoRecetaPorNombre("Merienda");
-		Set<TipoReceta> lasCategorias = new HashSet<TipoReceta>(0);
-		lasCategorias.add(esDesayuno);
-		lasCategorias.add(esMeriendo);
-		
-		unaReceta.setListaCategorias(lasCategorias);
-		
-		unaReceta.guardarReceta(unaReceta);
-		
-		
-	}
+//	@Test
+//	public void testDeTiposReceta() {
+//		//Con esto probamos la receta y los metodos del many to many & Many to One...!!
+//		
+//		// Creo Ingrediente
+//		Ingrediente unIngrediente = new Ingrediente();
+//		unIngrediente = unIngrediente.crearIngrediente("Arroz", (int) 80, (int)10);
+//		//unIngrediente.guardarIngrediente(unIngrediente);
+//		 
+//		Session session = HibernateConf.getSessionFactory().openSession();
+//		session.beginTransaction();
+//
+//		session.save(unIngrediente);
+// 
+//		
+//		
+//		
+//		
+//		
+//		// Creo Ingrediente PPAL
+//		Ingrediente ingredientePPAL = new Ingrediente();
+//		ingredientePPAL = ingredientePPAL.crearIngrediente("Pollo", (int) 22, (int)33);
+//		ingredientePPAL.guardarIngrediente(ingredientePPAL);
+//		
+//		session.save(ingredientePPAL);
+//		
+//		// Creo Condimento
+//
+//		Condimento unCondimento = new Condimento();
+//		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
+//		//unCondimento.guardarCondimento(unCondimento);
+//		session.save(unCondimento);
+//		session.getTransaction().commit();
+//		session.close();                	   
+//		
+//		// Creo Receta
+//
+//		Receta unaReceta = new Receta();
+//		short calificacion = 4;
+//		short sectorP = 4;
+//
+//		// Agrego Condimentos
+//
+//		//unaReceta.setIngredientes(unaReceta.crearListaIngrediente());
+//		unaReceta.agregarUnIngrediente(unIngrediente);
+//
+//		//unaReceta.setListaCondimentos(unaReceta.crearListaCondimentos());
+//		unaReceta.agregarCondimento(unCondimento);
+//		unaReceta.setIngredientePrincipal(ingredientePPAL);
+//		unaReceta.setCalificacion(calificacion);
+//		unaReceta.setSectorPiramideAlimenticia(sectorP);
+//		unaReceta.setCalorias(500);
+//		unaReceta.setPreparacion("Se cocinan los ingredientes por separado y luego se mezclan");
+//		unaReceta.setNombreReceta("Arroz con pollo");
+//		unaReceta.setDificultadReceta(5);
+//
+//		TipoReceta esDesayuno = new TipoReceta();
+//		esDesayuno = esDesayuno.buscarTipoRecetaPorNombre("Desayuno");
+//		TipoReceta esMeriendo = new TipoReceta();
+//		esMeriendo = esMeriendo.buscarTipoRecetaPorNombre("Merienda");
+//		Set<TipoReceta> lasCategorias = new HashSet<TipoReceta>(0);
+//		lasCategorias.add(esDesayuno);
+//		lasCategorias.add(esMeriendo);
+//		
+//		unaReceta.setListaCategorias(lasCategorias);
+//		
+//		unaReceta.guardarReceta(unaReceta);
+//		
+//		
+//	}
 
 	
 }
