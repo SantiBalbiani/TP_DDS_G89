@@ -15,6 +15,9 @@
 	
 	Set<GrupoUsuarios> misGrupos = new HashSet<GrupoUsuarios>(0);	
 	misGrupos = user.getUserGrupo();
+	//misGrupos = user.buscarGruposDelUsuario(user);
+	//misGrupos = usuario.GrupoUsuarios.this.buscarGruposDelUsuario(user);
+
 %>
 
 <head>
@@ -251,10 +254,11 @@
 						
 							for (GrupoUsuarios grupo1 : misGrupos) {
 								j++;
-						%>
-						<div class="panel panel-default">
+								out.println("<div class=\"panel panel-default\">");
+
+//<!-- 						<div class="panel panel-default"> -->
 						
-						<%
+
 						out.println("<div class=\"panel-heading\" role=\"tab\" id=\"heading"+j+"\">");
 										    out.println("<h4 class=\"panel-title\">");
 										    out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse"+j+j+"\" aria-expanded=\"true\" aria-controls=\"collapse"+j+"\">");
@@ -276,7 +280,7 @@
 										//out.println("<br>");
 										out.println("</div>");
 										out.println("</div>");
-										out.println("</div>");
+										//out.println("</div>");
 									}
 								}
 							%>				

@@ -834,7 +834,14 @@ public class Usuario {
 		this.peso = peso;
 	}
 
-	
+	public Set<GrupoUsuarios> buscarGruposDelUsuario(Usuario unUsuario){
+		
+		 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
+		gruposEncontrados = usuario.GrupoUsuarios.buscarGruposDelUsuario(unUsuario);
+			 
+			 
+		  return gruposEncontrados;
+	}
 	
 	
 

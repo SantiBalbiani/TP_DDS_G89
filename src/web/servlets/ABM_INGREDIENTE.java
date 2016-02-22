@@ -41,8 +41,8 @@ public class ABM_INGREDIENTE extends HttpServlet {
 		
 		String crearIngrediente = request.getParameter("esCrearIngrediente");
 		//nota en los otros formularios que llamen a este servlet, agregar un hidden con esta variable seteada en "no"
-		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
-		HttpSession session = request.getSession(true);
+		//Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
+		//HttpSession session = request.getSession(true);
 		
 		if (crearIngrediente.equals("si"))
 		{

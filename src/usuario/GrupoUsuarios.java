@@ -90,6 +90,7 @@ public class GrupoUsuarios {
 	public void salirGrupo( Usuario  unUsuario){
 
 		this.getGrupoDeUsuarios().remove(unUsuario);
+		//unUsuario.getUserGrupo().remove(this);
 
 		// ADEMAS LO ELIMINO DE LA BD...
 		Session session = HibernateConf.getSessionFactory().openSession();
@@ -102,6 +103,8 @@ public class GrupoUsuarios {
 		query.setParameter("idGrupo", this.getIdGrupo());
 
 		query.executeUpdate();
+		session.flush();
+		session.clear();
 		session.getTransaction().commit();
 		System.out.println("Done");
 		session.close();
@@ -197,6 +200,8 @@ public class GrupoUsuarios {
 		}
 		
 		
+		
+		
 		public GrupoUsuarios buscarGrupoPorNombre(String unNombre){
 			try
 			{
@@ -288,6 +293,24 @@ public class GrupoUsuarios {
 		public void setGrupoDeUsuarios(Set<Usuario> grupoDeUsuarios) {
 			this.grupoDeUsuarios = grupoDeUsuarios;
 		}
-	
+		
+		public static Set<GrupoUsuarios> buscarGruposDelUsuario(Usuario unUsuario){
+			
+			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
+
+				 		
+				 		Session session = HibernateConf.getSessionFactory().openSession();
+				 
+				 		Query query = session.createQuery("FROM usuario.GrupoUsuarios e join usuario.Usuario r where r.idUsuario = :idUser");
+				 
+				 		query.setString("idUser", String.valueOf(unUsuario.getIdUsuario()));
+				 		
+				 		java.util.List<?> lista = query.list();
+				 		
+				 	 gruposEncontrados = (Set<GrupoUsuarios>) lista;
+				 
+				 
+			  return gruposEncontrados;
+		}
 
 }

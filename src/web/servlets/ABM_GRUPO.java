@@ -1,6 +1,7 @@
 package web.servlets;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -71,7 +72,7 @@ public class ABM_GRUPO extends HttpServlet {
 			//lo saco del grupo
 			String salirGrupo = request.getParameter("salirGrupo");
 			usuario.GrupoUsuarios grupoViejo = new usuario.GrupoUsuarios ();
-			grupoViejo = grupoViejo.buscarGrupoPorNombre(salirGrupo);
+			//grupoViejo = grupoViejo.buscarGrupoPorNombre(salirGrupo);
 			
 			
 			try{
@@ -80,9 +81,21 @@ public class ABM_GRUPO extends HttpServlet {
 				if (grupoViejo!=null) {
 				//session.setAttribute("recetaEncontrada", recetaBuscada);
 				grupoViejo.salirGrupo(usuarioActual);
-				grupos.remove(grupoViejo);	//lo elimino tmb de la isntancia local..! :)
+				//grupos.remove(grupoViejo);	//lo elimino tmb de la isntancia local..! :)
+				
+				 Set<GrupoUsuarios> gruposActualizacion =  new HashSet<GrupoUsuarios>();
+				 gruposActualizacion =usuarioActual.getUserGrupo();
+				
+				for (GrupoUsuarios c : gruposActualizacion)
+				{
+					if (c.getNombreDeGrupo().equals(salirGrupo))
+						gruposActualizacion.remove(c);
+				}
+				
+				usuarioActual.setUserGrupo(gruposActualizacion);
 			
 				session.setAttribute("salioGrupo", "yes");
+				//session.setAttribute("usuario", usuarioActual);	//por si las dudas...
 				response.sendRedirect("misGrupos.jsp");
 				}
 				else

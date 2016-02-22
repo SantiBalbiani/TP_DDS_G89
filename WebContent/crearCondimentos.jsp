@@ -42,72 +42,55 @@
 	<script src="js/bootstrap.min"></script>
 	<link rel="stylesheet" href="css/bootstrapvalidator.min.css">
 
+
+		<!-- 	Este es el script que valida el form de registrarse!! -->
 		<script>
-$(document).ready(function() {
-    $('#crearIngrediente_form').bootstrapValidator({
-         framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-        	inputNombre: {
-                validators: {
-                    notEmpty: {
-                        message: 'El nombre es un campo obligatorio'
-                    },
-                    stringLength: {
-                        min: 4,
-                        max: 30,
-                        message: 'El nombre debe tener entre 4 y 30 caracteres'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: 'El nombre solo puede tener valores alfanumericos y guiones bajos'
-                    }
-                }
-            },
-            inputCalorias: {
-                validators: {
-                    notEmpty: {
-                        message: 'Las calorias es un campo obligatorio'
-                    },
-	   				 regexp: {
- 					 regexp: /^[0-9]+$/,
- 					 message: 'Las calorias solo puede contener números'
- 				 },
- 				between: {
-                    min: 0,
-                    max: 2000,
-                    message: 'Las calorias tiene que ser entre 0 CAL  y  2000 CAL'
-                }
-//                     numeric: {
-//                         message: 'El valor debe estar expresado en números'
-//                     }
-                 }
-            }, 
-            inputPorcion: {
-                validators: {
-                    notEmpty: {
-                        message: 'La porcion es un campo obligatorio'
-                    },
-	   				 regexp: {
- 					 regexp: /^[0-9]+$/,
- 					 message: 'La porcion solo puede contener números'
- 				 },
- 				between: {
-                    min: 0,
-                    max: 50,
-                    message: 'La porcion tiene que ser entre 0 y 50'
-                }
-                }
-            }
-           
-    }}
-    );
-});
-</script>
+	$(document).ready(function() {
+	    $('#crearCondimento_form').bootstrapValidator({
+	         framework: 'bootstrap',
+	        icon: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	        	inputNombre: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'El nombre es un campo obligatorio'
+	                    },
+	                    stringLength: {
+	                        min: 4,
+	                        max: 30,
+	                        message: 'El nombre debe tener entre 4 y 30 caracteres'
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_]+$/,
+	                        message: 'El nombre solo puede tener valores alfanumericos y guiones bajos'
+	                    }
+	                }
+	            },
+	            inputTipo: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'El tipo es un campo obligatorio'
+	                    },
+	                    stringLength: {
+	                        min: 4,
+	                        max: 30,
+	                        message: 'El tipo debe tener entre 4 y 30 caracteres'
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_]+$/,
+	                        message: 'El tipo solo puede tener valores alfanumericos y guiones bajos'
+	                    }
+	                }
+	            },
+	                     
+	    }}
+	    );
+	});
+	</script>
 
 
 	
@@ -196,7 +179,7 @@ $(document).ready(function() {
 				    
 				       <!-- Modificar Datos  -->
 			<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">
-				Aceptar     <span class=" glyphicon glyphicon-edit"></span>
+				Aceptar     <span class=" glyphicon glyphicon-ok"></span>
 			</button>
 			</div>
 	</div>
