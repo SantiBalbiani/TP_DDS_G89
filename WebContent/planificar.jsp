@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Que Comemos Hoy?</title>
+	<title>Qué Comemos Hoy?</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -43,8 +43,8 @@
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="estadisticas.jsp">Estadisticas</a></li>
-						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>
+						<li><a href="estadisticas.jsp">Estadísticas</a></li>
+						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
 				<!-- Inicia Menu -->
@@ -63,10 +63,99 @@
 
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
-			<h1>Que Comemos Hoy?</h1>
+			<h1>Qué Comemos Hoy?</h1>
 			<p>Planificar Comidas Diarias </p>
 		</div>
-	</section>
+</section>
+
+
+<section class="main container">
+
+<div class="panel-body">
+			<div class="panel panel-default" id="Ultimas 3">
+				<div class=panel-heading>  <h3>Planificación</h3> </div>
+				<div class="panel-body" id="1">		
+					<form action="PlanificarComidas" method="post" class="form-group">
+<!-- 						<div class="row"> -->
+<!-- 							 	<div class="col-sm-4"> -->
+<!-- 							   		Fecha -->
+<!-- 								</div> -->
+<!-- 						</div> -->
+		  			
+				
+					   	<div class="row">
+							 	</div>
+							 	<div class="col-sm-3">
+							   		<input type="date" class="form-control" id="planFecha" name="planFecha" placeholder="Fecha" required>
+								</div>
+						 	  <div class="col-sm-3">
+							   		<input type="text" class="form-control" id="planNombre" name="planNombre" placeholder="Nombre De Receta" required>
+								</div>
+								<div class="col-sm-3">
+									<select class="form-control" id="tipo" name="tipo">
+				          				  <option disabled selected> -- Elija una opcion -- </option>
+								          <option value="D">Desayuno</option>
+								          <option value="A">Almuerzo</option>
+								          <option value="M">Merienda</option>
+								          <option value="C">Cena</option>
+				       				 </select>
+								</div>
+								<div class="col-sm-1">
+									<button type="submit" id="eventoPlanificar" name="eventoPlanificar" class="btn btn-default">Planificar</button>
+						 		</div>
+						 		
+						 		<input type="hidden" name="esPlanificacion" id="esPlanificacion" value="planificacion">
+						 	
+						</form>
+																
+		  			</div>
+		 		</div>
+</div>
+
+
+<div class="panel body" id="2">
+		  			
+		  			 <table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Fecha</th>
+					        <th>Receta</th>
+					        <th>Categoria</th>
+					      </tr>
+					    </thead>
+
+
+<!-- 	Acá en el body hay que hacer lo mismo de mostrar recetas de las tablas, -->
+<!-- 	 mostrar los planes agendados en tabla de forma recursiva uno debajo del otro   -->
+					   
+					   
+					    <tbody>
+					      
+					      <tr>
+					        <td>18/02/2016</td>
+					        <td>Mila con Papas</td>
+					        <td>Desayuno</td>
+					      </tr>
+					     
+					      <tr>
+					        <td>20/02/2016</td>
+					        <td>Bife con fritas</td>
+					        <td>Cena</td>
+					      </tr>
+					   
+					    </tbody>
+					  
+					  </table>
+</div>
+
+</section>
+
+
+
+
+
+
+
 
 
 </body>
