@@ -6,6 +6,7 @@
 
 <%
 Receta receta = (Receta) session.getAttribute("recetaEncontrada");	
+String creoReceta = (String) session.getAttribute("creoReceta");
 %>
 
 <head>
@@ -62,6 +63,15 @@ Receta receta = (Receta) session.getAttribute("recetaEncontrada");
 						</button>
 					</form>
 				</div>
+				<% if (creoReceta.equals("yes")) {
+ 				 out.println("<div class=\"alert alert-success fade in\">");
+    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+     out.println("<strong>Success!</strong> La receta se creo correctamente.");
+   out.println("</div>");
+ 	  session.setAttribute("creoReceta", "no");	//reseteo el flag
+ 				}
+  				
+  				%>
 			</div>
 		</nav>
 		

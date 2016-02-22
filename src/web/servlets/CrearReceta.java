@@ -50,6 +50,7 @@ public class CrearReceta extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
+		Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
 		
 		
 		String nombreReceta = request.getParameter("nombreDeReceta");
@@ -186,6 +187,9 @@ public class CrearReceta extends HttpServlet {
 		
 		
 		nuevaReceta.guardarReceta(nuevaReceta);
+		recetas.add(nuevaReceta);
+		session.setAttribute("creoReceta", "yes");
+
 
 		session.setAttribute("recetaEncontrada", nuevaReceta);
 		
