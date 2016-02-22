@@ -169,8 +169,8 @@ $(document).ready(function() {
                         message: 'La preparacion de la receta debe tener entre 4 y 240 caracteres'
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z0-9_]+$/,
-                        message: 'La preparacion solo puede tener valores alfanumericos y guiones bajos'
+                        regexp: /^[a-zA-Z0-9_\s]+$/,
+                        message: 'La preparacion solo puede tener valores alfanumericos, guiones bajos y espacios'
                     }
                 }
             },

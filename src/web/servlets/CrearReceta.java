@@ -134,20 +134,20 @@ public class CrearReceta extends HttpServlet {
 //		Condimento cond2 = new Condimento();
 //		cond2 = cond2.buscarCondimentoPorNombre("KETCHUP");
 		
-		int sectorPiramide = Integer.parseInt(sector);
+		short sectorPiramide = Short.parseShort(sector);
 		int caloriasIP = Integer.parseInt(calorias);
 		
 		nuevaReceta.agregarIngredientePrincipal(ingredPpal);
 		nuevaReceta.setNombreReceta(nombreReceta);
 		//nuevaReceta.setListaCategoria(listaCategoria);
 		int dificult = 0;
-		if (dificultad == "F"){
+		if (dificultad.equals("F")){
 			dificult = 1;
 		}
-		if (dificultad == "M"){
+		if (dificultad.equals("M")){
 			dificult = 2;
 		}
-		if (dificultad == "D"){
+		if (dificultad.equals("D")){
 			dificult = 3;
 		}
 	
