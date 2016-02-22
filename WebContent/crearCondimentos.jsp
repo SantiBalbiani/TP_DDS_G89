@@ -196,7 +196,7 @@ $(document).ready(function() {
 				    
 				       <!-- Modificar Datos  -->
 			<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">
-				Aceptar     <span class=" glyphicon glyphicon-edit"></span>
+				Aceptar     <span class=" glyphicon glyphicon-ok"></span>
 			</button>
 			</div>
 	</div>

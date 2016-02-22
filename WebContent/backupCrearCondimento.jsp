@@ -86,7 +86,7 @@ $(document).ready(function() {
 </head>
 <body>
 
-<form class="form-horizontal" method="POST" action="ABM_CONDIMENTO" id="crearCondimento_form">
+
 				  <fieldset>
 				    <legend>Ingrese sus Datos</legend>
 				    <div class="form-group">
@@ -107,11 +107,11 @@ $(document).ready(function() {
 	<div class="form-group">
 				      <div class="col-lg-9 col-lg-offset-3">
 				        <!-- Cancelar edicion -->
-<button type="button" id="evento_descartar" name="evento_descartar" class="btn btn-default" onclick="comfirm_decision()" >Descartar     <span class=" glyphicon glyphicon-remove"></span>
-</button>
+	<button type="button" id="evento_descartar" name="evento_descartar" class="btn btn-default" onclick="comfirm_decision()" >Descartar     <span class=" glyphicon glyphicon-remove"></span>
+	</button>
 				       <!-- Modificar Datos  -->
-<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar     <span class=" glyphicon glyphicon-edit"></span>
-</button>
+	<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar     <span class=" glyphicon glyphicon-edit"></span>
+	</button>
 				      </div>
 				    </div>
 				  </fieldset>
