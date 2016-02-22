@@ -8,6 +8,7 @@ import org.junit.Test;
 import hibernate.*;
 import receta.Ingrediente;
 import receta.Receta;
+import receta.TipoReceta;
 import receta.Condimento;
 import usuario.Usuario;
 
@@ -16,6 +17,38 @@ import java.util.List;
 import java.util.Set;
 public class TestBd {
 
+	
+	
+	@Test
+	public void altaTipos(){
+		
+		TipoReceta unTipo = new TipoReceta();
+		TipoReceta unTipo2 = new TipoReceta();
+		TipoReceta unTipo3 = new TipoReceta();
+		TipoReceta unTipo4 = new TipoReceta();
+		
+		unTipo.setTipoReceta("Desayuno");
+		unTipo2.setTipoReceta("Almuerzo");
+		unTipo3.setTipoReceta("Merienda");
+		unTipo4.setTipoReceta("Cena");
+		
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		session.save(unTipo);
+		session.save(unTipo2);
+		session.save(unTipo3);
+		session.save(unTipo4);
+		
+		session.getTransaction().commit();
+		System.out.println("Done");
+		session.close();
+		
+		
+		
+
+		
+	}
 	
 	
 	@Test
