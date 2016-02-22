@@ -5,31 +5,15 @@
 
 
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
-<%@page import="usuario.Usuario, receta.Receta, java.util.*" %>
+<%@page import="usuario.Usuario, receta.Receta, java.util.*, receta.Condimento, receta.Ingrediente" %>
 <%  
 
-	String usuario1 = request.getParameter("usuario");
-	String datos [] = request.getParameterValues("datos");
-	Receta receta = new Receta();
-	receta = (Receta) request.getAttribute("receta_ejemplo");
-	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas"); 
-	Boolean datosRecibidos = false;
-	if(recetas.isEmpty()){
-		datosRecibidos = true;
-	}
-	Usuario unUsuario = new Usuario();
-	unUsuario = unUsuario.buscarUsuarioPorNombre(usuario1);
+	Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
 	
+	Set<Receta> misRecetas = new HashSet<Receta>(0);
 	
-	Set<Receta> recetasDeUsaurio =unUsuario.getRecetasUser();
-	Iterator<Receta>  itRecetas  = recetasDeUsaurio.iterator();
-	while (itRecetas.hasNext()) {
-	       
-		  Receta recetaDeUsario = (Receta) itRecetas.next();
-	 	System.out.println(recetaDeUsario.getNombreReceta()); 
-	  }
-	//Agregar un array en donde vienen los datos restantes, los grupos, las primeras 3 recetas del usuario
-	//Las recomendaciones tambien vienen en el array y se muestran las primeras 3/4 de las que esten en la tabla de recestas
+	misRecetas = usuarioActual.getRecetasUser();
+	
 %>
 
 <head>
@@ -108,16 +92,27 @@
 	
 
 <section class="main container">
-<div class="panel panel-default" id="Mostrar Recetas">
+<div class="panel panel-default" id="MostrarRecetas">
 	<div class="panel-heading"> Seleccionar la receta deseada para ver detalles </div>
 	
-			
-			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 1" </a></b></div>
-		
-			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 2" </a></b></div>
-			
-			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 3" </a></b></div>
-			
+						<div class="panel panel-default" id="panelDrop">
+							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Ingredientes">
+								<% 
+								out.print("<div class=\"btn-group\">");
+								for(Receta unaReceta: misRecetas){
+									
+									out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"BuscarReceta\"><input type=\"hidden\" name=\"buscar_nombreReceta\" id=\"buscar_nombreReceta\" value="+ unaReceta.getNombreReceta() + "><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + unaReceta.getNombreReceta()  + "</button>");
+									out.println("<br><br>");
+									out.println("</form>");
+									
+								}
+								out.print("</div>");
+								%>
+							</div>
+						</div>
+
+
+						
 			<br>
 		</div>
 </section>
