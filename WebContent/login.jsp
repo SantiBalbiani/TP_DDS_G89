@@ -93,6 +93,16 @@ if (request.getParameter("r").equals("1")) {
 }
 }%>
 
+<%  if (request.getParameter("u") != null) {
+if (request.getParameter("u").equals("1")) {
+	 out.println("<div class=\"alert alert-danger  fade in\">");
+	    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+	     out.println("<strong>Danger!</strong> Usuario y/o contraseña invalidos. Por favor ingrese sus datos.");
+	   out.println("</div>");
+	 	//  session.setAttribute("modificoUsuario", "no");	//reseteo el flag
+}
+}%>
+
 
 
     <div class="container">

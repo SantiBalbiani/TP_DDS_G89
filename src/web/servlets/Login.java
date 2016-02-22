@@ -110,7 +110,7 @@ public class Login extends HttpServlet {
 		         
 		         response.sendRedirect("welcome.jsp");
 		     }else{    	 
-		    	 response.sendRedirect("login.jsp");
+		    	 response.sendRedirect("login.jsp?u=1");
 		     }
 		    	 
 		} 
