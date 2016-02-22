@@ -20,6 +20,8 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	<script src="js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
+	 <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="js/bootstrap-3.1.1.min.js"></script>
 	<script>
 		function allowDrop(ev) {
     		ev.preventDefault();
@@ -75,7 +77,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	    	 ingredientesHermosos = ingredientesHermosos.concat("&");
 			}
 
-	     addHidden(theForm, 'ingredientesDRAGdrop', ingredientesHermosos);
+	     //addHidden(theForm, 'ingredientesDRAGdrop', ingredientesHermosos);
 	     //$('input').val()
 	     //addHidden(theForm, 'key-one', obj);
 	     
@@ -88,10 +90,23 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	    	 condimentosHermosos = condimentosHermosos.concat(spans2[j].textContent || spans2[j].innerText);
 	    	 condimentosHermosos = condimentosHermosos.concat("&");
 			}
-	     addHidden(theForm, 'condimentosDRAGdrop', condimentosHermosos);
+	     //addHidden(theForm, 'condimentosDRAGdrop', condimentosHermosos);
 	     
 	     //aca termina de levantar todos los condimentos & ingredientes y hace el submit..! :)
-	     theForm.submit();
+	     
+	     if(condimentosHermosos=="&" || ingredientesHermosos=="&") // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+	     {
+ 	       confirm("Por favor seleccione ingredientes y/o condimentos");
+ 	      return false;
+	     }else{
+	    	 addHidden(theForm, 'condimentosDRAGdrop', condimentosHermosos);
+	    	 addHidden(theForm, 'ingredientesDRAGdrop', ingredientesHermosos);
+	    	 theForm.submit();
+	    	 return true;
+	    }
+	
+	     //theForm.submit();
+	     
 	 }
 	</script>
 	
@@ -105,6 +120,193 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	    theForm.appendChild(input);
 	}
 	</script>
+	
+	<!-- 	Librerias importantes para que ande bootsStrap Validator -->
+	<!-- jQuery library -->
+<script src="js/jquery-2.2.0.js"></script>
+<script src="js/bootstrapvalidator.min.js"></script>
+<script src="js/bootstrapValidator.js"></script>
+<script src="js/bootstrap.min"></script>
+<link rel="stylesheet" href="css/bootstrapvalidator.min.css">
+ 
+<!-- 	Librerias importantes para que ande bootsStrap Validator -->
+
+<!-- 	Este es el script que valida el form de registrarse!! -->
+	<script>
+$(document).ready(function() {
+    $('#CrearReceta').bootstrapValidator({
+         framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	nombreDeReceta: {
+                validators: {
+                    notEmpty: {
+                        message: 'El nombre de la de receta es un campo obligatorio'
+                    },
+                    stringLength: {
+                        min: 4,
+                        max: 30,
+                        message: 'El nombre de la receta debe tener entre 4 y 30 caracteres'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'El nombre solo puede tener valores alfanumericos y guiones bajos'
+                    }
+                }
+            },
+            preparacion: {
+                validators: {
+                    notEmpty: {
+                        message: 'La preparacion es un campo obligatorio'
+                    },
+                    stringLength: {
+                        min: 4,
+                        max: 240,
+                        message: 'La preparacion de la receta debe tener entre 4 y 240 caracteres'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'La preparacion solo puede tener valores alfanumericos y guiones bajos'
+                    }
+                }
+            },
+            caloriasIngPpal: {
+                validators: {
+                    notEmpty: {
+                        message: 'Las calorias de la receta es un campo obligatorio'
+                    },
+	   				 regexp: {
+ 					 regexp: /^[0-9]+$/,
+ 					 message: 'Las calorias de la receta solo puede contener números'
+ 				 },
+ 				between: {
+                    min: 0,
+                    max: 5000,
+                    message: 'Las calorias de la receta tiene que ser entre 0 CAL  y  5000 CAL'
+                }
+//                     numeric: {
+//                         message: 'El valor debe estar expresado en números'
+//                     }
+                 }
+            }, 
+//             peso: {
+//                 validators: {
+//                     notEmpty: {
+//                         message: 'El peso es un campo obligatorio'
+//                     },
+// 	   				 regexp: {
+//  					 regexp: /^[0-9]+$/,
+//  					 message: 'El peso solo puede contener números'
+//  				 },
+//  				between: {
+//                     min: 1,
+//                     max: 300,
+//                     message: 'El peso tiene que ser entre 1kg y  300kg'
+//                 }
+//                 }
+//             },
+            ingPrincipal: {
+                validators: {
+                    notEmpty: {
+                        message: 'El ingrediente principal es un campo obligatorio'
+                    },
+                    stringLength: {
+                        min: 4,
+                        max: 30,
+                        message: 'El ingrediente principal debe tener entre 4 y 30 caracteres'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'El ingrediente principal solo puede tener valores alfanumericos y guiones bajos'
+                    }
+                }
+            },
+//             inputMail: {
+//    			 validators: {
+//    				 notEmpty: {
+//    					 message: 'El correo es requerido y no puede ser vacio'
+//    				 },
+// //    				 emailAddress: {
+// //    					 message: 'El correo electronico no es valido'
+// //    				 }
+//    				 regexp: {
+//                         regexp: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i,
+//                         message: 'No es un correo valido'
+//                     }
+//    			 }
+//    			 },
+//            fechaNacimiento: {
+// 			 validators: {
+// 				 notEmpty: {
+// 					 message: 'La fecha de nacimiento es requerida y no puede ser vacia'
+// 				 },
+// 				 date: {
+// 					 format: 'DD-MM-YYYY',
+// 					 message: 'La fecha de nacimiento no es valida. Formato DDMMYYYY'
+// 				 },
+// 				 regexp: {
+//                      regexp: /^[a-zA-Z0-9_-]+$/,
+//                      message: 'La fecha solo puede tener valores alfanumericos y guiones bajos/altos'
+//                  }
+// 			 }
+// 		 },
+//             'size[]': {
+//                 validators: {
+//                     notEmpty: {
+//                         message: 'The size is required'
+//                     }
+//                 }
+//             },
+            optionCategoria: {
+                validators: {
+                    notEmpty: {
+                        message: 'La categoria es un campo obligatorio'
+                    }
+                }
+             },
+             d_sector: {
+                 validators: {
+                     notEmpty: {
+                         message: 'El sector es un campo obligatorio'
+                     }
+                 }
+              },
+              d_dificultad: {
+                  validators: {
+                      notEmpty: {
+                          message: 'La dificultad es un campo obligatorio'
+                      }
+                  }
+               },
+// 			rutina: {
+// 			    validators: {
+// 			        notEmpty: {
+// 			            message: 'La rutina es un campo obligatorio'
+// 			        }
+// 			    }
+// 			 }
+//         },
+        
+// submitHandler: function(validator, form, submitButton) {
+//     var inputUsuario = [validator.getFieldElements('firstName').val(),
+//                     validator.getFieldElements('lastName').val()].join(' ');
+//     alert('Hello ' + fullName);
+// }
+       
+    }
+    });
+//     })
+//        .on('success.field.fv', function(e, data) {
+//             if (data.fv.getInvalidFields().length > 0) {    // There is invalid field
+//                 data.fv.disableSubmitButtons(true);
+//             }
+//         });
+});
+</script>
 	
 </head>
 
@@ -161,6 +363,11 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						<div class="form-group">
 							<label for="inputIngPrincipal">Ingrediente Principal</label> 
 							<input type="text" class="form-control" id="ingPrincipal" name="ingPrincipal"/>
+<!-- 							<input type="number" class="form-control" id="caloriasIngPpal" name="caloriasIngPpal" placeholder="Calorias"/> -->
+						</div>
+						
+						<div class="form-group">
+							<label for="inputCaloriasTotales">Calorias Totales</label> 
 							<input type="number" class="form-control" id="caloriasIngPpal" name="caloriasIngPpal" placeholder="Calorias"/>
 						</div>
 
@@ -188,9 +395,9 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 							</div>
 						</div>
 
-						<div class="form-inline">
+						<div class="form-group">
 							<label for="inputPreparacion">Preparación</label><br>
-							<textarea class="form-control" rows="5" id="preparacion" name="preparacion"></textarea>
+							<textarea class="form-control" rows="5" id="preparacion" name="preparacion" placeholder="Por favor ingrese la preparacion de la receta.."></textarea>
 						</div>
 						
 						<div class="form-group">
@@ -220,7 +427,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						<div class="form-group">
 							<label for="inputCategorias">Categorias</label>
 <!-- 							En el futuro esto tendria que ser consultado a la BD y crearlos.... Por el momento va ok -->
-								<div>
+								<div class="checkbox">
 				          			<label>
 				            			<input type="checkbox" name="optionCategoria"  value="Desayuno" />
 				            			Desayuno
@@ -242,29 +449,31 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 						
 						<div class="form-group">
 							<label for="inputDificultad" class="control-label" >Nivel de Dificultad</label>
-        						<select class="form-control" id="dificultad" name="dificultad">
-				          			<option value="F">Fácil</option>
-				          			<option value="M">Medio</option>
-				          			<option value="D">Difícil</option>
+        						<select class="form-control" id="d_dificultad" name="d_dificultad">
+				          			<option disabled selected> -- Elija una opcion -- </option>
+				          			<option  value="F">Fácil</option>
+				          			<option  value="M">Medio</option>
+				          			<option  value="D">Difícil</option>
 				        		</select>
 						</div>
 						
 						<div class="form-group">
 							<label for="inputSector">Sector en la piramide alimenticia</label>
-							<select class="form-control" id="sector" name="sector">
-				          			<option value="0">Harinas y Legumbres</option>
-				          			<option value="1">Lacteos</option>
-				          			<option value="2">Frutas y Vetetales</option>
-				          			<option value="3">Pescado, Carne y Huevo</option>
-				          			<option value="4">Sal, Azucar, Grasas y Dulces</option>
-				          			<option value="5">Aceites</option>
+							<select class="form-control" id="d_sector" name="d_sector">
+							<option disabled selected> -- Elija una opcion -- </option>
+				          			<option  value="0">Harinas y Legumbres</option>
+				          			<option  value="1">Lacteos</option>
+				          			<option  value="2">Frutas y Vetetales</option>
+				          			<option  value="3">Pescado, Carne y Huevo</option>
+				          			<option  value="4">Sal, Azucar, Grasas y Dulces</option>
+				          			<option  value="5">Aceites</option>
 				        	</select>
 						</div>
 						
 						<div class="form-group">
 				      		<div class="col-lg-9 col-lg-offset-3">
 				        		<button type="reset" class="btn btn-default">Cancelar</button>
-				        		<button type="button" class="btn btn-primary" onclick="submit_revisar()">Aceptar</button>
+				        		<button type="button" class="btn btn-primary" onclick="submit_revisar()"  >Aceptar</button>
 				      		</div>
 				    	</div>
 					</form>

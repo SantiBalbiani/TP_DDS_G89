@@ -56,8 +56,8 @@ public class CrearReceta extends HttpServlet {
 		String ingPrincipal = request.getParameter("ingPrincipal");
 		String preparacion = request.getParameter("preparacion");
 		String[] categorias = request.getParameterValues("optionCategoria"); //es un checkbox! 
-		String dificultad = request.getParameter("dificultad");
-		String sector = request.getParameter("sector");
+		String dificultad = request.getParameter("d_dificultad");
+		String sector = request.getParameter("d_sector");
 		String calorias = request.getParameter("caloriasIngPpal");
 		//String ingredientes = request.getParameter("Ingredientes");
 		
