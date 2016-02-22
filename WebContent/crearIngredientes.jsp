@@ -202,7 +202,7 @@ $(document).ready(function() {
 					<button type="button" id="evento_descartar" name="evento_descartar" class="btn btn-default" onclick="comfirm_decision()" >Descartar     	<span class=" glyphicon glyphicon-remove"></span>
 					</button>
 				       <!-- Modificar Datos  -->
-						<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar     <span class=" glyphicon glyphicon-edit"></span>
+						<button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Aceptar     <span class=" glyphicon glyphicon-ok"></span>
 					</button>
 				      </div>
 				    </div>
