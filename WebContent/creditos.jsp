@@ -162,11 +162,6 @@
    </tr>
   <tr>
  <tr>
-    <td>Eclipse</td>
-    <td>....</td>		
-   </tr>
-  <tr>
- <tr>
     <td>Tomcat</td>
     <td>....</td>		
    </tr>
@@ -176,11 +171,7 @@
     <td>....</td>		
    </tr>
   <tr>
- <tr>
-    <td>Eclipse</td>
-    <td>....</td>		
-   </tr>
-  <tr>
+<tr>
  <tr>
     <td>Adobe Dreamweaver</td>
     <td>....</td>		
