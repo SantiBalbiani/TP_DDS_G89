@@ -78,10 +78,20 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
-			<p> <% out.println(receta.getNombreReceta()); %> </p>
+			<p> <% out.println(receta.getNombreReceta()); %> </p> 
+			<form action="BuscarReceta" method="post" class="navbar-form navbar-right">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
+						</div>
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</form>
 		</div>
 	</section>	
-	
+
+
+<section class="main container">
 <div class="panel panel-default"> 
   <div class="panel-heading"> Informacion de la receta  </div>
    <div class="panel-body"> 
@@ -137,7 +147,7 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 								<br>
   </div>
 </div>
- 			
+</section>
 
 
 

@@ -122,7 +122,7 @@
 	
 	<section class="main container">
 		<div class="panel panel-default" id="Tus recetas aceptadas">
-			<div class="panel-heading"><b> Recetas aceptadas </b></div>
+			<div class="panel-heading"><b> Historial de recetas </b></div>
 			<div class="panel-body"> 
 				
 				<!-- Buscar las recetas del usuario y poner algunas aca -->
