@@ -99,12 +99,22 @@
 							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Ingredientes">
 								<% 
 								out.print("<div class=\"btn-group\">");
+								short noHayRecetas=0;	//flag de si hay recetas
 								for(Receta unaReceta: misRecetas){
 									
 									out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"BuscarReceta\"><input type=\"hidden\" name=\"buscar_nombreReceta\" id=\"buscar_nombreReceta\" value="+ unaReceta.getNombreReceta() + "><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + unaReceta.getNombreReceta()  + "</button>");
 									out.println("<br><br>");
 									out.println("</form>");
-									
+									noHayRecetas=1;//al menos listo una receta
+								}
+								if (noHayRecetas==0)
+								{
+									out.println("<p>Todavía no tienes ninguna receta!</p>");
+									out.println("<br><br>");
+									out.println("<p>Haz click en el siguiente boton si quieren añadir una receta.</p>");
+									out.println("<div class=\"col-sm-8 \"><a class=\"btn btn-default\" href=\"nuevaReceta.jsp\" role=\"button\" id=\"nuevaReceta\" data-toggle=\"tooltip\" title=\"Crear una nueva receta\" data-placement=\"bottom\">");
+									out.println(" Agregar Receta <br> <span class=\"glyphicon glyphicon-plus\"></span></a> </div>");
+									out.println("</div>");
 								}
 								out.print("</div>");
 								%>
