@@ -188,6 +188,7 @@ public class CrearReceta extends HttpServlet {
 		
 		nuevaReceta.guardarReceta(nuevaReceta);
 		recetas.add(nuevaReceta);
+		session.setAttribute("recetas", recetas);
 		session.setAttribute("creoReceta", "yes");
 
 
