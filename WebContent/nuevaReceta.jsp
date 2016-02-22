@@ -357,12 +357,12 @@ $(document).ready(function() {
 					<form action="CrearReceta" method="post" id="CrearReceta">
 						<div class="form-group">
 							<label for="inputNombreReceta">Nombre de la receta</label> 
-							<input type="text" class="form-control" id="nombreDeReceta" name="nombreDeReceta"/>
+							<input type="text" class="form-control" id="nombreDeReceta" name="nombreDeReceta" placeholder="Nombre de la receta" />
 						</div>
 						
 						<div class="form-group">
 							<label for="inputIngPrincipal">Ingrediente Principal</label> 
-							<input type="text" class="form-control" id="ingPrincipal" name="ingPrincipal"/>
+							<input type="text" class="form-control" id="ingPrincipal" name="ingPrincipal" placeholder="Ingrediente Principal"/>
 <!-- 							<input type="number" class="form-control" id="caloriasIngPpal" name="caloriasIngPpal" placeholder="Calorias"/> -->
 						</div>
 						
@@ -374,7 +374,7 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="inputIngredientes">Ingredientes</label>
 								<div class="panel panel-default" id="panelDrop">
-									<div id="div_ingredientes" class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div id="div_ingredientes" class="panel-body" placeholder="Arrastre los ingredientes aqui" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 								</div>
 						</div>
 						
@@ -403,7 +403,7 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="inputCondimentos">Condimentos</label>
 							<div class="panel panel-default" id="panelDrop">
-									<div id="div_condimentos" class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div id="div_condimentos" class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event) "></div>
 								</div>
 						</div>
 						
@@ -450,7 +450,7 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="inputDificultad" class="control-label" >Nivel de Dificultad</label>
         						<select class="form-control" id="d_dificultad" name="d_dificultad">
-				          			<option disabled selected> -- Elija una opcion -- </option>
+				          			<option disabled selected> -- Elija la dificultad -- </option>
 				          			<option  value="F">Fácil</option>
 				          			<option  value="M">Medio</option>
 				          			<option  value="D">Difícil</option>
@@ -460,7 +460,7 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label for="inputSector">Sector en la piramide alimenticia</label>
 							<select class="form-control" id="d_sector" name="d_sector">
-							<option disabled selected> -- Elija una opcion -- </option>
+							<option disabled selected> -- Elija el sector de la piramide Alimenticia -- </option>
 				          			<option  value="0">Harinas y Legumbres</option>
 				          			<option  value="1">Lacteos</option>
 				          			<option  value="2">Frutas y Vetetales</option>
@@ -472,7 +472,7 @@ $(document).ready(function() {
 						
 						<div class="form-group">
 				      		<div class="col-lg-9 col-lg-offset-3">
-				        		<button type="reset" class="btn btn-default">Cancelar</button>
+				        		 <a href="listadoDeRecetas.jsp" class="btn btn-primary" role="button">Cancelar</a>
 				        		<button type="button" class="btn btn-primary" onclick="submit_revisar()"  >Aceptar</button>
 				      		</div>
 				    	</div>
