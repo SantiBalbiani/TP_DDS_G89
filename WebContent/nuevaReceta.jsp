@@ -351,7 +351,7 @@ $(document).ready(function() {
 	<section class="main container">
 	<br><br>
 		<div class="panel panel-default">
-			<div class="panel panel-heading">Nueva receta!</div>
+			<div class="panel panel-heading">Paso 3: &nbsp; Terminar Receta </div>
 			<div class="panel-body">
 				<div class="col-xs-8 col-md-offset-2">
 					<form action="CrearReceta" method="post" id="CrearReceta">

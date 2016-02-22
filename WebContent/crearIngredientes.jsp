@@ -9,8 +9,21 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	function comfirm_decision(){
+	    if(confirm("Seguro que quieres descartar los cambios?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+	     {
+ 	       window.location="listadoDeRecetas.jsp"; 
+	     }else{
+	       return false;
+	    }
+	   return true;
+	 }
+</script>
+
 	
-		<script type="text/javascript">
+<script type="text/javascript">
 	function logout(){
 	    if(confirm("Seguro que quieres cerrar la sesion?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
 	     {
@@ -140,6 +153,11 @@ $(document).ready(function() {
 		<div class="container">
 			<h1>Qué Comemos Hoy?</h1>
 			<p>Crear Ingredientes</p>
+			
+
+			<a class="btn btn-default" href="crearCondimentos.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="siguiente paso" data-placement="bottom">
+				 	Omitir / Paso 2 &nbsp; <span class="glyphicon glyphicon-arrow-right"></span></a> 
+				 	
 		</div>
 </section>
 
@@ -148,7 +166,11 @@ $(document).ready(function() {
 
 <div class="panel-body">
 			<div class="panel panel-default" id="Ultimas 3">
-				<div class=panel-heading>  <h3>Agregar Ingrediente</h3> </div>
+				<div class=panel-heading>  
+				
+				<h3>Paso 1: &nbsp;Agregar Ingrediente</h3>  
+				
+				</div>
 				<div class="panel-body" id="1">		
 				
 					<form class="form-horizontal" method="POST" action="ABM_INGREDIENTE" id="crearIngrediente_form">
