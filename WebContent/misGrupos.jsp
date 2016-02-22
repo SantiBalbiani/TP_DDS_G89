@@ -11,7 +11,10 @@
 	String modificoGrupo = (String) session.getAttribute("modificoGrupo");
 	String salioGrupo = (String) session.getAttribute("salioGrupo");
 	String errorBusquedaG = (String) session.getAttribute("errorBusquedaG");
-	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
+	//Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
+	
+	Set<GrupoUsuarios> misGrupos = new HashSet<GrupoUsuarios>(0);	
+	misGrupos = user.getUserGrupo();
 %>
 
 <head>
@@ -235,14 +238,64 @@
 <section class="main container">
 <div class="panel panel-default" id="MostrarGrupos">
 	<div class="panel-heading"> Mis Grupos </div>
+	<div class="panel-body"> 
 	
-			<!-- 	Aca hay que recorrer la tabla de grupos asociados al usuario y mostrar los nombres de los grupos -->
-			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo1" </a></b></div>
-			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo2" </a></b></div>
-			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo3" </a></b></div>
-			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo4" </a></b></div>
-			<!-- Cada href deberia enviar los datos/parametros del grupo en cuestion para mostrar la pagina del grupo -->
-</div>
-</section>
+	<!-- Buscar los grupos del usuario y poner algunas aca -->
+				<% if(misGrupos.isEmpty()){ %>
+					<p>Todavía no tienes ningun grupo!</p>
+				<% } else {%>
+					<div class="panel-group" id="accordion" role="tablist"
+						aria-multiselectable="true">
+						<%
+							int j = 0;
+						
+							for (GrupoUsuarios grupo1 : misGrupos) {
+								j++;
+						%>
+						<div class="panel panel-default">
+						
+						<%
+						out.println("<div class=\"panel-heading\" role=\"tab\" id=\"heading"+j+"\">");
+										    out.println("<h4 class=\"panel-title\">");
+										    out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse"+j+j+"\" aria-expanded=\"true\" aria-controls=\"collapse"+j+"\">");
+										    out.println(grupo1.getNombreDeGrupo());
+										    out.println("</a>");
+											out.println("</h4>");
+											out.println("</div>");
+										    out.println("<div id=\"collapse"+j+j+"\" class=\"panel-collapse collapse \" role=\"tabpanel\" aria-labelledby=\"heading"+j+"\">");
+											
+											
+											//aca mostrar
+										out.println("<div class=\"panel-body\"> Grupo Nº: ");
+										out.println(grupo1.getIdGrupo());
+										out.println("</div>");
+										//out.println("<br>");
+										out.println("<div class=\"panel-body\"> Administrador: ");
+										out.println(grupo1.getAdministrador().getNombreUsuario());
+										out.println("</div>");
+										//out.println("<br>");
+										out.println("</div>");
+										out.println("</div>");
+										out.println("</div>");
+									}
+								}
+							%>				
+			</div>
+			</div>			
+			</div>
+		</div>		
+	</section>
+						
+						
+						
+						
+	 			<!-- 	Aca hay que recorrer la tabla de grupos asociados al usuario y mostrar los nombres de los grupos --> 
+<!-- 			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo1" </a></b></div> -->
+<!-- 			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo2" </a></b></div> -->
+<!-- 			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo3" </a></b></div> -->
+<!-- 			<div class="panel-body"> <b><a href="infoGrupo.jsp"> Grupo "Nombre del grupo4" </a></b></div> -->
+	 			<!-- Cada href deberia enviar los datos/parametros del grupo en cuestion para mostrar la pagina del grupo --> 
+<!-- </div> -->
+<!-- </section> -->
  </body>
 </html>
