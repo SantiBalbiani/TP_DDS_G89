@@ -59,6 +59,7 @@ public class ABM_GRUPO extends HttpServlet {
 			
 			
 			grupos.add(grupoNuevo);
+			usuarioActual.getUserGrupo().add(grupoNuevo);
 			
 			session.setAttribute("modificoGrupo", "yes");
 			response.sendRedirect("misGrupos.jsp");
