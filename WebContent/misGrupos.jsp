@@ -9,6 +9,8 @@
 	Usuario user = (Usuario) session.getAttribute("usuario");
 	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
 	String modificoGrupo = (String) session.getAttribute("modificoGrupo");
+	String salioGrupo = (String) session.getAttribute("salioGrupo");
+	String errorBusquedaG = (String) session.getAttribute("errorBusquedaG");
 	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 %>
 
@@ -86,6 +88,23 @@
 			    	out.println("</div>");
 		        	session.setAttribute("modificoGrupo", "no");	//reseteo el flag
 				}%>
+				<% if (salioGrupo.equals("yes")) {
+					out.println("<div class=\"alert alert-success fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Success!</strong> Usted a salido del grupo correctamente.");
+			    	out.println("</div>");
+		        	session.setAttribute("salioGrupo", "no");	//reseteo el flag
+				}%>
+				
+				<% if (errorBusquedaG.equals("yes")) {
+					out.println("<div class=\"alert alert-info fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Info!</strong> No se encontro el grupo. Intente nuevamente.");
+			    	out.println("</div>");
+		        	session.setAttribute("errorBusquedaG", "no");	//reseteo el flag
+				}%>
+				
+				
 			</div>
 		</nav>
 
@@ -119,7 +138,7 @@
                 <div class="span4">
                   <label>Nombre del grupo a crear: </label> <input class="input-medium" type="text" name="crearGrupo" id="crearGrupo" placeholder="NombreGrupo">
                   <button type="submit" class="btn">Crear</button>
-                  <input type="hidden" name="esCrearGrupo" id="esCrearGrupo" value="si">
+                  <input type="hidden" name="esGrupo" id="esGrupo" value="crear">
                 </div>
               </div>
             
@@ -178,8 +197,9 @@
         </div>
         <div id="collapse4" class="accordion-body collapse">
           <div class="accordion-inner">
-            <form class="form-inline">
-        <label>Nombre del grupo del que desea Salir: </label> <input class="input-medium" type="text" placeholder="">
+            <form class="form-inline" method="POST" action="ABM_GRUPO">
+        <label>Nombre del grupo del que desea Salir: </label> <input class="input-medium" type="text" name="salirGrupo" id="salirGrupo" placeholder="Nombre Grupo">
+        <input type="hidden" name="esGrupo" id="esGrupo" value="salir">
        	<button type="submit" class="btn">Salir</button>
     	</form>
           </div>
@@ -199,6 +219,7 @@
           <div class="accordion-inner">
             <form class="form-inline">
         <label>Nombre del grupo del grupo que desea eliminar: </label> <input class="input-medium" type="text" placeholder="">
+        <input type="hidden" name="esGrupo" id="esGrupo" value="eliminar">
        	<button type="submit" class="btn">Eliminar</button>
     	</form>
           </div>

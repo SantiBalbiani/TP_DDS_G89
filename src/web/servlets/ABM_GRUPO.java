@@ -41,17 +41,18 @@ public class ABM_GRUPO extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String esCrearGrupo = request.getParameter("esCrearGrupo");
-		String crearGrupo = request.getParameter("crearGrupo");
+		String esGrupo = request.getParameter("esGrupo");
+
 		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
 		Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) request.getSession().getAttribute("gruposDelUsuario");
 		HttpSession session = request.getSession(true);
 		
 		
 		
-		if (esCrearGrupo.equals("si"))
+		if (esGrupo.equals("crear"))		//crearGRupo
 		{
 			//CREO el grupo
+			String crearGrupo = request.getParameter("crearGrupo");
 			usuario.GrupoUsuarios grupoNuevo = new usuario.GrupoUsuarios ();
 			grupoNuevo.darAltaGrupo(usuarioActual, crearGrupo);
 			//usuarioActual.getUserGrupo().add(grupoNuevo);
@@ -63,6 +64,41 @@ public class ABM_GRUPO extends HttpServlet {
 			
 			session.setAttribute("modificoGrupo", "yes");
 			response.sendRedirect("misGrupos.jsp");
+		}
+		
+		if (esGrupo.equals("salir"))		//El usuario quiere salir del grupo...
+		{
+			//lo saco del grupo
+			String salirGrupo = request.getParameter("salirGrupo");
+			usuario.GrupoUsuarios grupoViejo = new usuario.GrupoUsuarios ();
+			grupoViejo = grupoViejo.buscarGrupoPorNombre(salirGrupo);
+			
+			
+			try{
+				grupoViejo = grupoViejo.buscarGrupoPorNombre(salirGrupo);
+			
+				if (grupoViejo!=null) {
+				//session.setAttribute("recetaEncontrada", recetaBuscada);
+				grupoViejo.salirGrupo(usuarioActual);
+				grupos.remove(grupoViejo);	//lo elimino tmb de la isntancia local..! :)
+			
+				session.setAttribute("salioGrupo", "yes");
+				response.sendRedirect("misGrupos.jsp");
+				}
+				else
+				{
+					session.setAttribute("errorBusquedaG", "yes");
+					response.sendRedirect("misGrupos.jsp");
+				}
+			}catch(Throwable Exception){
+				System.out.println(Exception);
+			}
+			
+			//grupos.add(grupoNuevo);
+			//usuarioActual.getUserGrupo().add(grupoNuevo);
+			
+			//session.setAttribute("modificoGrupo", "yes");
+			//response.sendRedirect("misGrupos.jsp");
 		}
 		
 		

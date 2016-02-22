@@ -89,7 +89,24 @@ public class GrupoUsuarios {
 	
 	public void salirGrupo( Usuario  unUsuario){
 
-		this.getGrupoDeUsuarios().remove( unUsuario);
+		this.getGrupoDeUsuarios().remove(unUsuario);
+
+		// ADEMAS LO ELIMINO DE LA BD...
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.getTransaction().begin();
+
+		String sql_query = "delete from usuario_por_grupo   where ID_USER = :idUser and ID_GRUPO = :idGrupo" ;
+
+		Query query = session.createSQLQuery(sql_query);
+		query.setParameter("idUser", unUsuario.getIdUsuario());
+		query.setParameter("idGrupo", this.getIdGrupo());
+
+		query.executeUpdate();
+		session.getTransaction().commit();
+		System.out.println("Done");
+		session.close();
+		
+		//TODO: REVISAR SI ERA EL ULTIMO USUARIO QUE ELIMINE EL GRUPO Y ADEMAS QUE SI ERA ADMINISTRADOR, LE ASIGNE SER ADMINISTRADOR A OTRO.
 
 	}
 	
@@ -123,6 +140,7 @@ public class GrupoUsuarios {
 				session.getTransaction().begin();
 				
 				String sql_query = "delete from GRUPO  where ID_GRUPO = :idGrupo";
+				//TODO: me parece que hace falta borrar la tabla intermedia... usuario_por_grupo
 				
 				Query query = session.createSQLQuery(sql_query);
 				query.setParameter("idGrupo", this.getIdGrupo());
@@ -166,7 +184,7 @@ public class GrupoUsuarios {
 				 		
 				 		Session session = HibernateConf.getSessionFactory().openSession();
 				 
-				 		Query query = session.createQuery("FROM Receta e where e.nombreDeGrupo = :nombre");
+				 		Query query = session.createQuery("FROM GrupoUsuarios e where e.nombreDeGrupo = :nombre");
 				 
 				 		query.setString("nombre", unNombre);
 				 		
@@ -177,6 +195,42 @@ public class GrupoUsuarios {
 				 
 			  return gruposEncontrados;
 		}
+		
+		
+		public GrupoUsuarios buscarGrupoPorNombre(String unNombre){
+			try
+			{
+			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
+
+				 		
+				 		Session session = HibernateConf.getSessionFactory().openSession();
+				 
+				 		Query query = session.createQuery("FROM GrupoUsuarios e where e.nombreDeGrupo = :nombre");
+				 
+				 		query.setString("nombre", unNombre);
+				 		
+				 		java.util.List<?> lista = query.list();
+				 		
+				 	// gruposEncontrados = (Set<GrupoUsuarios>) lista;
+				 
+				 	if (!lista.isEmpty())
+					{
+				GrupoUsuarios grupoBuscado = (GrupoUsuarios)lista.get(0);
+				return grupoBuscado;
+					}
+					else
+						return null;
+					}
+					catch(Throwable Exception){
+						System.out.println(Exception);
+						return null;
+					}
+				}	
+				 
+			 // return gruposEncontrados;
+		
+		
+		
 		
 		public void guardarGrupo(GrupoUsuarios unGrupo) {
 			// TODO: revisar este metodo para que guarde todos los campos....

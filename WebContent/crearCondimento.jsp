@@ -90,13 +90,13 @@ $(document).ready(function() {
 				  <fieldset>
 				    <legend>Ingrese sus Datos</legend>
 				    <div class="form-group">
-				      <label for="inputNombre" class="col-lg-3 control-label">Nombre Ingrediente</label>
+				      <label for="inputNombre" class="col-lg-3 control-label">Nombre Condimento</label>
 				      <div class="col-lg-9">
 				        <input type="text" class="form-control" name ="inputNombre" id="inputNombre" placeholder="Nombre Condimento" required>
 				      </div>
 				    </div>
 				    <div class="form-group">
-				      <label for="inputTipo" class="col-lg-3 control-label">Tipo Ingrediente</label>
+				      <label for="inputTipo" class="col-lg-3 control-label">Tipo Condimento</label>
 				      <div class="col-lg-9">
 				        <input type="text" class="form-control" id="inputTipo" name="inputTipo" placeholder="Tipo Condimento" required>
 				      </div>
