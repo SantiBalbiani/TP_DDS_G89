@@ -49,14 +49,11 @@
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="BuscarReceta" method="post" class="navbar-form navbar-right" role="search">
+					
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
 						</div>
-						<button type="submit" class="btn btn-default">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</form>
+						
 					
 				</div>
 			</div>

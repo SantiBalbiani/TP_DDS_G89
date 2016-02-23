@@ -140,7 +140,7 @@
 				 	Volver al paso 1 &nbsp; <span class="glyphicon glyphicon-arrow-left"></span></a> 
 			
 			<a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="siguiente paso" data-placement="bottom">
-				 	Omitir / Paso 3 &nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a> 
+				 	Paso 3 &nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a> 
 		</div>
 		
 </section>

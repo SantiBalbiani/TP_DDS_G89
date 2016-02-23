@@ -156,7 +156,7 @@ $(document).ready(function() {
 			
 
 			<a class="btn btn-default" href="crearCondimentos.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="siguiente paso" data-placement="bottom">
-				 	Omitir / Paso 2 &nbsp; <span class="glyphicon glyphicon-arrow-right"></span></a> 
+				 	Paso 2 &nbsp; <span class="glyphicon glyphicon-arrow-right"></span></a> 
 				 	
 		</div>
 </section>

@@ -66,7 +66,7 @@
 			<div class="container">
 		<div class="row">
 			  	<div class="col-sm-8"> <h1>Qué Comemos Hoy?</h1> </div>
-			  	<div class="col-md-4"><a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
+			  	<div class="col-md-4"><a class="btn btn-default" href="crearIngredientes.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
 				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a>
 				 </div>
 			</div>

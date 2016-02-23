@@ -79,12 +79,9 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
 			<p> <% out.println(receta.getNombreReceta()); %> </p> 
-			<form action="BuscarReceta" method="post" class="navbar-form navbar-right">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
-						</div>
-						<button type="submit" class="btn btn-default">
-							<span class="glyphicon glyphicon-search"></span>
+			<form action="eliminarReceta" method="post" class="navbar-form navbar-right">
+					<div class="col-sm-4"><a class="btn btn-default" href="crearIngredientes.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
+				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
 						</button>
 					</form>
 		</div>
