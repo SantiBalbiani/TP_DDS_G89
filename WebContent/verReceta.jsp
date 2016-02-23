@@ -78,12 +78,28 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Que Comemos Hoy?</h1>
-			<p> <% out.println(receta.getNombreReceta()); %> </p> 
-			<form action="eliminarReceta" method="post" class="navbar-form navbar-right">
-					<div class="col-sm-4"><a class="btn btn-default" href="crearIngredientes.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
-				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
-						</button>
-					</form>
+			
+			
+			<form class="form-horizontal" method="POST" action="eliminarReceta" id="eliminarReceta_form">
+              
+                <div class="row">
+                 <div class="col-sm-8"> <p> <% out.println(receta.getNombreReceta()); %> </p> </div>
+                  <div class="col-sm-4">
+                  	<button type="submit" id="evento_eliminar" name="evento_eliminar" class="btn btn-default" >Eliminar Receta <span class="glyphicon glyphicon-remove"> </span></button>
+                  </div>
+                  <input type="hidden" name="esEliminar" id="esEliminar" value="eliminar">
+                </div>
+              
+            
+             </form>
+			
+			
+			
+<!-- 			<form action="eliminarReceta" method="post" class="navbar-form navbar-right"> -->
+<!-- 					<div class="col-sm-4"><a class="btn btn-default" href="crearIngredientes.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom"> -->
+<!-- 				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div> -->
+<!-- 						</button> -->
+<!-- 					</form> -->
 		</div>
 	</section>	
 
