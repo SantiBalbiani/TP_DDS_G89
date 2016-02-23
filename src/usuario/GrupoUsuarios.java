@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import hibernate.HibernateConf;
 import receta.Receta;
@@ -78,20 +79,44 @@ public class GrupoUsuarios {
 	public Set<Usuario> getGrupoDeUsuarios() {
 		return this.grupoDeUsuarios;
 	}
-	//********ACA HACER MANY TO MANY********
+	
 	
 	public void ingresarGrupo(Usuario unUsuario){
 	 
+		this.getGrupoDeUsuarios().add(unUsuario);	
+		 
+	}
+	
+	public void ingresarUsuarioAGrupo(Usuario unUsuario){
+		 
 		this.getGrupoDeUsuarios().add(unUsuario);
 		
-		//TODO: evaluar cambiar en guardarGrupo por saveOrUpdate para evitar duplicar codigo...
+//		//TODO: evaluar cambiar en guardarGrupo por saveOrUpdate para evitar duplicar codigo...
+//		GrupoUsuarios grupos = new GrupoUsuarios();
+//		grupos = this;
+		
 		Session session = HibernateConf.getSessionFactory().openSession();
+		//Session session = HibernateConf.getSessionFactory().);
 		session.beginTransaction();
-		session.update(this);
+		//session.flush();
+		//session.clear();
+		session.saveOrUpdate(this);
 		session.getTransaction().commit();
 		System.out.println("Done");
 		session.close();
 		
+//		Session session = null ; 
+//	    Transaction tran = null;
+//	    try {
+//	        session = HibernateConf.getSessionFactory().getCurrentSession();        
+//	        tran =  session.beginTransaction();
+//	        session.saveOrUpdate(this);
+//	        session.flush();
+//	        tran.commit();
+//	    } catch(Exception ex ) {
+//	       // ex.printstacktrance(); 
+//	    	System.out.println("Error");
+//	    }
 		 
 	}
 	

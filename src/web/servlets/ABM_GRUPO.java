@@ -76,11 +76,11 @@ public class ABM_GRUPO extends HttpServlet {
 			
 			try{
 				grupoViejo = grupoViejo.buscarGrupoPorNombre(nombreGrupo);
-				usuarioInvitado = usuarioInvitado.buscarUsuarioPorNombre(nombreGrupo);
+				usuarioInvitado = usuarioInvitado.buscarUsuarioPorNombre(nombreUsuario);
 			
 				if (grupoViejo!=null && usuarioInvitado!=null) {
 				
-					grupoViejo.ingresarGrupo(usuarioInvitado);
+					grupoViejo.ingresarUsuarioAGrupo(usuarioInvitado);
 			
 					session.setAttribute("invitoGrupo", "yes");
 					response.sendRedirect("misGrupos.jsp");

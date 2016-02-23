@@ -10,6 +10,7 @@
 	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
 	String modificoGrupo = (String) session.getAttribute("modificoGrupo");
 	String salioGrupo = (String) session.getAttribute("salioGrupo");
+	String invitoGrupo = (String) session.getAttribute("invitoGrupo");
 	String errorBusquedaG = (String) session.getAttribute("errorBusquedaG");
 	//Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 	
@@ -108,6 +109,14 @@
 			    	out.println("<strong>Info!</strong> No se encontro el grupo. Intente nuevamente.");
 			    	out.println("</div>");
 		        	session.setAttribute("errorBusquedaG", "no");	//reseteo el flag
+				}%>
+				
+				<% if (invitoGrupo.equals("yes")) {
+					out.println("<div class=\"alert alert-success fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Success!</strong> Se añadio con exito el usuario al grupo solicitado.");
+			    	out.println("</div>");
+		        	session.setAttribute("invitoGrupo", "no");	//reseteo el flag
 				}%>
 				
 				
