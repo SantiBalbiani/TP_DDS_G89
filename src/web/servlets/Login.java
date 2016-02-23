@@ -79,12 +79,14 @@ public class Login extends HttpServlet {
 
 		        grupo1.setNombreDeGrupo("Felinos Cosmicos");
    		 		grupo1.setAdministrador(user);
-   		 		grupo1.ingresarGrupo(user);
+   		 		//grupo1.ingresarGrupo(user);
+   		 		grupo1.getGrupoDeUsuarios().add(user);
    		 		grupos.add(grupo1);
 		 		
    		 		grupo2.setNombreDeGrupo("Utnianos");
  		 		grupo2.setAdministrador(user);
- 		 		grupo2.ingresarGrupo(user);
+ 		 		grupo2.getGrupoDeUsuarios().add(user);
+ 		 		//grupo2.ingresarGrupo(user);
  		 		grupos.add(grupo2);
 		 		 
 		         Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
@@ -103,6 +105,7 @@ public class Login extends HttpServlet {
 		         session.setAttribute("modificoGrupo", "no");
 		         session.setAttribute("creoReceta", "no");
 		         session.setAttribute("errorBusquedaG", "no");
+		         session.setAttribute("invitoGrupo", "no");
 		         session.setAttribute("salioGrupo", "no");
 		         session.setAttribute("usuario", user);
 		         session.setAttribute("gruposDelUsuario", grupos);

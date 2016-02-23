@@ -67,6 +67,36 @@ public class ABM_GRUPO extends HttpServlet {
 			response.sendRedirect("misGrupos.jsp");
 		}
 		
+		if (esGrupo.equals("invitar"))		//crearGRupo
+		{
+			String nombreUsuario = request.getParameter("nombreUsuario");
+			String nombreGrupo = request.getParameter("nombreGrupo");
+			usuario.GrupoUsuarios grupoViejo = new usuario.GrupoUsuarios ();
+			usuario.Usuario usuarioInvitado = new usuario.Usuario();
+			
+			try{
+				grupoViejo = grupoViejo.buscarGrupoPorNombre(nombreGrupo);
+				usuarioInvitado = usuarioInvitado.buscarUsuarioPorNombre(nombreGrupo);
+			
+				if (grupoViejo!=null && usuarioInvitado!=null) {
+				
+					grupoViejo.ingresarGrupo(usuarioInvitado);
+			
+					session.setAttribute("invitoGrupo", "yes");
+					response.sendRedirect("misGrupos.jsp");
+				}
+				else
+				{
+					session.setAttribute("errorBusquedaG", "yes");
+					response.sendRedirect("misGrupos.jsp");
+				}
+			}catch(Throwable Exception){
+				System.out.println(Exception);
+			}
+			
+
+		}
+		
 		if (esGrupo.equals("salir"))		//El usuario quiere salir del grupo...
 		{
 			//lo saco del grupo
@@ -83,9 +113,9 @@ public class ABM_GRUPO extends HttpServlet {
 				grupoViejo.salirGrupo(usuarioActual);
 				//grupos.remove(grupoViejo);	//lo elimino tmb de la isntancia local..! :)
 				
+				//TODO: revisar si se pueden sacar estas 8 lineas de codigo..
 				 Set<GrupoUsuarios> gruposActualizacion =  new HashSet<GrupoUsuarios>();
 				 gruposActualizacion =usuarioActual.getUserGrupo();
-				
 				for (GrupoUsuarios c : gruposActualizacion)
 				{
 					if (c.getNombreDeGrupo().equals(salirGrupo))

@@ -180,12 +180,14 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse"
-            data-parent="#searchAccordion" href="#collapseThree">Ingresar a un Grupo</a>
+            data-parent="#searchAccordion" href="#collapseThree">Invitar usuario a un grupo</a>
         </div>
         <div id="collapseThree" class="accordion-body collapse">
           <div class="accordion-inner">
-            <form class="form-inline">
-        <label>Nombre del grupo al que desea ingresar: </label> <input class="input-medium" type="text" placeholder="">
+            <form class="form-inline" method="POST" action="ABM_GRUPO">
+        <label>Nombre del usuario al que desea invitar: </label> <input class="input-medium" name="nombreUsuario" id="nombreUsuario" type="text" placeholder="Nombre Usuario">
+        <label>Nombre del grupo al que desea unirlo: </label> <input class="input-medium" type="text" name="nombreGrupo" id=""nombreGrupo"" placeholder="Nombre Grupo">
+        <input type="hidden" name="esGrupo" id="esGrupo" value="invitar">
        	<button type="submit" class="btn">Ingresar</button>
     	</form>
           </div>

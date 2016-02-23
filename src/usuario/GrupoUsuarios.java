@@ -84,6 +84,14 @@ public class GrupoUsuarios {
 	 
 		this.getGrupoDeUsuarios().add(unUsuario);
 		
+		//TODO: evaluar cambiar en guardarGrupo por saveOrUpdate para evitar duplicar codigo...
+		Session session = HibernateConf.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.update(this);
+		session.getTransaction().commit();
+		System.out.println("Done");
+		session.close();
+		
 		 
 	}
 	
@@ -294,23 +302,23 @@ public class GrupoUsuarios {
 			this.grupoDeUsuarios = grupoDeUsuarios;
 		}
 		
-		public static Set<GrupoUsuarios> buscarGruposDelUsuario(Usuario unUsuario){
-			
-			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
-
-				 		
-				 		Session session = HibernateConf.getSessionFactory().openSession();
-				 
-				 		Query query = session.createQuery("FROM usuario.GrupoUsuarios e join usuario.Usuario r where r.idUsuario = :idUser");
-				 
-				 		query.setString("idUser", String.valueOf(unUsuario.getIdUsuario()));
-				 		
-				 		java.util.List<?> lista = query.list();
-				 		
-				 	 gruposEncontrados = (Set<GrupoUsuarios>) lista;
-				 
-				 
-			  return gruposEncontrados;
-		}
+//		public static Set<GrupoUsuarios> buscarGruposDelUsuario(Usuario unUsuario){
+//			
+//			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
+//
+//				 		
+//				 		Session session = HibernateConf.getSessionFactory().openSession();
+//				 
+//				 		Query query = session.createQuery("FROM usuario.GrupoUsuarios e join usuario.Usuario r where r.idUsuario = :idUser");
+//				 
+//				 		query.setString("idUser", String.valueOf(unUsuario.getIdUsuario()));
+//				 		
+//				 		java.util.List<?> lista = query.list();
+//				 		
+//				 	 gruposEncontrados = (Set<GrupoUsuarios>) lista;
+//				 
+//				 
+//			  return gruposEncontrados;
+//		}
 
 }
