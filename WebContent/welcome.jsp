@@ -188,76 +188,7 @@
 	</div>		
 	</section>
 	
-	<section class="main container">
-		<div class="panel panel-default" id="Grupos">
-			<div class="panel-heading"><b> Tus Grupos </b></div>
-			<div class="panel-body"> 
-				
-				<!-- Buscar los grupos del usuario y poner algunas aca -->
-				<% if(grupos.isEmpty()){ %>
-					<p>Todavía no tienes ningun grupo!</p>
-				<% } else {%>
-					<div class="panel-group" id="accordion" role="tablist"
-						aria-multiselectable="true">
-						<%
-							int j = 0;
-						
-							for (GrupoUsuarios grupo1 : grupos) {
-								j++;
-						%>
-						<div class="panel panel-default">
-						
-<%
-								switch (j) {
-										case 1:
-											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">");
-										    out.println("<h4 class=\"panel-title\">");
-										    out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne1\" aria-expanded=\"true\" aria-controls=\"collapseOne\">");
-										    out.println(grupo1.getNombreDeGrupo());
-										    out.println("</a>");
-											out.println("</h4>");
-											out.println("</div>");
-										    out.println("<div id=\"collapseOne1\" class=\"panel-collapse collapse \" role=\"tabpanel\" aria-labelledby=\"headingOne\">");
-											break;
-										case 2:
-											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">");
-											out.println("<h4 class=\"panel-title\">"); 
-											out.println("<a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseTwo2\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">");
-											out.println(grupo1.getNombreDeGrupo());
-											out.println("</a>");
-											out.println("</h4>");
-											out.println("</div>");
-										    out.println("<div id=\"collapseTwo2\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">");
-											break;
-										case 3:
-											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingThree\">");
-										    out.println("<h4 class=\"panel-title\">");
-										    out.println("<a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseThree3\" aria-expanded=\"false\" aria-controls=\"collapseThree\">");
-										    out.println(grupo1.getNombreDeGrupo());
-										    out.println("</a>");
-											out.println("</h4>");
-											out.println("</div>");
-										    out.println("<div id=\"collapseThree3\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingThree\">");
-											break;
-										default:
-											out.println("<p>Todavía no tienes ningun grupo!</p>");
-											break;
-										}
 
-										//aca mostrar
-										out.println("<div class=\"panel-body\"> Preparacion :");
-										out.println(grupo1.getIdGrupo());
-										out.println("</div>");
-										out.println("</div>");
-										out.println("</div>");
-									}
-								}
-							%>				
-			</div>
-			</div>			
-			</div>
-		</div>		
-	</section>
 	
 
 </body>
