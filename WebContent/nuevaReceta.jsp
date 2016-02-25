@@ -60,23 +60,47 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 // 	   return true;
 		//Desde aca empieza a levantar ingredientes secundarios..
 		
-		var spans = document.getElementById('div_ingredientes').getElementsByTagName('span'),
-		  obj = {};
-		console.log(obj);
-		//$('inputMeIngrediento').val($.param(obj));
 		var theForm = document.forms['CrearReceta'];
 	     if (!theForm) {
 	         theForm = document.CrearReceta;
 	     }
+		
+		
+	   //aca valido que el ingrediente principal sea correcto:
+		var spans = document.getElementById('Ingredientes').getElementsByTagName('span'),
+		  objPPAL = {};
+		console.log(objPPAL);
+	     var flagIngPPAL = 0;
+	     var a = "";
 	     
-	     var ingredientesHermosos = "&";
 	     for (var i = 0, l = spans.length; i < l; i++) {
-			  //obj[spans[i].id] = spans[i].textContent || spans[i].innerText;
-			//  addHidden(theForm, 'key-one', obj[spans[i].id]);
-	    	 ingredientesHermosos = ingredientesHermosos.concat(spans[i].textContent || spans[i].innerText);
-	    	 ingredientesHermosos = ingredientesHermosos.concat("&");
+			a = (spans[i].textContent || spans[i].innerText);
+	    	 
+	    	 //aca valido que el ingrediente principal sea correcto:
+	    		 var ingPPAL = document.getElementById("ingPrincipal").value;
+	    	 	if (a.search(ingPPAL)>0)
+	    	 		{
+	    	 		flagIngPPAL = 1;
+	    	 		}
 			}
 
+	     
+	     console.log(flagIngPPAL);
+    	 //aca termina el flag del ingrediente principal.. abajo pregunto si se encontro :)
+	     if (flagIngPPAL == 1)
+	    	 {
+	    	 
+	    	 var spans = document.getElementById('div_ingredientes').getElementsByTagName('span'),
+	    	 obj = {};
+	 		console.log(obj);
+	 		var ingredientesHermosos = "&";
+	    	 for (var i = 0, l = spans.length; i < l; i++) {
+				  //obj[spans[i].id] = spans[i].textContent || spans[i].innerText;
+				//  addHidden(theForm, 'key-one', obj[spans[i].id]);
+		    	ingredientesHermosos = ingredientesHermosos.concat(spans[i].textContent || spans[i].innerText);		    	 	
+		    	 ingredientesHermosos = ingredientesHermosos.concat("&");
+				}
+	     
 	     //addHidden(theForm, 'ingredientesDRAGdrop', ingredientesHermosos);
 	     //$('input').val()
 	     //addHidden(theForm, 'key-one', obj);
@@ -106,7 +130,11 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	    }
 	
 	     //theForm.submit();
-	     
+	    	 }
+	     else
+	    	 {
+	    	 confirm("Por favor revise que el ingrediente principal se encuentra listado en los ingredientes.");
+	    	 }
 	 }
 	</script>
 	
@@ -379,7 +407,7 @@ $(document).ready(function() {
 						</div>
 						
 						<div class="panel panel-default" id="panelDrop">
-							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Ingredientes">
+							<div class="panel-body" ondrop="drop(event)" ondragover="allowDrop(event)" name="Ingredientes" id="Ingredientes">
 								<% 
 								int i = 1;
 								for(Ingrediente ing : ingredientes){

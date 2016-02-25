@@ -21,6 +21,7 @@ import org.hibernate.Session;
 
 import estadisticas.Planificacion;
 import hibernate.HibernateConf;
+import usuario.Usuario;
 
 @Entity
 @Table(name = "TIPO_RECETA")
@@ -95,22 +96,30 @@ public class TipoReceta {
 //	};
 
 public TipoReceta buscarTipoRecetaPorNombre(String unNombre){
-		
-		Session session = HibernateConf.getSessionFactory().openSession();
+				
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+	
+	try{
 
-		Query query = session.createQuery("FROM TipoReceta e where e.tipoReceta = :nombre");
+		//Usuario usuarioBuscado;
 		
-
+		Query query = sessionHIB.createQuery("FROM TipoReceta e where e.tipoReceta = :nombre");
+		
 		query.setString("nombre", unNombre);
-		
 		java.util.List<?> lista = query.list();
 		
-	//Ingrediente ingredienteBuscado = (Ingrediente)lista.get(0);
 		TipoReceta tipoBuscado = (TipoReceta)lista.get(0);
-
-	return tipoBuscado;
-			
 		
+		return tipoBuscado;
+	}catch(Throwable theException) 	    
+	
+	{
+	    return null;
+	}finally {
+		//sessionHIB.getTransaction().commit();
+		System.out.println("Done");
+		sessionHIB.close();
+	}
 	}
 	
 	

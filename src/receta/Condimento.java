@@ -59,9 +59,9 @@ public class Condimento {
 
 	public java.util.List<Condimento> obtenerTodoslosCondimentos(){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM Condimento");
+		Query query = sessionHIB.createQuery("FROM Condimento");
 		
 		java.util.List<Condimento> listaDeTodosLosCondimentos = query.list();
 
@@ -72,9 +72,9 @@ public class Condimento {
 	}
 public Condimento buscarCondimentoPorNombre(String unNombre){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM Condimento e where e.nombre = :nombre");
+		Query query = sessionHIB.createQuery("FROM Condimento e where e.nombre = :nombre");
 
 		query.setString("nombre", unNombre);
 		
@@ -88,9 +88,9 @@ public Condimento buscarCondimentoPorNombre(String unNombre){
 
 public static Condimento buscarCondimentoPorNombre2(String unNombre){
 	
-	Session session = HibernateConf.getSessionFactory().openSession();
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-	Query query = session.createQuery("FROM Condimento e where e.nombre = :nombre");
+	Query query = sessionHIB.createQuery("FROM Condimento e where e.nombre = :nombre");
 
 	query.setString("nombre", unNombre);
 	
@@ -113,21 +113,21 @@ return condimentoBuscado;
 		// Configuration con = new Configuration();
 		// con.configure("hibernate.cfg.xml");
 		// SessionFactory SF = con.buildSessionFactory();
-		// Session session = SF.openSession();
+		// Session sessionHIB = SF.openSession();
 
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 
-		session.save(unCondimento);
+		sessionHIB.save(unCondimento);
 
-		session.getTransaction().commit();
-		// Transaction TR = session.beginTransaction();
-		// session.save(unCondimento);
+		sessionHIB.getTransaction().commit();
+		// Transaction TR = sessionHIB.beginTransaction();
+		// sessionHIB.save(unCondimento);
 		System.out.println("Object Saved Succesfully"); // Si imprime es porque
 														// persisti� ok el
 														// objeto
 		// TR.commit();
-		session.close();
+		sessionHIB.close();
 		// SF.close();
 
 	}
@@ -175,9 +175,9 @@ return condimentoBuscado;
 		//TODO: HACER DEBUG
 		
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM  Condimento");
+		Query query = sessionHIB.createQuery("FROM  Condimento");
 
 
 		

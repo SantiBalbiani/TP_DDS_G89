@@ -88,8 +88,8 @@ public class TestGrupo {
 		
 		//nuevoUsuario.altaUsuario("Santiago", 'M', 25,"20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
 
-		//Session session = HibernateConf.getSessionFactory().openSession();
-		//session.beginTransaction();
+		//Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		//sessionHIB.beginTransaction();
 		
 		//TODO: enrealidad hay que buscar el IDUSUARIO porque sino rompe... en mi bd es el user 140
 		nuevoUsuario.setIdUsuario(10);
@@ -121,10 +121,10 @@ public class TestGrupo {
 		
 
 		
-//		 session.save(nuevoUsuario);
-//		 session.getTransaction().commit();
+//		 sessionHIB.save(nuevoUsuario);
+//		 sessionHIB.getTransaction().commit();
 //		 System.out.println("Done");
-//		 session.close();
+//		 sessionHIB.close();
 		//nuevoUsuario.guardarUsuario(nuevoUsuario);
 	}
 	

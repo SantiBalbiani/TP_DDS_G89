@@ -199,10 +199,10 @@ public int estadisticaCaloriasPorComida(String tipoComida, Date fechaInicio){
 	   			//para calculo semanal, tipo
 	   			
 	   			
-	   			Session session = HibernateConf.getSessionFactory().openSession();
+	   			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
 
-	   			Query query = session.createQuery("FROM Receta sum(e.calorias) where e.sectorPiramideAlimenticia = :sectorPiramide");
+	   			Query query = sessionHIB.createQuery("FROM Receta sum(e.calorias) where e.sectorPiramideAlimenticia = :sectorPiramide");
 
 	   			query.setString("sectorPiramide", tipoComida);
 
@@ -328,10 +328,10 @@ public int consultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInic
 		//para calculo semanal o mensual
 		
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
 											//TODO: agregar al QUERY clausura where aceptada = 'SI'
-		Query query = session.createQuery("FROM Receta count(e.dificultadReceta) where e.aceptada = :dificultad");
+		Query query = sessionHIB.createQuery("FROM Receta count(e.dificultadReceta) where e.aceptada = :dificultad");
 
 		query.setInteger("dificultadReceta", dificultad);
 
@@ -375,7 +375,7 @@ public Set<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
 	
 	
 	
-	Session session = HibernateConf.getSessionFactory().openSession();
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 	//TODO: HACER QUERY le falta comparar fecha
 	//contra campo-columna FechaAlta  >= comienzoSemanaOmes & FechaAlta <= hoy
 	//para calculo semanal o mensual
@@ -384,7 +384,7 @@ public Set<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
 	//TODO: agregar al QUERY clausura where aceptada = 'SI'. 
 
 										
-	 Query query = session.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
+	 Query query = sessionHIB.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
 
  
 
@@ -409,7 +409,7 @@ public Set<Receta> reporteConsultadasAceptadasEntre(Date fechaInicio,Date fechaF
 	
  
 	Set<Receta> recetasAceptadas = new  HashSet<Receta>(); 
-	Session session = HibernateConf.getSessionFactory().openSession();
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 	//TODO: HACER QUERY le falta comparar fecha
 	//contra campo-columna FechaAlta en RECETARIO entre fechaInicio & FechaFin
 	
@@ -417,7 +417,7 @@ public Set<Receta> reporteConsultadasAceptadasEntre(Date fechaInicio,Date fechaF
 	//TODO: agregar al QUERY clausura where aceptada = 'SI'. 
 
 										
-	 Query query = session.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
+	 Query query = sessionHIB.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
 
  
 
@@ -440,13 +440,13 @@ public Set<Receta> reporteNuevasEntre(Date fechaInicio,Date fechaFin ){
 	
  
 	Set<Receta> recetasNuevas = new  HashSet<Receta>(); 
-	Session session = HibernateConf.getSessionFactory().openSession();
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 	
 	
 	//TODO: HACER QUERY traer todas las recetas con fechaAlta entre 
 	//la fechaInicio y fechaFin
 	 
-	Query  query = session.createQuery("FROM e Receta where fechaAlta... ");
+	Query  query = sessionHIB.createQuery("FROM e Receta where fechaAlta... ");
 
 	
 	 java.util.List<?> lista = query.list();
@@ -466,14 +466,14 @@ public Set<Receta> reporteRecetasPorCalorias(int caloriasInicio,Date caloriasFin
 	
 	 
 	Set<Receta> recetasPorCalorias = new  HashSet<Receta>(); 
-	Session session = HibernateConf.getSessionFactory().openSession();
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 	
 	
 	//TODO: HACER QUERY traer todas las recetas con entre el rango >= y <= de calorias
 	
 	
 	 
-	Query  query = session.createQuery("FROM e Receta where e.calorias ... ");
+	Query  query = sessionHIB.createQuery("FROM e Receta where e.calorias ... ");
 
 	
 	 java.util.List<?> lista = query.list();

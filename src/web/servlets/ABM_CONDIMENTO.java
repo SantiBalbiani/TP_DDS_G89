@@ -55,7 +55,7 @@ public class ABM_CONDIMENTO extends HttpServlet {
 			unCondimento = unCondimento.crearCondimento(nombreCondimento, tipoCondimento);
 			unCondimento.guardarCondimento(unCondimento);
 			
-			//TODO: decirle a emiliano una vez que este bien puesta la pagina en el front, que ponga las alertas de "se creo ok condimento"...
+			session.setAttribute("seCreoOkCondimento", "yes");
 			response.sendRedirect("crearCondimentos.jsp");	//Adaptar esta web page...
 		}
 		else

@@ -82,9 +82,9 @@ public class Ingrediente {
 	
 	public java.util.List<Ingrediente> obtenerTodoslosIngredientes(){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM Ingrediente");
+		Query query = sessionHIB.createQuery("FROM Ingrediente");
 		
 		List<Ingrediente> listaDeTodosLosIngredientes = query.list();
 
@@ -96,9 +96,9 @@ public class Ingrediente {
 	
 	public Ingrediente buscarIngredientePorNombre(String unNombre){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM Ingrediente e where e.nombre = :nombre");
+		Query query = sessionHIB.createQuery("FROM Ingrediente e where e.nombre = :nombre");
 		
 
 		query.setString("nombre", unNombre);
@@ -115,9 +115,9 @@ public class Ingrediente {
 	
 public static Ingrediente buscarIngredientePorNombre2(String unNombre){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM Ingrediente e where e.nombre = :nombre");
+		Query query = sessionHIB.createQuery("FROM Ingrediente e where e.nombre = :nombre");
 		
 
 		query.setString("nombre", unNombre);
@@ -161,32 +161,32 @@ public static Ingrediente buscarIngredientePorNombre2(String unNombre){
 		nuevoIngrediente.setNombre(unIngrediente.getNombre());
 		nuevoIngrediente.setPorcion(unIngrediente.getPorcion());
 		*/
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 
-		session.save(unIngrediente);
+		sessionHIB.save(unIngrediente);
 
-		session.getTransaction().commit();
-		// Transaction TR = session.beginTransaction();
-		// session.save(unCondimento);
+		sessionHIB.getTransaction().commit();
+		// Transaction TR = sessionHIB.beginTransaction();
+		// sessionHIB.save(unCondimento);
 		System.out.println("Object Saved Succesfully"); // Si imprime es porque
 														// persisti� ok el
 														// objeto
 		// TR.commit();
-		session.close();
+		sessionHIB.close();
 		// SF.close();
 		
 		/*
 		Configuration con = new Configuration();
 		con.configure("hibernate.cfg.xml");
 		SessionFactory SF = con.buildSessionFactory();
-		Session session = SF.openSession();
+		Session sessionHIB = SF.openSession();
 		
-		Transaction TR = session.beginTransaction();
-		session.save(nuevoIngrediente);
+		Transaction TR = sessionHIB.beginTransaction();
+		sessionHIB.save(nuevoIngrediente);
 		System.out.println("Object Saved Succesfully"); // Si imprime es porque persisti� ok el objeto
 		TR.commit();
-		session.close();
+		sessionHIB.close();
 		SF.close();
 		*/
 	}
@@ -225,9 +225,9 @@ public Set<Ingrediente> mostrarTodosLosIngredientes(){
 	//TODO: HACER DEBUG
 	
 	
-	Session session = HibernateConf.getSessionFactory().openSession();
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-	Query query = session.createQuery("FROM  Ingrediente");
+	Query query = sessionHIB.createQuery("FROM  Ingrediente");
 
 
 	

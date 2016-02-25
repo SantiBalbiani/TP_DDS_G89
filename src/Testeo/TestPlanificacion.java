@@ -33,9 +33,9 @@ public class TestPlanificacion {
 		
 		TipoReceta unTipo = new TipoReceta();
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM TipoReceta e where e.tipoReceta = :tipoReceta");
+		Query query = sessionHIB.createQuery("FROM TipoReceta e where e.tipoReceta = :tipoReceta");
 
 		//++++++++++++++++++++El usuario decide poner la receta para desayuno++++++++++++++++++
 		query.setString("tipoReceta", "Desayuno");
@@ -59,12 +59,12 @@ public class TestPlanificacion {
 	}
 		
 		
-	session.close();
+	sessionHIB.close();
 //+++++++++++++++++++++++++++Se dirige al boton crear Planificacion+++++++++++++++
 		
 		
-		session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 		
 		
 		
@@ -76,11 +76,11 @@ public class TestPlanificacion {
 	
 	unaPlanificacion.setUnTipoDeReceta(unTipo);
 	
-	session.save(unaPlanificacion);
+	sessionHIB.save(unaPlanificacion);
 	
-	session.getTransaction().commit();
+	sessionHIB.getTransaction().commit();
 	System.out.println("Done");
-	session.close();
+	sessionHIB.close();
 	
 		
 		
@@ -95,15 +95,15 @@ public class TestPlanificacion {
 		//++++++++++++++++++Usuario se Loguea++++++++++++++++++++++++++
 		unUser = unUser.buscarUsuarioPorNombre("HOLAMANUEL");
 			
-			Session session = HibernateConf.getSessionFactory().openSession();
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-			Query query = session.createQuery("FROM Planificacion p WHERE p.usuario = :usuario");
+			Query query = sessionHIB.createQuery("FROM Planificacion p WHERE p.usuario = :usuario");
 			
 			query.setParameter("usuario", unUser);
 			
 			List<Planificacion> listaPlanifXUser = query.list();
 
-			session.close();
+			sessionHIB.close();
 			
 			for (Planificacion unaPl :listaPlanifXUser){
 				

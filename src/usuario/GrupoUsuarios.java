@@ -95,23 +95,23 @@ public class GrupoUsuarios {
 //		GrupoUsuarios grupos = new GrupoUsuarios();
 //		grupos = this;
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
-		//Session session = HibernateConf.getSessionFactory().);
-		session.beginTransaction();
-		//session.flush();
-		//session.clear();
-		session.saveOrUpdate(this);
-		session.getTransaction().commit();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		//Session sessionHIB = HibernateConf.getSessionFactory().);
+		sessionHIB.beginTransaction();
+		//sessionHIB.flush();
+		//sessionHIB.clear();
+		sessionHIB.saveOrUpdate(this);
+		sessionHIB.getTransaction().commit();
 		System.out.println("Done");
-		session.close();
+		sessionHIB.close();
 		
-//		Session session = null ; 
+//		Session sessionHIB = null ; 
 //	    Transaction tran = null;
 //	    try {
-//	        session = HibernateConf.getSessionFactory().getCurrentSession();        
-//	        tran =  session.beginTransaction();
-//	        session.saveOrUpdate(this);
-//	        session.flush();
+//	        sessionHIB = HibernateConf.getSessionFactory().getCurrentSession();        
+//	        tran =  sessionHIB.beginTransaction();
+//	        sessionHIB.saveOrUpdate(this);
+//	        sessionHIB.flush();
 //	        tran.commit();
 //	    } catch(Exception ex ) {
 //	       // ex.printstacktrance(); 
@@ -126,21 +126,21 @@ public class GrupoUsuarios {
 		//unUsuario.getUserGrupo().remove(this);
 
 		// ADEMAS LO ELIMINO DE LA BD...
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.getTransaction().begin();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.getTransaction().begin();
 
 		String sql_query = "delete from usuario_por_grupo   where ID_USER = :idUser and ID_GRUPO = :idGrupo" ;
 
-		Query query = session.createSQLQuery(sql_query);
+		Query query = sessionHIB.createSQLQuery(sql_query);
 		query.setParameter("idUser", unUsuario.getIdUsuario());
 		query.setParameter("idGrupo", this.getIdGrupo());
 
 		query.executeUpdate();
-		session.flush();
-		session.clear();
-		session.getTransaction().commit();
+		sessionHIB.flush();
+		sessionHIB.clear();
+		sessionHIB.getTransaction().commit();
 		System.out.println("Done");
-		session.close();
+		sessionHIB.close();
 		
 		//TODO: REVISAR SI ERA EL ULTIMO USUARIO QUE ELIMINE EL GRUPO Y ADEMAS QUE SI ERA ADMINISTRADOR, LE ASIGNE SER ADMINISTRADOR A OTRO.
 
@@ -172,20 +172,20 @@ public class GrupoUsuarios {
 		if(this.puedeEliminarGrupo(admin)){
 			this.salirGrupo(admin);	
 		
-				Session session = HibernateConf.getSessionFactory().openSession();
-				session.getTransaction().begin();
+				Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+				sessionHIB.getTransaction().begin();
 				
 				String sql_query = "delete from GRUPO  where ID_GRUPO = :idGrupo";
 				//TODO: me parece que hace falta borrar la tabla intermedia... usuario_por_grupo
 				
-				Query query = session.createSQLQuery(sql_query);
+				Query query = sessionHIB.createSQLQuery(sql_query);
 				query.setParameter("idGrupo", this.getIdGrupo());
 
 				
 				query.executeUpdate();
-				session.getTransaction().commit();
+				sessionHIB.getTransaction().commit();
 				System.out.println("Done");
-				session.close();
+				sessionHIB.close();
 		
 		}
 		}
@@ -215,12 +215,17 @@ public class GrupoUsuarios {
 	
 		public Set<GrupoUsuarios> buscarGrupo(String unNombre){
 			
-			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
-
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+			
+			
+			try {
+			 
+		
+				Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
 				 		
-				 		Session session = HibernateConf.getSessionFactory().openSession();
+				 		
 				 
-				 		Query query = session.createQuery("FROM GrupoUsuarios e where e.nombreDeGrupo = :nombre");
+				 		Query query = sessionHIB.createQuery("FROM GrupoUsuarios e where e.nombreDeGrupo = :nombre");
 				 
 				 		query.setString("nombre", unNombre);
 				 		
@@ -228,22 +233,31 @@ public class GrupoUsuarios {
 				 		
 				 	 gruposEncontrados = (Set<GrupoUsuarios>) lista;
 				 
-				 
+				 	
 			  return gruposEncontrados;
+		}catch(Throwable theException) 	  {
+			return null;
+			//DO something
+		}finally {
+			sessionHIB.getTransaction().commit();
+			System.out.println("Done");
+			sessionHIB.close();
+		}
 		}
 		
 		
 		
-		
 		public GrupoUsuarios buscarGrupoPorNombre(String unNombre){
+			
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 			try
 			{
 			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
 
 				 		
-				 		Session session = HibernateConf.getSessionFactory().openSession();
+				 		
 				 
-				 		Query query = session.createQuery("FROM GrupoUsuarios e where e.nombreDeGrupo = :nombre");
+				 		Query query = sessionHIB.createQuery("FROM GrupoUsuarios e where e.nombreDeGrupo = :nombre");
 				 
 				 		query.setString("nombre", unNombre);
 				 		
@@ -254,6 +268,7 @@ public class GrupoUsuarios {
 				 	if (!lista.isEmpty())
 					{
 				GrupoUsuarios grupoBuscado = (GrupoUsuarios)lista.get(0);
+				//sessionHIB.getTransaction().commit();
 				return grupoBuscado;
 					}
 					else
@@ -262,8 +277,12 @@ public class GrupoUsuarios {
 					catch(Throwable Exception){
 						System.out.println(Exception);
 						return null;
+					}finally {
+						//sessionHIB.getTransaction().commit();
+						System.out.println("Done");
+						sessionHIB.close();
 					}
-				}	
+				}
 				 
 			 // return gruposEncontrados;
 		
@@ -276,11 +295,11 @@ public class GrupoUsuarios {
 			// Configuration con = new Configuration();
 			// con.configure("hibernate.cfg.xml");
 			// SessionFactory SF = con.buildSessionFactory();
-			// Session session = SF.openSession();
-			// Session session = HibernateConf.getSessionFactory().openSession();
-			// Session session = HibernateConf.getSessionFactory().openSession();
-			Session session = HibernateConf.getSessionFactory().openSession();
-			session.beginTransaction();
+			// Session sessionHIB = SF.openSession();
+			// Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+			// Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+			sessionHIB.beginTransaction();
 
 			//Usuario nuevoUsuario = new Usuario();
 			//String nombre = unUsuario.getNombreUsuario().toU;
@@ -293,18 +312,18 @@ public class GrupoUsuarios {
 			// nuevoUsuario.setEdad(unUsuario.getEdad());
 			// nuevoUsuario.setPassword(unUsuario.getPassword());
 
-			// Transaction TR = session.beginTransaction();
-			// session.save(unUsuario);
+			// Transaction TR = sessionHIB.beginTransaction();
+			// sessionHIB.save(unUsuario);
 			// System.out.println("Object Saved Succesfully"); // Si imprime es
 			// porque persisti� ok el objeto
 			// TR.commit();
-			// session.close();
+			// sessionHIB.close();
 			// SF.close();
 
-			session.save(unGrupo);
-			session.getTransaction().commit();
+			sessionHIB.save(unGrupo);
+			sessionHIB.getTransaction().commit();
 			System.out.println("Done");
-			session.close();
+			sessionHIB.close();
 			// factory.close();
 
 		}
@@ -332,9 +351,9 @@ public class GrupoUsuarios {
 //			 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
 //
 //				 		
-//				 		Session session = HibernateConf.getSessionFactory().openSession();
+//				 		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 //				 
-//				 		Query query = session.createQuery("FROM usuario.GrupoUsuarios e join usuario.Usuario r where r.idUsuario = :idUser");
+//				 		Query query = sessionHIB.createQuery("FROM usuario.GrupoUsuarios e join usuario.Usuario r where r.idUsuario = :idUser");
 //				 
 //				 		query.setString("idUser", String.valueOf(unUsuario.getIdUsuario()));
 //				 		

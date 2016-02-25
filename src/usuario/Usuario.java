@@ -20,6 +20,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+//import javax.transaction.Transactional;
+import javax.transaction.Transactional;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -404,11 +406,11 @@ public class Usuario {
 		// Configuration con = new Configuration();
 		// con.configure("hibernate.cfg.xml");
 		// SessionFactory SF = con.buildSessionFactory();
-		// Session session = SF.openSession();
-		// Session session = HibernateConf.getSessionFactory().openSession();
-		// Session session = HibernateConf.getSessionFactory().openSession();
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		// Session sessionHIB = SF.openSession();
+		// Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		// Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 
 		//Usuario nuevoUsuario = new Usuario();
 		//String nombre = unUsuario.getNombreUsuario().toU;
@@ -420,19 +422,20 @@ public class Usuario {
 		// nuevoUsuario.setSexo(unUsuario.getSexo());
 		// nuevoUsuario.setEdad(unUsuario.getEdad());
 		// nuevoUsuario.setPassword(unUsuario.getPassword());
+	
 
-		// Transaction TR = session.beginTransaction();
-		// session.save(unUsuario);
+		// Transaction TR = sessionHIB.beginTransaction();
+		// sessionHIB.save(unUsuario);
 		// System.out.println("Object Saved Succesfully"); // Si imprime es
 		// porque persistiï¿½ ok el objeto
 		// TR.commit();
-		// session.close();
+		// sessionHIB.close();
 		// SF.close();
 
-		session.save(unUsuario);
-		session.getTransaction().commit();
+		sessionHIB.save(unUsuario);
+		sessionHIB.getTransaction().commit();
 		System.out.println("Done");
-		session.close();
+		sessionHIB.close();
 		// factory.close();
 
 	}
@@ -465,18 +468,19 @@ public class Usuario {
 	public Usuario buscarUsuarioPorNombre(String unNombre){
 		
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 		
+	try{
+
 		Usuario usuarioBuscado;
 		
-		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
+		Query query = sessionHIB.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
 		
 		query.setString("nombreUsuario", unNombre);
-	try{
-		
 		java.util.List<?> lista = query.list();
 		
 		usuarioBuscado = (Usuario)lista.get(0);
+		
 		return usuarioBuscado;
 	}catch(Throwable theException) 	    
 	
@@ -485,6 +489,10 @@ public class Usuario {
 	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseña inexistentes");
 	    usuarioNoEncontrado.setIdUsuario(9999);
 	    return usuarioNoEncontrado;
+	}finally {
+		//sessionHIB.getTransaction().commit();
+		System.out.println("Done");
+		sessionHIB.close();
 	}
 		
 		
@@ -492,15 +500,15 @@ public class Usuario {
 	
 	public void modificarUsuario (Usuario unUsuario)
 	{
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.getTransaction().begin();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.getTransaction().begin();
 		
 		//String sql_query = "update Usuario set NOMBRE = :nuevoNombre " + " where ID_USER = :idUsuario";
 		String sql_query = "update Usuario set PASSWORD = :nuevaPWD, F_NAC = :nuevaF_NAC, SEXO = :nuevoSexo, RUTINA = :nuevaRutina, DIETA = :nuevaDieta, COMPLEXION = :nuevaComplexion, ALTURA = :nuevaAltura, EMAIL = :nuevoMail, PESO = :nuevoPeso " + " where ID_USER = :idUsuario";
 		
 		
 //		UPDATE `usuario` SET `ID_USER`=[value-1],`ALTURA`=[value-2],`COMPLEXION`=[value-3],`DIETA`=[value-4],`F_NAC`=[value-5],`NOMBRE`=[value-6],`PASSWORD`=[value-7],`PREF_ALIM`=[value-8],`RUTINA`=[value-9],`SEXO`=[value-10] WHERE `ID_USER`= 1
-		Query query = session.createSQLQuery(sql_query);
+		Query query = sessionHIB.createSQLQuery(sql_query);
 		//query.setParameter("nuevoNombre", unUsuario.getNombreUsuario());	//el nombre de usuario no se pueda cambiar..
 		query.setParameter("idUsuario", unUsuario.getIdUsuario());
 		query.setParameter("nuevaAltura", unUsuario.getAltura());
@@ -515,27 +523,27 @@ public class Usuario {
 		
 		
 		query.executeUpdate();
-		session.getTransaction().commit();
+		sessionHIB.getTransaction().commit();
 		System.out.println("Done");
-		session.close();
+		sessionHIB.close();
 		
 	}
 	
 	public void eliminarUsuario (Usuario unUsuario)
 	{
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.getTransaction().begin();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.getTransaction().begin();
 		
 		String sql_query = "delete from Usuario  where ID_USER = :idUsuario";
 		
-		Query query = session.createSQLQuery(sql_query);
+		Query query = sessionHIB.createSQLQuery(sql_query);
 		query.setParameter("idUsuario", unUsuario.getIdUsuario());
 
 		
 		query.executeUpdate();
-		session.getTransaction().commit();
+		sessionHIB.getTransaction().commit();
 		System.out.println("Done");
-		session.close();
+		sessionHIB.close();
 		
 	}
 	
@@ -850,6 +858,26 @@ public class Usuario {
 		this.peso = peso;
 	}
 
+	@Transactional
+	public Set<GrupoUsuarios> traemeLosGruposDelUsuario()
+	{
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		try {
+			sessionHIB.merge(this);
+			Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();
+			gruposEncontrados = this.getUserGrupo();
+			return gruposEncontrados;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}finally {
+			//sessionHIB.getTransaction().commit();
+			System.out.println("Done");
+			sessionHIB.close();
+		}
+
+		
+	}
 //	public Set<GrupoUsuarios> buscarGruposDelUsuario(Usuario unUsuario){
 //		
 //		 Set<GrupoUsuarios> gruposEncontrados =  new HashSet<GrupoUsuarios>();

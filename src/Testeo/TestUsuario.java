@@ -40,8 +40,8 @@ public class TestUsuario {
 		
 		//nuevoUsuario.altaUsuario("Santiago", 'M', 25,"20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
 
-		//Session session = HibernateConf.getSessionFactory().openSession();
-		//session.beginTransaction();
+		//Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		//sessionHIB.beginTransaction();
 		
 		
 		nuevoUsuario.setNombreUsuario("Santiago");
@@ -61,10 +61,10 @@ public class TestUsuario {
 		unIngrediente = unIngrediente.crearIngrediente("unChori", (int) 80, (int)10);
 		//unIngrediente.guardarIngrediente(unIngrediente);
 		 
-		//Session session = HibernateConf.getSessionFactory().openSession();
-		//session.beginTransaction();
+		//Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		//sessionHIB.beginTransaction();
 
-		//session.save(unIngrediente);
+		//sessionHIB.save(unIngrediente);
  
 		
 		
@@ -76,16 +76,16 @@ public class TestUsuario {
 		ingredientePPAL = ingredientePPAL.crearIngrediente("pasto", (int) 22, (int)33);
 		//ingredientePPAL.guardarIngrediente(ingredientePPAL);
 		
-		//session.save(ingredientePPAL);
+		//sessionHIB.save(ingredientePPAL);
 		
 		// Creo Condimento
 
 		Condimento unCondimento = new Condimento();
 		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
 		//unCondimento.guardarCondimento(unCondimento);
-		//session.save(unCondimento);
-		//session.getTransaction().commit();
-		//session.close();                	   
+		//sessionHIB.save(unCondimento);
+		//sessionHIB.getTransaction().commit();
+		//sessionHIB.close();                	   
 		
 		// Creo Receta
 		// Creo Receta
@@ -114,10 +114,10 @@ public class TestUsuario {
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 
 		
-//		 session.save(nuevoUsuario);
-//		 session.getTransaction().commit();
+//		 sessionHIB.save(nuevoUsuario);
+//		 sessionHIB.getTransaction().commit();
 //		 System.out.println("Done");
-//		 session.close();
+//		 sessionHIB.close();
 		//nuevoUsuario.guardarUsuario(nuevoUsuario);
 	}
 	
@@ -126,9 +126,9 @@ public class TestUsuario {
 	public void testBuscarUsuario(){
 		
 			
-			Session session = HibernateConf.getSessionFactory().openSession();
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 			
-			Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
+			Query query = sessionHIB.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
 			
 			query.setString("nombreUsuario", "Emiliano");
 			
@@ -160,8 +160,8 @@ public class TestUsuario {
 		
 		//nuevoUsuario.altaUsuario("Santiago", 'M', 25,"20150313", "mediana", 1.70, " ", condPreexis, " ", " ", "1234");
 
-		//Session session = HibernateConf.getSessionFactory().openSession();
-		//session.beginTransaction();
+		//Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		//sessionHIB.beginTransaction();
 		
 		
 		nuevoUsuario.setNombreUsuario("Santiago");
@@ -178,10 +178,10 @@ public class TestUsuario {
 		nuevoUsuario.guardarUsuario(nuevoUsuario);
 
 		
-//		 session.save(nuevoUsuario);
-//		 session.getTransaction().commit();
+//		 sessionHIB.save(nuevoUsuario);
+//		 sessionHIB.getTransaction().commit();
 //		 System.out.println("Done");
-//		 session.close();
+//		 sessionHIB.close();
 		//nuevoUsuario.guardarUsuario(nuevoUsuario);
 	}
 	
@@ -199,7 +199,7 @@ public class TestUsuario {
 	@Test
 	public void modificarUsuario ()
 	{
-		//session.getTransaction().begin();
+		//sessionHIB.getTransaction().begin();
 		Usuario unUsuario = new Usuario();
 		unUsuario.setNombreUsuario("Emiliano");
 		unUsuario.setPassword("1234");
@@ -231,8 +231,8 @@ public class TestUsuario {
 	public void eliminarUsuario ()
 	{
 		//busco un usuario por nombre
-		Session session = HibernateConf.getSessionFactory().openSession();
-		Query query = session.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		Query query = sessionHIB.createQuery("FROM Usuario e where e.nombreUsuario = :nombreUsuario");
 		query.setString("nombreUsuario", "Emiliano");
 		java.util.List<?> lista = query.list();
 		Usuario usuarioBuscado = (Usuario)lista.get(0);

@@ -83,9 +83,9 @@ public int getIdPlanificación() {
 
 	public java.util.List<Planificacion> obtenerPlanificacionesUser(int unIdUser){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM Planificacion p WHERE p.idUsuario = :idUsuario");
+		Query query = sessionHIB.createQuery("FROM Planificacion p WHERE p.idUsuario = :idUsuario");
 		
 		query.setInteger("idUsuario", unIdUser);
 		

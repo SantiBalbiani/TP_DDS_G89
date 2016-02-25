@@ -15,7 +15,7 @@
 	//Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 	
 	Set<GrupoUsuarios> misGrupos = new HashSet<GrupoUsuarios>(0);	
-	misGrupos = user.getUserGrupo();
+	misGrupos = user.traemeLosGruposDelUsuario();
 	//misGrupos = user.buscarGruposDelUsuario(user);
 	//misGrupos = usuario.GrupoUsuarios.this.buscarGruposDelUsuario(user);
 

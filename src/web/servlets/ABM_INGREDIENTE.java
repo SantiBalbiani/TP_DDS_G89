@@ -42,7 +42,7 @@ public class ABM_INGREDIENTE extends HttpServlet {
 		String crearIngrediente = request.getParameter("esCrearIngrediente");
 		//nota en los otros formularios que llamen a este servlet, agregar un hidden con esta variable seteada en "no"
 		//Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
-		//HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(true);
 		
 		if (crearIngrediente.equals("si"))
 		{
@@ -60,7 +60,7 @@ public class ABM_INGREDIENTE extends HttpServlet {
 			unIngrediente = unIngrediente.crearIngrediente(nombreIngrediente, (int)porcionI, (int)caloriasI);
 			unIngrediente.guardarIngrediente(unIngrediente);
 			
-			//TODO: decirle a emiliano una vez que este bien puesta la pagina en el front, que ponga las alertas de "se creo ok ingrediente"...
+			session.setAttribute("seCreoOkIngrediente", "yes");
 			response.sendRedirect("crearIngredientes.jsp");	//Adaptar esta web page...
 		}
 		else

@@ -506,12 +506,12 @@ public class Receta {
 		nuevaReceta.setTemporadaPlato(unaTemporada);
 		nuevaReceta.setSectorPiramideAlimenticia(unSectorPiramide);
 
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 
-		session.save(nuevaReceta);
-		session.getTransaction().commit();
-		session.close();  		
+		sessionHIB.save(nuevaReceta);
+		sessionHIB.getTransaction().commit();
+		sessionHIB.close();  		
 		
 
 		return nuevaReceta;
@@ -545,9 +545,9 @@ public class Receta {
 			
 			try
 			{
-			Session session = HibernateConf.getSessionFactory().openSession();
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-			Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+			Query query = sessionHIB.createQuery("FROM Receta e where e.nombreReceta = :nombre");
 
 			query.setString("nombre", unNombre);
 			
@@ -612,13 +612,13 @@ public class Receta {
 	public void guardarReceta(Receta unaReceta) {
 		// TODO: revisar este metodo para que guarde todos los campos....
 
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 
-		session.save(unaReceta);
-		session.getTransaction().commit();
+		sessionHIB.save(unaReceta);
+		sessionHIB.getTransaction().commit();
 		System.out.println("Done");
-		session.close();
+		sessionHIB.close();
 		// factory.close();
 
 	}

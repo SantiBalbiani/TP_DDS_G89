@@ -32,17 +32,17 @@ public class TestBd {
 		unTipo3.setTipoReceta("Merienda");
 		unTipo4.setTipoReceta("Cena");
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 		
-		session.save(unTipo);
-		session.save(unTipo2);
-		session.save(unTipo3);
-		session.save(unTipo4);
+		sessionHIB.save(unTipo);
+		sessionHIB.save(unTipo2);
+		sessionHIB.save(unTipo3);
+		sessionHIB.save(unTipo4);
 		
-		session.getTransaction().commit();
+		sessionHIB.getTransaction().commit();
 		System.out.println("Done");
-		session.close();
+		sessionHIB.close();
 		
 		
 		
@@ -89,9 +89,9 @@ public class TestBd {
 //	@Test	
 //	public void buscarRecetaInexistente(){
 //		
-//		Session session = HibernateConf.getSessionFactory().openSession();
+//		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 //
-//		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+//		Query query = sessionHIB.createQuery("FROM Receta e where e.nombreReceta = :nombre");
 //
 //		query.setString("nombre", "tartotatita");
 //		
@@ -126,9 +126,9 @@ public class TestBd {
 //	@Test	
 //	public void buscarReceta(){
 //		
-//		Session session = HibernateConf.getSessionFactory().openSession();
+//		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 //
-//		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+//		Query query = sessionHIB.createQuery("FROM Receta e where e.nombreReceta = :nombre");
 //
 //		query.setString("nombre", "TARTA");
 //		

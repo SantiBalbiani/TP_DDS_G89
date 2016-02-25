@@ -3,6 +3,13 @@
 <!DOCTYPE html>
 <html lang="es">
 
+<!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
+<%@page import="java.util.*" %>
+<%  
+	String seCreoOkIngrediente = (String) session.getAttribute("seCreoOkIngrediente");
+%>
+
+
 <head>
 	<meta charset="UTF-8">
 	<title>Qué Comemos Hoy?</title>
@@ -146,6 +153,18 @@ $(document).ready(function() {
 						</button>
 					</form>
 				</div>
+				
+				<% if (seCreoOkIngrediente.equals("yes")) {
+ 				 out.println("<div class=\"alert alert-success fade in\">");
+    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+     out.println("<strong>Success!</strong> El ingrediente se creo correctamente.");
+   out.println("</div>");
+ 	  session.setAttribute("seCreoOkIngrediente", "no");	//reseteo el flag
+ 				}
+  				
+  				%>
+				
+				
 			</div>
 		</nav>
 

@@ -174,9 +174,9 @@ public class TestReceta {
 //	@Test	
 //	public void buscarReceta(){
 //		
-//		Session session = HibernateConf.getSessionFactory().openSession();
+//		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 //
-//		Query query = session.createQuery("FROM Receta e where e.nombreReceta = :nombre");
+//		Query query = sessionHIB.createQuery("FROM Receta e where e.nombreReceta = :nombre");
 //
 //		query.setString("nombre", "tarta");
 //		
@@ -207,9 +207,9 @@ public class TestReceta {
 	@Test	
 	public void consultarLas3PrimerasRecetas(){
 		
-		Session session = HibernateConf.getSessionFactory().openSession();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-		Query query = session.createQuery("FROM Receta");
+		Query query = sessionHIB.createQuery("FROM Receta");
 
 		query.setFirstResult(3);
 		
@@ -245,10 +245,10 @@ public class TestReceta {
 		unIngrediente = unIngrediente.crearIngrediente("Arroz", (int) 80, (int)10);
 		//unIngrediente.guardarIngrediente(unIngrediente);
 		 
-		Session session = HibernateConf.getSessionFactory().openSession();
-		session.beginTransaction();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 
-		session.save(unIngrediente);
+		sessionHIB.save(unIngrediente);
  
 		
 		
@@ -260,16 +260,16 @@ public class TestReceta {
 		ingredientePPAL = ingredientePPAL.crearIngrediente("Pollo", (int) 22, (int)33);
 		ingredientePPAL.guardarIngrediente(ingredientePPAL);
 		
-		session.save(ingredientePPAL);
+		sessionHIB.save(ingredientePPAL);
 		
 		// Creo Condimento
 
 		Condimento unCondimento = new Condimento();
 		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
 		//unCondimento.guardarCondimento(unCondimento);
-		session.save(unCondimento);
-		session.getTransaction().commit();
-		session.close();                	   
+		sessionHIB.save(unCondimento);
+		sessionHIB.getTransaction().commit();
+		sessionHIB.close();                	   
 		
 		// Creo Receta
 
@@ -418,10 +418,10 @@ public class TestReceta {
 //		unIngrediente = unIngrediente.crearIngrediente("Arroz", (int) 80, (int)10);
 //		//unIngrediente.guardarIngrediente(unIngrediente);
 //		 
-//		Session session = HibernateConf.getSessionFactory().openSession();
-//		session.beginTransaction();
+//		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+//		sessionHIB.beginTransaction();
 //
-//		session.save(unIngrediente);
+//		sessionHIB.save(unIngrediente);
 // 
 //		
 //		
@@ -433,16 +433,16 @@ public class TestReceta {
 //		ingredientePPAL = ingredientePPAL.crearIngrediente("Pollo", (int) 22, (int)33);
 //		ingredientePPAL.guardarIngrediente(ingredientePPAL);
 //		
-//		session.save(ingredientePPAL);
+//		sessionHIB.save(ingredientePPAL);
 //		
 //		// Creo Condimento
 //
 //		Condimento unCondimento = new Condimento();
 //		unCondimento = unCondimento.crearCondimento("ketchup", "aderezo");
 //		//unCondimento.guardarCondimento(unCondimento);
-//		session.save(unCondimento);
-//		session.getTransaction().commit();
-//		session.close();                	   
+//		sessionHIB.save(unCondimento);
+//		sessionHIB.getTransaction().commit();
+//		sessionHIB.close();                	   
 //		
 //		// Creo Receta
 //
