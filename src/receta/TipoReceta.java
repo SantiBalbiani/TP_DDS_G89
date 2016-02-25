@@ -12,12 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import estadisticas.Planificacion;
 import hibernate.HibernateConf;
 
 @Entity
@@ -28,7 +30,18 @@ public class TipoReceta {
 	private int idTipoReceta;
 	private String tipoReceta;
 	private Set<Receta> receta = new HashSet<Receta>(0);
+	private Set<Planificacion> listaPlanificacion = new HashSet<Planificacion>(0);
 	
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unTipoDeReceta")
+	public Set<Planificacion> getListaPlanificacion() {
+		return listaPlanificacion;
+	}
+
+	public void setListaPlanificacion(Set<Planificacion> listaPlanificacion) {
+		this.listaPlanificacion = listaPlanificacion;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listaCategorias")
 	public Set<Receta> getReceta() {
 		return receta;

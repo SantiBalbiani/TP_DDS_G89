@@ -100,7 +100,12 @@
 				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
 			</div>
 			
-			 <p>Inicio</p> 
+			 <p><span>Inicio</span></p>
+			 
+			 <div class="row">
+			 <div class="col-sm-8"><a class="btn btn-default" href="planificar.jsp" role="button" id="planificar" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
+				Planificar <br> <span class="glyphicon glyphicon-pencil"></span></a> </div>
+			</div>
 			
 		</div>
 	</section>

@@ -25,6 +25,6 @@
 	<mapping class="receta.Condimento"/>
 	<mapping class="receta.TipoReceta"/>
 	<mapping class="usuario.GrupoUsuarios"/>
-	
+	<mapping class="estadisticas.Planificacion"/>
 	</session-factory>
 </hibernate-configuration>

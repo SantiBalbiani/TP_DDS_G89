@@ -17,12 +17,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import estadisticas.Planificacion;
 import hibernate.HibernateConf;
 import receta.Condimento;
 import receta.Ingrediente;
@@ -44,6 +46,11 @@ public class Usuario {
 	private String dieta;
 	private String email;
 	private double peso;
+	
+
+
+	
+	private Set<Planificacion> planificaciones = new HashSet<Planificacion>(0);
 	// private ArrayList<Integer> condicionesPreexistentes;
 
 	private Set<Receta> recetasUser = new HashSet<Receta>(0); // Para EL MANY TO MANY DE USUARIO-RECETA
@@ -204,6 +211,15 @@ public class Usuario {
 	
 // ++++++++++++++++++ INICIO GETTERS y SETTERS+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	public Set<Planificacion> getPlanificaciones() {
+		return planificaciones;
+	}
+
+	public void setPlanificaciones(Set<Planificacion> planificaciones) {
+		this.planificaciones = planificaciones;
+	}
+	
 	public void setPassword(String password) {
 		this.password = password.toUpperCase();
 	}

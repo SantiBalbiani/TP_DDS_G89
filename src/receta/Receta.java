@@ -30,6 +30,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import estadisticas.Planificacion;
 //import Testeo.TipoReceta;
 import hibernate.HibernateConf;
 import receta.Condimento;
@@ -63,6 +64,17 @@ public class Receta {
 //	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
 	private ArrayList<String> contraindicaciones;
+	private Set<Planificacion> listaPlanificaciones = new HashSet<Planificacion>(0);
+	
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "receta")
+	public Set<Planificacion> getListaPlanificaciones() {
+		return listaPlanificaciones;
+	}
+
+	public void setListaPlanificaciones(Set<Planificacion> listaPlanificaciones) {
+		this.listaPlanificaciones = listaPlanificaciones;
+	}
 
 	@Transient
 	public ArrayList<String> getContraindicaciones() {

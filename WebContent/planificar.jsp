@@ -2,7 +2,21 @@
 
 <!DOCTYPE html>
 <html lang="es">
+<%@page import="usuario.Usuario, receta.Receta, java.util.*, receta.Condimento, receta.Ingrediente, estadisticas.Planificacion" %>
+<%  
 
+	Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
+	
+	Receta	unaReceta = new Receta();
+	
+	Set<Receta> misRecetas = new HashSet<Receta>(0);
+	
+	misRecetas = usuarioActual.getRecetasUser();
+	
+	Planificacion planificacionDeUsuario = new Planificacion();
+	
+	
+%>
 <head>
 	<meta charset="UTF-8">
 	<title>Qué Comemos Hoy?</title>
