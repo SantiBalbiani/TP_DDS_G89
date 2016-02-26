@@ -1,5 +1,7 @@
 package estadisticas;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,8 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import hibernate.HibernateConf;
 import receta.Ingrediente;
@@ -95,7 +99,17 @@ int  semanalConsultadasAceptadasporNivelDificutlad(int dificultad)
 public  Date obtenerFechaActual(){
 	
 	
-	Date fechaActual = new Date();
+ 
+	
+	Date hoy =  new Date();
+	
+	Calendar calendarEnd = Calendar.getInstance();
+	calendarEnd.setTime(hoy);   
+	calendarEnd.set(Calendar.MILLISECOND, 999);
+	calendarEnd.set(Calendar.SECOND, 59);
+	calendarEnd.set(Calendar.MINUTE, 59);
+	calendarEnd.set(Calendar.HOUR_OF_DAY, 23);
+    Date fechaActual =  calendarEnd.getTime();
 	
 	return fechaActual;
 }
@@ -104,24 +118,92 @@ public  Date obtenerFechaActual(){
 
 public  Date  primerDiaDeLaSemana() {
 	  
-		Date fechaActual = obtenerFechaActual();
+ 
 		
-		Calendar calendar = Calendar.getInstance();
-	   calendar.setTime(fechaActual);
-	   calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
-	   return calendar.getTime();
+		Date fecha = new Date();
+ 
+   
+	   Calendar calendarStart = Calendar.getInstance();
+	   calendarStart.setTime(fecha);   
+	   calendarStart.set(Calendar.DAY_OF_WEEK, calendarStart.getFirstDayOfWeek());
+       calendarStart.set(Calendar.MILLISECOND, 0);
+       calendarStart.set(Calendar.SECOND, 0);
+       calendarStart.set(Calendar.MINUTE, 0);
+       calendarStart.set(Calendar.HOUR_OF_DAY, 0);
+ 	   
+	   return calendarStart.getTime();
+	   
+	   
 	}
 
 public Date  primerDiaDelMes() {
 	  
-	Date fechaActual = obtenerFechaActual();
-	
-	Calendar calendar = Calendar.getInstance();
-   calendar.setTime(fechaActual);
+
+   		Date fecha = new Date();
+	 
+	   
+	Calendar calendarStart = Calendar.getInstance();
+	calendarStart.setTime(fecha);   
+	calendarStart.set(Calendar.DATE, 1);
+    calendarStart.set(Calendar.MILLISECOND, 0);
+    calendarStart.set(Calendar.SECOND, 0);
+    calendarStart.set(Calendar.MINUTE, 0);
+    calendarStart.set(Calendar.HOUR_OF_DAY, 0);
+	   
+	   return calendarStart.getTime();
    
-   calendar.set(Calendar.DATE, 1);
-   return calendar.getTime();
+   
+   
 }
+
+public Date  obtenerFechaInicial(Date fechaInicial) {
+	  
+
+	
+ 
+   
+	Calendar calendarStart = Calendar.getInstance();
+	calendarStart.setTime(fechaInicial);   
+	calendarStart.set(Calendar.MILLISECOND, 0);
+	calendarStart.set(Calendar.SECOND, 0);
+	calendarStart.set(Calendar.MINUTE, 0);
+	calendarStart.set(Calendar.HOUR_OF_DAY, 0);
+   
+   return calendarStart.getTime();
+
+}
+
+
+public  Date obtenerFechaActual(Date fechaFinal){
+	
+ 
+	
+	Calendar calendarEnd = Calendar.getInstance();
+	calendarEnd.setTime(fechaFinal);   
+	calendarEnd.set(Calendar.MILLISECOND, 999);
+	calendarEnd.set(Calendar.SECOND, 59);
+	calendarEnd.set(Calendar.MINUTE, 59);
+	calendarEnd.set(Calendar.HOUR_OF_DAY, 23);
+    Date fechaActual =  calendarEnd.getTime();
+	
+	return fechaActual;
+}
+
+
+	public Date dateStringToDate(String fechaEnString){
+		
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+ 
+			Date date = new Date();
+			try {
+				date = formatter.parse(fechaEnString);
+			} catch (ParseException e) {
+				 
+				e.printStackTrace();
+			}
+			return date;
+ 
+	}
 
 /////////////////////// FIN MANEJO DE FECHAS //////////////////////////////
 
@@ -133,44 +215,52 @@ public Date  primerDiaDelMes() {
 public int  consolidadoSemanalCaloriasPorComida(){
 	
 	 int caloriasSemanal = 0;
-	 int calHarinas = semanalCaloriasPorComida("Harinas");
-	 int calLacteos = semanalCaloriasPorComida("Lacteos");
-	 int calVetetales = semanalCaloriasPorComida("Vetetales");
-	 int calCarnes = semanalCaloriasPorComida("Carnes");
-	 int calDulces = semanalCaloriasPorComida("Dulces");
-	 int calAceites = semanalCaloriasPorComida("Aceites");
+	 int sectorPiramide; 
+//	 (0); //("Harinas");
+//	 (1); //("Lacteos");
+//	 (2); //("Vetetales");
+//	 (3); //("Carnes");
+//	 (4); //("Dulces");
+//	 (5); //("Aceites");
 	 
-	 caloriasSemanal = calHarinas +calLacteos+calVetetales+calCarnes+calDulces+calAceites ;
-	 
+	 for (sectorPiramide = 0;sectorPiramide < 6 ; sectorPiramide++){
+	 		
+	 		caloriasSemanal = caloriasSemanal + semanalCaloriasPorComida(sectorPiramide);
+	 	}
+
 	 return caloriasSemanal;
 }
 
 
 public int  consolidadoMensualCaloriasPorComida(){
 	
-	 int caloriasMesual = 0;
-	 int calHarinas = mesualCaloriasPorComida("Harinas");
-	 int calLacteos = mesualCaloriasPorComida("Lacteos");
-	 int calVetetales = mesualCaloriasPorComida("Vetetales");
-	 int calCarnes = mesualCaloriasPorComida("Carnes");
-	 int calDulces = mesualCaloriasPorComida("Dulces");
-	 int calAceites = mesualCaloriasPorComida("Aceites");
+	 int caloriasMensual = 0;
+	 int sectorPiramide; 
+//	 (0); //("Harinas");
+//	 (1); //("Lacteos");
+//	 (2); //("Vetetales");
+//	 (3); //("Carnes");
+//	 (4); //("Dulces");
+//	 (5); //("Aceites");
 	 
-	 caloriasMesual = calHarinas +calLacteos+calVetetales+calCarnes+calDulces+calAceites ;
-	 
-	 return caloriasMesual;
+	 for (sectorPiramide = 0;sectorPiramide <= 5 ; sectorPiramide++){
+	 		
+		 caloriasMensual = caloriasMensual + semanalCaloriasPorComida(sectorPiramide);
+	 	}
+
+	 return caloriasMensual;
 }
 
 
 
-public int  semanalCaloriasPorComida(String tipoComida){
+public int  semanalCaloriasPorComida(int tipoComida){
 	
 
 	return estadisticaCaloriasPorComida(tipoComida, primerDiaDeLaSemana());
 
 }
 
-public int  mesualCaloriasPorComida(String tipoComida){
+public int  mesualCaloriasPorComida(int tipoComida){
 	
 
 	return estadisticaCaloriasPorComida(tipoComida, primerDiaDelMes());
@@ -181,90 +271,42 @@ public int  mesualCaloriasPorComida(String tipoComida){
 
 
 
-public int estadisticaCaloriasPorComida(String tipoComida, Date fechaInicio){
-	
+public int estadisticaCaloriasPorComida(int tipoComida, Date fechaInicio){
 
-
-				//Obtiene las calorias de un tipo de comida por semana o mes
-	
-	   			Date hoy =  obtenerFechaActual();
+				int calorias = 0;
+ 	   			Date hoy =  obtenerFechaActual();
 	   			Date comienzoSemanaOmes =  fechaInicio; 
-	   			Set<Receta> recetas = new  HashSet<Receta>(); //se debe usar??
-	   			int calorias;
-	   	
-	   			
-	   			
-	   			//TODO: HACER QUERY le falta comparar fecha
-	   			//contra campo-columna FechaAlta  >= comienzoSemanaOmes & FechaAlta <= hoy
-	   			//para calculo semanal, tipo
-	   			
-	   			
+	   			 	
 	   			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
-
-	   			Query query = sessionHIB.createQuery("FROM Receta sum(e.calorias) where e.sectorPiramideAlimenticia = :sectorPiramide");
-
-	   			query.setString("sectorPiramide", tipoComida);
-
+		 		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.eq("sectorPiramideAlimenticia", tipoComida)).add(Restrictions.between("fechaAlta", comienzoSemanaOmes, hoy));
+		 		
+		 		
+		 		@SuppressWarnings("unchecked")
+				List<Receta> recetaList = recetas.list();
+	   	 
 	   			
-	   			java.util.List<?> lista = query.list();
-	   			
-	   			calorias = (int)lista.get(0);
+	   			calorias = sumarCalorias(recetaList);
 	   		
-	   			
+	   			return calorias;
 	
 	   			
-	return  calorias;
+	 
 	
 }
 
 
-
-
-public void buscarEntreFechas(String tipoComida, Date fechaInicio){
+public int sumarCalorias(List<Receta> recetaList){
+	int total = 0;
 	
+		for ( Receta   receta : recetaList){
+			
+			total = total + receta.getCalorias();
+		}
 
-
-	//Obtiene las calorias de un tipo de comida por semana o mes
-
-		Date hoy =  obtenerFechaActual();
-		Date comienzoSemanaOmes =  fechaInicio; 
-		Set<Receta> recetas = new  HashSet<Receta>(); //se debe usar??
-		int calorias;
- 
-		
-		
-		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
-
-
-		//Query query //= sessionHIB.createQuery("FROM Receta sum(e.calorias) where e.sectorPiramideAlimenticia = :sectorPiramide");
-
-		         //query.setString("sectorPiramide", tipoComida);
-
-		
-		//java.util.List<?> lista = query.list();
-		
-  
-		@SuppressWarnings("unchecked")
-		java.util.List<Receta> recetaList = sessionHIB.createQuery("from Receta e where e.fechaAlta between :start and :end").setParameter("start",comienzoSemanaOmes)
-		.setParameter("end",hoy).list();	
-
-		
- 
-
+	
+	return total;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -369,27 +411,18 @@ public int consultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInic
 
 		Date hoy =  obtenerFechaActual();
 		Date comienzoSemanaOmes =  fechaInicio; 
-		Set<Receta> recetas = new  HashSet<Receta>(); //se debe usar??
-		int cantidadRecetas;
+ 
+		int cantidadRecetas = 0;
 
-		
-		
-		//TODO: HACER QUERY le falta comparar fecha
-		//contra campo-columna FechaAlta  >= comienzoSemanaOmes & FechaAlta <= hoy
-		//para calculo semanal o mensual
-		
-		
 		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
-
-											//TODO: agregar al QUERY clausura where aceptada = 'SI'
-		Query query = sessionHIB.createQuery("FROM Receta count(e.dificultadReceta) where e.aceptada = :dificultad");
-
-		query.setInteger("dificultadReceta", dificultad);
-
+ 	  
+		//TODO: agregar al QUERY clausura where aceptada = 'SI' 
+ 		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.eq("dificultadReceta", dificultad)).add(Restrictions.between("fechaAlta", comienzoSemanaOmes, hoy));
 		
-		java.util.List<?> lista = query.list();
+ 		@SuppressWarnings("unchecked")
+		List<Receta> recetaList = recetas.list();
 		
-		cantidadRecetas = (int)lista.get(0);
+ 		cantidadRecetas =  recetaList.size();
 		
 		return  cantidadRecetas;
 
@@ -399,14 +432,14 @@ public int consultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInic
 
 /////////////////////// RANKING CONSULTADAS  //////////////////////////////
 
-public Set<Receta> rankingConsultadasAceptadasSemanal(){
+public  List<Receta> rankingConsultadasAceptadasSemanal(){
 	
 
 	return  rankingConsultadasAceptadaspor(primerDiaDeLaSemana());
 
 }
 
-public Set<Receta>  rankingConsultadasAceptadasMensual(){
+public  List<Receta> rankingConsultadasAceptadasMensual(){
 	
 
 	return  rankingConsultadasAceptadaspor( primerDiaDelMes());
@@ -414,35 +447,19 @@ public Set<Receta>  rankingConsultadasAceptadasMensual(){
 }
 
 
-public Set<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
+public List<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
 	
 	
 
-	Date hoy =  obtenerFechaActual();
-	Date comienzoSemanaOmes =  fechaInicio; 
-	Set<Receta> rankingRecetas = new  HashSet<Receta>(); 
-	 
-
+		Date hoy =  obtenerFechaActual();
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		
+		//TODO: agregar al QUERY clausura where aceptada = 'SI'.
+		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.between("fechaAlta", fechaInicio, hoy));
+			
+		@SuppressWarnings("unchecked")
+		List<Receta> rankingRecetas = recetas.list();
 	
-	
-	
-	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
-	//TODO: HACER QUERY le falta comparar fecha
-	//contra campo-columna FechaAlta  >= comienzoSemanaOmes & FechaAlta <= hoy
-	//para calculo semanal o mensual
-	
-	
-	//TODO: agregar al QUERY clausura where aceptada = 'SI'. 
-
-										
-	 Query query = sessionHIB.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
-
- 
-
-	
-	java.util.List<?> lista = query.list();
-	
-	rankingRecetas = (Set<Receta>)lista;
 	
 	return  rankingRecetas;
 
@@ -456,26 +473,19 @@ public Set<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
 
 // Recetas consultadas en un período dado para un usuario
 
-public Set<Receta> reporteConsultadasAceptadasEntre(Date fechaInicio,Date fechaFin ){
+public List<Receta> reporteConsultadasAceptadasEntre(Date fechaInicio,Date fechaFin ){
 	
  
-	Set<Receta> recetasAceptadas = new  HashSet<Receta>(); 
+ 
 	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
-	//TODO: HACER QUERY le falta comparar fecha
-	//contra campo-columna FechaAlta en RECETARIO entre fechaInicio & FechaFin
-	
-	
-	//TODO: agregar al QUERY clausura where aceptada = 'SI'. 
 
-										
-	 Query query = sessionHIB.createQuery("FROM e Receta  where e.aceptada =  'SI' ORDER BY max(e.aceptada)");
+	Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.between("fechaAlta", fechaInicio, fechaFin));
+	
+	
+	@SuppressWarnings("unchecked")
+	List<Receta> recetasAceptadas = recetas.list();
 
  
-
-	
-	java.util.List<?> lista = query.list();
-	
-	recetasAceptadas = (Set<Receta>)lista;
 	
 	return  recetasAceptadas;
 
@@ -487,22 +497,18 @@ public Set<Receta> reporteConsultadasAceptadasEntre(Date fechaInicio,Date fechaF
 
 
 
-public Set<Receta> reporteNuevasEntre(Date fechaInicio,Date fechaFin ){
+public List<Receta> reporteRecetasNuevasEntre(Date fechaInicio,Date fechaFin ){
+	
+  
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+
+		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.between("fechaAlta", fechaInicio, fechaFin));
+		
+		
+		@SuppressWarnings("unchecked")
+		List<Receta> recetasNuevas = recetas.list();
 	
  
-	Set<Receta> recetasNuevas = new  HashSet<Receta>(); 
-	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
-	
-	
-	//TODO: HACER QUERY traer todas las recetas con fechaAlta entre 
-	//la fechaInicio y fechaFin
-	 
-	Query  query = sessionHIB.createQuery("FROM e Receta where fechaAlta... ");
-
-	
-	 java.util.List<?> lista = query.list();
-	
-	 recetasNuevas = (Set<Receta>)lista;
 	
 	return  recetasNuevas;
 
@@ -513,23 +519,16 @@ public Set<Receta> reporteNuevasEntre(Date fechaInicio,Date fechaFin ){
 
 ///////////////////////REPORTE  RECETAS  POR RANGO CALORIAS //////////////////////////////
 
-public Set<Receta> reporteRecetasPorCalorias(int caloriasInicio,Date caloriasFin ){
+public  List<Receta> reporteRecetasPorCalorias(int caloriasInicio,int caloriasFin ){
+	 
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+ 
+		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.between("calorias", caloriasInicio, caloriasFin));
+	
+		@SuppressWarnings("unchecked")
+		List<Receta> recetasPorCalorias = recetas.list();
 	
 	 
-	Set<Receta> recetasPorCalorias = new  HashSet<Receta>(); 
-	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
-	
-	
-	//TODO: HACER QUERY traer todas las recetas con entre el rango >= y <= de calorias
-	
-	
-	 
-	Query  query = sessionHIB.createQuery("FROM e Receta where e.calorias ... ");
-
-	
-	 java.util.List<?> lista = query.list();
-	
-	 recetasPorCalorias = (Set<Receta>)lista;
 	
 	return  recetasPorCalorias;
 

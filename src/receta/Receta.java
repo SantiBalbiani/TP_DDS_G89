@@ -60,10 +60,10 @@ public class Receta {
 	
 	private Set<Condimento> listaCondimentos = new HashSet<Condimento>(0);
 	
-	private short calificacion;
+	private int calificacion;
 	private int calorias;
 	private int dificultadReceta;
-	private short sectorPiramideAlimenticia;
+	private int sectorPiramideAlimenticia;
 	private Ingrediente ingredientePrincipal;
 //	private Set<String> listaCategorias;
 	private ArrayList<String> listaProcedimiento;
@@ -177,7 +177,7 @@ public class Receta {
 	}
 
 	@Column(name = "CALIFICACION")
-	public short getCalificacion() {
+	public int getCalificacion() {
 		return this.calificacion;
 	}
 
@@ -192,7 +192,7 @@ public class Receta {
 	}
 
 	@Column(name = "SECTOR_PIRAMIDE")
-	public short getSectorPiramideAlimenticia() {
+	public int getSectorPiramideAlimenticia() {
 		return sectorPiramideAlimenticia;
 	}
 
@@ -261,11 +261,11 @@ public class Receta {
 
 	
 	
-	public void setCalificacion(short calificacion) {
+	public void setCalificacion(int calificacion) {
 		this.calificacion = calificacion;
 	}
 
-	public short calificar(short unaCalificacion) {
+	public int calificar(int unaCalificacion) {
 		if ((unaCalificacion >= 1) || (unaCalificacion <= 5)) {
 			this.setCalificacion(unaCalificacion);
 		}
@@ -333,7 +333,7 @@ public class Receta {
 	}
 
 	// PIRAMIDE
-	public void setSectorPiramideAlimenticia(short sectorPiramideAlimenticia) {
+	public void setSectorPiramideAlimenticia(int sectorPiramideAlimenticia) {
 		this.sectorPiramideAlimenticia = sectorPiramideAlimenticia;
 	}
 
@@ -500,8 +500,8 @@ public class Receta {
 	// RECETA++++++++++++++++++++++++++++++++++++++++++++//
 
 	public Receta crear_receta(Ingrediente unIngredientePrincipal, Set<Ingrediente> ingredientes, Set<Condimento> condimentos,
-			short calificacion, int calorias, String unNombre, String unaPreparacion, String unaCategoria,
-			int unaDificultad, String unaTemporada, short unSectorPiramide) {
+			int calificacion, int calorias, String unNombre, String unaPreparacion, String unaCategoria,
+			int unaDificultad, String unaTemporada, int unSectorPiramide) {
 
 
 		Receta nuevaReceta = new Receta();
@@ -519,7 +519,7 @@ public class Receta {
 //		nuevaReceta.agregarCategoria(unaCategoria);
 
 		nuevaReceta.calificar(calificacion);
-		nuevaReceta.agregarCalorias((int) calorias);
+		nuevaReceta.agregarCalorias( calorias);
 
 		nuevaReceta.setDificultadReceta(unaDificultad);
 		nuevaReceta.setTemporadaPlato(unaTemporada);

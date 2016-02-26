@@ -486,7 +486,7 @@ public class Usuario {
 	
 	{
 	    Usuario usuarioNoEncontrado = new Usuario();
-	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseña inexistentes");
+	    usuarioNoEncontrado.setNombreUsuario("Nombre de Usuario/Constraseï¿½a inexistentes");
 	    usuarioNoEncontrado.setIdUsuario(9999);
 	    return usuarioNoEncontrado;
 	}finally {
@@ -797,7 +797,7 @@ public class Usuario {
 	
 	
 	
-	Set<Receta> recetasDisponiblesSegunDieta(){
+	public	Set<Receta> recetasDisponiblesSegunDieta(){
 		
 		Set<Receta>  recetasPorDieta = new HashSet<Receta>();
 		String dieta =  this.getDieta();
@@ -806,7 +806,15 @@ public class Usuario {
 		/*TODO: Select para: 
 		Para un Dieta determinada mostrar las recetas disponibles, por ejemplo para un
 		Vegano.
+		
+		hacer un if().. si la dieta normal return sin filtro..
+		dieta vegano no traer carne  y lateos 
+		dieta ovo lacteo no traer carne..
+		*
 		*/
+		
+		
+		
 		
 		return recetasPorDieta;
 	}
