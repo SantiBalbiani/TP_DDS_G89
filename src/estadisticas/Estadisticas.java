@@ -217,6 +217,57 @@ public int estadisticaCaloriasPorComida(String tipoComida, Date fechaInicio){
 	return  calorias;
 	
 }
+
+
+
+
+public void buscarEntreFechas(String tipoComida, Date fechaInicio){
+	
+
+
+	//Obtiene las calorias de un tipo de comida por semana o mes
+
+		Date hoy =  obtenerFechaActual();
+		Date comienzoSemanaOmes =  fechaInicio; 
+		Set<Receta> recetas = new  HashSet<Receta>(); //se debe usar??
+		int calorias;
+ 
+		
+		
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+
+
+		//Query query //= sessionHIB.createQuery("FROM Receta sum(e.calorias) where e.sectorPiramideAlimenticia = :sectorPiramide");
+
+		         //query.setString("sectorPiramide", tipoComida);
+
+		
+		//java.util.List<?> lista = query.list();
+		
+  
+		@SuppressWarnings("unchecked")
+		java.util.List<Receta> recetaList = sessionHIB.createQuery("from Receta e where e.fechaAlta between :start and :end").setParameter("start",comienzoSemanaOmes)
+		.setParameter("end",hoy).list();	
+
+		
+ 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /////////////////////// FIN CALORIAS X SECTOR PIRAMIDE //////////////////////////////
 
 

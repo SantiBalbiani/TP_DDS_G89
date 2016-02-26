@@ -1,5 +1,6 @@
 package receta;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +46,9 @@ public class Receta {
 	private int idReceta;
 	private String nombreReceta;
 	private String preparacion;
+	private Date fechaAlta;
+	
+	
 
 	private Set<TipoReceta> listaCategorias = new HashSet<TipoReceta>(0); //agrego listaCategorias para Many-to-Many con TipoReceta
 	
@@ -150,6 +154,13 @@ public class Receta {
 	// private Set<Receta> listaRecetas;
 
 	// ++++++++++++++++++ GETTERS ++++++++++++++//
+	
+	@Column(name = "FECHAALTA")
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+
 
 	@Column(name = "NOMBRE")
 	public String getNombreReceta() {
@@ -392,6 +403,14 @@ public class Receta {
 	public void agregarlistaProcedimiento(String unaProcedimiento) {
 
 		this.getListaProcedimiento().add(unaProcedimiento);
+		
+		
+	}
+	
+	
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 
 	// CATEGORIA

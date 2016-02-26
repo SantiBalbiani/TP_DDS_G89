@@ -1,7 +1,9 @@
 package Testeo;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,6 +14,8 @@ import receta.TipoReceta;
 import receta.Condimento;
 import usuario.Usuario;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,6 +53,76 @@ public class TestBd {
 
 		
 	}
+	@Test
+	public void buscarEntreFechas(){
+		
+
+
+		//Obtiene las calorias de un tipo de comida por semana o mes
+
+			Date hoy =  new Date();
+			
+			
+          //Date comienzoSemanaOmes =  fechaInicio; 
+			
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(hoy);   
+		    calendar.set(Calendar.DATE, 22);
+		    Date comienzoSemanaOmes =  calendar.getTime();
+			   
+		
+		    
+	
+			   
+			 //  comienzoSemanaOmes = hoy;
+			
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+	  
+	 	//	@SuppressWarnings("unchecked")
+			// List<Receta> recetaList =   sessionHIB.createQuery("from Receta e where e.fechaAlta between :start and :end").setParameter("start",comienzoSemanaOmes)
+		//	.setParameter("end",hoy).list();	
+
+	 		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.between("fechaAlta", comienzoSemanaOmes, hoy));
+	 		@SuppressWarnings("unchecked")
+			List<Receta> recetaList = recetas.list();
+	 		
+			
+			try {
+		 
+				if(recetaList.isEmpty()){
+					
+					System.out.println( " No se encontraron Resultados" );
+					   System.out.println(	" INICIO: "+comienzoSemanaOmes);
+					   System.out.println(	" FIN: "+hoy);
+				}else {
+		
+					 System.out.println(	" INICIO: "+comienzoSemanaOmes);
+					   System.out.println(	" FIN: "+hoy);
+					   
+					for (Receta receta: recetaList){
+						System.out.println(receta.getNombreReceta()+" Dificultad "+receta.getDificultadReceta());
+					
+					}
+					
+	
+				}
+					
+		}catch(Throwable theException) 	    
+			
+		{
+			   System.out.println(	" INICIO: "+comienzoSemanaOmes);
+			   System.out.println(	" FIN: "+hoy);
+			System.out.println("algo paso"); 
+		}
+			
+			
+			
+	 
+
+	}
+	
+	
 	
 	/*
 	@Test
