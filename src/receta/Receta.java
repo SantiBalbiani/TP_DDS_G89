@@ -23,6 +23,8 @@ import javax.persistence.Transient;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.hibernate.Criteria;
@@ -559,7 +561,21 @@ public class Receta {
 
 	}
 	
-	
+	public  Date obtenerFechaActual(){
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date)); //2013/10/15 16:16:39
+		//return this.parserFechas2((dateFormat.format(date)));
+		java.util.Date temp = null;
+		try {
+			temp = new SimpleDateFormat("yyyy-MM-dd").parse((dateFormat.format(date)));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return temp;
+	}
 	public Receta buscarRecetaPorNombre(String unNombre){
 		
 		{

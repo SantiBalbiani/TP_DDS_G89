@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -171,6 +172,9 @@ public class CrearReceta extends HttpServlet {
 		nuevaReceta.setIngredientePrincipal(ingredPpal);
 		nuevaReceta.setPreparacion(preparacion);
 		nuevaReceta.setSectorPiramideAlimenticia((short)sectorPiramide);
+		Date fechaActual = nuevaReceta.obtenerFechaActual();
+		
+		nuevaReceta.setFechaAlta(fechaActual);
 		//nuevaReceta.agregarUnIngrediente(ingredPpal); Lo remuevo porque el ing principal no tiene que ser parte de los secundarios
 		//nuevaReceta.agregarCondimento(cond);
 		//nuevaReceta.agregarCondimento(cond2);
