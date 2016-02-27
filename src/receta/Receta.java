@@ -25,11 +25,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 import estadisticas.Planificacion;
 //import Testeo.TipoReceta;
@@ -700,6 +702,29 @@ public class Receta {
   
 		
 	}
+	
+	
+	public List<Receta> recetaSegunLaHora(Usuario unUsuario ){
+		
+		  
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+
+		Criteria recetaHoras = sessionHIB.createCriteria(Receta.class)
+				.createAlias("listaCategorias", "categoria").add(Restrictions.eq("categoria.tipoReceta", unUsuario.obtenerCategoriaSegunHora()));
+		
+				//.add(Restrictions.eq("usuario", unUsuario.getIdUsuario()))
+		//System.out.println(this.parserFechas()); //2013/10/15 16:16:39
+		//System.out.println(this.parserFechas()); //2013/10/15 16:16:39
+		
+		
+		@SuppressWarnings("unchecked")
+		List<Receta> planificacionesFinales = recetaHoras.list();
+	
+ 
+	
+	return  (List<Receta>) planificacionesFinales;
+
+}
 
 
 }

@@ -15,6 +15,9 @@
 	Planificacion unaPlani = new Planificacion();
 	List<Planificacion> historialPlanificacionUser = unaPlani.historialRecetasUser(user);
 	
+	Receta unaReceta = new Receta();
+	List<Receta> recomendacionDelDia = unaReceta.recetaSegunLaHora(user);
+	
 %>
 
 <head>
@@ -119,16 +122,45 @@
 	<section class="main container">
 		<div class="panel panel-default" id="Reco diaria">
 			<div class="panel-heading"> <b>Recomendacion del día </b></div>
-			<div class="panel-body">  Sugerencia del día bla bla</div>
+			<div class="panel-body">  
+			
+<!-- 			Sugerencia del día bla bla -->
+			<% 
+								out.print("<div class=\"btn-group\">");
+								short noHayRecetas=0;	//flag de si hay recetas
+								for(Receta recetaRecomendada: recomendacionDelDia){
+									
+									out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"BuscarReceta\"><input type=\"hidden\" name=\"buscar_nombreReceta\" id=\"buscar_nombreReceta\" value="+ recetaRecomendada.getNombreReceta() + "><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + recetaRecomendada.getNombreReceta()  + "</button>");
+									out.println("<br><br>");
+									out.println("</form>");
+									noHayRecetas=1;//al menos listo una receta
+								}
+								if (noHayRecetas==0)
+								{
+									out.println("<p>Todavía no tienes ninguna receta!</p>");
+									out.println("<br><br>");
+									out.println("<p>Haz click en el siguiente boton si quieren añadir una receta.</p>");
+									out.println("<div class=\"col-sm-8 \"><a class=\"btn btn-default\" href=\"nuevaReceta.jsp\" role=\"button\" id=\"nuevaReceta\" data-toggle=\"tooltip\" title=\"Crear una nueva receta\" data-placement=\"bottom\">");
+									out.println(" Agregar Receta <br> <span class=\"glyphicon glyphicon-plus\"></span></a> </div>");
+									out.println("</div>");
+								}
+								out.print("</div>");
+								%>
+			
+			
+			
+			
+			
+			</div>
 			</div>		
 	</section>	
 	
-	<section class="main container">
-		<div class="panel panel-default" id="Reco balance">
-			<div class="panel-heading"><b> Recomendacion Balanceada </b></div>
-			<div class="panel-body"> Sugerencia balanceada del día bla bla</div>
-			</div>		
-	</section>
+<!-- 	<section class="main container"> -->
+<!-- 		<div class="panel panel-default" id="Reco balance"> -->
+<!-- 			<div class="panel-heading"><b> Recomendacion Balanceada </b></div> -->
+<!-- 			<div class="panel-body"> Sugerencia balanceada del día bla bla</div> -->
+<!-- 			</div>		 -->
+<!-- 	</section> -->
 	
 	<section class="main container">
 		<div class="panel panel-default" id="Tus recetas aceptadas">
@@ -159,9 +191,11 @@
 					    	  out.println(a.getReceta().getNombreReceta()); out.println("</td>"); out.println("<td>"); 
 					    	  out.println(a.getUnTipoDeReceta().getTipoReceta()); out.println("</td>");
 					    	  out.println("</tr>");
-					    	  i=1;
+					    	  i=i+1;
+					    	  if (i>2)
+					    		  break;
 					      }
-					      if (i!=1)
+					      if (i<1)
 					      {
 					    	  out.println("<p> Aun no tienes recetas (consumidas) en tu historial. Trata de planificar una receta.");
 					    	  out.println("<br>");
