@@ -11,25 +11,16 @@
     <position height="-1" width="-1" x="398" y="211"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <class id="3" language="java" name="receta.GrupoAlimenticio" project="TP_DDS_G89" 
-    file="/TP_DDS_G89/src/receta/GrupoAlimenticio.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="610" y="357"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="receta.Ingrediente" project="TP_DDS_G89" 
+  <class id="3" language="java" name="receta.Ingrediente" project="TP_DDS_G89" 
     file="/TP_DDS_G89/src/receta/Ingrediente.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="906" y="79"/>    
+    <position height="-1" width="-1" x="848" y="-35"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="receta.Receta" project="TP_DDS_G89" file="/TP_DDS_G89/src/receta/Receta.java" 
+  <class id="4" language="java" name="receta.Receta" project="TP_DDS_G89" file="/TP_DDS_G89/src/receta/Receta.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="1282" width="283" x="28" y="-518"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -38,36 +29,250 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="6">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="7" name="recetas"/>      
-      <multiplicity id="8" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="9">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="ingredientePrincipal"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
+  <class id="5" language="java" name="receta.Condimento" project="TP_DDS_G89" 
+    file="/TP_DDS_G89/src/receta/Condimento.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="569" y="-361"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="receta.TipoReceta" project="TP_DDS_G89" 
+    file="/TP_DDS_G89/src/receta/TipoReceta.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="561" y="405"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="usuario.Usuario" project="TP_DDS_G89" file="/TP_DDS_G89/src/usuario/Usuario.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="637" y="1372"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="usuario.GrupoUsuarios" project="TP_DDS_G89" 
+    file="/TP_DDS_G89/src/usuario/GrupoUsuarios.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="167" y="1070"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="usuario.CondicionesPreexistentes" project="TP_DDS_G89" 
+    file="/TP_DDS_G89/src/usuario/CondicionesPreexistentes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1300" y="1037"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="estadisticas.Planificacion" project="TP_DDS_G89" 
+    file="/TP_DDS_G89/src/estadisticas/Planificacion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1154" y="460"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="11">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="12" name="receta"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="12">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="13" name="ingredientes"/>      
-      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
+  <association id="14">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="15" name="listaGrobalCondiciones"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="18" name="condicionesDelUsuario"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="21" name="userGrupo"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="24" name="planificaciones"/>      
+      <multiplicity id="25" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="27" name="administrador"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="30" name="listaCondimentos"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="33" name="condicionesPreexistentes"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="36" name="recetasUser"/>      
+      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="15">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="16" name="recetas2"/>      
-      <multiplicity id="17" minimum="0" maximum="2147483647"/>    
+  <association id="38">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="39" name="grupoDeUsuarios"/>      
+      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="42" name="recetas2">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="45" name="receta"/>      
+      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="48" name="usuarioRecetas"/>      
+      <multiplicity id="49" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="51" name="usuario"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="54" name="recetas"/>      
+      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="57" name="listaPlanificaciones"/>      
+      <multiplicity id="58" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="60" name="listaCategorias"/>      
+      <multiplicity id="61" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="63" name="recetas">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="66" name="listaPlanificacion"/>      
+      <multiplicity id="67" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="69" name="unTipoDeReceta"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="72" name="ingredientePrincipal">        
+        <position height="0" width="0" x="-58" y="-114"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-58" y="-114"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="75" name="ingredientes">        
+        <position height="0" width="0" x="-58" y="-114"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-58" y="-114"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

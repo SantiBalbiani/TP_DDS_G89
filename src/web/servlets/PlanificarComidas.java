@@ -72,15 +72,15 @@ public class PlanificarComidas extends HttpServlet {
 						
 						Planificacion nuevaPlanificacion = new Planificacion();
 						
+				
+
+	
+						java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(planFecha);
 						
-						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //;
-						Date date = new Date();
-						try {
-							date = formatter.parse(planFecha);
-						} catch (ParseException e) {
-							 
-							e.printStackTrace();
-						}
+					
+						
+						
+
 						nuevaPlanificacion.setFecha(date);
 						
 						

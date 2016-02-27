@@ -385,6 +385,23 @@ public String tipoRecetaSegunSexo(char unSexo, Date fechaInicio){
 	return tipoReceta;
 }
 
+public List<Receta>  consultaDBtipoRecetaSegunSexo2( char unSexo, int tipoReceta ){
+	
+	   
+	Date hoy = obtenerFechaActual();
+	
+	Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+	Criteria recetas = sessionHIB.createCriteria(Planificacion.class)
+							   .createAlias("Usuario", "user").add(Restrictions.eq("user.sexo", unSexo))
+							   .createAlias("Receta", "recipe").add(Restrictions.eq("recipe.tipoReceta", tipoReceta));
+							   
+	@SuppressWarnings("unchecked")
+	List<Receta>  recetasList =  recetas.list();
+
+		return recetasList;
+
+}
+
 
 public List<Receta>  consultaDBtipoRecetaSegunSexo(Date fechaInicio, char unSexo, int tipoReceta ){
 	
