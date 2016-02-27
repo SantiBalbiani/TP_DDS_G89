@@ -205,6 +205,18 @@ public  Date obtenerFechaActual(Date fechaFinal){
  
 	}
 	
+	public Date parserFechas (String unString)
+	{
+		try {
+			java.util.Date temp = new SimpleDateFormat("yyyy-MM-dd").parse(unString);
+			return temp;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public Date dateStringToDate2(String fechaEnString){
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

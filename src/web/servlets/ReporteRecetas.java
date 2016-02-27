@@ -97,9 +97,11 @@ public class ReporteRecetas extends HttpServlet {
 				//Date maxfechaN = formatter.format(maxfechaN0);
 				
 				Estadisticas unasEstadisticas = new Estadisticas();
-								
-				Date minDateN0 = unasEstadisticas.dateStringToDate2(minDate);
-				Date maxDateN0 = unasEstadisticas.dateStringToDate2(maxDate);
+				
+				
+			
+				Date minDateN0 = unasEstadisticas.parserFechas(minDate);
+				Date maxDateN0 = unasEstadisticas.parserFechas(maxDate);
 				//Date minfechaN = unasEstadisticas.obtenerFechaInicial(minDateN0);
 				//Date maxfechaN = unasEstadisticas.obtenerFechaActual(maxDateN0);
 				
