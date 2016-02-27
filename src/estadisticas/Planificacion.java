@@ -159,6 +159,30 @@ public int getIdPlanificacion() {
 
 	}
 		
+		public List<Planificacion> historialRecetasUser(Usuario unUsuario ){
+			
+			  
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+
+			Criteria planificacionesNuevas = sessionHIB.createCriteria(Planificacion.class)
+					.add(Restrictions.between("fecha", this.parserFechas3(), this.obtenerFechaActual()))
+					.createAlias("usuario", "user").add(Restrictions.eq("user.idUsuario", unUsuario.getIdUsuario()));
+			
+					//.add(Restrictions.eq("usuario", unUsuario.getIdUsuario()))
+			System.out.println(this.parserFechas()); //2013/10/15 16:16:39
+			System.out.println(this.parserFechas()); //2013/10/15 16:16:39
+			
+			
+			@SuppressWarnings("unchecked")
+			List<Planificacion> planificacionesFinales = planificacionesNuevas.list();
+		
+	 
+		
+		return  planificacionesFinales;
+
+	}
+		
+		
 //		public Date laFechaActual()
 //		{
 //			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //;
@@ -188,6 +212,18 @@ public int getIdPlanificacion() {
 		{
 			try {
 				java.util.Date temp = new SimpleDateFormat("yyyy-MM-dd").parse(unString);
+				return temp;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		public Date parserFechas3 ()
+		{
+			try {
+				java.util.Date temp = new SimpleDateFormat("yyyy-MM-dd").parse("2010-07-10 14:58:00");
 				return temp;
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block

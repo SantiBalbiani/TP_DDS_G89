@@ -4,13 +4,17 @@
 <html lang="es">
 
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
-<%@page import="usuario.Usuario, usuario.GrupoUsuarios, receta.Receta, java.util.*" %>
+<%@page import="usuario.Usuario, usuario.GrupoUsuarios, estadisticas.Planificacion, receta.Receta, java.util.*" %>
 <%  
 	Usuario user = (Usuario) session.getAttribute("usuario");
 	String errorBusqueda = (String) session.getAttribute("errorBusqueda");
 	String modificoUsuario = (String) session.getAttribute("modificoUsuario");
 	Set<Receta> recetas = (Set<Receta>) session.getAttribute("recetas");
 	Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
+	
+	Planificacion unaPlani = new Planificacion();
+	List<Planificacion> historialPlanificacionUser = unaPlani.historialRecetasUser(user);
+	
 %>
 
 <head>
@@ -131,65 +135,59 @@
 			<div class="panel-heading"><b> Historial de recetas </b></div>
 			<div class="panel-body"> 
 				
-				<!-- Buscar las recetas del usuario y poner algunas aca -->
-				<% if(recetas.isEmpty()){ %>
-					<p>Todavía no tienes ninguna receta!</p>
-				<% } else {%>
-					<div class="panel-group" id="accordion" role="tablist"
-						aria-multiselectable="true">
-						<%
-							int i = 0;
-						
-							for (Receta receta1 : recetas) {
-								i++;
-						%>
-						<div class="panel panel-default">
-						
-<%
-								switch (i) {
-										case 1:
-											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">");
-										    out.println("<h4 class=\"panel-title\">");
-										    out.println("<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">");
-										    out.println(receta1.getNombreReceta());
-										    out.println("</a>");											out.println("</div>");
-										    out.println("<div id=\"collapseOne\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingOne\">");
-											break;
-										case 2:
-											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">");
-											out.println("<h4 class=\"panel-title\">"); 
-											out.println("<a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">");
-											out.println(receta1.getNombreReceta());
-											out.println("</a>");
-											out.println("</h4>");
-											out.println("</div>");
-										    out.println("<div id=\"collapseTwo\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">");
-											break;
-										case 3:
-											out.println("<div class=\"panel-heading\" role=\"tab\" id=\"headingThree\">");
-										    out.println("<h4 class=\"panel-title\">");
-										    out.println("<a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">");
-										    out.println(receta1.getNombreReceta());
-										    out.println("</a>");
-											out.println("</h4>");
-											out.println("</div>");
-										    out.println("<div id=\"collapseThree\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingThree\">");
-											break;
-										default:
-											out.println("<p>Todavía no tienes ninguna receta!</p>");
-											break;
-										}
+<table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Fecha</th>
+					        <th>Receta</th>
+					        <th>Categoria</th>
+					      </tr>
+					    </thead>
 
-										out.println("<div class=\"panel-body\"> Preparacion :");
-										out.println(receta1.getPreparacion());
-										out.println("</div>");
-										out.println("</div>");
-										out.println("</div>");
-									}
-								}
-							%>
-	</div>
-	</div>
+
+<!-- 	Acá en el body hay que hacer lo mismo de mostrar recetas de las tablas, -->
+<!-- 	 mostrar los planes agendados en tabla de forma recursiva uno debajo del otro   -->
+					   
+					   
+					    <tbody>
+					      <%
+					      int i =0;
+					      for (Planificacion a : historialPlanificacionUser)
+					      {
+					    	  out.println("<tr>"); out.println("<td>");
+					    	  out.println(a.getFecha()); out.println("</td>");  out.println("<td>");
+					    	  out.println(a.getReceta().getNombreReceta()); out.println("</td>"); out.println("<td>"); 
+					    	  out.println(a.getUnTipoDeReceta().getTipoReceta()); out.println("</td>");
+					    	  out.println("</tr>");
+					    	  i=1;
+					      }
+					      if (i!=1)
+					      {
+					    	  out.println("<p> Aun no tienes recetas (consumidas) en tu historial. Trata de planificar una receta.");
+					    	  out.println("<br>");
+					      }
+					      
+					      %>
+					      
+					      
+					      
+<!-- 					      <tr> -->
+<!-- 					        <td>18/02/2016</td> -->
+<!-- 					        <td>Mila con Papas</td> -->
+<!-- 					        <td>Desayuno</td> -->
+<!-- 					      </tr> -->
+					     
+<!-- 					      <tr> -->
+<!-- 					        <td>20/02/2016</td> -->
+<!-- 					        <td>Bife con fritas</td> -->
+<!-- 					        <td>Cena</td> -->
+<!-- 					      </tr> -->
+					   
+					    </tbody>
+					  
+					  </table>
+
+
 	</div>
 	</div>		
 	</section>
