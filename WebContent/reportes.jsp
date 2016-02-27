@@ -43,7 +43,7 @@
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="estadisticas.jsp">Estadisticas</a></li>
+						<li><a href="reportes.jsp">Reportes</a></li>
 						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>								
 						
 					</ul>
@@ -69,12 +69,13 @@
 			  	<div class="col-sm-4"><a class="btn btn-default" href="nuevaReceta.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
 				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
 			</div>
+			<p>Consultar por Período</p>
 			
-			 			<div class="row">
-<!-- 			  	<div class="col-sm-8"> <p>Estadisticas</p> </div> -->
-			  	<div class="col-md-4"><a class="btn btn-default" href="estadisticas.jsp" role="button" id="nuevoReport" data-toggle="tooltip" title="Ver recetas" data-placement="bottom">
-				 Ver Estadisticas <span class="glyphicon glyphicon-bell"></span></a>
-				 </div>
+<!-- 			 			<div class="row"> -->
+<!-- <!-- 			  	<div class="col-sm-8"> <p>Estadisticas</p> </div> --> 
+<!-- 			  	<div class="col-md-4"><a class="btn btn-default" href="estadisticas.jsp" role="button" id="nuevoReport" data-toggle="tooltip" title="Ver recetas" data-placement="bottom"> -->
+<!-- 				 Ver Estadisticas <span class="glyphicon glyphicon-bell"></span></a> -->
+<!-- 				 </div> -->
 			</div>
 		</div>	
 	</section>

@@ -50,7 +50,7 @@ List<Receta> recetasEntre = (List<Receta>) session.getAttribute("listaEntreFecha
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="estadisticas.jsp">Estadisticas</a></li>
+						<li><a href="reportes.jsp">Reportes</a></li>
 						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>
 					</ul>
 				</div>

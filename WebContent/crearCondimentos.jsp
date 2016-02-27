@@ -119,7 +119,7 @@
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="estadisticas.jsp">Estadísticas</a></li>
+						<li><a href="reportes.jsp">Reportes</a></li>
 						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
