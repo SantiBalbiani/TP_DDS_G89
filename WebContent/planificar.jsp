@@ -15,6 +15,9 @@
 	
 	Planificacion planificacionDeUsuario = new Planificacion();
 	
+	String errorBusqueda = (String) session.getAttribute("errorBusqueda");
+	String planificacionOK = (String) session.getAttribute("planificacionOK");
+	
 	
 %>
 <head>
@@ -70,8 +73,27 @@
 						<button type="submit" class="btn btn-default">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
-					</form>
+					</form>			
 				</div>
+				
+									<% if (errorBusqueda.equals("yes")) {
+					out.println("<div class=\"alert alert-info fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Info!</strong> Revise los datos ingresados. Intente nuevamente.");
+			    	out.println("</div>");
+		        	session.setAttribute("errorBusqueda", "no");	//reseteo el flag
+				}%>
+				<% if (planificacionOK.equals("yes")) {
+ 				 out.println("<div class=\"alert alert-success fade in\">");
+    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+     out.println("<strong>Success!</strong> La planificacion se creo correctamente.");
+   out.println("</div>");
+ 	  session.setAttribute("planificacionOK", "no");	//reseteo el flag
+ 				}
+  				
+  				%>
+				
+				
 			</div>
 		</nav>
 
@@ -106,12 +128,12 @@
 							   		<input type="text" class="form-control" id="planNombre" name="planNombre" placeholder="Nombre De Receta" required>
 								</div>
 								<div class="col-sm-3">
-									<select class="form-control" id="tipo" name="tipo">
+									<select class="form-control" id="planTipo" name="planTipo">
 				          				  <option disabled selected> -- Elija una opcion -- </option>
-								          <option value="D">Desayuno</option>
-								          <option value="A">Almuerzo</option>
-								          <option value="M">Merienda</option>
-								          <option value="C">Cena</option>
+								          <option value="Desayuno">Desayuno</option>
+								          <option value="Almuerzo">Almuerzo</option>
+								          <option value="Merienda">Merienda</option>
+								          <option value="Cena">Cena</option>
 				       				 </select>
 								</div>
 								<div class="col-sm-1">

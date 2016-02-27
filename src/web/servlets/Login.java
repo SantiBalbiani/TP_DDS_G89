@@ -110,6 +110,7 @@ public class Login extends HttpServlet {
 		         session.setAttribute("seCreoOkCondimento", "no");
 		         session.setAttribute("seCreoOkIngrediente", "no");
 		         session.setAttribute("noPuedeEliminarGrupo", "no");
+		         session.setAttribute("planificacionOK", "no");
 		         session.setAttribute("eliminoGrupo", "no");
 		         session.setAttribute("usuario", user);
 		         session.setAttribute("gruposDelUsuario", grupos);

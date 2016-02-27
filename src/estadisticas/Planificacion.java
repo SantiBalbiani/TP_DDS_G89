@@ -1,5 +1,7 @@
 package estadisticas;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -99,7 +101,18 @@ public int getIdPlanificacion() {
 	}
 
 
+	public void guardarPlanificacion(Planificacion unaPlanificacion) {
+		
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		//sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
 
+		sessionHIB.save(unaPlanificacion);
+
+		sessionHIB.getTransaction().commit();
+		System.out.println("Done");
+		sessionHIB.close();
+	}
 
 
 
