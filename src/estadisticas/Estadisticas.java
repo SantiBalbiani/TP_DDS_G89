@@ -204,6 +204,21 @@ public  Date obtenerFechaActual(Date fechaFinal){
 			return date;
  
 	}
+	
+	public Date dateStringToDate2(String fechaEnString){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		Date date = new Date();
+		try {
+			date = formatter.parse(fechaEnString);
+		} catch (ParseException e) {
+			 
+			e.printStackTrace();
+		}
+		return date;
+
+}
 
 /////////////////////// FIN MANEJO DE FECHAS //////////////////////////////
 

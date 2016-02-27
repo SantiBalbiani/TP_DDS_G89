@@ -3,6 +3,13 @@
 <!DOCTYPE html>
 <html lang="es">
 
+<%@page import="usuario.Usuario, usuario.GrupoUsuarios, receta.Receta, estadisticas.Estadisticas, java.util.*" %>
+
+<%
+List<Receta> recetasNew = (List<Receta>) session.getAttribute("listaNewEntreFechas");
+
+%>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Que Comemos Hoy?</title>
@@ -73,9 +80,29 @@
 <section class="main container">
 <div class="panel panel-default" id="Mostrar Recetas">
 	<div class="panel-heading"> Seleccionar la receta deseada para ver detalles </div>
-			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 1" </a></b></div>
-			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 2" </a></b></div>
-			<div class="panel-body"> <b><a href="verReceta.jsp"> Receta "nombre de receta 3" </a></b></div>
+			
+			<% short noHayRecetas=0;
+				for(Receta unaReceta: recetasNew){
+									
+									out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"BuscarReceta\"><input type=\"hidden\" name=\"buscar_nombreReceta\" id=\"buscar_nombreReceta\" value="+ unaReceta.getNombreReceta() + "><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + unaReceta.getNombreReceta()  + "</button>");
+									out.println("<br><br>");
+									out.println("</form>");
+								noHayRecetas=1;
+								}
+				if (noHayRecetas==0)
+								{
+									out.println("<br><br>");
+									out.println("<h4> No hay Recetas que coincidan con la búsqueda </h4>");
+									out.println("<br><br>");
+									out.println("<a class=\"btn btn-default\" href=\"reportes.jsp\" role=\"button\" id=\"verReporte\" data-toggle=\"tooltip\" title=\"ver Reporte\" data-placement=\"bottom\">");
+									out.println(" Nueva búsqueda <br> <span class=\"glyphicon glyphicon-arrow-left\"></span></a>");
+									out.println("</div>");
+									
+								}
+			%>
+
+
+
 			<br>
 		</div>
 </section>

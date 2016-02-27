@@ -8,6 +8,8 @@
 
 <%
 List<Receta> recetasPorCalorias = (List<Receta>) session.getAttribute("listaEntreCals");
+
+
 //List<Receta> recetasPorCalorias2 = (List<Receta>) session.getAttribute("listaEntreCals");
 
 //List<Receta> recetasPorCalorias = List(Receta) session.getAttribute("listaEntreCals");

@@ -1,6 +1,8 @@
 package web.servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +17,10 @@ import estadisticas.Estadisticas;
 import receta.Condimento;
 import receta.Receta;
 import usuario.Usuario;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Servlet implementation class ReporteRecetas
@@ -56,7 +62,7 @@ public class ReporteRecetas extends HttpServlet {
 		
 		String esReporte = request.getParameter("esReporte");
 		
-		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
 		
 		//llamar al metodo , estadisticas.reporteRecetasNuevasEntre(min,max);
 		
@@ -77,6 +83,31 @@ public class ReporteRecetas extends HttpServlet {
 					session.setAttribute("listaEntreCals", recetasPorCalorias);
 					
 					response.sendRedirect("verRecetasPorCalorias.jsp");
+			}
+			
+			if (esReporte.equals("newEntreFechas"))
+			{
+				String minDate = request.getParameter("newReceta1");
+				String maxDate = request.getParameter("newReceta2");
+				
+				//Date date = formatter.parse(dateInString);
+				//Date minfechaN0 = formatter.parse(minDate);
+				//Date maxfechaN0 = formatter.parse(maxDate);
+				//Date minfechaN = formatter.format(minfechaN0);
+				//Date maxfechaN = formatter.format(maxfechaN0);
+				
+				Estadisticas unasEstadisticas = new Estadisticas();
+								
+				Date minDateN0 = unasEstadisticas.dateStringToDate2(minDate);
+				Date maxDateN0 = unasEstadisticas.dateStringToDate2(maxDate);
+				//Date minfechaN = unasEstadisticas.obtenerFechaInicial(minDateN0);
+				//Date maxfechaN = unasEstadisticas.obtenerFechaActual(maxDateN0);
+				
+				List<Receta> recetasNewEntre = unasEstadisticas.reporteRecetasNuevasEntre(minDateN0, maxDateN0);
+								
+				session.setAttribute("listaNewEntreFechas", recetasNewEntre);
+					
+				response.sendRedirect("verNewRecetasEntre.jsp");
 			}
 			
 			
