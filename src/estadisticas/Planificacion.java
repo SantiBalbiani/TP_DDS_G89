@@ -115,7 +115,21 @@ public int getIdPlanificacion() {
 	}
 
 
+		public Date stringFechaToDate (String unaFecha)
+		{
+		//String fechaEnString = "24/02/2016";
+		
+		   SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //;
 
-	
+			Date date = new Date();
+			try {
+				date = formatter.parse(unaFecha);
+				return date;
+			} catch (ParseException e) {
+				e.printStackTrace();
+				return null;
+			}
+
+		}
 	
 }

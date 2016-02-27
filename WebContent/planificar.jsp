@@ -13,7 +13,9 @@
 	
 	misRecetas = usuarioActual.getRecetasUser();
 	
-	Planificacion planificacionDeUsuario = new Planificacion();
+	Set<Planificacion> planificacionDeUsuario = new HashSet<Planificacion>();
+	
+	planificacionDeUsuario = usuarioActual.getPlanificaciones();
 	
 	String errorBusqueda = (String) session.getAttribute("errorBusqueda");
 	String planificacionOK = (String) session.getAttribute("planificacionOK");
@@ -166,18 +168,32 @@
 					   
 					   
 					    <tbody>
+					      <%
+					      for (Planificacion a : planificacionDeUsuario)
+					      {
+					    	  out.println("<tr>"); out.println("<td>");
+					    	  out.println(a.getFecha()); out.println("</td>");  out.println("<td>");
+					    	  out.println(a.getReceta().getNombreReceta()); out.println("</td>"); out.println("<td>"); 
+					    	  out.println(a.getUnTipoDeReceta().getTipoReceta()); out.println("</td>");
+					    	  out.println("</tr>");
+					      }
 					      
-					      <tr>
-					        <td>18/02/2016</td>
-					        <td>Mila con Papas</td>
-					        <td>Desayuno</td>
-					      </tr>
+					      
+					      %>
+					      
+					      
+					      
+<!-- 					      <tr> -->
+<!-- 					        <td>18/02/2016</td> -->
+<!-- 					        <td>Mila con Papas</td> -->
+<!-- 					        <td>Desayuno</td> -->
+<!-- 					      </tr> -->
 					     
-					      <tr>
-					        <td>20/02/2016</td>
-					        <td>Bife con fritas</td>
-					        <td>Cena</td>
-					      </tr>
+<!-- 					      <tr> -->
+<!-- 					        <td>20/02/2016</td> -->
+<!-- 					        <td>Bife con fritas</td> -->
+<!-- 					        <td>Cena</td> -->
+<!-- 					      </tr> -->
 					   
 					    </tbody>
 					  
