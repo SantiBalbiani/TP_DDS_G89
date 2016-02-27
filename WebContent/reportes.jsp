@@ -79,40 +79,40 @@
 		</div>	
 	</section>
 	
-<section class="main container" id="Recetas consultadas">	
-	<div class="panel panel-default" id="Ultimas 3">
-			<div class=panel-heading>  <h3>Recetas consultadas </h3> </div>
-				<div class="panel-body">
+<!-- <section class="main container" id="Recetas consultadas">	 -->
+<!-- 	<div class="panel panel-default" id="Ultimas 3"> -->
+<!-- 			<div class=panel-heading>  <h3>Recetas consultadas </h3> </div> -->
+<!-- 				<div class="panel-body"> -->
 					
-					<form action="ReporteRecetas" method="post" class="form-group">
-					<div class="row">
-							 	<div class="col-sm-4">
-							   		Fecha Inicial
-								</div>
-						 	  	<div class="col-sm-4">
-							   		Fecha Final
-								</div>
-					</div>
+<!-- 					<form action="ReporteRecetas" method="post" class="form-group"> -->
+<!-- 					<div class="row"> -->
+<!-- 							 	<div class="col-sm-4"> -->
+<!-- 							   		Fecha Inicial -->
+<!-- 								</div> -->
+<!-- 						 	  	<div class="col-sm-4"> -->
+<!-- 							   		Fecha Final -->
+<!-- 								</div> -->
+<!-- 					</div> -->
 		  			
 				
-					   	<div class="row">
-							 	</div>
-							 	<div class="col-sm-4">
-							   		<input type="date" class="form-control" id="consultaReceta1" name="consultaReceta1" placeholder="Fecha inicial  (dd/mm/aaaa)" required>
-								</div>
-						 	  	<div class="col-sm-4">
-							   		<input type="date" class="form-control" id="consultaReceta2" name="consultaReceta2" placeholder="Fecha final (dd/mm/aaaa)" required>
-								</div>
-								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button>
-						 	</div>
+<!-- 					   	<div class="row"> -->
+<!-- 							 	</div> -->
+<!-- 							 	<div class="col-sm-4"> -->
+<!-- 							   		<input type="date" class="form-control" id="consultaReceta1" name="consultaReceta1" placeholder="Fecha inicial  (dd/mm/aaaa)" required> -->
+<!-- 								</div> -->
+<!-- 						 	  	<div class="col-sm-4"> -->
+<!-- 							   		<input type="date" class="form-control" id="consultaReceta2" name="consultaReceta2" placeholder="Fecha final (dd/mm/aaaa)" required> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-sm-1"><button type="submit" id="evento_aceptar" name="evento_aceptar" class="btn btn-default">Consultar</button> -->
+<!-- 						 	</div> -->
 						 	
-						 	<input type="hidden" name="esReporte" id="esReporte" value="EntreFechas">
+<!-- 						 	<input type="hidden" name="esReporte" id="esReporte" value="EntreFechas"> -->
 						 	
-						 </form>
-		  			</div>
+<!-- 						 </form> -->
+<!-- 		  			</div> -->
 		  		
-	</div>
-</section>
+<!-- 	</div> -->
+<!-- </section> -->
 
 <section class="main container" id="Nuevas Recetas">	
 	<div class="panel panel-default" id="Nuevas Recetas">
