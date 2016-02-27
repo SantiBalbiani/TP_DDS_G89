@@ -306,6 +306,16 @@
 										out.println(grupo1.getAdministrador().getNombreUsuario());
 										out.println("</div>");
 										//out.println("<br>");
+										out.println("<div class=\"panel-body\"> usuarios: ");
+										//out.println( 
+										for (Usuario unUser : grupo1.getGrupoDeUsuarios())
+										{
+											out.println(unUser.getNombreUsuario());
+											out.println(" | ");
+										}
+										//);
+										out.println("</div>");
+										//out.println("<br>");
 										out.println("</div>");
 										out.println("</div>");
 										//out.println("</div>");
