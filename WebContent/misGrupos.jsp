@@ -12,6 +12,8 @@
 	String salioGrupo = (String) session.getAttribute("salioGrupo");
 	String invitoGrupo = (String) session.getAttribute("invitoGrupo");
 	String errorBusquedaG = (String) session.getAttribute("errorBusquedaG");
+	String eliminoGrupo = (String) session.getAttribute("eliminoGrupo");
+	String noPuedeEliminarGrupo = (String) session.getAttribute("noPuedeEliminarGrupo");
 	//Set<GrupoUsuarios> grupos = (Set<GrupoUsuarios>) session.getAttribute("gruposDelUsuario");
 	
 	Set<GrupoUsuarios> misGrupos = new HashSet<GrupoUsuarios>(0);	
@@ -98,7 +100,7 @@
 				<% if (salioGrupo.equals("yes")) {
 					out.println("<div class=\"alert alert-success fade in\">");
 			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
-			    	out.println("<strong>Success!</strong> Usted a salido del grupo correctamente.");
+			    	out.println("<strong>Success!</strong> Usted salio del grupo correctamente.");
 			    	out.println("</div>");
 		        	session.setAttribute("salioGrupo", "no");	//reseteo el flag
 				}%>
@@ -119,6 +121,21 @@
 		        	session.setAttribute("invitoGrupo", "no");	//reseteo el flag
 				}%>
 				
+				<% if (eliminoGrupo.equals("yes")) {
+					out.println("<div class=\"alert alert-success fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Success!</strong> El grupo se elimino correctamente");
+			    	out.println("</div>");
+		        	session.setAttribute("eliminoGrupo", "no");	//reseteo el flag
+				}%>
+				
+				<% if (noPuedeEliminarGrupo.equals("yes")) {
+					out.println("<div class=\"alert alert-danger  fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Danger!</strong> Usted no cumple con los requisitos para poder eliminar el grupo indicado.");
+			    	out.println("</div>");
+		        	session.setAttribute("noPuedeEliminarGrupo", "no");	//reseteo el flag
+				}%>
 				
 			</div>
 		</nav>
@@ -165,24 +182,24 @@
      </div>   
   </div>
 
-  <div class="container">
-    <div class="accordion" id="buscarGrupo">
-      <div class="accordion-group">
-        <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse"
-            data-parent="#searchAccordion" href="#collapseTwo">Buscar Grupo</a>
-        </div>
-        <div id="collapseTwo" class="accordion-body collapse">
-          <div class="accordion-inner">
-            <form class="form-inline">
-        <label>Nombre del grupo a buscar: </label> <input class="input-medium" type="text" placeholder="">
-       	<button type="submit" class="btn">Buscar</button>
-    	</form>
-          </div>
-        </div>
-       </div>
-     </div>   
-  </div>
+<!--   <div class="container"> -->
+<!--     <div class="accordion" id="buscarGrupo"> -->
+<!--       <div class="accordion-group"> -->
+<!--         <div class="accordion-heading"> -->
+<!--           <a class="accordion-toggle" data-toggle="collapse" -->
+<!--             data-parent="#searchAccordion" href="#collapseTwo">Buscar Grupo</a> -->
+<!--         </div> -->
+<!--         <div id="collapseTwo" class="accordion-body collapse"> -->
+<!--           <div class="accordion-inner"> -->
+<!--             <form class="form-inline"> -->
+<!--         <label>Nombre del grupo a buscar: </label> <input class="input-medium" type="text" placeholder=""> -->
+<!--        	<button type="submit" class="btn">Buscar</button> -->
+<!--     	</form> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--        </div> -->
+<!--      </div>    -->
+<!--   </div> -->
   
     <div class="container">
     <div class="accordion" id="searchAccordion">
@@ -234,8 +251,8 @@
         </div>
         <div id="collapse5" class="accordion-body collapse">
           <div class="accordion-inner">
-            <form class="form-inline">
-        <label>Nombre del grupo del grupo que desea eliminar: </label> <input class="input-medium" type="text" placeholder="">
+            <form class="form-inline" method="POST" action="ABM_GRUPO">
+        <label>Nombre del grupo del grupo que desea eliminar: </label> <input class="input-medium" name="eliminarGrupo" id="eliminarGrupo" type="text" placeholder="Eliminar Grupo">
         <input type="hidden" name="esGrupo" id="esGrupo" value="eliminar">
        	<button type="submit" class="btn">Eliminar</button>
     	</form>

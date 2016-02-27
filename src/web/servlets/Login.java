@@ -109,6 +109,8 @@ public class Login extends HttpServlet {
 		         session.setAttribute("salioGrupo", "no");
 		         session.setAttribute("seCreoOkCondimento", "no");
 		         session.setAttribute("seCreoOkIngrediente", "no");
+		         session.setAttribute("noPuedeEliminarGrupo", "no");
+		         session.setAttribute("eliminoGrupo", "no");
 		         session.setAttribute("usuario", user);
 		         session.setAttribute("gruposDelUsuario", grupos);
 		       //TODO: revisar esto rompe

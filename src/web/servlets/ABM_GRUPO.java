@@ -67,7 +67,7 @@ public class ABM_GRUPO extends HttpServlet {
 			response.sendRedirect("misGrupos.jsp");
 		}
 		
-		if (esGrupo.equals("invitar"))		//crearGRupo
+		if (esGrupo.equals("invitar"))		//invitar un Usuario XXXXX a un Grupo
 		{
 			String nombreUsuario = request.getParameter("nombreUsuario");
 			String nombreGrupo = request.getParameter("nombreGrupo");
@@ -142,6 +142,36 @@ public class ABM_GRUPO extends HttpServlet {
 			
 			//session.setAttribute("modificoGrupo", "yes");
 			//response.sendRedirect("misGrupos.jsp");
+		}
+		
+		if (esGrupo.equals("eliminar"))		//crearGRupo
+		{
+			try {
+				String eliminarGrupo = request.getParameter("eliminarGrupo");
+				usuario.GrupoUsuarios grupoViejo = new usuario.GrupoUsuarios ();
+				grupoViejo = grupoViejo.buscarGrupoPorNombre(eliminarGrupo);
+				
+				if (grupoViejo!=null) {
+					if (grupoViejo.puedeEliminarGrupo(usuarioActual)){
+						grupoViejo.eliminarGrupoPorBD(grupoViejo, usuarioActual);
+					
+						session.setAttribute("eliminoGrupo", "yes");
+						response.sendRedirect("misGrupos.jsp");
+						
+					}else {
+						session.setAttribute("noPuedeEliminarGrupo", "yes");
+						response.sendRedirect("misGrupos.jsp");
+					}
+				}else{
+					session.setAttribute("errorBusquedaG", "yes");
+					response.sendRedirect("misGrupos.jsp");
+				}
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			
 		}
 		
 		
