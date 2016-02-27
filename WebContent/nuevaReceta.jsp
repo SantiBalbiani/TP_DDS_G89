@@ -148,6 +148,7 @@ List<Condimento> condimentos = unCond.obtenerTodoslosCondimentos();
 	    theForm.appendChild(input);
 	}
 	</script>
+
 	
 	<!-- 	Librerias importantes para que ande bootsStrap Validator -->
 	<!-- jQuery library -->

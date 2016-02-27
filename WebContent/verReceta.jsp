@@ -7,6 +7,9 @@
 <%
 Receta receta = (Receta) session.getAttribute("recetaEncontrada");	
 String creoReceta = (String) session.getAttribute("creoReceta");
+
+String errorBusqueda = (String) session.getAttribute("errorBusqueda");
+String calificoOK = (String) session.getAttribute("calificoOK");
 %>
 
 <head>
@@ -27,6 +30,107 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 	   return true;
 	 }
 	</script>
+	
+	<!-- 	Codigo en JQuery para las estrellas -->
+		<script>
+// 	var logID = 'log',
+//   log = $('<div id="'+logID+'"></div>');
+// $('body').append(log);
+//   $('[type*="radio"]').change(function () {
+//     var me = $(this);
+//     log.html(me.attr('value'));
+//   });
+	</script> 
+	
+	<style>
+<%--      <%@ include file="style.css"%> --%>
+@charset "UTF-8";
+.star-cb-group {
+  /* remove inline-block whitespace */
+  font-size: 0;
+  /* flip the order so we can use the + and ~ combinators */
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  /* the hidden clearer */
+}
+.star-cb-group * {
+  font-size: 1rem;
+}
+.star-cb-group > input {
+  display: none;
+}
+.star-cb-group > input + label {
+  /* only enough room for the star */
+  display: inline-block;
+  overflow: hidden;
+  text-indent: 9999px;
+  width: 1em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.star-cb-group > input + label:before {
+  display: inline-block;
+  text-indent: -9999px;
+  content: "☆";
+  color: #888;
+}
+.star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
+  content: "★";
+  color: #e52;
+  text-shadow: 0 0 1px #333;
+}
+.star-cb-group > .star-cb-clear + label {
+  text-indent: -9999px;
+  width: .5em;
+  margin-left: -.5em;
+}
+.star-cb-group > .star-cb-clear + label:before {
+  width: .5em;
+}
+.star-cb-group:hover > input + label:before {
+  content: "☆";
+  color: #888;
+  text-shadow: none;
+}
+.star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
+  content: "★";
+  color: #e52;
+  text-shadow: 0 0 1px #333;
+}
+
+:root {
+  font-size: 2em;
+  font-family: Helvetica, arial, sans-serif;
+}
+
+body {
+  background: #333;
+  color: #888;
+}
+
+fieldset {
+  border: 0;
+  background: #222;
+  width: 5em;
+  border-radius: 1px;
+  padding: 1em 1.5em 0.9em;
+  margin: 1em auto;
+}
+
+#log {
+  margin: 1em auto;
+  width: 5em;
+  text-align: center;
+  background: transparent;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+</style>
+	
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilos.css">
@@ -72,6 +176,22 @@ String creoReceta = (String) session.getAttribute("creoReceta");
  				}
   				
   				%>
+  				<% if (errorBusqueda.equals("yes")) {
+					out.println("<div class=\"alert alert-info fade in\">");
+			    	out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+			    	out.println("<strong>Info!</strong> No se encontro la receta. Intente nuevamente.");
+			    	out.println("</div>");
+		        	session.setAttribute("errorBusqueda", "no");	//reseteo el flag
+				}%>
+				<% if (calificoOK.equals("yes")) {
+ 				 out.println("<div class=\"alert alert-success fade in\">");
+    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+     out.println("<strong>Success!</strong> Se califico correctamente la receta.");
+   out.println("</div>");
+ 	  session.setAttribute("calificoOK", "no");	//reseteo el flag
+ 				}
+  				
+  				%>
 			</div>
 		</nav>
 		
@@ -113,6 +233,11 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 <section class="main container">
 <div class="panel panel-default"> 
   <div class="panel-heading"> Informacion de la receta  </div>
+  
+  
+  
+  
+  
    <div class="panel-body"> 
  	     <p> Nombre de la receta: <% out.println(receta.getNombreReceta());%> <p>
   
@@ -164,6 +289,25 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 								}
 								%>
 								<br>
+  <div class="panel-body"> 
+  <form id="form_calificar" name="form_calificar" method="POST" action="BM_RECETA">
+<!--   <fieldset> -->
+    <span class="star-cb-group">
+      <input type="radio" id="rating-5" name="rating" value="5" onclick="this.form.submit();"/><label for="rating-5">5</label>
+      <input type="radio" id="rating-4" name="rating" value="4" onclick="this.form.submit();" checked="checked" /><label for="rating-4">4</label>
+      <input type="radio" id="rating-3" name="rating" value="3" onclick="this.form.submit();"/><label for="rating-3">3</label>
+      <input type="radio" id="rating-2" name="rating" value="2" onclick="this.form.submit();"/><label for="rating-2">2</label>
+      <input type="radio" id="rating-1" name="rating" value="1" onclick="this.form.submit();"/><label for="rating-1">1</label>
+      <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
+    </span>
+<!--     <button type="button" id="calificar_receta" name="calificar_receta" class="btn btn-default" ">     <span class=" glyphicon glyphicon-trash"></span> -->
+<!-- </button> -->
+<input type="hidden" name="BM_RECETA" id="BM_RECETA" value="calificar">
+<input type="hidden" name="receta_calificar" id="receta_calificar" value=<% out.println("\""+receta.getNombreReceta()+"\"");%>>
+<!--   </fieldset> -->
+</form>
+   </div>
+  
   </div>
 </div>
 </section>
