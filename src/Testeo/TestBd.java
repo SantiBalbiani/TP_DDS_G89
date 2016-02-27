@@ -506,5 +506,14 @@ fechaInicio = calendarStart.getTime();
 //	}
 //	
 
+	@Test
+	public void parserFechas ()
+	{
+		Date dNow = new Date( );
+	      SimpleDateFormat ft = 
+	      new SimpleDateFormat ("YYYY-MM-DD HH:MM:SS");
+
+	      System.out.println("Current Date: " + ft.format(dNow));
+	}
 
 }

@@ -2,6 +2,7 @@ package estadisticas;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import hibernate.HibernateConf;
 import receta.Ingrediente;
@@ -131,5 +134,81 @@ public int getIdPlanificacion() {
 			}
 
 		}
+		
+		
+		public List<Planificacion> recetasUsuarioPlanificadas(Usuario unUsuario ){
+			
+			  
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+
+			Criteria planificacionesNuevas = sessionHIB.createCriteria(Planificacion.class)
+					.add(Restrictions.between("fecha", this.obtenerFechaActual(), this.parserFechas()))
+					.createAlias("usuario", "user").add(Restrictions.eq("user.idUsuario", unUsuario.getIdUsuario()));
+			
+					//.add(Restrictions.eq("usuario", unUsuario.getIdUsuario()))
+			System.out.println(this.parserFechas()); //2013/10/15 16:16:39
+			System.out.println(this.parserFechas()); //2013/10/15 16:16:39
+			
+			
+			@SuppressWarnings("unchecked")
+			List<Planificacion> planificacionesFinales = planificacionesNuevas.list();
+		
+	 
+		
+		return  planificacionesFinales;
+
+	}
+		
+//		public Date laFechaActual()
+//		{
+//			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //;
+//			Date date = new Date();
+//			try {
+//				date = formatter.parse(planFecha);
+//			} catch (ParseException e) {
+//				 
+//				e.printStackTrace();
+//			}
+//			return(date);
+//		}
+		
+		public Date parserFechas ()
+		{
+			try {
+				java.util.Date temp = new SimpleDateFormat("yyyy-MM-dd").parse("2020-07-10 14:58:00");
+				return temp;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
 	
+		public Date parserFechas2 (String unString)
+		{
+			try {
+				java.util.Date temp = new SimpleDateFormat("yyyy-MM-dd").parse(unString);
+				return temp;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		public  Date obtenerFechaActual(){
+			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			System.out.println(dateFormat.format(date)); //2013/10/15 16:16:39
+			//return this.parserFechas2((dateFormat.format(date)));
+			java.util.Date temp = null;
+			try {
+				temp = new SimpleDateFormat("yyyy-MM-dd").parse((dateFormat.format(date)));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return temp;
+		}
 }

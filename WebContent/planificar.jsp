@@ -13,9 +13,18 @@
 	
 	misRecetas = usuarioActual.getRecetasUser();
 	
-	Set<Planificacion> planificacionDeUsuario = new HashSet<Planificacion>();
+	//Set<Planificacion> planificacionDeUsuario = new HashSet<Planificacion>();
 	
-	planificacionDeUsuario = usuarioActual.getPlanificaciones();
+	//planificacionDeUsuario = usuarioActual.getPlanificaciones();
+	//planificacionDeUsuario = planificacionDeUsuario.
+		//	Date today = Calendar.getInstance().getTime();
+	//Calendar cEnd = new GregorianCalendar();
+	//cEnd.set(Calendar.YEAR, 2020);
+	//SimpleDateFormat formatter= new SimpleDateFormat("YYYY-MM-DD HH:MM:SS"); //format it as per your requirement
+	//Date fromDate= formatter.parse("01-01-2016");
+
+			Planificacion unaPlani = new Planificacion();
+			List<Planificacion> planificacionDeUsuario = unaPlani.recetasUsuarioPlanificadas(usuarioActual);
 	
 	String errorBusqueda = (String) session.getAttribute("errorBusqueda");
 	String planificacionOK = (String) session.getAttribute("planificacionOK");
@@ -152,6 +161,8 @@
 
 
 <div class="panel body" id="2">
+		  			<p>A continuacion vamos a mostrar las recetas que estan planificadas (FechaHoy < FechaPlanificacion).. En cuanto esta condicion no se cumpla, las recetas se confirmaran como consumidas, y pasaran a formar parte del historial. </p>
+		  			<br>
 		  			
 		  			 <table class="table table-bordered">
 					    <thead>
