@@ -193,7 +193,10 @@ public class GrupoUsuarios {
 	public boolean puedeEliminarGrupo(Usuario usuario){
 		
 		//TODO: EN DB PODRIA COMPARAR LOS IDS DE USUARIO, SETEADO ADMNISTRADOR EL ID DEL CREADOR DEL GRUPO
-		return ((this.getAdministrador().equals(usuario)) && (this.getGrupoDeUsuarios().contains(usuario)) && (this.getGrupoDeUsuarios().size() == 1)) ; 
+		//return ((this.getAdministrador().equals(usuario)) && (this.getGrupoDeUsuarios().contains(usuario)) && (this.getGrupoDeUsuarios().size() == 1)) ;
+		System.out.println(this.getAdministrador().getIdUsuario());
+		System.out.println(usuario.getIdUsuario());
+		return ((this.getAdministrador().getIdUsuario()==(usuario.getIdUsuario()))) ; 
 	}
 	
 
@@ -345,6 +348,34 @@ public class GrupoUsuarios {
 		public void setGrupoDeUsuarios(Set<Usuario> grupoDeUsuarios) {
 			this.grupoDeUsuarios = grupoDeUsuarios;
 		}
+		
+		public void eliminarGrupoPorBD (GrupoUsuarios unGrupo, Usuario unUsuario)
+		{
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+			sessionHIB.getTransaction().begin();
+			try {
+//				String sql_query = "delete from grupo  where ID_GRUPO = :idGrupo";
+//				
+//				Query query = sessionHIB.createSQLQuery(sql_query);
+//				query.setParameter("idGrupo", unGrupo.getIdGrupo());
+//				query.executeUpdate();
+				sessionHIB.delete(this);
+				sessionHIB.flush();
+				sessionHIB.clear();
+				sessionHIB.refresh(unUsuario);
+				//return true;
+			} catch (Exception e) {
+				//return false;
+				System.out.println(e);
+			}finally {
+				
+				sessionHIB.getTransaction().commit();
+				System.out.println("Done");
+				sessionHIB.close();
+			}	
+			
+		}
+		
 		
 //		public static Set<GrupoUsuarios> buscarGruposDelUsuario(Usuario unUsuario){
 //			

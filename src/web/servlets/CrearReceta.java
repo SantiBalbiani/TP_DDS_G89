@@ -135,7 +135,7 @@ public class CrearReceta extends HttpServlet {
 //		Condimento cond2 = new Condimento();
 //		cond2 = cond2.buscarCondimentoPorNombre("KETCHUP");
 		
-		short sectorPiramide = Short.parseShort(sector);
+		int sectorPiramide = Integer.parseInt(sector);
 		int caloriasIP = Integer.parseInt(calorias);
 		
 		nuevaReceta.agregarIngredientePrincipal(ingredPpal);

@@ -673,6 +673,33 @@ public class Receta {
 	}
 
 	
+	public static void altaTipos(){
+		
+		TipoReceta unTipo = new TipoReceta();
+		TipoReceta unTipo2 = new TipoReceta();
+		TipoReceta unTipo3 = new TipoReceta();
+		TipoReceta unTipo4 = new TipoReceta();
+		
+		unTipo.setTipoReceta("Desayuno");
+		unTipo2.setTipoReceta("Almuerzo");
+		unTipo3.setTipoReceta("Merienda");
+		unTipo4.setTipoReceta("Cena");
+		
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.beginTransaction();
+		
+		sessionHIB.save(unTipo);
+		sessionHIB.save(unTipo2);
+		sessionHIB.save(unTipo3);
+		sessionHIB.save(unTipo4);
+		
+		sessionHIB.getTransaction().commit();
+		System.out.println("Done");
+		sessionHIB.close();
+		
+  
+		
+	}
 
 
 }
