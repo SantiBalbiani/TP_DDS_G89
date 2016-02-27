@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import receta.Receta;
 import usuario.Usuario;
 import usuario.GrupoUsuarios;
 
@@ -172,6 +173,37 @@ public class ABM_GRUPO extends HttpServlet {
 			}
 			
 			
+		}
+		
+		if (esGrupo.equals("recetasGrupo"))	//buscoTodasLasRecetasDeUnGrupo
+		{
+			String nombreGrupo = request.getParameter("buscar_nombreGrupo");
+			usuario.GrupoUsuarios grupoViejo = new usuario.GrupoUsuarios ();
+
+			
+			try{
+				grupoViejo = grupoViejo.buscarGrupoPorNombre(nombreGrupo);
+			
+				if (grupoViejo!=null) {
+					Set<Usuario> usuariosDelGrupo = new HashSet<Usuario>();
+					for (Usuario a : grupoViejo.getGrupoDeUsuarios())
+					{
+						usuariosDelGrupo.add(a);
+					}
+				session.setAttribute("usuariosDelGrupo", usuariosDelGrupo);
+//					Set<Receta> recetasDelGrupo = new HashSet<Receta>();
+//					recetasDelGrupo = (Set<Receta>) grupoViejo.getRecetasDelGrupo();
+			
+				response.sendRedirect("listadoRecetasGrupo.jsp");
+				}
+				else
+				{
+					session.setAttribute("errorBusqueda", "yes");
+					response.sendRedirect("misGrupos.jsp");
+				}
+			}catch(Throwable Exception){
+				System.out.println(Exception);
+			}
 		}
 		
 		

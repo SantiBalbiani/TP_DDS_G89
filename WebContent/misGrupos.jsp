@@ -316,6 +316,10 @@
 										//);
 										out.println("</div>");
 										//out.println("<br>");
+										out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"ABM_GRUPO\"><input type=\"hidden\" name=\"buscar_nombreGrupo\" id=\"buscar_nombreGrupo\" value="+ grupo1.getNombreDeGrupo() + "><input type=\"hidden\" name=\"esGrupo\" id=\"esGrupo\" value=\"recetasGrupo\"><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + "Ver Recetas del Grupo"  + "</button>");
+									out.println("<br><br>");
+									out.println("</form>");
+									//out.println("<br>");
 										out.println("</div>");
 										out.println("</div>");
 										//out.println("</div>");
