@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import org.junit.Assert;
 import org.junit.Test;
 
+import estadisticas.Planificacion;
 import hibernate.*;
 import receta.Ingrediente;
 import receta.Receta;
@@ -23,7 +24,163 @@ import java.util.List;
 import java.util.Set;
 public class TestBd {
 
+	 
+	
+	
+	@Test
+	public  void testSemanalConsultadasAceptadasporNivelDificutlad(){
+		
 
+    char sexo = 'M';  
+    int idTipoReceta;
+ //   String tipoReceta;
+
+    
+    
+	//Date fechaInicio = primerDiaDeLaSemana();
+	 
+	
+	Date today =  new Date();
+	
+	Calendar calendarEnd = Calendar.getInstance();
+	calendarEnd.setTime(today);   
+	calendarEnd.set(Calendar.MILLISECOND, 999);
+	calendarEnd.set(Calendar.SECOND, 59);
+	calendarEnd.set(Calendar.MINUTE, 59);
+	calendarEnd.set(Calendar.HOUR_OF_DAY, 23);
+    Date hoy =  calendarEnd.getTime();
+    
+    
+    Date fechaInicio = new Date();
+		 
+		   
+Calendar calendarStart = Calendar.getInstance();
+calendarStart.setTime(fechaInicio);   
+calendarStart.set(Calendar.DATE, 1);
+calendarStart.set(Calendar.MILLISECOND, 0);
+calendarStart.set(Calendar.SECOND, 0);
+calendarStart.set(Calendar.MINUTE, 0);
+calendarStart.set(Calendar.HOUR_OF_DAY, 0);
+   
+fechaInicio = calendarStart.getTime();
+	
+ 		
+			// DESAYUNO 
+			  idTipoReceta = 1;
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		Criteria recetasDesayuno = sessionHIB.createCriteria(Planificacion.class)
+								   .createAlias("Usuario", "user").add(Restrictions.eq("user.sexo", sexo))
+								   .createAlias("Receta", "recipe").add(Restrictions.eq("recipe.tipoReceta", idTipoReceta))
+								   .add(Restrictions.between("fechaAlta", fechaInicio, hoy));;
+		@SuppressWarnings("unchecked")
+		List<Receta>  desayuno  =  recetasDesayuno.list();
+	
+		//  List<Receta>  recetasDesayunoList  = consultaDBtipoRecetaSegunSexo( fechaInicio,  unSexo,  idTipoReceta );		   
+		// ALMUERZO 
+		idTipoReceta = 2;
+	 
+		Criteria recetasAlmuerzo = sessionHIB.createCriteria(Planificacion.class)
+								   .createAlias("Usuario", "user").add(Restrictions.eq("user.sexo", sexo))
+								   .createAlias("Receta", "recipe").add(Restrictions.eq("recipe.tipoReceta", idTipoReceta))
+								   .add(Restrictions.between("fechaAlta", fechaInicio, hoy));;
+		@SuppressWarnings("unchecked")
+		List<Receta>  almuerzo =  recetasAlmuerzo.list();
+		 
+		// MERIENDA 
+		  idTipoReceta = 3;
+		Criteria recetasMerienda  = sessionHIB.createCriteria(Planificacion.class)
+				   .createAlias("Usuario", "user").add(Restrictions.eq("user.sexo", sexo))
+				   .createAlias("Receta", "recipe").add(Restrictions.eq("recipe.tipoReceta", idTipoReceta))
+				   .add(Restrictions.between("fechaAlta", fechaInicio, hoy));;
+				   @SuppressWarnings("unchecked")
+				   List<Receta>  merienda=  recetasMerienda.list();
+		
+		 
+ 		
+		// CENA
+		   idTipoReceta = 4;
+		Criteria recetasCena   = sessionHIB.createCriteria(Planificacion.class)
+	     		   .createAlias("Usuario", "user").add(Restrictions.eq("user.sexo", sexo))
+				   .createAlias("Receta", "recipe").add(Restrictions.eq("recipe.tipoReceta", idTipoReceta))
+				   .add(Restrictions.between("fechaAlta", fechaInicio, hoy));;
+			   @SuppressWarnings("unchecked")
+			   List<Receta>  cena =  recetasCena.list();				   
+				   
+				if(almuerzo.size() >= desayuno.size() && almuerzo.size() >= cena.size() && almuerzo.size() >= merienda.size()){		
+					System.out.println( "Almuerzo");		
+				}
+		   
+		   
+			if(cena.size() >= desayuno.size() && cena.size() >= almuerzo.size() && cena.size() >= merienda.size()){		
+				System.out.println( "Cena");		
+			}
+			   										
+			if(desayuno.size() >= almuerzo.size() && desayuno.size() >= cena.size() && desayuno.size() >= merienda.size()){		
+				System.out.println( "Desayuno");		
+			}   
+			
+			if(merienda.size() >= almuerzo.size() && merienda.size() >= cena.size() && merienda.size() >= almuerzo.size()){		
+				System.out.println( "Merienda");		
+			} else {
+		 
+				System.out.println( "Almuerzo por defecto para que no rompa"); //por defecto para que no rompa
+			   
+		   }
+	   
+	   
+
+
+		
+		
+		
+		
+//		 int caloriasInicio = 190;
+//		int caloriasFin= 3000;
+//		 
+//		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+// 
+//		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.between("calorias", caloriasInicio, caloriasFin));
+//	
+//		@SuppressWarnings("unchecked")
+//		List<Receta> recetasPorCalorias = recetas.list();
+//	
+//		
+//		try {
+//	 
+//			if(recetasPorCalorias.isEmpty()){
+//				
+//				System.out.println( " No se encontraron Resultados" );
+//				   System.out.println(	" INICIO: "+caloriasInicio);
+//				   System.out.println(	" FIN: "+caloriasFin);
+//			}else {
+//	
+//				 System.out.println(	" INICIO: "+caloriasInicio);
+//				   System.out.println(	" FIN: "+caloriasFin);
+//				   
+//				for (Receta receta: recetasPorCalorias){
+//					System.out.println(receta.getNombreReceta()+" Calorias "+receta.getCalorias());
+//				
+//				}
+//				
+//
+//			}
+//				
+//	}catch(Throwable theException) 	    
+//		
+//	{
+//		   System.out.println(	" INICIO: "+caloriasInicio);
+//		   System.out.println(	" FIN: "+caloriasFin);
+//		System.out.println("algo paso"); 
+//	}
+}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

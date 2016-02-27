@@ -1,5 +1,6 @@
 package estadisticas;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,8 +27,8 @@ import usuario.Usuario;
 @Table(name = "PLANIFICACION")
 public class Planificacion {
 
-	private int idPlanificación;
-	private	String fecha;
+	private int idPlanificacion;
+	private	Date fecha;
 	private Usuario usuario;
 	private Receta receta;
 	private TipoReceta unTipoDeReceta;
@@ -36,17 +37,17 @@ public class Planificacion {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 @Column(name = "ID_PLANIF")
-public int getIdPlanificación() {
-		return idPlanificación;
+public int getIdPlanificacion() {
+		return idPlanificacion;
 	}
-	public void setIdPlanificación(int idPlanificación) {
-		this.idPlanificación = idPlanificación;
+	public void setIdPlanificacion(int idPlanificacion) {
+		this.idPlanificacion = idPlanificacion;
 	}
 	@Column(name = "FECHA")
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	

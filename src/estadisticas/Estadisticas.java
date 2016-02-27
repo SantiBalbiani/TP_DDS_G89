@@ -216,15 +216,14 @@ public int  consolidadoSemanalCaloriasPorComida(){
 	
 	 int caloriasSemanal = 0;
 	 int sectorPiramide; 
-//	 (0); //("Harinas");
-//	 (1); //("Lacteos");
-//	 (2); //("Vetetales");
-//	 (3); //("Carnes");
-//	 (4); //("Dulces");
-//	 (5); //("Aceites");
 	 
 	 for (sectorPiramide = 0;sectorPiramide < 6 ; sectorPiramide++){
-	 		
+//		 (0); //("Harinas");
+//		 (1); //("Lacteos");
+//		 (2); //("Vetetales");
+//		 (3); //("Carnes");
+//		 (4); //("Dulces");
+//		 (5); //("Aceites");
 	 		caloriasSemanal = caloriasSemanal + semanalCaloriasPorComida(sectorPiramide);
 	 	}
 
@@ -236,14 +235,15 @@ public int  consolidadoMensualCaloriasPorComida(){
 	
 	 int caloriasMensual = 0;
 	 int sectorPiramide; 
-//	 (0); //("Harinas");
-//	 (1); //("Lacteos");
-//	 (2); //("Vetetales");
-//	 (3); //("Carnes");
-//	 (4); //("Dulces");
-//	 (5); //("Aceites");
-	 
+ 
 	 for (sectorPiramide = 0;sectorPiramide <= 5 ; sectorPiramide++){
+		 
+//		 (0); //("Harinas");
+//		 (1); //("Lacteos");
+//		 (2); //("Vetetales");
+//		 (3); //("Carnes");
+//		 (4); //("Dulces");
+//		 (5); //("Aceites");
 	 		
 		 caloriasMensual = caloriasMensual + semanalCaloriasPorComida(sectorPiramide);
 	 	}
@@ -330,32 +330,57 @@ public String  semanalTipoRecetaSegunSexo(char sexo ){
 
 }
 
-public String tipoRecetaSegunSexo(char unSexo, Date Fecha){
-	
+public String tipoRecetaSegunSexo(char unSexo, Date fechaInicio){
+		
+	   int idTipoReceta;
 	   String tipoReceta;
+		
+		// DESAYUNO 
+		  idTipoReceta = 1;
+		  List<Receta>  recetasDesayunoList  = consultaDBtipoRecetaSegunSexo( fechaInicio,  unSexo,  idTipoReceta );		
 	   
-	   Set<Receta> recetasAlmuerzo = new HashSet<Receta>();
-	   Set<Receta> recetasDesayuno = new HashSet<Receta>();
-	   Set<Receta> recetasCena = new HashSet<Receta>();
-	   Set<Receta> recetasMerienda = new HashSet<Receta>();
+		// ALMUERZO 
+		  idTipoReceta = 2;
+		  List<Receta> recetasAlmuerzoList = consultaDBtipoRecetaSegunSexo( fechaInicio,  unSexo,  idTipoReceta );
+	     
+		// MERIENDA 
+		  idTipoReceta = 3;
+		  List<Receta> recetasMeriendaList = consultaDBtipoRecetaSegunSexo( fechaInicio,  unSexo,  idTipoReceta );
+ 		
+		// CENA
+		  idTipoReceta = 4;
+		  List<Receta> recetasCenaList = consultaDBtipoRecetaSegunSexo( fechaInicio,  unSexo,  idTipoReceta );
 	   
-	   /*
-	    TODO: hacer un select u Usuario where u.sexo:=unSexo para
-	    
-	    y unir busqueda con select del recetario/receta where tipoReceta y guardar las
-	    recetas retornadas en cada set segun el tipo
-	    
-	    SE TIENE QUE HACER CUATRO QUERYs y asignar a cada set el resultado
-	    
-	    */
-	   tipoReceta = mayorCantidadRecetasPorTipo (recetasAlmuerzo,recetasDesayuno,
-			   recetasCena, recetasMerienda);
+	   
+	   tipoReceta = mayorCantidadRecetasPorTipo (recetasAlmuerzoList,recetasDesayunoList,
+			   recetasCenaList, recetasMeriendaList);
 	   
 	return tipoReceta;
 }
 
-   public String mayorCantidadRecetasPorTipo ( Set<Receta> almuerzo,Set<Receta> desayuno,
-		   										Set<Receta> cena, Set<Receta> merienda){
+
+public List<Receta>  consultaDBtipoRecetaSegunSexo(Date fechaInicio, char unSexo, int tipoReceta ){
+	
+	   
+		Date hoy = obtenerFechaActual();
+		
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		Criteria recetas = sessionHIB.createCriteria(Planificacion.class)
+								   .createAlias("Usuario", "user").add(Restrictions.eq("user.sexo", unSexo))
+								   .createAlias("Receta", "recipe").add(Restrictions.eq("recipe.tipoReceta", tipoReceta))
+								   .add(Restrictions.between("fechaAlta", fechaInicio, hoy));;
+		@SuppressWarnings("unchecked")
+		List<Receta>  recetasList =  recetas.list();
+	
+			return recetasList;
+	
+}
+
+
+
+
+   public String mayorCantidadRecetasPorTipo ( List<Receta> almuerzo, List<Receta> desayuno,
+		   List<Receta> cena,  List<Receta> merienda){
 	   
 	   
 		if(almuerzo.size() >= desayuno.size() && almuerzo.size() >= cena.size() && almuerzo.size() >= merienda.size()){		
@@ -416,8 +441,8 @@ public int consultadasAceptadasporNivelDificutlad(int dificultad, Date fechaInic
 
 		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
  	  
-		//TODO: agregar al QUERY clausura where aceptada = 'SI' 
- 		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.eq("dificultadReceta", dificultad)).add(Restrictions.between("fechaAlta", comienzoSemanaOmes, hoy));
+
+ 		Criteria recetas = sessionHIB.createCriteria(Planificacion.class).add(Restrictions.eq("dificultadReceta", dificultad)).add(Restrictions.between("fechaAlta", comienzoSemanaOmes, hoy));
 		
  		@SuppressWarnings("unchecked")
 		List<Receta> recetaList = recetas.list();
@@ -454,8 +479,8 @@ public List<Receta> rankingConsultadasAceptadaspor(Date fechaInicio){
 		Date hoy =  obtenerFechaActual();
 		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 		
-		//TODO: agregar al QUERY clausura where aceptada = 'SI'.
-		Criteria recetas = sessionHIB.createCriteria(Receta.class).add(Restrictions.between("fechaAlta", fechaInicio, hoy));
+		
+		Criteria recetas = sessionHIB.createCriteria(Planificacion.class).add(Restrictions.between("fecha", fechaInicio, hoy));
 			
 		@SuppressWarnings("unchecked")
 		List<Receta> rankingRecetas = recetas.list();
