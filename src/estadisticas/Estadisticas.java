@@ -553,7 +553,7 @@ public  List<Receta> reporteRecetasPorCalorias(int caloriasInicio,int caloriasFi
 		@SuppressWarnings("unchecked")
 		List<Receta> recetasPorCalorias = recetas.list();
 	
-	 
+	
 	
 	return  recetasPorCalorias;
 

@@ -83,11 +83,17 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 			<form class="form-horizontal" method="POST" action="eliminarReceta" id="eliminarReceta_form">
               
                 <div class="row">
-                 <div class="col-sm-8"> <p> <% out.println(receta.getNombreReceta()); %> </p> </div>
-                  <div class="col-sm-4">
+                 <div class="col-sm-6"> <p> <% out.println(receta.getNombreReceta()); %> </p> </div>
+                  
+                  <div class="col-sm-3">
+                  	<button type="submit" id="evento_modificar" name="evento_modificar" class="btn btn-default" >Modificar Receta <span class="glyphicon glyphicon-edit"> </span></button>
+                  </div>
+                  <input type="hidden" name="esModificar" id="esModificar" value="modificar">
+                  <div class="col-sm-3">
                   	<button type="submit" id="evento_eliminar" name="evento_eliminar" class="btn btn-default" >Eliminar Receta <span class="glyphicon glyphicon-remove"> </span></button>
                   </div>
                   <input type="hidden" name="esEliminar" id="esEliminar" value="eliminar">
+            
                 </div>
               
             

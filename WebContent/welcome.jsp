@@ -100,11 +100,12 @@
 				 Agregar Receta <br> <span class="glyphicon glyphicon-plus"></span></a> </div>
 			</div>
 			
-			 <p><span>Inicio</span></p>
+			
 			 
 			 <div class="row">
-			 <div class="col-sm-8"><a class="btn btn-default" href="planificar.jsp" role="button" id="planificar" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
-				Planificar <br> <span class="glyphicon glyphicon-pencil"></span></a> </div>
+			 <div class="col-sm-9"> <p><span>Inicio</span></p> </div>
+			 <div class="col-sm-3"><a class="btn btn-default" href="planificar.jsp" role="button" id="nuevaReceta" data-toggle="tooltip" title="Crear una nueva receta" data-placement="bottom">
+				Ver Planificación <br> <span class="glyphicon glyphicon-pencil"></span></a> </div>
 			</div>
 			
 		</div>

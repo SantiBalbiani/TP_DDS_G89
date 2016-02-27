@@ -37,14 +37,14 @@
 						<span class="icon-bar"></span> 
 						<span class="icon-bar"></span>
 					</button>
-					<a href="creditos.jsp" class="navbar-brand">Que Comemos Hoy?</a>
+					<a href="creditos.jsp" class="navbar-brand">Qué Comemos Hoy?</a>
                     <ul class="nav navbar-nav">
 						<li><a href="welcome.jsp">Inicio</a></li>
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
 						<li><a href="estadisticas.jsp">Estadisticas</a></li>
-						<li><a href="#" onclick="logout();">Cerrar Sesion</a></li>								
+						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>								
 						
 					</ul>
 				</div>

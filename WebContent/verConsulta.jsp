@@ -2,16 +2,8 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<%-- <%@page import="usuario.Usuario, receta.*, estadisticas.Estadisticas,java.util.*"%> --%>
-<%@page import="usuario.Usuario, usuario.GrupoUsuarios, receta.Receta, estadisticas.Estadisticas, java.util.*" %>
-
-
-<%
-List<Receta> recetasPorCalorias = (List<Receta>) session.getAttribute("listaEntreCals");
-//List<Receta> recetasPorCalorias2 = (List<Receta>) session.getAttribute("listaEntreCals");
-
-//List<Receta> recetasPorCalorias = List(Receta) session.getAttribute("listaEntreCals");
-//List<Receta> recetasPorCalorias = session.getAttribute("listaEntreCals"); 
+<%  
+	String reportePorCals = (String) session.getAttribute("listaEntreCals");
 %>
 
 <head>
@@ -54,7 +46,7 @@ List<Receta> recetasPorCalorias = (List<Receta>) session.getAttribute("listaEntr
 						<li><a href="misGrupos.jsp">Mis Grupos</a></li>
 						<li><a href="listadoDeRecetas.jsp">Mis Recetas</a></li>
 						<li><a href="misDatos.jsp">Mis Datos</a></li>
-						<li><a href="estadisticas.jsp">Estadísticas</a></li>
+						<li><a href="estadisticas.jsp">Estadisticas</a></li>
 						<li><a href="#" onclick="logout();">Cerrar Sesión</a></li>
 					</ul>
 				</div>
@@ -76,41 +68,13 @@ List<Receta> recetasPorCalorias = (List<Receta>) session.getAttribute("listaEntr
 <section class="jumbotron jumbotron-kd">
 		<div class="container">
 			<h1>Qué Comemos Hoy?</h1>
-			<p>Ver Recetas según preferencias calóricas</p>
+			<p>Recetas consultadas: </p>
 		</div>
 </section>
 
 
-<section class="main container">
-<div class="panel panel-default" id="Mostrar Recetas">
-	<div class="panel-heading"> Seleccionar la receta deseada para ver detalles </div>
-			
-			<% short noHayRecetas=0;
-				for(Receta unaReceta: recetasPorCalorias){
-									
-									out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"BuscarReceta\"><input type=\"hidden\" name=\"buscar_nombreReceta\" id=\"buscar_nombreReceta\" value="+ unaReceta.getNombreReceta() + "><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + unaReceta.getNombreReceta()  + "</button>");
-									out.println("<br><br>");
-									out.println("</form>");
-								noHayRecetas=1;
-								}
-				if (noHayRecetas==0)
-								{
-									out.println("<br><br>");
-									out.println("<h4> No hay Recetas que coincidan con la búsqueda </h4>");
-									out.println("<br><br>");
-									out.println("<a class=\"btn btn-default\" href=\"reportes.jsp\" role=\"button\" id=\"verReporte\" data-toggle=\"tooltip\" title=\"ver Reporte\" data-placement=\"bottom\">");
-									out.println(" Nueva búsqueda <br> <span class=\"glyphicon glyphicon-arrow-left\"></span></a>");
-									out.println("</div>");
-									
-								}
-			%>
-	
-	
-<%-- 			<div class="panel-body"> <b><a href="verReceta.jsp"> <% out.println(recetasPorCalorias.get(0)); %> </a></b></div> --%>
 
-			<br>
-		</div>
-</section>
+ out.println(<%  %>);
 
 
 </body>
