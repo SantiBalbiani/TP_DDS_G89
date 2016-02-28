@@ -7,12 +7,12 @@
 <!-- De esta forma se van a recibir todos los datos necesarios para la pagina -->
 <%@page import="usuario.Usuario, receta.Receta, java.util.*, receta.Condimento, receta.Ingrediente" %>
 <%  
-
+	List<Receta> recetas = (List<Receta>) session.getAttribute("recetasEncontradas");
 	Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuario");
 	
-	Set<Receta> misRecetas = new HashSet<Receta>(0);
+	Set<Receta> recetasBuscadas = new HashSet<Receta>(0);
 	
-	misRecetas = usuarioActual.getRecetasUser();
+	
 	
 %>
 
@@ -65,7 +65,7 @@
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="BuscarReceta" method="post" class="navbar-form navbar-right" role="search">
+					<form action="ListarRecetasEncontradas" method="post" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
 						</div>
@@ -100,7 +100,7 @@
 								<% 
 								out.print("<div class=\"btn-group\">");
 								short noHayRecetas=0;	//flag de si hay recetas
-								for(Receta unaReceta: misRecetas){
+								for(Receta unaReceta: recetas){
 									
 									out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"BuscarReceta\"><input type=\"hidden\" name=\"buscar_nombreReceta\" id=\"buscar_nombreReceta\" value="+ unaReceta.getNombreReceta() + "><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + unaReceta.getNombreReceta()  + "</button>");
 									out.println("<br><br>");

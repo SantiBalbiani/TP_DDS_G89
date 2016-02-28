@@ -55,7 +55,7 @@ public class ListarRecetasEncontradas extends HttpServlet {
 			if (recetaBuscada!=null) {
 			session.setAttribute("recetasEncontradas", recetasBuscadas);
 		
-			response.sendRedirect("listadoDeRecetas.jsp");
+			response.sendRedirect("RecetasEncontradas.jsp");
 			}
 			else
 			{

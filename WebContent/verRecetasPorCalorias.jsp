@@ -62,7 +62,7 @@ List<Receta> recetasPorCalorias = (List<Receta>) session.getAttribute("listaEntr
 				</div>
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-kd">
-					<form action="BuscarReceta" method="post" class="navbar-form navbar-right" role="search">
+					<form action="ListarRecetasEncontradas" method="post" class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Buscar Receta" name="buscar_nombreReceta">
 						</div>
