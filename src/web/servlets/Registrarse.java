@@ -52,6 +52,9 @@ public class Registrarse extends HttpServlet {
 //		Desde aca para abajo el codigo deberia ser el mismo que Actualizar_Datos!
 		String nombreUsuario = request.getParameter("inputUsuario");
 		String password = request.getParameter("inputPassword");
+		password = seguridad.MD5.getMD5(password);		//convertimos la PWD a MD5.
+		System.out.println(password); 
+		
 		String email = request.getParameter("inputMail");
 		String fechaNac = request.getParameter("fechaNacimiento");
 		String altura = request.getParameter("altura");

@@ -53,6 +53,9 @@ public class Login extends HttpServlet {
 		{*/	    
 			String nombreUsuario = (request.getParameter("inputUsuario")).toUpperCase();
 			String contrasenia = (request.getParameter("inputPassword")).toUpperCase();
+			contrasenia = seguridad.MD5.getMD5(contrasenia);		//convertimos la PWD a MD5.
+			System.out.println(contrasenia); 
+			
 			Usuario user = new Usuario();
 			
 			user = user.buscarUsuarioPorNombre(nombreUsuario);
@@ -61,7 +64,7 @@ public class Login extends HttpServlet {
 	    	//Buscar las primeras 3 recetas para mostrar
 			//Buscar los grupos a los que pertenece
 			//Buscar las recomendaciones
-			
+			contrasenia = contrasenia.toUpperCase();
 			if(nombreUsuario.equals(user.getNombreUsuario()) && contrasenia.equals(user.getPassword())){
 		         HttpSession session = request.getSession(true);	    
 		         session.setAttribute("currentSessionUser", nombreUsuario);

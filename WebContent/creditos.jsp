@@ -85,7 +85,7 @@
 	<h2>Profesores</h2>
 <ul>
   <li><p><strong>Profesor a cargo: </strong> Luciano Straccia</p> </li>
-  <li><p><strong>Ayudante: </strong> Lucas</p> </li>
+  <li><p><strong>Ayudante: </strong> Lucas Saclier</p> </li>
   <li><p><strong>Ayudante: </strong> Adriana</p> </li>
 </ul>  
 

@@ -61,6 +61,9 @@ public class Actualizar_Datos extends HttpServlet {
 		
 		//String nombreUsuario = request.getParameter("usuario");
 		String password = request.getParameter("inputPassword");
+		password = seguridad.MD5.getMD5(password);		//convertimos la PWD a MD5.
+		System.out.println(password); 
+		
 		String email = request.getParameter("inputMail");
 		String fechaNac = request.getParameter("fechaNacimiento");
 		String altura = request.getParameter("altura");
