@@ -576,6 +576,35 @@ public class Receta {
 		}
 		return temp;
 	}
+	
+	public List<Receta> buscarRecetasPorNombre(String unNombre){
+		
+		{
+			
+			try
+			{
+			Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+
+			Query query = sessionHIB.createQuery("FROM Receta e where e.nombreReceta LIKE :nombre");
+			query.setParameter("nombre", "%"+unNombre+"%");
+			
+			
+			List<Receta> lista = query.list();
+			
+			if (!lista.isEmpty())
+			{
+		return lista;
+			}
+			else
+				return null;
+			}
+			catch(Throwable Exception){
+				System.out.println(Exception);
+				return null;
+			}
+		}	
+		}
+	
 	public Receta buscarRecetaPorNombre(String unNombre){
 		
 		{
