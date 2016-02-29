@@ -46,13 +46,13 @@ public class ListarRecetasEncontradas extends HttpServlet {
 		nombreReceta = request.getParameter("buscar_nombreReceta");
 		Receta recetaBuscada = new Receta();
 		
-		List<Receta> recetasBuscadas;
+		List<Receta> recetasBuscadas = null;
 		
 		try{
 			
 			recetasBuscadas = recetaBuscada.buscarRecetasPorNombre(nombreReceta);
 		
-			if (recetaBuscada!=null) {
+			if (recetasBuscadas!=null) {
 			session.setAttribute("recetasEncontradas", recetasBuscadas);
 		
 			response.sendRedirect("RecetasEncontradas.jsp");
