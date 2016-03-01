@@ -16,7 +16,7 @@
 	List<Planificacion> historialPlanificacionUser = unaPlani.historialRecetasUser(user);
 	
 	Receta unaReceta = new Receta();
-	List<Receta> recomendacionDelDia = unaReceta.recetaSegunLaHora(user);
+	List<Receta> recomendacionDelDia = unaReceta.recetaSegunLaHora();
 	
 %>
 
@@ -129,20 +129,22 @@
 								out.print("<div class=\"btn-group\">");
 								short noHayRecetas=0;	//flag de si hay recetas
 								for(Receta recetaRecomendada: recomendacionDelDia){
-									
+									if (noHayRecetas>=3)
+										break;	//lista hasta 3 recetas..
+									out.println("<p>Te vamos a recomendar estas recetas para el horario de: "+recetaRecomendada.obtenerCategoriaSegunHora()+" !</p>");
 									out.println("<form class=\"form-horizontal\" method=\"POST\" action=\"BuscarReceta\"><input type=\"hidden\" name=\"buscar_nombreReceta\" id=\"buscar_nombreReceta\" value="+ recetaRecomendada.getNombreReceta() + "><button type=\"submit\" class=\"btn btn-primary btn-sm\">" + recetaRecomendada.getNombreReceta()  + "</button>");
 									out.println("<br><br>");
 									out.println("</form>");
-									noHayRecetas=1;//al menos listo una receta
+									noHayRecetas= noHayRecetas++;//al menos listo una receta
 								}
-								if (noHayRecetas==0)
+								if (noHayRecetas>0)
 								{
-									out.println("<p>Todavía no tienes ninguna receta!</p>");
-									out.println("<br><br>");
-									out.println("<p>Haz click en el siguiente boton si quieren añadir una receta.</p>");
-									out.println("<div class=\"col-sm-8 \"><a class=\"btn btn-default\" href=\"nuevaReceta.jsp\" role=\"button\" id=\"nuevaReceta\" data-toggle=\"tooltip\" title=\"Crear una nueva receta\" data-placement=\"bottom\">");
-									out.println(" Agregar Receta <br> <span class=\"glyphicon glyphicon-plus\"></span></a> </div>");
-									out.println("</div>");
+									out.println("<p>No tenemos recetas para recomendarte en nuestra base de datos en este horario..!</p>");
+// 									out.println("<br><br>");
+// 									out.println("<p>Haz click en el siguiente boton si quieren añadir una receta.</p>");
+// 									out.println("<div class=\"col-sm-8 \"><a class=\"btn btn-default\" href=\"nuevaReceta.jsp\" role=\"button\" id=\"nuevaReceta\" data-toggle=\"tooltip\" title=\"Crear una nueva receta\" data-placement=\"bottom\">");
+// 									out.println(" Agregar Receta <br> <span class=\"glyphicon glyphicon-plus\"></span></a> </div>");
+// 									out.println("</div>");
 								}
 								out.print("</div>");
 								%>

@@ -2,7 +2,9 @@ package Testeo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -135,4 +137,49 @@ public class TestPlanificacion {
 		}
 	}
 	
- }
+	
+	@Test
+	public void obtenerCategoriaSegunHora() {
+
+		
+		Calendar calendario = Calendar.getInstance();
+		//Calendar calendario = new GregorianCalendar();
+		int horaDelDia = 0;
+		horaDelDia =calendario.get(Calendar.HOUR_OF_DAY);
+		
+//		Date date = new Date();
+//		Calendar calendar = GregorianCalendar.getInstance();
+//		calendar.setTime(date);
+//		int horaDelDia = calendar.get(Calendar.HOUR_OF_DAY);
+
+		String categoria = null;
+		/*
+		 * horario: 
+		 * 04-10hs: desayuno 
+		 * 10-15hs: almuerzo 
+		 * 15-19hs. merienda
+		 * 19-04hs:cena
+		 */
+		System.out.println(horaDelDia + ":");
+
+		if ((horaDelDia >= 4) && (horaDelDia < 10)) {
+			categoria = "Desayuno";
+		}
+
+		if ((horaDelDia >= 10) && (horaDelDia < 15)) {
+			categoria = "Almuerzo";
+		}
+
+		if ((horaDelDia >= 15) && (horaDelDia < 19)) {
+			categoria = "Merienda";
+		}
+		if ( ((horaDelDia >= 19) && (horaDelDia <= 23)) || ((horaDelDia >= 0) && (horaDelDia < 4)) ) {
+			categoria = "Cena";
+		}
+
+		System.out.println(categoria + ":");
+
+		//return categoria;
+	}
+
+}

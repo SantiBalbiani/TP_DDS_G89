@@ -112,7 +112,7 @@
 									out.println("<p>Todavía no tienes ninguna receta!</p>");
 									out.println("<br><br>");
 									out.println("<p>Haz click en el siguiente boton si quieren añadir una receta.</p>");
-									out.println("<div class=\"col-sm-8 \"><a class=\"btn btn-default\" href=\"nuevaReceta.jsp\" role=\"button\" id=\"nuevaReceta\" data-toggle=\"tooltip\" title=\"Crear una nueva receta\" data-placement=\"bottom\">");
+									out.println("<div class=\"col-sm-8 \"><a class=\"btn btn-default\" href=\"crearIngredientes.jsp\" role=\"button\" id=\"nuevaReceta\" data-toggle=\"tooltip\" title=\"Crear una nueva receta\" data-placement=\"bottom\">");
 									out.println(" Agregar Receta <br> <span class=\"glyphicon glyphicon-plus\"></span></a> </div>");
 									out.println("</div>");
 								}

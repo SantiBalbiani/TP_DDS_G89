@@ -106,10 +106,10 @@ public class Actualizar_Datos extends HttpServlet {
 		usuarioActual.setPeso(doublePeso);
 		
 		
-		if (this.noEsStringVacio(password))
-		{
+//		if (this.noEsStringVacio(password))
+//		{
 			usuarioActual.setPassword(password);
-		}
+//		}
 
 		//TODO: revisar si cambio la contraseña y segun eso la cambia o no..
 

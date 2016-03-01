@@ -223,7 +223,7 @@ public class Usuario {
 	}
 	
 	public void setPassword(String password) {
-		this.password = password.toUpperCase();
+		this.password = password;
 	}
 
 	public void setIdUsuario(int idUsuario) {
@@ -655,7 +655,7 @@ public class Usuario {
 		
 		 Receta  recomendacionDiaria = new  Receta(); 
 		 String  preferenciasAlimenticias = this.getPreferencias_alimenticias(); 
-		 String categoriaSegunHora  = obtenerCategoriaSegunHora(); 
+		 String categoriaSegunHora  = recomendacionDiaria.obtenerCategoriaSegunHora(); 
 		  
 		 
 		 /*TODO:  
@@ -670,40 +670,7 @@ public class Usuario {
 		
 	}
 	
-	public String obtenerCategoriaSegunHora(){
-		
-		Date date = new Date();    
-		Calendar calendar = GregorianCalendar.getInstance(); 
-		calendar.setTime(date);  
-		int horaDelDia= calendar.get(Calendar.HOUR_OF_DAY);	
-		
-		String categoria= null;
-		 /* 
-		  * horario:
-		  * 04-10hs: desayuno 
-		  * 10-15hs: almuerzo
-		  * 15-19hs. merienda
-		  * 19-04hs:cena
-		  */
-		
-		
-		if ((horaDelDia >4) &&  (horaDelDia <=10)){
-			categoria = "Desayuno" ;
-		}
-		
-		if ((horaDelDia >10) &&  (horaDelDia <=15)){
-			categoria = "Almuerzo" ;
-		}
-					
-		if ((horaDelDia >15) &&  (horaDelDia <=19)){
-			categoria = "Merienda" ;
-		}		
-		if ((horaDelDia >19) &&  (horaDelDia <=4)){
-			categoria = "Cena" ;
-		}	
-		
-		return categoria;
-	}
+	
 
 
 
@@ -736,6 +703,9 @@ public class Usuario {
 		return indiceComplexion;
 	}
 
+	
+	@Deprecated
+	//Emiliano 29/02/2016 - 23:57hs
 	public int calcularEdad(String fecha) {
 		java.util.Date fechaNac = null;
 		try {

@@ -1,6 +1,7 @@
 package receta;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +27,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -749,13 +751,13 @@ public class Receta {
 	}
 	
 	
-	public List<Receta> recetaSegunLaHora(Usuario unUsuario ){
+	public List<Receta> recetaSegunLaHora(){
 		
 		  
 		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
 
 		Criteria recetaHoras = sessionHIB.createCriteria(Receta.class)
-				.createAlias("listaCategorias", "categoria").add(Restrictions.eq("categoria.tipoReceta", unUsuario.obtenerCategoriaSegunHora()));
+				.createAlias("listaCategorias", "categoria").add(Restrictions.eq("categoria.tipoReceta", this.obtenerCategoriaSegunHora()));
 		
 				//.add(Restrictions.eq("usuario", unUsuario.getIdUsuario()))
 		//System.out.println(this.parserFechas()); //2013/10/15 16:16:39
@@ -770,6 +772,48 @@ public class Receta {
 	return  (List<Receta>) planificacionesFinales;
 
 }
+	
+public String obtenerCategoriaSegunHora(){
+		
+	Calendar calendario = Calendar.getInstance();
+	//Calendar calendario = new GregorianCalendar();
+	int horaDelDia = 0;
+	horaDelDia =calendario.get(Calendar.HOUR_OF_DAY);
+	
+//	Date date = new Date();
+//	Calendar calendar = GregorianCalendar.getInstance();
+//	calendar.setTime(date);
+//	int horaDelDia = calendar.get(Calendar.HOUR_OF_DAY);
+
+	String categoria = null;
+	/*
+	 * horario: 
+	 * 04-10hs: desayuno 
+	 * 10-15hs: almuerzo 
+	 * 15-19hs. merienda
+	 * 19-04hs:cena
+	 */
+	//System.out.println(horaDelDia + ":");
+
+	if ((horaDelDia >= 4) && (horaDelDia < 10)) {
+		categoria = "Desayuno";
+	}
+
+	if ((horaDelDia >= 10) && (horaDelDia < 15)) {
+		categoria = "Almuerzo";
+	}
+
+	if ((horaDelDia >= 15) && (horaDelDia < 19)) {
+		categoria = "Merienda";
+	}
+	if ( ((horaDelDia >= 19) && (horaDelDia <= 23)) || ((horaDelDia >= 0) && (horaDelDia < 4)) ) {
+		categoria = "Cena";
+	}
+
+	//System.out.println(categoria + ":");
+		
+		return categoria;
+	}
 
 
 }
