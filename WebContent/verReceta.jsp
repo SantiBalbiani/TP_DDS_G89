@@ -236,12 +236,17 @@ h1 {
 <div class="panel panel-default"> 
   <div class="panel-heading"> 
    <div class="row">
-                   <div class="col-sm-6" style="height:25px"> Informacion de la receta </div> 
+                   <div class="col-sm-6" style="height:20px"> Informacion de la receta </div> 
                  
-                  <div class="col-sm-3" style="height:25px"> 
+        
+                 
+                 </div>
+<!--    <div>  -->
+               <div class="col-sm-3" style="height:25px"> 
   <form id="form_calificar" name="form_calificar" method="POST" action="BM_RECETA" style="height:10px">
 <!--   <fieldset> -->
     <span class="star-cb-group">
+
       <input type="radio" id="rating-5" name="rating" value="5" onclick="this.form.submit();" <% if (receta.getCalificacion()==5) out.println("checked=\"checked\""); %> /><label for="rating-5">5</label>
       <input type="radio" id="rating-4" name="rating" value="4" onclick="this.form.submit();" <% if (receta.getCalificacion()==4) out.println("checked=\"checked\""); %> /><label for="rating-4">4</label>
       <input type="radio" id="rating-3" name="rating" value="3" onclick="this.form.submit();" <% if (receta.getCalificacion()==3) out.println("checked=\"checked\""); %>/><label for="rating-3">3</label>
@@ -255,17 +260,14 @@ h1 {
 <input type="hidden" name="receta_calificar" id="receta_calificar" value=<% out.println("\""+receta.getNombreReceta()+"\"");%>>
 <!--   </fieldset> -->
 </form>
-   </div>
-   
-    </div>
-                 
-                 </div>
+<!--    </div> -->
   
-  
-  
-  
-  
+      </div>
+       </div>
    <div class="panel-body"> 
+
+   <br>
+
  	     <p> Nombre de la receta: <% out.println(receta.getNombreReceta());%> <p>
   
 		 <p> Preparacion: <% out.println(receta.getPreparacion());%> <p> 
