@@ -71,6 +71,7 @@ public class BM_RECETA extends HttpServlet {
 					recetaBuscada.modificarReceta(recetaBuscada);
 					
 					session.setAttribute("calificoOK", "yes");
+					session.setAttribute("recetaEncontrada", recetaBuscada);
 					response.sendRedirect("verReceta.jsp");
 					
 				}else
@@ -82,6 +83,40 @@ public class BM_RECETA extends HttpServlet {
 				System.out.println(Exception);
 			}
 		}
+		
+		if (BM_RECETA.equals("cambiarNombre"))		//cambiar nombre receta
+		{
+			String cambiarNombre = request.getParameter("cambiarNombre");
+			String nombreActual = request.getParameter("nombreActual");
+			Receta recetaBuscada = new Receta();
+			
+			try{
+				recetaBuscada = recetaBuscada.buscarRecetaPorNombre(nombreActual);
+				System.out.println(recetaBuscada.getNombreReceta());
+
+			
+				if (recetaBuscada!=null) {
+				//session.setAttribute("recetaEncontrada", recetaBuscada);
+					recetaBuscada.setNombreReceta(cambiarNombre);
+					
+					recetaBuscada.modificarReceta(recetaBuscada);
+					
+					session.setAttribute("cambioNombreOK", "yes");
+					session.setAttribute("recetaEncontrada", recetaBuscada);
+					response.sendRedirect("verReceta.jsp");
+					
+				}else
+				{
+					session.setAttribute("errorBusqueda", "yes");
+					response.sendRedirect("verReceta.jsp");
+				}
+			}catch(Throwable Exception){
+				System.out.println(Exception);
+			}
+		}
+		
+		
+		
 	}
 
 }

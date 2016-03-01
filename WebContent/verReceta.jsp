@@ -10,6 +10,7 @@ String creoReceta = (String) session.getAttribute("creoReceta");
 
 String errorBusqueda = (String) session.getAttribute("errorBusqueda");
 String calificoOK = (String) session.getAttribute("calificoOK");
+String cambioNombreOK = (String) session.getAttribute("cambioNombreOK");
 %>
 
 <head>
@@ -193,6 +194,17 @@ h1 {
  				}
   				
   				%>
+  				
+  				<% if (cambioNombreOK.equals("yes")) {
+ 				 out.println("<div class=\"alert alert-success fade in\">");
+    out.println("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+     out.println("<strong>Success!</strong> Se cambio correctamente el nombre de la receta.");
+   out.println("</div>");
+ 	  session.setAttribute("cambioNombreOK", "no");	//reseteo el flag
+ 				}
+  				
+  				%>
+  				
 			</div>
 		</nav>
 		
@@ -231,7 +243,40 @@ h1 {
 		</div>
 	</section>	
 
+<section class="main container">
+<div class="panel panel-default" id="administracionDeGrupos">
+<div class="panel-heading"> Administrar Receta  </div>
 
+  <div class="container">
+    <div class="accordion" id="crearGrupo">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse"
+            data-parent="cambiarNombre" href="#collapseCrearGrupo">Cambiar nombre de la receta</a>
+        </div>
+        <div id="collapseCrearGrupo" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <form class="form-horizontal" method="POST" action="BM_RECETA">
+              <div class="row-fluid">
+                <div class="span4">
+                  <label>Nuevo nombre de la receta: </label> <input class="input-medium" type="text" name="cambiarNombre" id="cambiarNombre" placeholder="Nombre Receta">
+                  <button type="submit" class="btn">Cambiar</button>
+                  <input type="hidden" name="BM_RECETA" id="BM_RECETA" value="cambiarNombre">
+                  <input type="hidden" name="nombreActual" id="nombreActual" value=<%out.println("\""+receta.getNombreReceta()+"\""); %>>
+                </div>
+              </div>
+            
+             </form>
+            
+          </div>
+        </div>
+       </div>
+     </div>   
+  </div>
+  </div>
+  </section>
+
+ 
 <section class="main container">
 <div class="panel panel-default"> 
   <div class="panel-heading"> 
