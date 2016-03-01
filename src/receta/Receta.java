@@ -579,6 +579,30 @@ public class Receta {
 		return temp;
 	}
 	
+	public void modificarReceta (Receta unaReceta)
+	{
+		Session sessionHIB = HibernateConf.getSessionFactory().openSession();
+		sessionHIB.getTransaction().begin();
+		try {
+			String sql_query = "update Receta set NOMBRE = :nuevoNombre, CALIFICACION = :nuevaCal where ID_RECETA = :idReceta";
+			Query query = sessionHIB.createSQLQuery(sql_query);
+			query.setParameter("idReceta", unaReceta.getIdReceta());
+			query.setParameter("nuevaCal", unaReceta.getCalificacion());
+			query.setParameter("nuevoNombre", unaReceta.getNombreReceta());
+			
+			query.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			sessionHIB.getTransaction().commit();
+			System.out.println("Done");
+			sessionHIB.close();
+		}
+		
+	}
+	
+	
 	public List<Receta> buscarRecetasPorNombre(String unNombre){
 		
 		{

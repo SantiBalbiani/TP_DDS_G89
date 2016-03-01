@@ -68,6 +68,7 @@ public class BM_RECETA extends HttpServlet {
 					String rating = request.getParameter("rating");
 					int rating_ok = Integer.parseInt(rating);
 					recetaBuscada.calificar(rating_ok);
+					recetaBuscada.modificarReceta(recetaBuscada);
 					
 					session.setAttribute("calificoOK", "yes");
 					response.sendRedirect("verReceta.jsp");

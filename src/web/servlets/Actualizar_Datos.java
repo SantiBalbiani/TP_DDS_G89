@@ -122,7 +122,8 @@ public class Actualizar_Datos extends HttpServlet {
 		//response.sendRedirect("login.jsp");
 	}
 	
-
+	@Deprecated
+	//Revisar, hacia tildar el cambio de contraseña... Estamos validando desde el front igual.
 	public boolean noEsStringVacio(String unString) {
 		try {
 			

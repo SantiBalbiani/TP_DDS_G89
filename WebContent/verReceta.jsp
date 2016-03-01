@@ -42,6 +42,7 @@ String calificoOK = (String) session.getAttribute("calificoOK");
 //   });
 	</script> 
 	
+		<!-- 	Estrellita, estrellita, dime quien es la mas bonita.. -->
 	<style>
 <%--      <%@ include file="style.css"%> --%>
 @charset "UTF-8";
@@ -204,6 +205,7 @@ h1 {
               
                 <div class="row">
                  <div class="col-sm-6"> <p> <% out.println(receta.getNombreReceta()); %> </p> </div>
+
                   
 <!--                   <div class="col-sm-3"> -->
 <!--                   	<button type="submit" id="evento_modificar" name="evento_modificar" class="btn btn-default" >Modificar Receta <span class="glyphicon glyphicon-edit"> </span></button> -->
@@ -232,7 +234,32 @@ h1 {
 
 <section class="main container">
 <div class="panel panel-default"> 
-  <div class="panel-heading"> Informacion de la receta  </div>
+  <div class="panel-heading"> 
+   <div class="row">
+                   <div class="col-sm-6" style="height:25px"> Informacion de la receta </div> 
+                 
+                  <div class="col-sm-3" style="height:25px"> 
+  <form id="form_calificar" name="form_calificar" method="POST" action="BM_RECETA" style="height:10px">
+<!--   <fieldset> -->
+    <span class="star-cb-group">
+      <input type="radio" id="rating-5" name="rating" value="5" onclick="this.form.submit();" <% if (receta.getCalificacion()==5) out.println("checked=\"checked\""); %> /><label for="rating-5">5</label>
+      <input type="radio" id="rating-4" name="rating" value="4" onclick="this.form.submit();" <% if (receta.getCalificacion()==4) out.println("checked=\"checked\""); %> /><label for="rating-4">4</label>
+      <input type="radio" id="rating-3" name="rating" value="3" onclick="this.form.submit();" <% if (receta.getCalificacion()==3) out.println("checked=\"checked\""); %>/><label for="rating-3">3</label>
+      <input type="radio" id="rating-2" name="rating" value="2" onclick="this.form.submit();" <% if (receta.getCalificacion()==2) out.println("checked=\"checked\""); %>/><label for="rating-2">2</label>
+      <input type="radio" id="rating-1" name="rating" value="1" onclick="this.form.submit();" <% if (receta.getCalificacion()==1) out.println("checked=\"checked\""); %>/><label for="rating-1">1</label>
+      <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" 		  <% if (receta.getCalificacion()>5 || receta.getCalificacion()<1) out.println("checked=\"checked\""); %> /><label for="rating-0">0</label>
+    </span>
+<!--     <button type="button" id="calificar_receta" name="calificar_receta" class="btn btn-default" ">     <span class=" glyphicon glyphicon-trash"></span> -->
+<!-- </button> -->
+<input type="hidden" name="BM_RECETA" id="BM_RECETA" value="calificar">
+<input type="hidden" name="receta_calificar" id="receta_calificar" value=<% out.println("\""+receta.getNombreReceta()+"\"");%>>
+<!--   </fieldset> -->
+</form>
+   </div>
+   
+    </div>
+                 
+                 </div>
   
   
   
@@ -289,24 +316,8 @@ h1 {
 								}
 								%>
 								<br>
-  <div class="panel-body"> 
-  <form id="form_calificar" name="form_calificar" method="POST" action="BM_RECETA">
-<!--   <fieldset> -->
-    <span class="star-cb-group">
-      <input type="radio" id="rating-5" name="rating" value="5" onclick="this.form.submit();"/><label for="rating-5">5</label>
-      <input type="radio" id="rating-4" name="rating" value="4" onclick="this.form.submit();" checked="checked" /><label for="rating-4">4</label>
-      <input type="radio" id="rating-3" name="rating" value="3" onclick="this.form.submit();"/><label for="rating-3">3</label>
-      <input type="radio" id="rating-2" name="rating" value="2" onclick="this.form.submit();"/><label for="rating-2">2</label>
-      <input type="radio" id="rating-1" name="rating" value="1" onclick="this.form.submit();"/><label for="rating-1">1</label>
-      <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
-    </span>
-<!--     <button type="button" id="calificar_receta" name="calificar_receta" class="btn btn-default" ">     <span class=" glyphicon glyphicon-trash"></span> -->
-<!-- </button> -->
-<input type="hidden" name="BM_RECETA" id="BM_RECETA" value="calificar">
-<input type="hidden" name="receta_calificar" id="receta_calificar" value=<% out.println("\""+receta.getNombreReceta()+"\"");%>>
-<!--   </fieldset> -->
-</form>
-   </div>
+								
+
   
   </div>
 </div>
